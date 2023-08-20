@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bbs">
+	
+	<!-- 페이지 처리 1: 전체 게시물의 수 구하기 -->
+	<select id="count" resultType="int">
+		select count(*) from bbs_t
+	</select>
+	
+	<select id="list" resultType="bvo" parameterType="map">
+		select * from bbs_t order by b_idx desc limit #{limit} offset #{offset}
+	</select>
+	
+	<insert id="insert" parameterType="bvo">
+		insert into bbs_t(subject,writer,content,f_name,pwd,write_date,hit) 
+		values(#{subject},#{writer},#{content},#{f_name},#{pwd},sysdate(),0)
+	</insert>
+	
+	<update id="hitup" parameterType="String">
+		update bbs_t set hit = hit +1 where b_idx=#{b_idx}
+	</update>
+	
+	<select id="onelist" parameterType="String" resultType="bvo">
+		select * from bbs_t where b_idx=#{b_idx}
+	</select>
+	
+	<select id="comlist" parameterType="String" resultType="cvo">
+		select * from comment_t where b_idx = #{b_idx}
+	</select>
+	
+	<insert id="cominsert" parameterType="cvo">
+		insert into comment_t(writer,content,write_date,b_idx)
+		values(#{writer},#{content},sysdate(),#{b_idx})
+	</insert>
+	
+	<delete id="comdelete" parameterType="String">
+		delete from comment_t where c_idx = #{c_idx}
+	</delete>
+	
+	<update id="delete" parameterType="String">
+		update bbs_t set status = 1 where b_idx = #{b_idx}
+	</update>
+	
+	<update id="update" parameterType="bvo">
+		update bbs_t set subject=#{subject}, content=#{content}, writer=#{writer},
+		f_name=#{f_name} where b_idx = #{b_idx}
+	</update>
+	
+	<select id="comcount" parameterType="String" resultType="int">
+		select count(*) from comment_t where b_idx=#{b_idx}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

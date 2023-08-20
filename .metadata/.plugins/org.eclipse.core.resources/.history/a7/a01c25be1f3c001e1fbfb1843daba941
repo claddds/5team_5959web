@@ -1,0 +1,5 @@
+package com.oguogu.food.vo;
+
+public class Food_VO {
+
+}

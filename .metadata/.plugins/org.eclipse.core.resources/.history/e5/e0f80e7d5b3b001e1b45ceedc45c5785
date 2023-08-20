@@ -1,0 +1,5 @@
+package com.oguogu.controller;
+
+public class Comment_VO {
+
+}

@@ -1,0 +1,5 @@
+package com.oguogu.model.favcontents.vo;
+
+public class favcontents_VO {
+
+}

@@ -1,0 +1,5 @@
+package com.oguogu.model.food;
+
+public class contents_VO {
+
+}

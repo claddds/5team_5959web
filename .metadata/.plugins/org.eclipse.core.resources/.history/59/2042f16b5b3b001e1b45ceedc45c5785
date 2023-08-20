@@ -1,0 +1,5 @@
+package com.oguogu.common;
+
+public class Comment_VO {
+
+}

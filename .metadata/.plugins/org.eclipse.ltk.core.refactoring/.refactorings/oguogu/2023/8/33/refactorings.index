@@ -1,0 +1,189 @@
+1692091615799	Delete element
+1692091695426	Move file
+1692091933560	Rename resource 'sprijng-security.xml'
+1692091959477	Rename package 'com.oguogu.controlle'
+1692092071898	Rename package 'com.oguogu.controller'
+1692092090897	Delete element
+1692092324521	Delete element
+1692092354524	Rename resource 'bbs-mapper.xml'
+1692092394024	Delete element
+1692092395254	Delete element
+1692092400383	Delete elements
+1692092485216	Delete element
+1692093910091	Delete elements
+1692093948408	Rename package 'com.oguogu.model.USER'
+1692093951228	Rename package 'com.oguogu.model.FAQ'
+1692094149479	Copy compilation unit
+1692094158506	Rename type 'comment_VO'
+1692094160724	Copy compilation unit
+1692094162161	Copy compilation unit
+1692094162999	Copy compilation unit
+1692094163640	Copy compilation unit
+1692094164410	Copy compilation unit
+1692094165095	Copy compilation unit
+1692094165825	Copy compilation unit
+1692094166535	Copy compilation unit
+1692094167323	Copy compilation unit
+1692094168017	Copy compilation unit
+1692094168751	Copy compilation unit
+1692094169476	Copy compilation unit
+1692094170205	Copy compilation unit
+1692094182571	Rename type 'contents_VO'
+1692094189198	Rename type 'contents_VO'
+1692094201197	Rename type 'contents_VO'
+1692094220088	Rename type 'contents_VO'
+1692094224016	Rename package 'com.oguogu.model.fav_lounge'
+1692094230412	Rename package 'com.oguogu.model.fav_contents'
+1692094234445	Rename package 'com.oguogu.model.fav_ontents'
+1692094240488	Rename package 'com.oguogu.model.fav_contents'
+1692094249814	Rename type 'fav_contents_VO'
+1692094254961	Rename type 'fav_lounge_VO'
+1692094260887	Rename type 'contents_VO'
+1692094268166	Rename type 'contents_VO'
+1692094277173	Rename type 'contents_VO'
+1692094286123	Rename type 'contents_VO'
+1692094292740	Rename type 'contents_VO'
+1692094298493	Rename type 'contents_VO'
+1692094303143	Rename type 'contents_VO'
+1692094311688	Rename type 'contents_VO'
+1692094316862	Rename type 'contents_VO'
+1692094486190	Rename package 'com.oguogu'
+1692094491902	Delete element
+1692095229612	Delete element
+1692095231918	Delete element
+1692095265829	Rename package 'com.oguogu.model'
+1692095268227	Delete element
+1692095272093	Rename package 'com.oguogu.model'
+1692095274307	Delete element
+1692095291302	Rename package 'com.oguogu.model'
+1692095294564	Delete element
+1692095306823	Delete element
+1692095326546	Move compilation unit
+1692095351058	Move compilation unit
+1692095394044	Move compilation unit
+1692095424201	Move compilation unit
+1692095442806	Move compilation unit
+1692095465673	Move compilation unit
+1692095479906	Rename package 'com.oguogu.model.food'
+1692095513828	Move compilation unit
+1692095759862	Move compilation unit
+1692095791783	Move compilation unit
+1692095793830	Move compilation unit
+1692095869637	Delete element
+1692095875569	Delete element
+1692095885527	Delete element
+1692095913629	Delete element
+1692095915696	Delete element
+1692095917024	Delete element
+1692095928121	Delete element
+1692097075693	Rename package 'com.oguogu.model'
+1692097358039	Delete element
+1692097414303	Copy compilation unit
+1692097415595	Copy compilation unit
+1692097416652	Copy compilation unit
+1692097417272	Copy compilation unit
+1692097417966	Copy compilation unit
+1692097418622	Copy compilation unit
+1692097419253	Copy compilation unit
+1692097420340	Copy compilation unit
+1692097421014	Copy compilation unit
+1692097421720	Copy compilation unit
+1692097422406	Copy compilation unit
+1692097423070	Copy compilation unit
+1692097423726	Copy compilation unit
+1692097424682	Copy compilation unit
+1692097425276	Copy compilation unit
+1692097426045	Copy compilation unit
+1692097433414	Delete element
+1692097457766	Rename type 'Comment_VO'
+1692097462128	Delete element
+1692097467718	Rename package 'com.oguogu.educationh'
+1692097476002	Rename type 'Comment_VO'
+1692097481359	Rename type 'Comment_VO'
+1692097485900	Rename type 'Faq_VO'
+1692097495915	Rename type 'Comment_VO'
+1692097503936	Rename type 'Comment_VO'
+1692097510141	Rename type 'Comment_VO'
+1692097514236	Rename type 'Comment_VO'
+1692097518422	Rename type 'Comment_VO'
+1692097524742	Rename type 'Comment_VO'
+1692097529208	Rename type 'Comment_VO'
+1692097533338	Rename type 'Comment_VO'
+1692097537864	Rename type 'Comment_VO'
+1692097549721	Rename type 'QNA_VO'
+1692097555852	Rename type 'Comment_VO'
+1692097560171	Rename type 'Comment_VO'
+1692097588573	Copy compilation unit
+1692097596487	Rename type 'Comment_DAO'
+1692097610158	Copy compilation unit
+1692097616371	Copy compilation unit
+1692097640993	Copy compilation unit
+1692097644746	Copy compilation unit
+1692097648404	Copy compilation unit
+1692097652271	Copy compilation unit
+1692097656754	Copy compilation unit
+1692097660617	Copy compilation unit
+1692097664073	Copy compilation unit
+1692097668016	Copy compilation unit
+1692097671906	Copy compilation unit
+1692097675249	Copy compilation unit
+1692097679545	Copy compilation unit
+1692097720679	Move compilation unit
+1692097726409	Move compilation unit
+1692097729722	Move compilation unit
+1692097732026	Move compilation unit
+1692097734794	Move compilation unit
+1692097736968	Move compilation unit
+1692097760930	Move compilation unit
+1692097763288	Move compilation unit
+1692097786562	Move compilation unit
+1692097788640	Move compilation unit
+1692097801192	Move compilation unit
+1692097803506	Move compilation unit
+1692097828188	Move compilation unit
+1692097830207	Move compilation unit
+1692097849374	Move compilation unit
+1692097851173	Move compilation unit
+1692097867120	Move compilation unit
+1692097869069	Move compilation unit
+1692097886264	Move compilation unit
+1692097888180	Move compilation unit
+1692097898467	Move compilation unit
+1692097901042	Move compilation unit
+1692097924895	Move compilation unit
+1692097926833	Move compilation unit
+1692097940908	Move compilation unit
+1692097943028	Move compilation unit
+1692097959124	Move compilation unit
+1692097960939	Move compilation unit
+1692097976969	Move compilation unit
+1692097978838	Move compilation unit
+1692173782147	Rename resource 'bbs-mapper.xml'
+1692183962031	Delete element
+1692262521593	Rename resource 'oguogu'
+1692262953640	Rename resource 'top.jsp'
+1692262957655	Rename resource 'left.jsp'
+1692263292606	Copy file
+1692263300667	Rename resource 'notice.jsp'
+1692263332825	Rename resource 'lounge.jsp'
+1692263347323	Copy file
+1692263372799	Rename resource 'health_cal.jsp'
+1692263377975	Rename resource 'self_dia.jsp'
+1692263447462	Rename resource 'food.jsp'
+1692263453271	Copy file
+1692263466721	Rename resource 'edu.jsp'
+1692263475592	Copy file
+1692263506730	Copy file
+1692263552526	Rename resource 'top.jsp'
+1692263556526	Rename resource 'bottom.jsp'
+1692263559820	Rename resource 'body.jsp'
+1692264493613	Copy file
+1692264508557	Copy file
+1692264552865	Delete element
+1692264564018	Move file
+1692264567706	Move file
+1692264587640	Rename resource 'common'
+1692264669103	Copy file
+1692264684015	Rename resource 'lounge_write.jsp'
+1692264692468	Copy file
+1692264717693	Copy file

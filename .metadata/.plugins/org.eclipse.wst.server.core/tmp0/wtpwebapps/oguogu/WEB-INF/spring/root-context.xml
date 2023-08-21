@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 어노테이션 설정 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.oguogu.*" />
+	
+	<context:property-placeholder location="classpath:props/jdbc.properties"/>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	
+	 <!-- 마리아db 연결 정보 -->
+	 	<property name="driverClassName" value="${jdbc.driver}" />
+	 	<property name="url" value="${jdbc.url}" />
+	 	<property name="username" value="${jdbc.user}" />
+	 	<property name="password" value="${jdbc.pwd}" />
+	 	
+	 	<!-- 동시에 사용할 수 있는 최대 커넥션 수 -->
+	 	<property name="maxActive" value="${jdbc.maxActiv}" />
+	 	<!-- 커넥션 풀에 반납할 때 최대로 유지되는 커넥션의 수 -->
+	 	<property name="maxIdle" value="${jdbc.maxIdle}" />
+	 	<!-- 커넥션 풀에 반납할 때 최소로 유지되는 커넥션의 수 -->	 	
+	 	<property name="minIdle" value="${jdbc.minIdle}" />
+	 </bean>
+	 
+	 <!-- mybatis의 config 역할(오라클과 mybatis 연결, mapper 위치) -->
+	 <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 	<property name="dataSource" ref="dataSource" />
+	 	<property name="configLocation" value="classpath:mybatis-config.xml" /><!-- 요즘은 컨피그 위치를 잡아줌 -->
+	 </bean>
+	 
+	 <!-- DAO에서 사용할 SqlSessionTemplate 클래스를 객체로 만들자 -->
+	 <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	 	<constructor-arg ref="sqlSessionFactoryBean" />
+	 </bean>
+	
+		
+</beans>

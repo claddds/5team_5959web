@@ -1,0 +1,5 @@
+package com.oguogu.model.qna;
+
+public class qna_VO {
+
+}

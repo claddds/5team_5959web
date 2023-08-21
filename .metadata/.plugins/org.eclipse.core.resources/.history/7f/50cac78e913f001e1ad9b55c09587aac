@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>오구닥터 메인화면</title>
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" 
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<h2>유형 선택</h2>
+	<button onclick="go_dog_self()">대변</button>
+	<button onclick="go_dog_self()">소변</button>
+	<button onclick="go_dog_self()">식사</button>
+	<br>
+	<button onclick="go_dog_self()">구토</button>
+	<button onclick="go_dog_self()">귀</button>
+	<button onclick="go_dog_self()">얼굴</button>
+	<br>
+	<button onclick="go_dog_self()">눈</button>
+	<button onclick="go_dog_self()">발바닥</button>
+	<button onclick="go_dog_self()">관절</button>
+	<br>
+	<button onclick="go_dog_self()">피부/모질</button>
+	<button onclick="go_dog_self()">구강/치아</button>
+	<button onclick="go_dog_self()">호흡기</button>
+	<br>
+	<button onclick="go_dog_self()">생식기/항문</button>
+	<button onclick="go_dog_self()">비만도</button>
+	<button onclick="go_dog_self()">행동</button>
+	<br>
+	<button onclick="go_dog_self()">배(복부)</button>
+	<button onclick="go_dog_self()">등(허리)</button>
+	
+</body>
+</html>

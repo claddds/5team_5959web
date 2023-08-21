@@ -1,0 +1,5 @@
+package com.oguogu.model.faq;
+
+public class contents_VO {
+
+}

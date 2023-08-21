@@ -1,0 +1,5 @@
+package com.oguogu.model.place;
+
+public class contents_VO {
+
+}

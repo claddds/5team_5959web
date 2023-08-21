@@ -1,0 +1,5 @@
+package com.oguogu.model.education;
+
+public class contents_VO {
+
+}

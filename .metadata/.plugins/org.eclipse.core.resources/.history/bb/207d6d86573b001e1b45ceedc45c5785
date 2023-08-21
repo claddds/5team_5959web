@@ -1,0 +1,5 @@
+package com.oguogu.model.notice;
+
+public class notice_VO {
+
+}

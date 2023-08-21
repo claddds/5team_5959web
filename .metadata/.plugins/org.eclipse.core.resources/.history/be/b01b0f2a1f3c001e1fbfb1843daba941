@@ -1,0 +1,5 @@
+package com.oguogu.notice.vo;
+
+public class Notice_VO {
+
+}

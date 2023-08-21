@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <title>오구닥터 메인화면</title>
 <style type="text/css">
-	
+	*{
+		padding: 0;
+	}
 </style>
 <script>
 	$(document).ready(function() {
@@ -19,12 +21,19 @@
 		});
 	});
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox as tiles</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<h2>유형 선택</h2>
 	<h3>반려견의 증상 유형을 선택해주세요<br>최대 3개까지 가능합니다.</h3>
-	<div>
-		<form action=""></form>
+	<div class="tile">
 		<label><input type="checkbox" name="bodypart" value="stool">대변</label>
 		<label><input type="checkbox" name="bodypart" value="urine">소변</label>
 		<label><input type="checkbox" name="bodypart" value="meal">식사</label>

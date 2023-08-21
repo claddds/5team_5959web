@@ -1,0 +1,5 @@
+package com.oguogu.model.user;
+
+public class user_VO {
+
+}

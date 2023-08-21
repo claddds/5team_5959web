@@ -1,0 +1,5 @@
+package com.oguogu.model.pet.vo;
+
+public class pet_VO {
+
+}

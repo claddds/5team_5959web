@@ -1,0 +1,5 @@
+package com.oguogu.food;
+
+public class Comment_VO {
+
+}

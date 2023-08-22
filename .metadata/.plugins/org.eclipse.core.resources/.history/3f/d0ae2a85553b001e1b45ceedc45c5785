@@ -1,5 +1,0 @@
-package com.oguogu.model.user;
-
-public class user_VO {
-	private String user_id,name,pw,email,nickname,type
-}

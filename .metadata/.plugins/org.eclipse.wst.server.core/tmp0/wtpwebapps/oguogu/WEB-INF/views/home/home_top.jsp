@@ -126,7 +126,7 @@ ul.midmenu > li ul.sub{
 	</div>
 	<!-- 5959 메인 로고 -->
 	<div class="mainlogo">
-	  <a href=""><img src="resources/images/mainlogo.png" width="200px"></a>
+	  <a href=""><img src="resources/images/home/mainlogo.png" width="200px"></a>
 	</div>
 	<section class="nav">
 		<!-- 공백 div -->

@@ -11,7 +11,9 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
 	rel="stylesheet">
+	 
 <style type="text/css">
+/*  
 * {
 	padding: 0;
 	margin: 0;
@@ -100,10 +102,10 @@ keyframes grow { 50%{
 	font-size: 80px;
 }
 }
-
+*/
 </style>
+
 <script type="text/javascript">
-	
 </script>
 </head>
 <body>
@@ -111,6 +113,7 @@ keyframes grow { 50%{
 
 <h2>유형 선택</h2>
 <h3>반려견의 증상 유형을 선택해주세요<p>최대 3개까지 가능합니다.</h3>
+<!-- 
 <section>
  	<div class="tile">
  		<input type="checkbox" name = "bodypart" id="stool">
@@ -209,6 +212,6 @@ keyframes grow { 50%{
  		</label>
  	</div>
 </section>
-
+ -->
 </body>
 </html>

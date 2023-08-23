@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>오구오구 메인화면</title>
+</head>
+<body>
+	<div class="top">
+	<jsp:include page="home_top.jsp" />
+	</div>
+	<!-- 메인 슬라이드 -->
+	<div class="slideshow-container">
+		<div class="myslide">
+			<img class="main_slideImg" src="resources/images/home/mainbanner_eduexplain.png">
+		</div>
+		<div class="myslide">
+			<img class="main_slideImg" src="resources/images/home/mainbanner_ogudoctor.png">
+		</div>
+		<div class="myslide">
+			<img class="main_slideImg" src="resources/images/home/mainbanner_place.png">
+		</div>
+		<div class="myslide">
+			<img class="main_slideImg" src="resources/images/home/mainbanner_pocket.png">
+		</div>
+		<div class="myslide">
+			<img class="main_slideImg" src="resources/images/home/mainbanner_eduexplain.png">
+		</div>
+		<div class="myslide">
+			<img class="main_slideImg" src="resources/images/home/mainbanner_eduexplain.png">
+		</div>
+	</div>
+</body>
+</html>

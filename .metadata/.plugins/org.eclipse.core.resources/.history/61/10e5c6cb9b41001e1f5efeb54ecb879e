@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>오구오구 메인화면</title>
+<script type="text/javascript">
+	//슬라이더 이미지 배열
+	var images = document.querySelectorAll('.slider img');
+	var currentIndex = 0;
+	// 이미지 자동 슬라이딩 함수
+	function autoSlide() {
+		currentIndex = (currentIndex + 1) % images.length;
+		var translateValue = -currentIndex * 600 / images.length; ; // 이미지의 너비만큼 이동
+		document.querySelector('.slider').style.transform = 'translateX('
+				+ translateValue + '%)';
+	}
+	// 일정 시간마다 이미지 슬라이딩
+	var interval = setInterval(autoSlide, 3000); // 3초마다 슬라이딩
+	// 페이지가 언로드될 때 타이머 해제
+	window.addEventListener('unload', function() {
+		clearInterval(interval);
+	});
+</script>
+<style type="text/css">
+/* 슬라이더의 스타일과 이미지 크기 설정 */
+.slider-container {
+	width: 100%;
+	max-width: 800px;
+	margin: auto;
+	overflow: hidden;
+}
+
+.slider {
+	width: 600%;
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+}
+
+.slider img {
+	width: 100%;
+	height: auto;
+}
+</style>
+</head>
+<body>
+	<div class="top">
+		<jsp:include page="home_top.jsp" />
+	</div>
+	<!-- 메인 슬라이드 -->
+	<div class="slider-container">
+		<div class="slider">
+			<img src="resources/images/home/mainbanner_eduexplain.png"
+				alt="mainbanner_eduexplain"> <img
+				src="resources/images/home/mainbanner_ogudoctor.png"
+				alt="mainbanner_ogudoctor"> <img
+				src="resources/images/home/mainbanner_place.png"
+				alt="mainbanner_place"> <img
+				src="resources/images/home/mainbanner_pocket.png"
+				alt="mainbanner_pocket"> <img
+				src="resources/images/home/mainbanner_lounge.png"
+				alt="mainbanner_lounge"> <img
+				src="resources/images/home/mainbanner_food.png"
+				alt="mainbanner_food">
+		</div>
+	</div>
+
+</body>
+</html>

@@ -10,6 +10,9 @@
 	rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
 <style type="text/css">
 	body{
 		
@@ -149,7 +152,20 @@
 	
 </style>
 <script type="text/javascript">
-
+	function count_check(obj) {
+		var chkBox = document.getElementsByName("bodypart_dog");
+		var chkCnt = 0;
+		for (var i = 0; i < chkBox.length; i++) {
+			if(chkBox[i].checked){
+				chkCnt++;
+			}
+		}
+		if(chkCnt > 3){
+			alert("3개까지만 체크 가능합니다.");
+			obj.checked = false;
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
@@ -157,106 +173,108 @@
 		<jsp:include page="/WEB-INF/views/home/home_top.jsp" />
 	</header>
 	<div id=minibanner>
-        <img src="resources/images/list_banner/minibanner_eduexplain.png">
+        <a href=""><img src="resources/images/list_banner/minibanner_eduexplain.png"></a>
     </div>
 	<div class="category_check">
 		<div class="category_explain">
-			<h2>유형 선택</h2>
-			<h3>반려견의 증상 유형을 선택해주세요<p>최대 3개까지 가능합니다.</h3>
+			<h2 style="font-family:'Noto Sans KR', sans-serif;">유형 선택</h2>
+			<br>
+			<h3 style="font-family: 'Noto Sans KR', sans-serif;">반려견의 증상 유형을 선택해주세요</h3>
+			<h4 style="font-family: 'Noto Sans KR', sans-serif; color: gray;"><p>최대 3개까지 가능합니다.</h4>
 		</div>
 		<div class="wrapper">
 			<div class="container">
-				<input type="checkbox" id="stool">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="stool">
 				<label for="stool">
  					<img src="resources/images/ogudoctor/self_category/stool.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="urine">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="urine">
 				<label for="urine">
  					<img src="resources/images/ogudoctor/self_category/urine.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="meal">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="meal">
 				<label for="meal">
  					<img src="resources/images/ogudoctor/self_category/meal.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="vomit">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="vomit">
 				<label for="vomit">
  					<img src="resources/images/ogudoctor/self_category/vomit.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="ear">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="ear">
 				<label for="ear">
  					<img src="resources/images/ogudoctor/self_category/ear.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="face_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="face_dog">
 				<label for="face_dog">
  					<img src="resources/images/ogudoctor/self_category/face_dog.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="eye">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="eye">
 				<label for="eye">
  					<img src="resources/images/ogudoctor/self_category/eye.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="paw">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="paw">
 				<label for="paw">
  					<img src="resources/images/ogudoctor/self_category/paw.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="joint">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="joint">
 				<label for="joint">
  					<img src="resources/images/ogudoctor/self_category/joint.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="skin">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="skin">
 				<label for="skin">
  					<img src="resources/images/ogudoctor/self_category/skin.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="tooth">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="tooth">
 				<label for="tooth">
  					<img src="resources/images/ogudoctor/self_category/tooth.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="breath">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="breath">
 				<label for="breath">
  					<img src="resources/images/ogudoctor/self_category/breath.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="genitals_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="genitals_dog">
 				<label for="genitals_dog">
  					<img src="resources/images/ogudoctor/self_category/genitals_dog.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="behavior_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="behavior_dog">
 				<label for="behavior_dog">
  					<img src="resources/images/ogudoctor/self_category/behavior_dog.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="abdomen_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="abdomen_dog">
 				<label for="abdomen_dog">
  					<img src="resources/images/ogudoctor/self_category/abdomen_dog.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" id="waist_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="waist_dog">
 				<label for="waist_dog">
  					<img src="resources/images/ogudoctor/self_category/waist_dog.png" />
  				</label>

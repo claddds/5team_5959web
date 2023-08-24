@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>증상체크</title>
 </head>
 <body>
 	<div>
 		<form>
-			<label></label>
+			
 		</form>
 	</div>
 </body>

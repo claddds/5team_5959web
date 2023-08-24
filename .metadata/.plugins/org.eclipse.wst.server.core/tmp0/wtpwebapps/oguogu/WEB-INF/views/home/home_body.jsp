@@ -8,11 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style type="text/css">
-/* .mySlides {
-	display: flex;
-	justify-content: center;
-} */
-#ffff{
+
+#mainbanner_slide{
 	display: flex;
 	justify-content: center;
 }
@@ -26,6 +23,11 @@
 	padding: 0;
 }
 
+header {
+	position: relative;
+	z-index: 1;
+}
+
 </style>
 </head>
 <body>
@@ -33,7 +35,7 @@
 		<jsp:include page="home_top.jsp" />
 	</header>
 	<div class="w3-content w3-display-container">
-		<div id="ffff">
+		<div id="mainbanner_slide">
 		<img class="mySlides" src="resources/images/home/mainbanner_eduexplain.png">
 		<img class="mySlides" src="resources/images/home/mainbanner_ogudoctor.png">
 		<img class="mySlides" src="resources/images/home/mainbanner_place.png">

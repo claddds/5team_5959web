@@ -41,3 +41,6 @@
 0:0:0:0:0:0:0:1 - - [25/Aug/2023:17:31:37 +0900] "GET /controlle/resources/images/ogudoctor/self_symptom/abdomen_dog/bloat_dog.png HTTP/1.1" 304 -
 0:0:0:0:0:0:0:1 - - [25/Aug/2023:17:33:21 +0900] "GET /controlle/ HTTP/1.1" 200 2445
 0:0:0:0:0:0:0:1 - - [25/Aug/2023:17:33:23 +0900] "GET /controlle/ HTTP/1.1" 200 2445
+127.0.0.1 - - [25/Aug/2023:18:14:24 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [25/Aug/2023:18:14:25 +0900] "GET /controlle/ HTTP/1.1" 200 2026
+0:0:0:0:0:0:0:1 - - [25/Aug/2023:18:15:53 +0900] "GET /controlle/ HTTP/1.1" 200 2026

@@ -17,7 +17,7 @@
   padding: 0;
 }
 
-a {
+header a {
   text-decoration: none;
   color: var(--text-color);
 }
@@ -30,9 +30,7 @@ a {
 }
 
 .menuimg {
-/*   font-size: 2.5em;
-  color: var(--text-color); */
-  margin-left:100px;
+
 }
  
 .midmenu {
@@ -91,12 +89,6 @@ ul.midmenu > li ul.sub{
   padding: 0 15px;
 }
 
-/* 최상단 수직바 추가 */
-.topmenu li:not(:first-child)::before {
-  content: "|";
-  position: absolute;
-  left: -5px; /* 수직 막대 왼쪽 여백 */
-}
 
 /* 메인로고 꾸밈 */
 .mainlogo {
@@ -106,6 +98,10 @@ ul.midmenu > li ul.sub{
   height: 100px;
   margin-bottom: 40px;
 }
+
+.nav > div{
+	margin-left:100px;
+} 
 
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,9 +115,10 @@ ul.midmenu > li ul.sub{
 	<!-- 최상단 NOTICE,LOGIN,JOIN US -->
 	<div>
 	  <ul class="topmenu">
-	    <li><a href="" style="color:#FFA629;">NOTICE</a></li>
-	    <li><a href="" style="color:#FFA629;">LOGIN</a></li>
+	    <li><a href="" style="color:tomato; display:none;">관리자 페이지</a></li><!-- id가 admin일 때 display:"" JS 처리  -->
+	    <li><a href="" style="color:#FFA629;">NOTICE </a></li>
 	    <li><a href="" style="color:#FFA629;">JOIN US</a></li>
+	    <li><a href="" style="color:#FFA629;">LOGIN</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
 	  </ul>
 	</div>
 	<!-- 5959 메인 로고 -->
@@ -130,7 +127,8 @@ ul.midmenu > li ul.sub{
 	</div>
 	<section class="nav">
 		<!-- 공백 div -->
-		<div class="menuimg"></div>
+		<div></div>
+		   
 		  <!-- 메뉴 -->
 		  <ul class="midmenu">
 			    <li><a href="">HOME</a></li>
@@ -170,7 +168,9 @@ ul.midmenu > li ul.sub{
 			    	</ul>
 			    </li>
 		  </ul>
+		  
 		  <div></div>
+		  
 	</section>
 </header>
 </body>

@@ -1,4 +1,191 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 25 Aug 2023 22:17:06 GMT</lastBuildDate><item><title><![CDATA[A Bootiful Podcast: cloud native Chris Richardson]]></title><link>https://spring.io/blog/2023/08/25/a-bootiful-podcast-cloud-native-chris-richardson</link><guid isPermaLink="true">https://spring.io/blog/2023/08/25/a-bootiful-podcast-cloud-native-chris-richardson</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Fri, 25 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, Josh Long (@starbuxman) talks to original cloud native Chris Richardson on microservices, architecture, and more.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 29 Aug 2023 10:47:51 GMT</lastBuildDate><item><title><![CDATA[Spring Data JDBC - How To Maintain Your Database Schema]]></title><link>https://spring.io/blog/2023/08/29/spring-data-jdbc-how-to-maintain-your-database-schema</link><guid isPermaLink="true">https://spring.io/blog/2023/08/29/spring-data-jdbc-how-to-maintain-your-database-schema</guid><dc:creator><![CDATA[Jens Schauder]]></dc:creator><pubDate>Tue, 29 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is the fifth article of a series about how to tackle various challenges you might encounter when using Spring Data JDBC. The series consists of:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/blog/2021/09/09/spring-data-jdbc-how-to-use-custom-id-generation&quot;&gt;Spring Data JDBC - How to use custom ID generation?&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/blog/2021/09/22/spring-data-jdbc-how-do-i-make-bidirectional-relationships&quot;&gt;Spring Data JDBC - How do I make bidirectional relationships?&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/blog/2021/10/18/spring-data-jdbc-how-do-i-implement-caching&quot;&gt;Spring Data JDBC - How do I implement caching?&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/blog/2022/01/20/spring-data-jdbc-how-can-i-do-a-partial-update-of-an-aggregate-root&quot;&gt;Spring Data JDBC - How Can I Do a Partial Update of an Aggregate Root?&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Data JDBC - How do I Generate the Schema for my Domain Model? (This article)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you are new to Spring Data JDBC, you should start by reading its &lt;a href=&quot;https://spring.io/blog/2018/09/17/introducing-spring-data-jdbc&quot;&gt;introduction&lt;/a&gt; and &lt;a href=&quot;https://spring.io/blog/2018/09/24/spring-data-jdbc-references-and-aggregates&quot;&gt;this article, which explains the relevance of aggregates in the context of Spring Data JDBC&lt;/a&gt; to understand the basic concepts.&lt;/p&gt;
+&lt;p&gt;With any Object Relational Mapper (ORM), you have to create two things, and they have to match each other:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A domain model in the form of Java classes.&lt;/li&gt;
+&lt;li&gt;A database schema consisting of tables, columns, indexes, and constraints.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Starting with &lt;a href=&quot;https://github.com/spring-projects/spring-data-commons/wiki/Spring-Data-2023.1-%28Vaughan%29-Release-Notes&quot;&gt;version 3.2.0-M1 Spring Data Relational&lt;/a&gt; will help you do this.
+This article shows you how to make it work.&lt;/p&gt;
+&lt;h2&gt;Creating an Initial Schema&lt;/h2&gt;
+&lt;p&gt;The first thing to do is to find a place to put the code for the schema generation.
+We recommend using a test for this.
+You can use the configuration of your main application from it, and it cannot run by accident in production.&lt;/p&gt;
+&lt;p&gt;The next thing to do is to get a &lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/current/api/org/springframework/data/relational/core/mapping/RelationalMappingContext.html&quot;&gt;&lt;code&gt;RelationalMappingContext&lt;/code&gt;&lt;/a&gt;.
+This is the class that is at the core of Spring Data Relational, which is parent to both Spring Data JDBC and Spring Data R2DBC.
+This class holds all the mapping meta information about your aggregates, once it is fully initialized.
+But this initialization happens lazily, so you have to register your aggregate roots yourself.&lt;/p&gt;
+&lt;p&gt;Then you need to create a &lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/LiquibaseChangeSetWriter.html&quot;&gt;&lt;code&gt;LiquibaseChangeSetWriter&lt;/code&gt;&lt;/a&gt; from it
+and use that to write out a Liquibase change set.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;// context is a RelationalMappingContext that you autowire in your test.
+context.setInitialEntitySet(Collections.singleton(Minion.class));
+LiquibaseChangeSetWriter writer = new LiquibaseChangeSetWriter(context);
+
+writer.writeChangeSet(new FileSystemResource(&quot;cs-minimum.yaml&quot;));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For this to work, you need Liquibase in your dependencies:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;dependency&gt;
+    &amp;#x3C;groupId&gt;org.liquibase&amp;#x3C;/groupId&gt;
+    &amp;#x3C;artifactId&gt;liquibase-core&amp;#x3C;/artifactId&gt;
+&amp;#x3C;/dependency&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note: If you use Spring Boot, the Liquibase dependency will trigger schema initialization using Liquibase, which will fail, because it cannot find any change sets.
+You can easily disable this by &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto.data-initialization.migration-tool.liquibase&quot;&gt;adding this line to your &lt;code&gt;application.properties&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;spring.liquibase.enabled=false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you run this test, you should find a file named &lt;code&gt;cs-minimum.yaml&lt;/code&gt; in the root folder of your project:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;databaseChangeLog:
+- changeSet:
+    id: &apos;1692728224754&apos;
+    author: Spring Data Relational
+    objectQuotingStrategy: LEGACY
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: true
+              primaryKey: true
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: true
+            name: name
+            type: VARCHAR(255 BYTE)
+        tableName: minion
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should review this, modify it as desired, and put it in the proper location for Liquibase to pick up.
+If you have disabled it before, now enable schema initialization by Liquibase in order to actually use this change set.&lt;/p&gt;
+&lt;h2&gt;Creating an Update Schema&lt;/h2&gt;
+&lt;p&gt;For the second release of your application, you probably have some updates to the database schema.
+Spring Data JDBC can help you with these as well.&lt;/p&gt;
+&lt;p&gt;In order to create such an incremental schema update, we need to provide the current state of the database.
+This is done with an instance of &lt;a href=&quot;https://javadoc.liquibase.com/liquibase-core/liquibase/database/Database.html&quot;&gt;&lt;code&gt;liquibase.database.Database&lt;/code&gt;&lt;/a&gt;, which you can create from a &lt;code&gt;DataSource&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Autowired
+DataSource ds;
+
+// ...
+
+context.setInitialEntitySet(Collections.singleton(Minion.class));
+LiquibaseChangeSetWriter writer = new LiquibaseChangeSetWriter(context);
+
+try (Database db = new HsqlDatabase()) {
+
+	db.setConnection(new JdbcConnection(ds.getConnection()));
+
+	writer.writeChangeSet(new FileSystemResource(&quot;cs-diff.yaml&quot;), db);
+
+} catch (IOException | SQLException | LiquibaseException e) {
+	throw new RuntimeException(&quot;Changeset generation failed&quot;, e);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The example above uses a &lt;code&gt;HsqlDatabase&lt;/code&gt;.
+You would use an implementation that matches your actual database.&lt;/p&gt;
+&lt;p&gt;By default, the change set never drops columns or tables from your schema.
+Just because they are not modeled in the domain model does not mean that you do not need them, right?
+However, if you actually want to delete some or all of the tables and columns not present in your Java domain model, register a [&lt;code&gt;DropTableFilter&lt;/code&gt;](&lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/LiquibaseChangeSetWriter.html#setDropTableFilter(java.util.function.Predicate%5C)&quot;&gt;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/LiquibaseChangeSetWriter.html#setDropTableFilter(java.util.function.Predicate\)&lt;/a&gt;) or [&lt;code&gt;DropColumnFilter&lt;/code&gt;](&lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/LiquibaseChangeSetWriter.html#setDropColumnFilter(java.util.function.BiPredicate%5C)&quot;&gt;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/LiquibaseChangeSetWriter.html#setDropColumnFilter(java.util.function.BiPredicate\)&lt;/a&gt;), like in the following example, which drops all unmapped columns except those named &lt;code&gt;special&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;writer.setDropColumnFilter((table, column) -&gt; !column.equalsIgnoreCase(&quot;special&quot;));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Customizing the Schema Generation&lt;/h2&gt;
+&lt;p&gt;Spring Data JDBC does not have annotations for specifying the exact database type for columns.
+But it does offer a hook to use the types that you want.
+You can provide a &lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/SqlTypeMapping.html&quot;&gt;&lt;code&gt;SqlTypeMapping&lt;/code&gt;&lt;/a&gt; to the &lt;code&gt;LiquibaseChangeSetWriter&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;writer.setSqlTypeMapping(((SqlTypeMapping) property -&gt; {
+	if (property.getName().equalsIgnoreCase(&quot;name&quot;)) {
+		return &quot;VARCHAR(500)&quot;;
+	}
+	return null;
+}).and(new DefaultSqlTypeMapping()));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You have to implement just a single method of that interface: &lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/SqlTypeMapping.html#getColumnType(org.springframework.data.relational.core.mapping.RelationalPersistentProperty))&quot;&gt;&lt;code&gt;String getColumnType(RelationalPersistentProperty property)&lt;/code&gt;&lt;/a&gt;.
+In the likely case that you want to modify the types for only some cases, you can combine it with a &lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/DefaultSqlTypeMapping.html&quot;&gt;&lt;code&gt;DefaultSqlTypeMapping&lt;/code&gt;&lt;/a&gt;, which will be used for all the cases where your implementation returns &lt;code&gt;null&lt;/code&gt;, as shown in the example.&lt;/p&gt;
+&lt;h2&gt;Using Annotations to Control Schema Types&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/current/api/org/springframework/data/relational/core/mapping/RelationalPersistentProperty.html&quot;&gt;&lt;code&gt;RelationalPersistentProperty&lt;/code&gt;&lt;/a&gt; has some very helpful methods, like &lt;code&gt;findAnnotation&lt;/code&gt; to access an annotation (including meta annotations) on the property or its owning entity.
+You can use this feature to use your own annotations and meta annotations to control the database types used for your domain model.&lt;/p&gt;
+&lt;p&gt;For example, you may create a layer of annotations that specify database level types
+and another domain-specific set of annotations using the first, as demonstrated in the following code snippets:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Retention(RetentionPolicy.RUNTIME)
+public @interface Varchar {
+
+	/**
+	 * the size of the varchar.
+	 */
+	int value();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Varchar(20)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Name {
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You could then use this annotation to annotate properties in your domain model and use a matching &lt;code&gt;SqlTypeMapping&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Name
+String name;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;writer.setSqlTypeMapping(((SqlTypeMapping) property -&gt; {
+
+  if (!property.getType().equals(String.class)) {
+    return null;
+  }
+
+  // findAnnotation will find meta annotations
+  Varchar varchar = property.findAnnotation(Varchar.class);
+  int value = varchar.value();
+
+  if (varchar == null) {
+    return null;
+  }
+  return &quot;VARCHAR(&quot; +
+      varchar.value() +
+      &quot;)&quot;;
+
+}).and(new DefaultSqlTypeMapping()));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Limitations&lt;/h2&gt;
+&lt;p&gt;Schema generation currently does not support references.
+Those will currently be silently ignored. Of course, we will improve on that in the future.&lt;/p&gt;
+&lt;h2&gt;Why so Complicated?&lt;/h2&gt;
+&lt;p&gt;If you are coming from JPA/Hibernate, you are used to having a simple configuration to directly generate the schema in the database and also to having schema information as part of the mapping annotations.
+It&apos;s natural to ask why we chose a different way.&lt;/p&gt;
+&lt;p&gt;There are multiple answers to this question:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Schema changes are potentially dangerous.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can easily do things that you can recover from only by applying a database backup.
+We do not think it is a good thing to condition developers to do this kind of thing without really seeing, let alone thinking about, the changes they apply.
+That is why we create the changes but leave applying the changes as a separate step.&lt;/p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;Schema changes should be controlled by version control, and they need to be managed by a dedicated tool, since they are not idempotent. That is, you cannot reapply a SQL script that adds a table or column to make sure that column is present.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;That is why we chose Liquibase for creating and managing changes.&lt;/p&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;The exact datatypes used in the database are not relevant for an object relational mapper, such as Spring Data JDBC.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Therefore, this kind of information should not be part of the mapping annotations used by Spring Data JDBC.
+Instead, this kind of information should be derived from your model in a way that is really independent of Spring Data JDBC. We think the demonstrated meta annotation approach is a good way to do that.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;With current milestone and upcoming GA releases, Spring Data JDBC provides a flexible and powerful way to generate database migrations from your domain model.
+We look forward to hear about your opinions and experiences with this.&lt;/p&gt;
+&lt;p&gt;The complete &lt;a href=&quot;https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/howto/schema-generation&quot;&gt;example code is available in the Spring Data Example repository&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: cloud native Chris Richardson]]></title><link>https://spring.io/blog/2023/08/25/a-bootiful-podcast-cloud-native-chris-richardson</link><guid isPermaLink="true">https://spring.io/blog/2023/08/25/a-bootiful-podcast-cloud-native-chris-richardson</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Fri, 25 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, Josh Long (@starbuxman) talks to original cloud native Chris Richardson on microservices, architecture, and more.&lt;/p&gt;
 &lt;iframe title=&quot;A Roving Conversation with Legendary Cloud Native Chris Richardson&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=ym2j5-148c025-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring Boot 3.2.0-M2 available now]]></title><link>https://spring.io/blog/2023/08/24/spring-boot-3-2-0-m2-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/08/24/spring-boot-3-2-0-m2-available-now</guid><dc:creator><![CDATA[St?phane Nicoll]]></dc:creator><pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Boot &lt;code&gt;3.2.0-M2&lt;/code&gt; has been released and is now available from &lt;a href=&quot;https://repo.spring.io/milestone&quot;&gt;https://repo.spring.io/milestone&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v3.2.0-M2&quot;&gt;132 enhancements, documentation improvements, dependency upgrades, and bug fixes&lt;/a&gt;. Notable new features include:&lt;/p&gt;
 &lt;ul&gt;
@@ -438,17 +625,4 @@ public class SecurityConfig {
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;I hope you are as excited as I am about the simplified approach to configuring OAuth2 Client components in Spring Security simply by publishing a &lt;code&gt;@Bean&lt;/code&gt;.
 If you want to get involved, please try out the milestone and &lt;a href=&quot;https://github.com/spring-projects/spring-security/issues/new/choose&quot;&gt;give us feedback&lt;/a&gt;!
-We are continuing to listen and look for opportunities to simplify configuration for users of Spring Security.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Modulith 1.0 GA released]]></title><link>https://spring.io/blog/2023/08/21/spring-modulith-1-0-ga-released</link><guid isPermaLink="true">https://spring.io/blog/2023/08/21/spring-modulith-1-0-ga-released</guid><dc:creator><![CDATA[Oliver Drotbohm]]></dc:creator><pubDate>Mon, 21 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the community and everyone who contributed, I&apos;m proud to announce the release of Spring Modulith 1.0 GA. What started as an R&amp;#x26;D side project over 5 years ago, became an experimental Spring project in 2022 is now available as a fully supported, top-level project to the Spring community.&lt;/p&gt;
-&lt;p&gt;Just as Spring has evolved over &lt;a href=&quot;https://springone.io/history-of-spring&quot;&gt;the last 20 years&lt;/a&gt; we always wanted Java developers to be able to build software that&apos;s evolvable over time. Back then, placing dependency injection at the heart of the component model was revolutionary and enabled developers to unit test their code easily. Spring&apos;s support for integration testing outside an application server was unprecedented at the time, too, and helped to raise the quality of enterprise applications significantly. We now continue that mission on a slightly higher, architectural level of abstraction.&lt;/p&gt;
-&lt;p&gt;In the same way that Spring Boot has an opinion on the technical arrangement of an application, Spring Modulith implements an opinion on how to structure it functionally and how the individual, logical parts of it should interact with each other. As a result, it allows developers to build high-quality applications that are evolvable to accommodate changing business requirements over time.&lt;/p&gt;
-&lt;p&gt;At its core, Spring Modulith provides・&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;・ &lt;a href=&quot;https://docs.spring.io/spring-modulith/docs/1.0.0/reference/html/#fundamentals.modules&quot;&gt;a convention-based module model&lt;/a&gt; for Spring Boot applications&lt;/li&gt;
-&lt;li&gt;・ &lt;a href=&quot;https://docs.spring.io/spring-modulith/docs/1.0.0/reference/html/#verification&quot;&gt;verification&lt;/a&gt; that the functional architecture does not accidentally degrade&lt;/li&gt;
-&lt;li&gt;・ &lt;a href=&quot;https://docs.spring.io/spring-modulith/docs/1.0.0/reference/html/#testing&quot;&gt;the ability to integration test&lt;/a&gt; functional modules individually&lt;/li&gt;
-&lt;li&gt;・ an opinionated, eventually consistent &lt;a href=&quot;https://docs.spring.io/spring-modulith/docs/1.0.0/reference/html/#events&quot;&gt;application module interaction model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;・ support to &lt;a href=&quot;https://docs.spring.io/spring-modulith/docs/1.0.0/reference/html/#documentation&quot;&gt;derive architectural documentation&lt;/a&gt; from the arrangement&lt;/li&gt;
-&lt;li&gt;・ &lt;a href=&quot;https://docs.spring.io/spring-modulith/docs/1.0.0/reference/html/#production-ready&quot;&gt;application observability and actuators&lt;/a&gt; driven by the functional architecture&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If you want to find out more about the individual features, please check out the &lt;a href=&quot;https://docs.spring.io/spring-modulith/docs/1.0.0/reference/html/&quot;&gt;reference documentation&lt;/a&gt;. Beyond that, the &lt;a href=&quot;https://spring.io/blog/2022/10/21/introducing-spring-modulith&quot;&gt;blog post&lt;/a&gt; originally announcing the project is a great overview, too.&lt;/p&gt;
-&lt;p&gt;I would like to thank everyone who has accompanied the project until this point through ideas, feedback, or even pull requests.&lt;/p&gt;</content:encoded></item></channel></rss>
+We are continuing to listen and look for opportunities to simplify configuration for users of Spring Security.&lt;/p&gt;</content:encoded></item></channel></rss>

@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>플레이스</title>
+<style>
+#minibanner img {
+	width: 1920px;
+	height: 200px;
+	display: flex;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+</style>
+
+<script type="text/javascript">
+	
+</script>
+
+</head>
+
+<body>
+	<header>
+		<jsp:include page="/WEB-INF/views/home/home_top.jsp" />
+	</header>
+	
+	<div id=minibanner>
+		<a href=""><img src="resources/images/list_banner/minibanner_eduexplain.png"></a>
+	</div>
+	
+	<div class="search_map">
+		<div class="">
+			<aside class=""></aside>
+		</div>
+		<div id="map" style="width: 900px; height: 700px;"></div>
+	</div>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=208825c3c44bfdb13dfa9f140f9c81f1"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+		// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+	</script>
+</body>
+</html>

@@ -6,38 +6,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-:root {
-  --text-color: #f8f8ff;
-  --background-color: #FFA629;
-  --accent-color: #fff0f5;
-}
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-header a {
+#top_head a {
   text-decoration: none;
-  color: var(--text-color);
+  color: #f8f8ff;
 }
 
-.nav {
-  background-color: var(--background-color);
+.top-nav {
+  background-color: #FFA629;
   display: flex;
   align-items: center;
   padding: 20px 20px;
 }
 
-.menuimg {
-
-}
  
 .midmenu {
   list-style: none;
   display: flex;
   font-family: 'Bagel Fat One', cursive;
-  margin-right: 20px;
+  margin-left:50px;
 }
 	
 
@@ -51,23 +38,25 @@ ul.midmenu > li{
 }
 
 ul.midmenu > li:hover ul.sub{
-	display:block;	
+	display:block;
+	border-radius:10px;
+	padding:0;
 }
 
 ul.midmenu > li ul.sub li:hover{
 	background-color: tomato;
+	border-radius:10px;
 }
 
 ul.midmenu > li ul.sub{
-	display: none;
+ 	display: none; 
 	position: absolute;
 	width:200px;
-/* 	padding: 5px 10px; */
 	text-align: center;
-	background-color: var(--background-color);
-	color: var(--text-color);
-	list-style:none;
-	margin : 10px 0 10px 0;
+	background-color: #FFA629;
+	color: #f8f8ff;
+ 	list-style:none; 
+	margin : 10px 0 10px 0px;
 }
 
 .topmenu {
@@ -99,18 +88,20 @@ ul.midmenu > li ul.sub{
   margin-bottom: 40px;
 }
 
-.nav > div{
-	margin-left:100px;
-} 
-
 </style>
+
+<!-- 메인화면에서 각각 화면이동할 수 있는 컨트롤러 스크립트 -->
+<script type="text/javascript">
+	
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: 'Noto Sans KR', sans-serif;">
 
-<header style="width:1920px; position: relative; left: 50%; transform: translate(-50%);">
+<header id="top_head" style="width:1920px; position: relative; left: 50%; transform: translate(-50%);">
+
 	
 	<!-- 최상단 NOTICE,LOGIN,JOIN US -->
 	<div>
@@ -123,15 +114,13 @@ ul.midmenu > li ul.sub{
 	</div>
 	<!-- 5959 메인 로고 -->
 	<div class="mainlogo">
-	  <a href=""><img src="resources/images/home/mainlogo.png" width="200px"></a>
+	  <a href="/homedisplay.do"><img src="resources/images/home/mainlogo.png" width="200px"></a>
 	</div>
-	<section class="nav">
-		<!-- 공백 div -->
-		<div></div>
+	<section class="top-nav">
 		   
 		  <!-- 메뉴 -->
 		  <ul class="midmenu">
-			    <li><a href="">HOME</a></li>
+			    <li><a href="/homedisplay.do">HOME</a></li>
 			    <li class="edu_main"><a href="">교육정보</a>
 			    	<ul class="edu sub">
 			    		<li><a href="">필수 정보</a></li>
@@ -139,13 +128,13 @@ ul.midmenu > li ul.sub{
 			    		<li><a href="">훈련 정보</a></li>
 			    	</ul>
 			    </li>
-			    <li class="ogu_main"><a href="">오구닥터</a>
+			    <li class="ogu_main"><a href="/ogudoctormaindisplay.do">오구닥터</a>
 			        <ul class="ogu sub">
-			    		<li><a href="">건강 자가진단</a></li>
+			    		<li><a href="/ogudoctormaindisplay.do">건강 자가진단</a></li>
 			    		<li><a href="">건강 계산기</a></li>
 			    	</ul>
 			    </li>
-			    <li><a href="">플레이스</a></li>
+			    <li><a href="/placemaindisplay.do">플레이스</a></li>
 			    <li><a href="">모두의 포켓</a></li>
 			    <li class="lounge_main"><a href="">라운지</a>
 			   		<ul class="lounge sub">
@@ -172,6 +161,6 @@ ul.midmenu > li ul.sub{
 		  <div></div>
 		  
 	</section>
-</header>
+	</header>
 </body>
 </html>

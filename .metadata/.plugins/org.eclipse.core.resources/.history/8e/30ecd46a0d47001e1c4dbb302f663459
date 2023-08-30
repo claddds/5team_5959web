@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>오구닥터 메인화면</title>
+<style type="text/css">
+	.maindisplay_banner{
+		display: flex;
+		justify-content: center;
+		margin-top: 20px;
+	}
+	
+	@font-face {
+	    font-family: 'SBAggroB';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	div{
+		font-family: 'SBAggroB'
+	}
+	
+</style>
+<script type="text/javascript">
+	function go_dog_self() {
+		location.href="";
+	}
+	function go_cat_self() {
+		location.href="";
+	}
+	function go_health_calculator() {
+		location.href="";
+	}
+</script>
+</head>
+<body>
+	<header>
+		<jsp:include page="/WEB-INF/views/home/home_top.jsp" />
+	</header>
+	<div class="maindisplay_banner">
+	<a href="/ogudoctormaindisplay.do"><img src="resources/images/home/mainbanner_ogudoctor.png"></a>
+	</div>
+	<div class="ogudoctor_button_group">
+		<div class="ogudoctor_button">
+			<button onclick="go_dog_self()">강아지 간단 체크 ></button>
+		</div>
+		<div class="ogudoctor_button">
+			<button onclick="go_cat_self()">고양이 간단 체크 ></button>
+		</div>
+		<div class="ogudoctor_button">
+			<button onclick="go_health_calculator()">건강 계산기 ></button>
+		</div>
+	</div>
+	<footer>
+		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
+	</footer>
+</body>
+</html>

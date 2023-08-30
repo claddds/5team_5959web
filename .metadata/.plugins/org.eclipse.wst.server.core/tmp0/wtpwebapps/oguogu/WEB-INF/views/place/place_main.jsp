@@ -247,7 +247,7 @@
 	</header>
 
 	<div id=minibanner>
-		<a href=""><img src="resources/images/list_banner/minibanner_eduexplain.png"></a>
+		<a href="/placemaindisplay.do"><img src="resources/images/page_banner/listbanner_place.png"></a>
 	</div>
 	
 	<div class="map_wrap">

@@ -1,8 +1,0 @@
-package com.oguogu.model.faq.vo;
-
-public class faq_VO {
-	
-	private String faq_idx,faq_title,faq_content,faq_date,faq_fname,faq_ing,faq_type,status;
-
-
-}

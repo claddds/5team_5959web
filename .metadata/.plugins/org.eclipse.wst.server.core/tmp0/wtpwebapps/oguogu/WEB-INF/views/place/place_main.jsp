@@ -208,6 +208,13 @@
 		cursor: default;
 		color: #777;
 	}
+	footer{
+		width:1920px;
+		display:flex;
+		margin:auto;
+		margin-top:20px;
+		margin-bottom: 20px;
+	}
 	
 	/* 카테고리별 장소 검색하기 스타일 */
 	#category {position:absolute;top:10px;left:300px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
@@ -292,7 +299,9 @@
         </li>      
     </ul>
 	</div>
-
+	<footer>
+		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
+	</footer>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=208825c3c44bfdb13dfa9f140f9c81f1&libraries=services"></script>
 	<script>

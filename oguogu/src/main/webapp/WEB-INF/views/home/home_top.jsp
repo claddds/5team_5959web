@@ -107,9 +107,9 @@ ul.midmenu > li ul.sub{
 	<div>
 	  <ul class="topmenu">
 	    <li><a href="" style="color:tomato; display:none;">관리자 페이지</a></li><!-- id가 admin일 때 display:"" JS 처리  -->
-	    <li><a href="" style="color:#FFA629;">NOTICE </a></li>
-	    <li><a href="" style="color:#FFA629;">JOIN US</a></li>
-	    <li><a href="" style="color:#FFA629;">LOGIN</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+	    <li><a href="/supdisplay.do" style="color:#FFA629;">NOTICE </a></li>
+	    <li><a href="/joindisplay.do" style="color:#FFA629;">JOIN US</a></li>
+	    <li><a href="/logindisplay.do" style="color:#FFA629;">LOGIN</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
 	  </ul>
 	</div>
 	<!-- 5959 메인 로고 -->
@@ -121,39 +121,39 @@ ul.midmenu > li ul.sub{
 		  <!-- 메뉴 -->
 		  <ul class="midmenu">
 			    <li><a href="/homedisplay.do">HOME</a></li>
-			    <li class="edu_main"><a href="">교육정보</a>
+			    <li class="edu_main"><a href="/alledudisplay.do">교육정보</a>
 			    	<ul class="edu sub">
-			    		<li><a href="">필수 정보</a></li>
-			    		<li><a href="">양육 정보</a></li>
-			    		<li><a href="">훈련 정보</a></li>
+			    		<li><a href="/essentialdisplay.do">필수 정보</a></li>
+			    		<li><a href="/bringingdisplay.do">양육 정보</a></li>
+			    		<li><a href="/trainingdisplay.do">훈련 정보</a></li>
 			    	</ul>
 			    </li>
 			    <li class="ogu_main"><a href="/ogudoctormaindisplay.do">오구닥터</a>
 			        <ul class="ogu sub">
 			    		<li><a href="/ogudoctormaindisplay.do">건강 자가진단</a></li>
-			    		<li><a href="">건강 계산기</a></li>
+			    		<li><a href="/ogudoctorcaldisplay.do">건강 계산기</a></li>
 			    	</ul>
 			    </li>
 			    <li><a href="/placemaindisplay.do">플레이스</a></li>
 			    <li><a href="">모두의 포켓</a></li>
-			    <li class="lounge_main"><a href="">라운지</a>
+			    <li class="lounge_main"><a href="/loungemaindisplay.do">라운지</a>
 			   		<ul class="lounge sub">
-			    		<li><a href="">일상 공유</a></li>
-			    		<li><a href="">추천 탭</a></li>
-			    		<li><a href="">유저간 질문</a></li>
+			    		<li><a href="/loungesharedisplay.do">일상 공유</a></li>
+			    		<li><a href="/loungerecommdisplay.do">추천 탭</a></li>
+			    		<li><a href="/loungeqnadisplay.do">유저간 질문</a></li>
 			    	</ul>
 			    </li>
-			    <li class="food_main"><a href="">먹거리</a>
+			    <li class="food_main"><a href="/dogfooddisplay.do">먹거리</a>
 			    	<ul class="food sub">
-			    		<li><a href="">#강아지</a></li>
-			    		<li><a href="">#고양이</a></li>
+			    		<li><a href="/dogfooddisplay.do">#강아지</a></li>
+			    		<li><a href="/catfooddisplay.do">#고양이</a></li>
 			    	</ul>
 			    </li>
-			    <li class="support_main"><a href="">고객지원</a>
+			    <li class="support_main"><a href="/supdisplay.do">고객지원</a>
 			   		 <ul class="support sub">
-			    		<li><a href="">공지사항</a></li>
-			    		<li><a href="">문의사항</a></li>
-			    		<li><a href="">신고</a></li>
+			    		<li><a href="/supdisplay.do">공지사항</a></li>
+			    		<li><a href="/faqdisplay.do">문의사항</a></li>
+			    		<li><a href="/repdisplay.do">신고</a></li>
 			    	</ul>
 			    </li>
 		  </ul>

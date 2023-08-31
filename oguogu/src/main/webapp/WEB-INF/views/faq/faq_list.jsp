@@ -102,7 +102,7 @@ footer{
 </style>
 
     <script type="text/javascript"
-            src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
+            src="${pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
     <script type="text/javascript">
 	function write_go() {
 		//글쓰기로 이동하는 함수

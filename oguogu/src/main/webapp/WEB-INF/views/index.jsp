@@ -50,12 +50,12 @@ footer{
 	</header>
 	<div class="w3-content w3-display-container">
 		<div id="mainbanner_slide">
-		<a href=""><img class="mySlides" src="resources/images/home/mainbanner_eduexplain.png"></a>
+		<a href="/alledudisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_eduexplain.png"></a>
 		<a href="/ogudoctormaindisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_ogudoctor.png"></a>
 		<a href="/placemaindisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_place.png"></a>
 		<a href=""><img class="mySlides" src="resources/images/home/mainbanner_pocket.png"></a>
-		<a href=""><img class="mySlides" src="resources/images/home/mainbanner_lounge.png"></a>
-		<a href=""><img class="mySlides" src="resources/images/home/mainbanner_food.png"></a>
+		<a href="/loungemaindisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_lounge.png"></a>
+		<a href="/dogfooddisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_food.png"></a>
 		</div>
 		<div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width: 150%">
 			<div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>

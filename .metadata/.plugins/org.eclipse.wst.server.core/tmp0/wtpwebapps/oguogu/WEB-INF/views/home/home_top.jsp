@@ -135,7 +135,7 @@ ul.midmenu > li ul.sub{
 			    	</ul>
 			    </li>
 			    <li><a href="/placemaindisplay.do">플레이스</a></li>
-			    <li><a href="">모두의 포켓</a></li>
+			    <li><a href="/pocketmaindisplay.do">모두의 포켓</a></li>
 			    <li class="lounge_main"><a href="/loungemaindisplay.do">라운지</a>
 			   		<ul class="lounge sub">
 			    		<li><a href="/loungesharedisplay.do">일상 공유</a></li>

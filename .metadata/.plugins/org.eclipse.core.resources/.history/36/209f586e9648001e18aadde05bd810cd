@@ -1,0 +1,5 @@
+package com.oguogu.ogudoctor.cal.model.dao;
+
+public class OguSelf_DAO {
+
+}

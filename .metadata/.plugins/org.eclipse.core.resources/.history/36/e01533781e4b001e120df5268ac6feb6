@@ -1,0 +1,9 @@
+package com.oguogu.ogudoctor.self.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class OguSelfController {
+	//오구닥터 간단체크에서 증상을 선택하고 다음으로 버튼을 눌렀을때 다음페이지로 넘어가는 명령어(체크된값을 가지고 가야한다)
+	
+}

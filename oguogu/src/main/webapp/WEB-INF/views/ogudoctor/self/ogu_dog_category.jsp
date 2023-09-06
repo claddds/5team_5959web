@@ -178,7 +178,8 @@
 	// 다음으로 버튼 클릭 시 체크박스 확인 및 액션 수행
     function onNextButtonClick() {
         var chkBox = document.getElementsByName("bodypart_dog");
-        var selectedvalues = [];
+        var selectedvalues = [];	// 배열 초기화
+        
         for (var i = 0; i < chkBox.length; i++) {
             if (chkBox[i].checked) {
             	selectedvalues.push(chkBox[i].value);
@@ -187,21 +188,22 @@
         if (selectedvalues.length === 0) {
             alert("증상을 최소 하나 선택해야 합니다.");
             return;
-        }
-     	// Ajax 요청 보내기
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/ogudoctor_self_nextbutton.do", true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Ajax 요청이 성공적으로 완료될 때 수행할 작업
-                // 예: 페이지 이동 등
-            	location.href = "/ogudoctor_self_nextbutton.do";
-            }
-        };
-        var data = JSON.stringify({ selectedvalues: selectedvalues });
-        xhr.send(data);
+        } else{
+        	$.ajax({
+                url: "/oguselfnextbt.do",
+                method: "POST",
+                data: {selectedvalues:selectedvalues},
+                dataType: "text",
+                success: function (response) {
+                    // 성공적으로 요청이 처리된 후 실행되는 로직
+                    console.log("성공:", response);
+                    // 페이지 리다이렉트 등 다른 작업 수행 가능
+                    // 예: window.location.href = "/새로운페이지.do";
+                    location.href = "/oguselfnextbt.do"
+                }
+            });
+        } 
+   		
     }
 </script>
 </head>
@@ -251,7 +253,7 @@
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="face_dog" value="face_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="face_dog" value="face">
 				<label for="face_dog">
  					<img src="resources/images/ogudoctor/self_category/face_dog.png" />
  				</label>
@@ -293,25 +295,25 @@
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="genitals_dog" value="genitals_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="genitals_dog" value="genitals">
 				<label for="genitals_dog">
  					<img src="resources/images/ogudoctor/self_category/genitals_dog.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="behavior_dog" value="behavior_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="behavior_dog" value="behavior">
 				<label for="behavior_dog">
  					<img src="resources/images/ogudoctor/self_category/behavior_dog.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="abdomen_dog" value="abdomen_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="abdomen_dog" value="abdomen">
 				<label for="abdomen_dog">
  					<img src="resources/images/ogudoctor/self_category/abdomen_dog.png" />
  				</label>
 			</div>
 			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="waist_dog" value="waist_dog">
+				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="waist_dog" value="waist">
 				<label for="waist_dog">
  					<img src="resources/images/ogudoctor/self_category/waist_dog.png" />
  				</label>
@@ -319,12 +321,13 @@
 		</div>
 		<div class="button_location">
 			<button class="button" style="vertical-align: middle" onclick="onNextButtonClick()">
-					<span>다음으로</span>
-			</button>
-		</div>	
+				<span>다음으로</span>
+			</button>	
+		</div>
 	</div>
 	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </body>
 </html>

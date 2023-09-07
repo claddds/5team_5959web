@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>오구닥터-질병정보 Add Form(관리자 페이지)</title>
-<link rel="stylesheet" href="resources/css/summernote-lite.css">
 <style type="text/css">
 	#minibanner img{
 		width:1920px;
@@ -15,6 +14,28 @@
 		margin-top:20px;
 		margin-bottom: 20px;
     }
+    #table_form{
+    	width:1920px;
+    	display:flex;
+		margin:auto;
+		margin-top:20px;
+		margin-bottom: 20px;
+    }
+    #table_form table{
+    	width:1200px;
+    	margin-left:auto; 
+    	margin-right:auto;
+    	border-collapse:collapse;
+    	text-align: center;
+    	}
+    	
+	table,th,td{
+		border: 1px solid black; 
+		padding: 3px;
+		
+		}
+	.note-btn-group{width: auto;}
+	.note-toolbar{width: auto;}
     footer{
 		width:1920px;
 		display:flex;
@@ -31,37 +52,31 @@
 	<div id=minibanner>
         <a href="/ogudoctormaindisplay.do"><img src="resources/images/page_banner/listbanner_ogudoctor.png"></a>
     </div>
-    <div>
+    <div id="table_form">
     <form method="post" enctype="multipart/form-data">
 			<table>
 				<tr align="center">
-					<td bgcolor="#99ccff">작성자</td>
-					<td><input type="text" name="name" size ="20"/></td>
+					<td bgcolor="#99ccff">동물종류</td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="#99ccff">제  목</td>
-					<td><input type="text" name="subject" size ="20"/></td>
+					<td bgcolor="#99ccff">증상유형</td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="#99ccff">email</td>
-					<td><input type="text" name="email" size ="20"/></td>
+					<td bgcolor="#99ccff">증상체크</td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="#99ccff">비밀번호</td>
-					<td><input type="password" name="pwd" size ="20"/></td>
-				</tr>
-				<tr align="center">
-					<td bgcolor="#99ccff">첨부파일</td>
-					<td><input type="file" name="file" size ="20"/></td>
-				</tr>
-				<tr align="center">
+					<td bgcolor="#99ccff">질병정보</td>
 					<td colspan="2">
-						<textarea rows="10" cols="60" name="content" id="content"></textarea>
+						<textarea rows="20" cols="120" name="content" id="content"></textarea>
 					</td>
+				</tr>
+				<tr align="center">
+					<td bgcolor="#99ccff">질병정보 이미지</td>
+					<td><input type="file" name="dis_info_img" size ="20"/></td>
 				</tr>
 				<tfoot>
 					<tr align="center">
-						<td colspan="2">
+						<td colspan="3">
 							<input type="button" value="저장" onclick="save_go(this.form)" />
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="reset" value="취소" />
@@ -74,5 +89,11 @@
     <footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="resources/js/summernote-lite.js"></script>
+    <script src="resources/js/lang/summernote-ko-KR.js"></script>
+    <script type="text/javascript">
+    
+    </script>
 </body>
 </html>

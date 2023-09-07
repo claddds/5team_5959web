@@ -11,12 +11,14 @@
 		<h1>식사</h1>
 		<h4>평소와 다른 반려견의 식사 행동에 대해서 아래 항목 중 선택해 주세요.</h4>
 	</div>
-	<div class="">
-	
+	<form>
+	<div class="food_amount">
+		<h3>필수</h3><h2>식사량</h2>
+		
 	</div>
-	<div class="">
-	
+	<div class="water_amount">
+		<h3>필수</h3><h2>음수량</h2>
 	</div>
-	
+	</form>
 </body>
 </html>

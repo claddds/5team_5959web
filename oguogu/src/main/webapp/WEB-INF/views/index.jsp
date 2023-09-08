@@ -53,7 +53,7 @@ footer{
 		<a href="/alledudisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_eduexplain.png"></a>
 		<a href="/ogudoctormaindisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_ogudoctor.png"></a>
 		<a href="/placemaindisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_place.png"></a>
-		<a href=""><img class="mySlides" src="resources/images/home/mainbanner_pocket.png"></a>
+		<a href="/pocketmaindisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_pocket.png"></a>
 		<a href="/loungemaindisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_lounge.png"></a>
 		<a href="/dogfooddisplay.do"><img class="mySlides" src="resources/images/home/mainbanner_food.png"></a>
 		</div>

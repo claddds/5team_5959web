@@ -25,7 +25,7 @@
 	</header>
 	
 	<div id=minibanner>
-        <a href=""><img src="resources/images/list_banner/minibanner_eduexplain.png"></a>
+        <a href=""><img src="resources/images/page_banner/listbanner_pocket.png"></a>
     </div>
     <div class="main">
     	<div class="hotlist_title">

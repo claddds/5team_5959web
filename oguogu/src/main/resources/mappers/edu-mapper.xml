@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu">
+	
+	<select id="count" resultType="int">
+		select count(*) from Education
+	</select>
+	<!-- 게시글 목록 보기-->
+	<select id="list"  resultType="evo">
+		select * from Education order by edu_idx desc 
+	</select>
+	<!-- 게시글 삽입 -->
+	<insert id="insert" parameterType="evo">
+		insert into Education(edu_kind, edu_aml_kind, edu_title ,edu_content ,edu_F_name,edu_date,edu_hit)
+		values(#{edu_kind},#{edu_aml_kind},#{edu_title},#{edu_content},#{edu_F_name},sysdate(),0)	
+	</insert>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+

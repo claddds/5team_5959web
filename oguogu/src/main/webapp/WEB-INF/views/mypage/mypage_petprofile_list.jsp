@@ -1,0 +1,130 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	#petprofile_list_form{
+		width:1920px;
+ 		display: flex;
+ 		margin:auto;
+ 		padding-top:50px;
+	}
+	#petprofile_list{
+		width:1500px;
+		display:flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: #FBF9D9;
+	    padding-top:50px;
+	    margin-left:100px;
+	    border-radius:50px;
+	}
+	#petprofile_ul{
+		list-style: none;
+	    margin-bottom:40px;
+	}
+	.petprofile_li{
+		margin:30px;
+	}
+	.petprofile_essential_info{
+		width:600px;
+		height:250px;
+		display:grid;
+		grid-template-columns:60% 40%;		
+		align-items: center;
+		background-color:#F3F1EF;
+		border-radius:20px;
+		cursor:pointer;
+	}
+	#pet_add_btn{
+		width:200px;
+		height:40px;
+		background-color: #FFA629;
+		border-radius:20px;
+		font-size: 20px;
+		margin-top:20px;
+		border:none;
+		cursor:pointer;
+		transition: box-shadow 0.5s;
+	}
+	
+	#pet_add_btn:hover {
+    	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+	}
+	
+	footer{
+        width:1920px;
+        display:flex;
+        margin:auto;
+        margin-top:20px;
+        margin-bottom: 20px;
+    }
+</style>
+<script type="text/javascript">
+
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<jsp:include page="../home/home_top.jsp" />
+	</header>
+	<div id="petprofile_list_form">
+		<div style="margin-top:100px;">
+			<jsp:include page="mypage-sidebar.jsp" />
+		</div>
+		<div id="petprofile_list">
+			<h1 style="font-size: 50px;color:#FFA629;">나의 반려동물</h1>
+				<ul id="petprofile_ul">
+					<li class="petprofile_li">
+						<div class="petprofile_essential_info">
+							<div>
+								<img src="resources/images/home/mainbanner_eduexplain.png" style="width:200px;height:200px; border-radius:50px;margin-left:40px;">
+							</div>
+							<div>
+								<div style="font-size: 30px;">안녕하세요</div>
+								<div style="font-size: 20px;">2023-09-01(나이)</div>
+							</div>
+						</div>
+					</li>
+					<li class="petprofile_li">
+						<div class="petprofile_essential_info">
+							<div>
+								<img src="resources/images/home/mainbanner_eduexplain.png" style="width:200px;height:200px; border-radius:50px;margin-left:40px;">
+							</div>
+							<div>
+								<div style="font-size: 30px;">안녕하세요</div>
+								<div style="font-size: 20px;">2023-09-01(나이)</div>
+							</div>
+						</div>
+					</li>
+					<li class="petprofile_li">
+						<div class="petprofile_essential_info">
+							<div>
+								<img src="resources/images/home/mainbanner_eduexplain.png" style="width:200px;height:200px; border-radius:50px;margin-left:40px;">
+							</div>
+							<div>
+								<div style="font-size: 30px;">안녕하세요</div>
+								<div style="font-size: 20px;">2023-09-01(나이)</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			<div style="margin-bottom:50px;">
+				<button id="pet_add_btn" onclick="">추가하기</button>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
+	</footer>
+</body>
+</html>

@@ -11,8 +11,6 @@ D:\rhj\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2996000994.i
 \oguogu\src\main\java
 D:\rhj\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1307661352.index
 \oguogu\src\main\java
-D:\rhj\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1178019801.index
-\oguogu\src\main\java
 D:\rhj\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\318461754.index
 \oguogu\src\main\java
 D:\rhj\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\394100165.index
@@ -47,8 +45,6 @@ C:\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3966286842.index
 \oguogu\src\main\java
 D:\ystt\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3438121272.index
 \oguogu\src\main\java
-D:\rhj\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2615390976.index
-\oguogu\src\main\java
 D:\ystt\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\394100165.index
 \oguogu\src\main\java
 D:\rhj\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2683148830.index
@@ -74,8 +70,6 @@ C:\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\245134968.index
 D:\ystt\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3853861612.index
 \oguogu\src\main\java
 C:\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3438121272.index
-\oguogu\src\main\java
-D:\rhj\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1497718028.index
 \oguogu\src\main\java
 D:\rhj\oguogu\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3618891764.index
 \oguogu\src\main\java

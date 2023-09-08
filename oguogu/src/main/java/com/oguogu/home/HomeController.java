@@ -48,11 +48,6 @@ public class HomeController {
 	public ModelAndView getPlaceMainDisplay() {
 		return new ModelAndView("place/place_main");
 	}
-	// 상단 메뉴바에서 모두의 포켓를 누르면 모두의 포켓 화면으로 이동
-	@GetMapping("/pocketmaindisplay.do")
-	public ModelAndView getPocketMainDisplay() {
-		return new ModelAndView("pocket/pocket_main");
-	}
 	// 상단 메뉴바에서 라운지를 누르면 라운지 전체글보기 화면으로 이동
 	@GetMapping("/loungemaindisplay.do")
 	public ModelAndView getLoungeMainDisplay() {

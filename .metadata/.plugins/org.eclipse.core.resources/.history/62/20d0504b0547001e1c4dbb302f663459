@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>오구닥터 메인화면</title>
+<style type="text/css">
+	.maindisplay_banner{
+		display: flex;
+		justify-content: center;
+		margin-top: 20px;
+	}
+</style>
+</head>
+<body>
+	<div class="maindisplay_banner">
+	<a href="/ogudoctormaindisplay.do"><img src="resources/images/home/mainbanner_ogudoctor.png"></a>
+	</div>
+	<div class="ogudoctor_button_group">
+		<button onclick="go_dog_self()">강아지 간단 체크 ></button>
+		<button onclick="go_cat_self()">고양이 간단 체크 ></button>
+		<button onclick="go_health_calculator()">건강 계산기 ></button>
+	</div>
+</body>
+</html>

@@ -1,385 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Sep 2023 10:49:17 GMT</lastBuildDate><item><title><![CDATA[A Bootiful Podcast:  Spring Security lead Rob Winch]]></title><link>https://spring.io/blog/2023/09/07/a-bootiful-podcast-spring-security-lead-rob-winch</link><guid isPermaLink="true">https://spring.io/blog/2023/09/07/a-bootiful-podcast-spring-security-lead-rob-winch</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 07 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another installment of a Bootiful Podcast. In this interview, &lt;a href=&quot;https://twitter.com/starbuxman&quot;&gt;Josh Long (@starbuxman)&lt;/a&gt; talks to Spring Security legend and lead &lt;a href=&quot;https://twitter.com/ro_winch&quot;&gt;Rob Winch (@rob_winch)&lt;/a&gt;, recorded live from SpringOne 2023!&lt;/p&gt;
-&lt;iframe title=&quot;Spring Security lead Rob Winch&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=v966g-149ca7c-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - September 5th, 2023 ]]></title><link>https://spring.io/blog/2023/09/05/this-week-in-spring-september-5th-2023</link><guid isPermaLink="true">https://spring.io/blog/2023/09/05/this-week-in-spring-september-5th-2023</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 05 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! How are you? I just got back from another fabulous labor day weekend, and am headed to Oslo, Norway, for the fabulous JavaZone 2023 event. This will be my first time returning to lovely Oslo, Norway, since the pandemic! I can&apos;t wait! If you&apos;re there, don&apos;t hesitate to say &quot;hey&quot;!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/08/29/spring-data-jdbc-how-to-maintain-your-database-schema&quot;&gt;Spring Data JDBC - How To Maintain Your Database Schema&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;I really like the Spring Cloud Alibaba&apos;s project&apos;s landing page: &lt;a href=&quot;https://sca.aliyun.com/en-us/&quot;&gt;SpringCloudAlibaba&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/pulse/java-landscape-month-vaadin-openjdk-insights-a-n-m-bazlur-rahman/?trackingId=iW33LATaTISNALBBClnyXg%253D%253D&quot;&gt;The Java Landscape: A Month with Vaadin, OpenJDK Insights, and Java Enhancements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/08/31/this-is-the-beginning-of-the-end-of-the-n-1-problem-introducing-single-query&quot;&gt;This is the Beginning of the End of the N 1 Problem: Introducing Single Query Loading.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;a ton of the videos from the talks at &lt;a href=&quot;https://www.vmware.com/explore/video-library/video-landing.html?sessionid=1679423614489001WJoh&amp;#x26;videoId=6335504006112&quot;&gt;SpringOne @ VMware Explore&lt;/a&gt; are already available and accessible now. Here&apos;s a link, for example, to my not terrible Bootiful  talk&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/blog/2023/08/28/kubernetes-1-28-feature-mixed-version-proxy-alpha/&quot;&gt;Blog: Kubernetes 1.28: A New (alpha) Mechanism For Safer Cluster Upgrades&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/blog/2023/08/31/legacy-package-repository-deprecation/&quot;&gt;Blog: Kubernetes Legacy Package Repositories Will Be Frozen On September 13, 2023&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=pVdDWQQeqME&quot;&gt;How to Monitor Spring Boot Application With Prometheus and Grafana&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://piotrminkowski.com/2023/08/29/introduction-to-grpc-with-spring-boot/&quot;&gt;Introduction to gRPC with Spring Boot - Piotr&apos;s TechBlog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: Spring Security and Kubernetes legend Daniel Garnier-Moiroux ]]></title><link>https://spring.io/blog/2023/08/31/a-bootiful-podcast-spring-security-and-kubernetes-legend-daniel-garnier</link><guid isPermaLink="true">https://spring.io/blog/2023/08/31/a-bootiful-podcast-spring-security-and-kubernetes-legend-daniel-garnier</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment Josh Long talks to Spring contributor and adjunct professor at Mines Paris, &lt;a href=&quot;https://twitter.com/kehrlann&quot;&gt;Daniel Garnier-Moiroux (@kehrlann)&lt;/a&gt;, about the wild and wonderful intersection of all things Spring Security and Kubernetes, productized Spring Cloud Services, and more, recorded live at SpringOne 2023 from Las Vegas, Nevada!&lt;/p&gt;
-&lt;iframe title=&quot;Spring Security and Kubernetes legend Daniel Garnier-Moiroux &quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=t4a7j-1494966-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[This is the Beginning of the End of the N+1 Problem: Introducing Single Query Loading.]]></title><link>https://spring.io/blog/2023/08/31/this-is-the-beginning-of-the-end-of-the-n-1-problem-introducing-single-query</link><guid isPermaLink="true">https://spring.io/blog/2023/08/31/this-is-the-beginning-of-the-end-of-the-n-1-problem-introducing-single-query</guid><dc:creator><![CDATA[Jens Schauder]]></dc:creator><pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;TL;DR:&lt;/h2&gt;
-&lt;p&gt;Starting with Spring Data JDBC 3.2.0-M2, Spring Data JDBC supports &lt;em&gt;Single Query Loading&lt;/em&gt;.
-Single Query Loading loads arbitrary aggregates with a single select statement.&lt;/p&gt;
-&lt;p&gt;To enable Single Query Loading you need to call &lt;code&gt;setSingleQueryLoadingEnabled(true)&lt;/code&gt; on your &lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/current/api/org/springframework/data/relational/core/mapping/RelationalMappingContext.html&quot;&gt;&lt;code&gt;RelationalMappingContext&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In 3.2.0-M2, this works only for simple aggregates, consisting of an aggregate root and a single collection of other entities.
-It is also limited to the &lt;code&gt;findAll&lt;/code&gt;, &lt;code&gt;findById&lt;/code&gt;, and &lt;code&gt;findAllByIds&lt;/code&gt; methods in &lt;code&gt;CrudRepository&lt;/code&gt;.
-&lt;a href=&quot;https://github.com/spring-projects/spring-data-relational/issues/1445&quot;&gt;Future versions will improve on that&lt;/a&gt;.
-A final limitation is that the database you use has to support &lt;a href=&quot;https://www.sqltutorial.org/sql-window-functions/&quot;&gt;analytic functions (AKA window functions)&lt;/a&gt;.
-All the officially supported databases except for the in memory databases (H2 and Hsql DB) do so.&lt;/p&gt;
-&lt;p&gt;You can abbreviate Single Query Loading as &lt;em&gt;SQL&lt;/em&gt;, but please, don&apos;t.&lt;/p&gt;
-&lt;p&gt;If you want to understand how it does work, and a little of how we came up with it, read on.&lt;/p&gt;
-&lt;h2&gt;The Problem&lt;/h2&gt;
-&lt;p&gt;Conceptually Spring Data JDBC loads complete aggregates in one go.
-So far, though, if you looked at what SQL actually gets run, you realize that, for non-trivial aggregates, multiple SQL statements get run.
-Consider, for example, the type of &lt;code&gt;Minion&lt;/code&gt; that references a collection of &lt;code&gt;Hobby&lt;/code&gt; and a collection of &lt;code&gt;Toy&lt;/code&gt; entities.
-When Spring Data JDBC loads a bunch of such minions it:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Run a &lt;code&gt;SELECT ... FROM MINION&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;For each result in that query, it:&lt;/li&gt;
-&lt;li&gt;Run a &lt;code&gt;SELECT ... FROM HOBBY&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Run a &lt;code&gt;SELECT ... FROM TOY&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This is inefficient and known as the N+1 problem, since, for an aggregate with a single collection to load N aggregates, N+1 queries get executed
-(one for the root and N for the child entities).
-If there is only a single collection, you may do a join, but that falls apart when there are multiple collections.&lt;/p&gt;
-&lt;p&gt;This problem is by no means specific to Spring Data JDBC.
-Other ORMs use different strategies to minimize this problem.
-For example, they may join one child entity to the aggregate root.
-Alternately, they may use batch loading for related entities.
-All these approaches limit the effect of the problem, but they merely treat symptoms.
-Also, most people will actually tell you that you can&apos;t really do this in a single query, since you will get a cross product of all the child tables, which can be very bad.
-Imagine 5 child tables with 10 entries per minion.
-The cross product of these will be 10&lt;em&gt;10&lt;/em&gt;10&lt;em&gt;10&lt;/em&gt;10 = 10000 rows!&lt;/p&gt;
-&lt;h2&gt;The Idea&lt;/h2&gt;
-&lt;p&gt;Quite some time ago, I remembered something &lt;a href=&quot;https://www.linkedin.com/in/frank-gerberding/&quot;&gt;Frank Gerberding&lt;/a&gt;, a former coworker of mine said:
-&quot;The problem with relational databases is that they always return tables, and sometimes you need a tree.&quot;
-Well he said it in German, and I don&apos;t remember his exact words, but that was the gist of it.
-This got me thinking: It&apos;s true, a SQL query will always return basically a table.
-But how would I represent a tree in there?
-To put it differently: How would you represent the data of an aggregate in Excel?
-What if you ignore the fact that Excel is basically a relational database with super powers and just treat it as a single spread sheet?&lt;/p&gt;
-&lt;p&gt;Let&apos;s start with a fairly simple case.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;class Minion {
-    @Id
-    Long id;
-    String name;
-    List&amp;#x3C;Toy&gt; toys;
-    // the skills you need to excel at this hobby.
-    List&amp;#x3C;Hobby&gt; hobbies;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;Toy&lt;/code&gt; and &lt;code&gt;Hobby&lt;/code&gt; just have a &lt;code&gt;name&lt;/code&gt; property for now.&lt;/p&gt;
-&lt;p&gt;If I want to represent this in Excel, I&apos;d probably do something like this:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Minion id&lt;/th&gt;
-&lt;th&gt;Minion name&lt;/th&gt;
-&lt;th&gt;toys name&lt;/th&gt;
-&lt;th&gt;hobbies name&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Teddy&lt;/td&gt;
-&lt;td&gt;Hold Teddy&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Blue Light&lt;/td&gt;
-&lt;td&gt;Look Cute&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Follow Kevin&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;Kevin&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Getting a result like this back from a query would be really nice.
-It would be not to difficult to construct Java instances from that with a single pass over the &lt;code&gt;ResultSet&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;At this point I remembered that SQL is actually Turing-complete.
-Therefore, I can express this in SQL. It is just a question of how!
-It always helps to know there is a solution for a problem.
-When you can shut the voice in your head down that otherwise tries to convince you that there isn&apos;t a solution and you are just wasting your time, finding the solution becomes much easier.&lt;/p&gt;
-&lt;h2&gt;Row Numbers&lt;/h2&gt;
-&lt;p&gt;The elements of the collections are kind of &quot;joined&quot; by the index of the row within a &lt;code&gt;Minion&lt;/code&gt;.
-But that index does not exist in the database.
-Luckily, you can create such an index fairly easily using the &lt;code&gt;row_number()&lt;/code&gt; window function.&lt;/p&gt;
-&lt;p&gt;If you don&apos;t know about &lt;a href=&quot;https://www.sqltutorial.org/sql-window-functions/&quot;&gt;window functions (AKA analytic functions)&lt;/a&gt;, they are similar to aggregate functions, but the &lt;code&gt;group by&lt;/code&gt; doesn&apos;t collapse all matching rows into one.
-Instead, the analytic function gets applied to the &lt;em&gt;window&lt;/em&gt; defined by the &lt;code&gt;group by&lt;/code&gt; and the result is available in each row.
-And it doesn&apos;t always have to be the same result for all rows in a group.
-There is a lot more you can do with these functions.
-&lt;a href=&quot;https://www.sqltutorial.org/sql-window-functions/&quot;&gt;You should read more about it&lt;/a&gt;.
-But for our current problem at hand we need only:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;row_number()&lt;/code&gt;, which assigns a unique, continuously increasing numbers to all rows in a group.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;count(*)&lt;/code&gt;, which counts the number of rows in a group.
-I know, surprising.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We start by creating with a subselect for each child table.
-Each subselect selects all columns from the underlying table, a &lt;code&gt;row_number()&lt;/code&gt; and the &lt;code&gt;count(*)&lt;/code&gt;, each grouped by the &lt;code&gt;minion_id&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;( 
-  select *,
-    row_number() over (partition by minion_id) h_rn,
-    count(*) over (partition by minion_id) h_cnt
-  from hobby
-) h
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We actually do the same for the aggregate root.
-However, we don&apos;t need a &lt;code&gt;row_number&lt;/code&gt;, since we know that there is only one minion per row. Therefore, we can fix that to 1.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;( 
-  select *,
-    1 m_rn
-  from minion
-) m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Join by Id&lt;/h2&gt;
-&lt;p&gt;Next we join all these subselects together, with a standard left join:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;select *
-from ( ... ) m
-left join 
-  ( ... ) h
-  on m.id = h.minion_id
-left join 
-  ( ... ) t
-  on m.id = t.minion_id
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This gives exactly the cross product that I declared unacceptable above.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Minion id&lt;/th&gt;
-&lt;th&gt;m_rn&lt;/th&gt;
-&lt;th&gt;Minion name&lt;/th&gt;
-&lt;th&gt;toys name&lt;/th&gt;
-&lt;th&gt;t_rn&lt;/th&gt;
-&lt;th&gt;hobbies name&lt;/th&gt;
-&lt;th&gt;h_rn&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Hold Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Blue Light&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;Hold Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Look Cute&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Blue Light&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;Look Cute&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Follow Kevin&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Blue Light&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;Follow Kevin&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Kevin&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;What we want instead is similar to a &lt;a href=&quot;https://www.w3schools.com/sql/sql_join_full.asp&quot;&gt;&lt;code&gt;full outer join&lt;/code&gt;&lt;/a&gt; on the different row numbers.
-Unfortunately, you can&apos;t have a &lt;code&gt;left join&lt;/code&gt; on one column and a &lt;code&gt;full outer join&lt;/code&gt; on another column in SQL.
-But we can solve this with a where clause.&lt;/p&gt;
-&lt;h2&gt;Pseudo Full Outer Join on Row Numbers&lt;/h2&gt;
-&lt;p&gt;The naive version of that where clause would be:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;where m_rn = h_rn
-and   m_rn = t_rn
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This ignores the fact that we need the outer join semantics.
-To fix that, a lot of &lt;code&gt;is null&lt;/code&gt; checks and comparisons with the &lt;code&gt;cnt&lt;/code&gt; columns are added, making the where clause rather hard to read.
-And it is also sufficiently complicated that I&apos;m not able to write it down without probably making a ton of mistakes.
-I therefore spare you the details.
-Go ahead and enable SQL logging, if you really have to know.&lt;/p&gt;
-&lt;p&gt;With this we have the number of rows down to the correct number.
-Great!
-But we are still duplicating parts of the data.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Minion id&lt;/th&gt;
-&lt;th&gt;m_rn&lt;/th&gt;
-&lt;th&gt;Minion name&lt;/th&gt;
-&lt;th&gt;toys name&lt;/th&gt;
-&lt;th&gt;t_rn&lt;/th&gt;
-&lt;th&gt;hobbies name&lt;/th&gt;
-&lt;th&gt;h_rn&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Hold Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Blue Light&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;Look Cute&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Follow Kevin&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Kevin&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;For example, for the hobbies that don&apos;t have a matching toy, the data of one toy gets repeated over and over again.
-We really want to reduce that to &lt;code&gt;null&lt;/code&gt; values.
-It doesn&apos;t make much of a difference in this toy example, but those values might be long comments on a blog post and take a considerable amount of time to transfer over the wire.
-For this, we replace almost all the columns with expressions like the following:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;case when x_rn = rn then name end
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here &lt;code&gt;x_rn&lt;/code&gt; is the row_number of the subselect that is the source of the column in question.
-&lt;code&gt;rn&lt;/code&gt; is the &lt;em&gt;total row_number&lt;/em&gt; - that is, the row_number that all the subselects join on.
-This condition basically expresses: If the subselect has data for this row, use it; otherwise, just use &lt;code&gt;null&lt;/code&gt;.
-We use this pattern on all normal columns.
-Only columns that are used in further join as described in the following paragraph aren&apos;t treated with this.&lt;/p&gt;
-&lt;p&gt;Now our result looks just as desired.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Minion id&lt;/th&gt;
-&lt;th&gt;m_rn&lt;/th&gt;
-&lt;th&gt;Minion name&lt;/th&gt;
-&lt;th&gt;toys name&lt;/th&gt;
-&lt;th&gt;t_rn&lt;/th&gt;
-&lt;th&gt;hobbies name&lt;/th&gt;
-&lt;th&gt;h_rn&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bob&lt;/td&gt;
-&lt;td&gt;Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Hold Teddy&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Blue Light&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;Look Cute&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Follow Kevin&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Kevin&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;td&gt;...&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;We return a minimum number of rows and also no duplicate data!
-But we only do that for a single level of nested entities!
-This is solved by simple recursion: The result we got just looks like a simple table. It can, therefore, be used as such. To be precise, it can be used instead of the subselect that adds a row number to a select, because it already has a row number.&lt;/p&gt;
-&lt;h2&gt;Conditions&lt;/h2&gt;
-&lt;p&gt;So far, we basically looked at the query for a &lt;code&gt;findAll&lt;/code&gt; operation.
-And about half a year ago I already had a solution that worked for &lt;code&gt;findAll&lt;/code&gt; but didn&apos;t yield an efficient solution for things like &lt;code&gt;findById&lt;/code&gt; or &lt;code&gt;findByAddressName&lt;/code&gt;.
-This is not a problem with the solution presented above.
-Any where clause gets applied to the inner most select of the aggregate root and, thanks to the joins, restricts all data.
-This is well supported by the indexes you&apos;d create for foreign keys and IDs anyway, so we are confident that this way of querying can be executed efficiently.&lt;/p&gt;
-&lt;h2&gt;Outlook&lt;/h2&gt;
-&lt;p&gt;As outlined at the start of this article, this approach is currently only implemented for Spring Data JDBC, simple aggregate, and very specific query  methods.
-We want to make this available for all aggregates, all Spring Data JDBC query methods, and even Spring Data R2DBC.
-The last one would enable reading full aggregates for Spring Data R2DBC!
-It will certainly have an effect on how you will specify queries for Spring Data Relational in future.
-Of course, downstream projects that consume Spring Data Relational will benefit from this as well.
-Spring&apos;s REST and GraphQL support come to mind.&lt;/p&gt;
-&lt;p&gt;Follow &lt;a href=&quot;https://github.com/spring-projects/spring-data-relational/issues/1445&quot;&gt;this Github issue&lt;/a&gt; to learn more about progress on this topic.&lt;/p&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;We found a way to load data from arbitrary trees of tables with a single query.
-This fits Spring Data JDBC perfectly, because the aggregates it is working on are such trees.
-The resulting queries are a little more complex, but RDBMS&apos;s should be able to execute them efficiently.&lt;/p&gt;
-&lt;p&gt;Of course, we are now looking for real world experiences and feedback: Do you experience problems? Does it make a performance difference for you? Please let us know via &lt;a href=&quot;https://github.com/spring-projects/spring-data-relational/issues&quot;&gt;Github&lt;/a&gt;, &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-data-jdbc&quot;&gt;Stackoverflow&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[My SpringOne 2023 Recap  ]]></title><link>https://spring.io/blog/2023/08/29/my-springone-2023-recap</link><guid isPermaLink="true">https://spring.io/blog/2023/08/29/my-springone-2023-recap</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 29 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Look, it&apos;s Monday after the first in-person SpringOne of the 2020s and the first since the pandemic, and, being honest, I&apos;m bushed! Vegas is a dizzying, sensational, overwhelming, exciting experience, and SpringOne is too. But it was worth it. The SpringOne show surpassed all expectations, so it was definitely worth it.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 30 Aug 2023 13:49:23 GMT</lastBuildDate><item><title><![CDATA[My SpringOne 2023 Recap  ]]></title><link>https://spring.io/blog/2023/08/29/my-springone-2023-recap</link><guid isPermaLink="true">https://spring.io/blog/2023/08/29/my-springone-2023-recap</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 29 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Look, it&apos;s Monday after the first in-person SpringOne of the 2020s and the first since the pandemic, and, being honest, I&apos;m bushed! Vegas is a dizzying, sensational, overwhelming, exciting experience, and SpringOne is too. But it was worth it. The SpringOne show surpassed all expectations, so it was definitely worth it.&lt;/p&gt;
 &lt;p&gt;This overwhelming scale was nowhere more evident than in the keynote, which was standing room only. I can&apos;t really recap the entire show, but I do want to talk about some of the huge themes you&apos;d have seen addressed in the keynote.&lt;/p&gt;
 &lt;p&gt;During the keynote, the good, the great, the incomparable Dr. David Syer, Moritz Halbritter, and I celebrated ten years of Spring Boot. (Yes, it is already ten years old. I can&apos;t believe it either!) And this year, we also celebrated twenty (20!) years of Spring Framework. The astute among you will know that Spring Framework 1.0 didn&apos;t come out until 2004, 19 years ago, but there were early releases of Spring Framework that looked and were called like what we know today as Spring Framework. And the doubly astute among, you may remember that Spring Boot came out on April 1, 2014, nine years ago, but there were also early releases in 2013.&lt;/p&gt;
 &lt;img width=&quot;500&quot; src=&quot;https://pbs.twimg.com/media/F4EYOQ4aEAAbslR?format=webp&amp;amp;name=medium&quot;&gt;
@@ -523,7 +142,7 @@ try (Database db = new HsqlDatabase()) {
 You would use an implementation that matches your actual database.&lt;/p&gt;
 &lt;p&gt;By default, the change set never drops columns or tables from your schema.
 Just because they are not modeled in the domain model does not mean that you do not need them, right?
-However, if you actually want to delete some or all of the tables and columns not present in your Java domain model, register a &lt;code&gt;DropTableFilter&lt;/code&gt; or &lt;code&gt;DropColumnFilter&lt;/code&gt;), like in the following example, which drops all unmapped columns except those named &lt;code&gt;special&lt;/code&gt;.&lt;/p&gt;
+However, if you actually want to delete some or all of the tables and columns not present in your Java domain model, register a [&lt;code&gt;DropTableFilter&lt;/code&gt;][18] or [&lt;code&gt;DropColumnFilter&lt;/code&gt;][19], like in the following example, which drops all unmapped columns except those named &lt;code&gt;special&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;writer.setDropColumnFilter((table, column) -&gt; !column.equalsIgnoreCase(&quot;special&quot;));
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Customizing the Schema Generation&lt;/h2&gt;
@@ -606,7 +225,9 @@ Instead, this kind of information should be derived from your model in a way tha
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;With current milestone and upcoming GA releases, Spring Data JDBC provides a flexible and powerful way to generate database migrations from your domain model.
 We look forward to hear about your opinions and experiences with this.&lt;/p&gt;
-&lt;p&gt;The complete &lt;a href=&quot;https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/howto/schema-generation&quot;&gt;example code is available in the Spring Data Example repository&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: cloud native Chris Richardson]]></title><link>https://spring.io/blog/2023/08/25/a-bootiful-podcast-cloud-native-chris-richardson</link><guid isPermaLink="true">https://spring.io/blog/2023/08/25/a-bootiful-podcast-cloud-native-chris-richardson</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Fri, 25 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, Josh Long (@starbuxman) talks to original cloud native Chris Richardson on microservices, architecture, and more.&lt;/p&gt;
+&lt;p&gt;The complete &lt;a href=&quot;https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/howto/schema-generation&quot;&gt;example code is available in the Spring Data Example repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[18]: &lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/LiquibaseChangeSetWriter.html#setDropTableFilter(java.util.function.Predicate%5C)&quot;&gt;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/LiquibaseChangeSetWriter.html#setDropTableFilter(java.util.function.Predicate\)&lt;/a&gt;
+[19]: &lt;a href=&quot;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/LiquibaseChangeSetWriter.html#setDropColumnFilter(java.util.function.BiPredicate%5C)&quot;&gt;https://docs.spring.io/spring-data/jdbc/docs/3.2.x/api/org/springframework/data/jdbc/core/mapping/schema/LiquibaseChangeSetWriter.html#setDropColumnFilter(java.util.function.BiPredicate\)&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: cloud native Chris Richardson]]></title><link>https://spring.io/blog/2023/08/25/a-bootiful-podcast-cloud-native-chris-richardson</link><guid isPermaLink="true">https://spring.io/blog/2023/08/25/a-bootiful-podcast-cloud-native-chris-richardson</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Fri, 25 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, Josh Long (@starbuxman) talks to original cloud native Chris Richardson on microservices, architecture, and more.&lt;/p&gt;
 &lt;iframe title=&quot;A Roving Conversation with Legendary Cloud Native Chris Richardson&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=ym2j5-148c025-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring Boot 3.2.0-M2 available now]]></title><link>https://spring.io/blog/2023/08/24/spring-boot-3-2-0-m2-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/08/24/spring-boot-3-2-0-m2-available-now</guid><dc:creator><![CDATA[St?phane Nicoll]]></dc:creator><pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Boot &lt;code&gt;3.2.0-M2&lt;/code&gt; has been released and is now available from &lt;a href=&quot;https://repo.spring.io/milestone&quot;&gt;https://repo.spring.io/milestone&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v3.2.0-M2&quot;&gt;132 enhancements, documentation improvements, dependency upgrades, and bug fixes&lt;/a&gt;. Notable new features include:&lt;/p&gt;
 &lt;ul&gt;
@@ -623,4 +244,58 @@ We look forward to hear about your opinions and experiences with this.&lt;/p&gt;
 &lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v3.1.3&quot;&gt;82 bug fixes, documentation improvements, and dependency upgrades&lt;/a&gt;. Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
 &lt;h3&gt;How can you help?&lt;/h3&gt;
 &lt;p&gt;If you&apos;re interested in helping out, check out the &lt;a href=&quot;https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution&quot;&gt;&quot;ideal for contribution&quot; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href=&quot;https://stackoverflow.com&quot;&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href=&quot;https://stackoverflow.com/tags/spring-boot&quot;&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-boot/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/3.1.3/reference/html&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-boot&quot;&gt;Stack Overflow&lt;/a&gt; | &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-boot/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/3.1.3/reference/html&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-boot&quot;&gt;Stack Overflow&lt;/a&gt; | &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Boot 3.0.10 available now]]></title><link>https://spring.io/blog/2023/08/24/spring-boot-3-0-10-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/08/24/spring-boot-3-0-10-available-now</guid><dc:creator><![CDATA[St?phane Nicoll]]></dc:creator><pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Boot &lt;code&gt;3.0.10&lt;/code&gt; has been released and is now available from Maven Central.&lt;/p&gt;
+&lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v3.0.10&quot;&gt;76 bug fixes, documentation improvements, and dependency upgrades&lt;/a&gt;. Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
+&lt;h3&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;If you&apos;re interested in helping out, check out the &lt;a href=&quot;https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution&quot;&gt;&quot;ideal for contribution&quot; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href=&quot;https://stackoverflow.com&quot;&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href=&quot;https://stackoverflow.com/tags/spring-boot&quot;&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-boot/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/3.0.10/reference/html&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-boot&quot;&gt;Stack Overflow&lt;/a&gt; | &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Boot 2.7.15 available now]]></title><link>https://spring.io/blog/2023/08/24/spring-boot-2-7-15-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/08/24/spring-boot-2-7-15-available-now</guid><dc:creator><![CDATA[St?phane Nicoll]]></dc:creator><pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Boot &lt;code&gt;2.7.15&lt;/code&gt; has been released and is now available from Maven Central.&lt;/p&gt;
+&lt;p&gt;This release includes &lt;a href=&quot;https://github.com/spring-projects/spring-boot/releases/tag/v2.7.15&quot;&gt;45 bug fixes, documentation improvements, and dependency upgrades&lt;/a&gt;. Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
+&lt;h3&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;If you&apos;re interested in helping out, check out the &lt;a href=&quot;https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution&quot;&gt;&quot;ideal for contribution&quot; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href=&quot;https://stackoverflow.com&quot;&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href=&quot;https://stackoverflow.com/tags/spring-boot&quot;&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-boot/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-boot/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/2.7.15/reference/html&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-boot&quot;&gt;Stack Overflow&lt;/a&gt; | &lt;a href=&quot;https://gitter.im/spring-projects/spring-boot&quot;&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Batch 5.1.0-M2, 5.0.3 and 4.3.9 available now!]]></title><link>https://spring.io/blog/2023/08/24/spring-batch-5-1-0-m2-5-0-3-and-4-3-9-available-now</link><guid isPermaLink="true">https://spring.io/blog/2023/08/24/spring-batch-5-1-0-m2-5-0-3-and-4-3-9-available-now</guid><dc:creator><![CDATA[Mahmoud Ben Hassine]]></dc:creator><pubDate>Wed, 23 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I am pleased to announce that Spring Batch 5.1.0-M2, 5.0.3 and 4.3.9 are available now! Versions 5.0.3 and 4.3.9 are patch releases that come with a number of bug fixes, improvements and dependencies updates. You can find the release notes of each version here: &lt;a href=&quot;https://github.com/spring-projects/spring-batch/releases/tag/v5.0.3&quot;&gt;5.0.3&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-batch/releases/tag/v4.3.9&quot;&gt;4.3.9&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This blog post is mainly about the new milestone of Spring Batch 5.1, which introduces the following main features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dependencies upgrade&lt;/li&gt;
+&lt;li&gt;New cursor-based &lt;code&gt;MongoItemReader&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Bulk inserts support in &lt;code&gt;MongoItemWriter&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For the complete list of changes, please check the &lt;a href=&quot;https://github.com/spring-projects/spring-batch/releases/tag/v5.1.0-M2&quot;&gt;release notes&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Dependencies upgrade&lt;/h2&gt;
+&lt;p&gt;This milestone release upgrades Spring dependencies to the following versions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Spring Framework 6.1.0-M4&lt;/li&gt;
+&lt;li&gt;Spring Integration 6.2.0-M2&lt;/li&gt;
+&lt;li&gt;Spring Data 3.2.0-M2&lt;/li&gt;
+&lt;li&gt;Spring LDAP 3.2.0-M2&lt;/li&gt;
+&lt;li&gt;Micrometer 1.12.0-M2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New cursor-based MongoItemReader&lt;/h2&gt;
+&lt;p&gt;Up to version 5.0, the &lt;code&gt;MongoItemReader&lt;/code&gt; provided by Spring Batch used pagination, which is based on MongoDB&apos;s &lt;code&gt;skip&lt;/code&gt; operation. While this works well for small/medium data sets, it starts to perform poorly with large data sets.&lt;/p&gt;
+&lt;p&gt;This release introduces the &lt;code&gt;MongoCursorItemReader&lt;/code&gt;, a new cursor-based item reader for MongoDB. This implementation uses cursors instead paging to read data from MongoDB, which improves the performance of reads on large collections.&lt;/p&gt;
+&lt;p&gt;For consistency with other cursor/paging readers, the current &lt;code&gt;MongoItemReader&lt;/code&gt; has been renamed to &lt;code&gt;MongoPagingItemReader&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Bulk inserts support in MongoItemWriter&lt;/h2&gt;
+&lt;p&gt;Up to version 5.0, the &lt;code&gt;MongoItemWriter&lt;/code&gt; supported two operations: &lt;code&gt;upsert&lt;/code&gt; and &lt;code&gt;delete&lt;/code&gt;. While the &lt;code&gt;upsert&lt;/code&gt; operation works well for both inserts and updates, it does not perform well for items that are known to be new in the target collection.&lt;/p&gt;
+&lt;p&gt;Similar to the &lt;code&gt;persist&lt;/code&gt; and &lt;code&gt;merge&lt;/code&gt; operations in the &lt;code&gt;JpaItemWriter&lt;/code&gt;, this release adds a new operation named &lt;code&gt;insert&lt;/code&gt; in the &lt;code&gt;MongoItemWriter&lt;/code&gt;, which is designed for bulk inserts. This new option performs better than &lt;code&gt;upsert&lt;/code&gt; for new items as it does not require an additional lookup to check if items already exist in the target collection.&lt;/p&gt;
+&lt;h2&gt;What&apos;s next?&lt;/h2&gt;
+&lt;h3&gt;Share your feedback!&lt;/h3&gt;
+&lt;p&gt;First, I would like to thank all contributors who had a role in these releases! You can try Spring Batch 5.1.0-M2 with Spring Boot 3.2.0-M2. We are planning to release Spring Batch 5.1 GA later this November 2023.&lt;/p&gt;
+&lt;p&gt;We look forward to your feedback on &lt;a href=&quot;https://github.com/spring-projects/spring-batch/issues&quot;&gt;Github Issues&lt;/a&gt;,
+&lt;a href=&quot;https://github.com/spring-projects/spring-batch/discussions&quot;&gt;Github Discussions&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/springbatch&quot;&gt;Twitter&lt;/a&gt;, and &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-batch&quot;&gt;StackOverflow&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Upgrade to Spring Batch 5&lt;/h3&gt;
+&lt;p&gt;I would like to remind our users that Spring Batch 4.3.x will be out of OSS support on &lt;a href=&quot;https://spring.io/projects/spring-batch#support&quot;&gt;November, 18th 2023&lt;/a&gt;. Please consider upgrading your applications to Spring Batch 5 at your earliest convenience. You can find the migration guide to v5 &lt;a href=&quot;https://github.com/spring-projects/spring-batch/wiki/Spring-Batch-5.0-Migration-Guide&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Feel free to reach out to the Spring Batch team on Github if you need help on migrating your existing applications to Spring Batch 5!&lt;/p&gt;
+&lt;h3&gt;Checkout the new Spring Batch course on Spring Academy&lt;/h3&gt;
+&lt;p&gt;Earlier this week, we have launched a new Spring Batch course on Spring Academy! In this course, you will learn how to build robust and fault-tolerant batch applications with Spring Batch and Spring Boot! Check it out on Spring Academy: &lt;a href=&quot;https://spring.academy/courses/building-a-batch-application-with-spring-batch&quot;&gt;Building a Batch Application with Spring Batch&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-batch&quot;&gt;Spring Batch Home&lt;/a&gt;|&lt;a href=&quot;https://github.com/spring-projects/spring-batch&quot;&gt;Source on Github&lt;/a&gt;|&lt;a href=&quot;https://docs.spring.io/spring-batch/docs/5.1.0-M2/reference/html/index.html&quot;&gt;Reference documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - August 22, 2023]]></title><link>https://spring.io/blog/2023/08/23/this-week-in-spring-august-22-2023</link><guid isPermaLink="true">https://spring.io/blog/2023/08/23/this-week-in-spring-august-22-2023</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Wed, 23 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! And, would you believe it, I&apos;m writing this at SpringOne 2023, in sunny Las Vegas, Nevada. This is the &lt;em&gt;first&lt;/em&gt; in-person SpringOne since 2019, and I&apos;m so, so, so glad to be here!&lt;/p&gt;
+&lt;p&gt;We&apos;ve got a &lt;em&gt;ton&lt;/em&gt; of things to get into this week, let&apos;s dive right into it!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This year we&apos;re celebrating twenty (20!) years since the early builds of Spring Framework 1.0, and ten (10!!) years since the early builds of Spring Boot 1.0. Did you see this amazing easter-egg, &lt;a href=&quot;https://springone.io/history-of-spring&quot;&gt;&lt;em&gt;The History of Spring?&lt;/em&gt;&lt;/a&gt;? It&apos;s amazing!&lt;/li&gt;
+&lt;li&gt;We announced a new project called Spring AI that provides a convenient abstraction to allow developers to work with Large Language Models like Azure OpenAI and regular OpenAI, and - hopefully - more in the future. I did a live stream with its founder, &lt;a href=&quot;https://www.youtube.com/watch?v=0P8UU5vkvI8&quot;&gt;Dr. Mark Pollack, here&lt;/a&gt;, and we did &lt;a href=&quot;https://github.com/coffee-software-show/spring-ai.git&quot;&gt;a demo you can look at here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/08/22/spring-authorization-server-1-1-2-available-now&quot;&gt;Spring Authorization Server 1.1.2 available now&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/08/18/spring-data-2023-1-0-m2-2023-0-3-2022-0-9-and-2021-2-15-released&quot;&gt;Spring Data 2023.1.0-M2, 2023.0.3, 2022.0.9, and 2021.2.15 released&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/08/17/spring-framework-6-1-m4-released&quot;&gt;Spring Framework 6.1 M4 released&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/08/21/spring-modulith-1-0-ga-released&quot;&gt;Spring Modulith 1.0 GA released&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/08/16/spring-modulith-1-0-rc2-released&quot;&gt;Spring Modulith 1.0 RC2 released&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2023/08/22/tackling-the-oauth2-client-component-model-in-spring-security&quot;&gt;Tackling the OAuth2 Client component model in Spring Security&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://oracle.github.io/microservices-datadriven/spring/&quot;&gt;Oracle Backend for Spring Boot - Developer Preview&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item></channel></rss>

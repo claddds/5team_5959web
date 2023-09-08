@@ -1,0 +1,41 @@
+package com.oguogu.support.model.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.oguogu.support.model.dao.Support_DAO;
+import com.oguogu.support.model.vo.Support_VO;
+
+public class Support_ServiceImpl implements Support_Service {
+
+	@Autowired
+	private Support_DAO support_DAO;
+
+	// 게시글 리스트
+	@Override
+	public List<Support_VO> getList() {
+		return support_DAO.getList();
+	}
+
+	// 게시글 전체 수
+	@Override
+	public int getTotalCount() {
+		return support_DAO.getTotalCount();
+	}
+	// 페이징 처리를 위한 리스트
+	@Override
+	public List<Support_VO> getList(int offset, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Support_VO getOneList(String not_idx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+
+}

@@ -1,0 +1,14 @@
+package com.oguogu.report.model.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.oguogu.report.model.dao.Report_DAO;
+
+@Service
+public class Report_ServiceImpl implements Report_Service{
+
+	@Autowired
+	private Report_DAO report_DAO;
+	
+}

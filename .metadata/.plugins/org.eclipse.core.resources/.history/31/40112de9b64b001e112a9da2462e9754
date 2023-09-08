@@ -1,0 +1,5 @@
+package com.oguogu.lounge.model.vo;
+
+public class Lounge_VO {
+
+}

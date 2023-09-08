@@ -1,0 +1,6 @@
+package com.oguogu.support.model.vo;
+
+public class Support_VO {
+	private String not_idx, not_content, not_date, not_fname, noting, admin_nickname, status;
+	
+}

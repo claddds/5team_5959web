@@ -1,0 +1,71 @@
+package com.oguogu.report.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.oguogu.lounge.model.vo.Lounge_VO;
+
+
+@Controller
+public class Report_Controller {
+
+//	@Autowired
+//	private BCryptPasswordEncoder passwordEncoder;
+	
+	@RequestMapping("/rep_list.do")
+	public ModelAndView reptList(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("rep/rep_list");
+		// 페이징
+				// 전체 게시물의 수
+				int count = lounge_Serivce.getTotalCount();
+				paging.setTotalRecord(count);
+
+				// 전체 페이지의 수
+				if (paging.getTotalRecord() <= paging.getNumPerPage()) {
+					paging.setTotalPage(1);
+				} else {
+					paging.setTotalPage(paging.getTotalRecord() / paging.getNumPerPage());
+					if (paging.getTotalRecord() % paging.getNumPerPage() != 0) {
+						paging.setTotalPage(paging.getTotalPage() + 1);
+					}
+				}
+				// 현재 페이지
+				String cPage = request.getParameter("cPage");
+				if (cPage == null) {
+					paging.setNowPage(1);
+				} else {
+					paging.setNowPage(Integer.parseInt(cPage));
+				}
+				paging.setOffset(paging.getNumPerPage() * (paging.getNowPage() - 1));
+
+				// 시작블록과 끝블록 구하기
+				paging.setBeginBlock(
+						(int) ((paging.getNowPage() - 1) / paging.getPagePerBlock()) * paging.getPagePerBlock() + 1);
+
+				paging.setEndBlock(paging.getBeginBlock() + paging.getPagePerBlock() - 1);
+
+				// 주의사항
+				if (paging.getEndBlock() > paging.getTotalPage()) {
+					paging.setEndBlock(paging.getTotalPage());
+				}
+
+				List<Lounge_VO> lounge_list = lounge_Serivce.getList(paging.getOffset(), paging.getNumPerPage());
+				mv.addObject("lounge_list", lounge_list);
+				mv.addObject("paging", paging);
+				return mv;
+	}
+	
+	@GetMapping("/rep_insertForm.do")
+	public ModelAndView repInsert(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("rep/rep_write");
+		return mv;
+	}
+}

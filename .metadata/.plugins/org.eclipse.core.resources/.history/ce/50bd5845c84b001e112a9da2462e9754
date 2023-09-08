@@ -1,0 +1,5 @@
+package com.oguogu.lounge.model.service;
+
+public interface Lounge_Service {
+
+}

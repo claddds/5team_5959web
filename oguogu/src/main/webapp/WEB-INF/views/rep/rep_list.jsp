@@ -28,7 +28,6 @@
 }
 #repWrapper{
         width: 1130px;
-        height: 1200px;
         margin: auto;
         font-family: 'Noto Sans KR', sans-serif;
     }
@@ -91,6 +90,35 @@ footer{
 		margin-top:20px;
 		margin-bottom: 20px;
 	}
+/* paging */
+.paging{
+	text-align: center;
+}
+
+table tfoot ol.paging {
+	list-style: none;
+}
+
+table tfoot ol.paging li {
+	float: left;
+	margin-right: 8px;
+	text-align: center;
+}
+
+table tfoot ol.paging li a {
+	display: block;
+	padding: 3px 7px;
+	border: 1px solid #FFA629;
+	color: #2f313e;
+	font-weight: bold;
+	
+}
+
+table tfoot ol.paging li a:hover {
+	background: #FFA629;
+	color: white;
+	font-weight: bold;
+}
 </style>
 
 <script type="text/javascript"
@@ -140,6 +168,16 @@ footer{
     </tr>
   </thead>
   <tbody>
+  <c:choose>
+	<c:when test="${empty rep_list}">
+		<tr>
+			<td colspan="5"><h2 style="text-align: center;">자료가 존재하지 않습니다.</h2></td>
+		</tr>
+	</c:when>
+	<c:otherwise>
+		<c:forEach var="r" items="${rep_list}" varStatus="vs">
+			<tr>
+				<td>${paging.totalRecord - ((paging.nowPage-1)*paging.numPerPage + vs.index)}</td>
    <c:choose>
 					<c:when test="${empty rep_list}">
 						<tr>
@@ -165,27 +203,54 @@ footer{
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-  </tbody>
-</table>
-<!-- 페이지네이션 -->
-<!-- 
-<div>
-	<nav aria-label="Page navigation">
-		<ul class="pagination" style=" justify-content: center;">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
-	</div>
+				<td>${r.user_id }</td>
+				<td>${r.rep_date.substring(0,10)}</td>
+			</tr>
+		</c:forEach>
+	</c:otherwise>
+</c:choose>
+</tbody>
+<tfoot>
+	<tr>
+		<td colspan="4">
+			<ol class="paging"> 
+				<!-- 이전 버튼 -->
+				<c:choose>
+					<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+						<li class="disable">이전으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/rep_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+					</c:otherwise>
+				</c:choose>
+				<!-- 페이지번호들 -->
+				<c:forEach begin="${paging.beginBlock }"
+					end="${paging.endBlock }" step="1" var="k">
+					<!--  현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리 -->
+					<c:if test="${ k == paging.nowPage}">
+						<li class="now">${k}</li>
+					</c:if>
+					<c:if test="${ k != paging.nowPage}">
+						<li><a href="/rep_list.do??cPage=${k}">${k}</a></li>
+					</c:if>
+				</c:forEach>
 
- -->
+				<!-- 이후 버튼 -->
+				<c:choose>
+					<c:when test="${paging.endBlock >= paging.totalPage }">
+						<li class="disable">다음으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/rep_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ol>
+		</td>
+	</tr>
+</tfoot>
+</table>
  
 <%--검색 항목--%>
 	<div>

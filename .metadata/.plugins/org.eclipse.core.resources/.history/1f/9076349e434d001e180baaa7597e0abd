@@ -1,0 +1,46 @@
+package com.oguogu.report.model.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.oguogu.report.model.dao.Report_DAO;
+import com.oguogu.report.model.vo.Report_VO;
+
+@Service
+public class Report_ServiceImpl implements Report_Service{
+
+	@Autowired
+	private Report_DAO report_DAO;
+	
+	// 게시글 전체 목록
+	@Override
+	public List<Report_VO> getList() {
+		return null;
+	}
+
+	@Override
+	public int getInsert(Report_VO rvo) {
+		return 0;
+	}
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Report_VO> getList(int offset, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Report_VO getOneList(String not_idx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

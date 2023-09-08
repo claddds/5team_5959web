@@ -1,0 +1,8 @@
+package com.oguogu.lounge.model.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class Lounge_ServiceImpl implements Lounge_Service{
+
+}

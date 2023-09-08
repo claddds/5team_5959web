@@ -5,10 +5,9 @@
 <html lang="en">
 <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>sup_list</title>
+    <title>sup_list(사용자 화면)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
-
 #title {
     width: 600px;
     height: 100px;
@@ -29,22 +28,19 @@
 
 #noticetWrapper{
         width: 1130px;
-        height: 1200px;
         margin: auto;
         font-family: 'Noto Sans KR', sans-serif;
     }
 
-
-    #liSearchOption {clear:both;}
-    #liSearchOption > div {
-        margin:0 auto; 
-        margin-top: 30px; 
-        width:auto; 
-        height:100px;
-
+#liSearchOption {clear:both;}
+#liSearchOption > div {
+	margin:0 auto; 
+	margin-top: 30px; 
+	width:auto; 
+	height:100px;
 }
 .center {
-        text-align : center;
+	text-align : center;
 }
 
 .sidebar {
@@ -84,6 +80,48 @@ footer{
 		margin-top:20px;
 		margin-bottom: 20px;
 	}
+/* paging */
+
+
+table tfoot ol.paging {
+    list-style: none;
+    display:flex;
+    justify-content: center;
+    margin-top:20px;
+}
+
+table tfoot ol.paging li {
+    float: left;
+    margin-right: 8px;
+}
+
+table tfoot ol.paging li a {
+    display: block;
+    padding: 3px 7px;
+    border: 1px solid #FFA629;
+    color: #2f313e;
+    font-weight: bold;
+}
+
+table tfoot ol.paging li a:hover {
+    background: #FFA629;
+    color: white;
+    font-weight: bold;
+}
+
+.disable {
+    padding: 3px 7px;
+    border: 1px solid silver;
+    color: silver;
+}
+
+.now {
+    padding: 3px 7px;
+    border: 1px solid #FFA629;
+    background: #FFA629;
+    color: white;
+    font-weight: bold;
+}
 </style>
 
 <script type="text/javascript"
@@ -162,13 +200,54 @@ footer{
 					</c:otherwise>
 				</c:choose>
   </tbody>
+  <tfoot>
+	<tr>
+		<td colspan="4">
+			<ol class="paging"> 
+				<!-- 이전 버튼 -->
+				<c:choose>
+					<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+						<li class="disable">이전으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/edu_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+					</c:otherwise>
+				</c:choose>
+				<!-- 페이지번호들 -->
+				<c:forEach begin="${paging.beginBlock }"
+					end="${paging.endBlock }" step="1" var="k">
+					<!--  현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리 -->
+					<c:if test="${ k == paging.nowPage}">
+						<li class="now">${k}</li>
+					</c:if>
+					<c:if test="${ k != paging.nowPage}">
+						<li><a href="/edu_list.do??cPage=${k}">${k}</a></li>
+					</c:if>
+				</c:forEach>
+
+				<!-- 이후 버튼 -->
+				<c:choose>
+					<c:when test="${paging.endBlock >= paging.totalPage }">
+						<li class="disable">다음으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/edu_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ol>
+		</td>
+	</tr>
+</tfoot>
 </table>
   </div>
 <%--검색 항목--%>
 		<center>
             <li id='liSearchOption'>
             	<form action="qnasearch.do?page=1" method="post">
-            	<input type="button" value="글쓰기" style="float: right;" onclick="write_go()">
+            	<!-- 공지사항은 사용자가 글 쓰는건 없어도 될듯 => 글 확인만 가능!-->
+            	<!-- <input type="button" value="글쓰기" style="float: right;" onclick="write_go()"> -->
                 <div>
                     <select name="searchtype" >
                         <option value="qname">제목</option>

@@ -1,0 +1,25 @@
+package com.oguogu.report.model.dao;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class Report_DAO {
+	@Autowired
+	private SqlSessionTemplate sqlSessionTemplate;
+	
+	// 전체 게시글 수
+	
+	
+	// 페이징 처리를 위한 리스트
+	
+	
+	// 게시글 목록
+	
+	
+	// 게시글 삽입
+	
+	
+	// 게시글 상세보기
+}

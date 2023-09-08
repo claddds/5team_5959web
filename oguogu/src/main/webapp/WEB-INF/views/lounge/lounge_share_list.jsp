@@ -37,7 +37,6 @@
 
 #loungeWrapper{
         width: 1130px;
-        height: 1200px;
         margin: auto;
        	font-family: 'Noto Sans KR', sans-serif;
     }
@@ -96,6 +95,35 @@ footer{
 		margin-top:20px;
 		margin-bottom: 20px;
 	}
+/* paging */
+.paging{
+	text-align: center;
+}
+
+table tfoot ol.paging {
+	list-style: none;
+}
+
+table tfoot ol.paging li {
+	float: left;
+	margin-right: 8px;
+	text-align: center;
+}
+
+table tfoot ol.paging li a {
+	display: block;
+	padding: 3px 7px;
+	border: 1px solid #FFA629;
+	color: #2f313e;
+	font-weight: bold;
+	
+}
+
+table tfoot ol.paging li a:hover {
+	background: #FFA629;
+	color: white;
+	font-weight: bold;
+}
 </style>
 
     <script type="text/javascript"
@@ -127,25 +155,10 @@ footer{
       <li class="all"><a href="/lounge_list.do">전체글보기</a></li>
       <hr>
       <li class="share" style="font-weight: bold;"><a href="/lounge/lounge_share_list.do">일상 공유</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
       <hr>
       <li class="recomm"><a href="/lounge/lounge_recomm_list.do">추천탭</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
       <hr>
       <li class="question"><a href="/lounge/lounge_qna_list.do">질문</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
       <!-- 기타 사이드바 메뉴 항목 추가 -->
     </ul>
   </div>
@@ -193,6 +206,46 @@ footer{
 					</c:otherwise>
 				</c:choose>
   </tbody>
+  <tfoot>
+	<tr>
+		<td colspan="4">
+			<ol class="paging">
+				<!-- 이전 버튼 -->
+				<c:choose>
+					<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+						<li class="disable">이전으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/edu_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+					</c:otherwise>
+				</c:choose>
+				<!-- 페이지번호들 -->
+				<c:forEach begin="${paging.beginBlock }"
+					end="${paging.endBlock }" step="1" var="k">
+					<!--  현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리 -->
+					<c:if test="${ k == paging.nowPage}">
+						<li class="now">${k}</li>
+					</c:if>
+					<c:if test="${ k != paging.nowPage}">
+						<li><a href="/edu_list.do??cPage=${k}">${k}</a></li>
+					</c:if>
+				</c:forEach>
+
+				<!-- 이후 버튼 -->
+				<c:choose>
+					<c:when test="${paging.endBlock >= paging.totalPage }">
+						<li class="disable">다음으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/edu_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ol>
+		</td>
+	</tr>
+</tfoot>	
 </table>
   </div>
 <%--검색 항목--%>

@@ -4,9 +4,10 @@
 <!doctype html>
 <html lang="en">
 <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FAQ</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ</title>
+<!-- 부트스트랩 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
 #title {
     width: 600px;
@@ -28,7 +29,6 @@
 
 #faqWrapper{
         width: 1130px;
-        height: 1200px;
         margin: auto;
         font-family: 'Noto Sans KR', sans-serif;
     }
@@ -39,27 +39,12 @@
         vertical-align:middle;
         line-height:30px;
 }
-#divPaging {
-          clear:both; 
-        margin:0 auto; 
-        width:220px; 
-        height:50px;
-}
-
-    #divPaging > div {
-        float:left;
-        width: 30px;
-        margin:0 auto;
-        text-align:center;
-}
-
-    #liSearchOption {clear:both;}
-    #liSearchOption > div {
-        margin:0 auto; 
-        margin-top: 30px; 
-        width:auto; 
-        height:100px;
-
+#liSearchOption {clear:both;}
+#liSearchOption > div {
+	margin:0 auto; 
+	margin-top: 30px; 
+    width:auto; 
+    height:100px;
 }
 .center {
         text-align : center;
@@ -99,6 +84,48 @@ footer{
 		margin-top:20px;
 		margin-bottom: 20px;
 	}
+/* paging */
+
+
+table tfoot ol.paging {
+    list-style: none;
+    display:flex;
+    justify-content: center;
+    margin-top:20px;
+}
+
+table tfoot ol.paging li {
+    float: left;
+    margin-right: 8px;
+}
+
+table tfoot ol.paging li a {
+    display: block;
+    padding: 3px 7px;
+    border: 1px solid #FFA629;
+    color: #2f313e;
+    font-weight: bold;
+}
+
+table tfoot ol.paging li a:hover {
+    background: #FFA629;
+    color: white;
+    font-weight: bold;
+}
+
+.disable {
+    padding: 3px 7px;
+    border: 1px solid silver;
+    color: silver;
+}
+
+.now {
+    padding: 3px 7px;
+    border: 1px solid #FFA629;
+    background: #FFA629;
+    color: white;
+    font-weight: bold;
+}
 </style>
 
     <script type="text/javascript"
@@ -147,7 +174,6 @@ footer{
     </tr>
   </thead>
   <tbody>
-  <%--
     <c:choose>
 					<c:when test="${empty faq_list}">
 						<tr>
@@ -155,6 +181,7 @@ footer{
 						</tr>
 					</c:when>
 					<c:otherwise>
+					<!-- FAQ 게시글에 대한 forEach 문 -->
 						<c:forEach var="f" items="${faq_list}" varStatus="vs">
 							<tr>
 								<td>${paging.totalRecord - ((paging.nowPage-1)*paging.numPerPage + vs.index)}</td>
@@ -174,84 +201,49 @@ footer{
 					</c:otherwise>
 				</c:choose>
   
-   --%>
-   <tr>
-      <th scope="row">1</th>
-      <td>반려동물 프로필 사진 어떻게 바꾸나요?</td>
-      <td>강아지</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-    <tr>
-      <th scope="row">6</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-    <tr>
-      <th scope="row">7</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-    <tr>
-      <th scope="row">8</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-    <tr>
-      <th scope="row">9</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-    <tr>
-      <th scope="row">10</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>hohoho</td>
-      <td>2023/08/24</td>
-      <td>답변 대기중</td>
-    </tr>
-   
-   
+  
   </tbody>
+    <tfoot>
+	<tr>
+		<td colspan="4">
+			<ol class="paging"> 
+				<!-- 이전 버튼 -->
+				<c:choose>
+					<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+						<li class="disable">이전으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/edu_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+					</c:otherwise>
+				</c:choose>
+				<!-- 페이지번호들 -->
+				<c:forEach begin="${paging.beginBlock }"
+					end="${paging.endBlock }" step="1" var="k">
+					<!--  현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리 -->
+					<c:if test="${ k == paging.nowPage}">
+						<li class="now">${k}</li>
+					</c:if>
+					<c:if test="${ k != paging.nowPage}">
+						<li><a href="/edu_list.do??cPage=${k}">${k}</a></li>
+					</c:if>
+				</c:forEach>
+
+				<!-- 이후 버튼 -->
+				<c:choose>
+					<c:when test="${paging.endBlock >= paging.totalPage }">
+						<li class="disable">다음으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/edu_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ol>
+		</td>
+	</tr>
+</tfoot>
 </table>
-  </div>
 <%--검색 항목--%>
 		<center>
             <li id='liSearchOption'>

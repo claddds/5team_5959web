@@ -1,0 +1,5 @@
+package com.oguogu.comment.model.controller;
+
+public class Comment_Controller {
+
+}

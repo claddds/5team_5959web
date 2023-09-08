@@ -1,0 +1,5 @@
+package com.oguogu.comment.model.service;
+
+public interface Comment_Service {
+
+}

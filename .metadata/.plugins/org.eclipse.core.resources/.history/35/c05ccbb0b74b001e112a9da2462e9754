@@ -1,0 +1,5 @@
+package com.oguogu.lounge.model.dao;
+
+public class Lounge_DAO {
+
+}

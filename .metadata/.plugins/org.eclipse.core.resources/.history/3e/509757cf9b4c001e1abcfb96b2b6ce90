@@ -1,0 +1,21 @@
+package com.oguogu.report.model.service;
+
+public interface Report_Service {
+	
+	// 리스트
+	
+	
+	// 신고 게시글 삽입
+	
+	
+	// 전체 게시물 수
+	
+	
+	// 페이징 처리를 위한 리스트
+	
+	
+	// 상세보기
+	
+	
+	// 신고 게시판은 삭제, 수정 못하게 되어있음
+}

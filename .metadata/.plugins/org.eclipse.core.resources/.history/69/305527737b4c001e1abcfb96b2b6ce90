@@ -1,0 +1,18 @@
+package com.oguogu.support.model.dao;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class Support_DAO {
+	@Autowired
+	private SqlSessionTemplate sqlSessionTemplate;
+	
+	// 게시글 전체 수
+	public int getTotalCount() {
+		return sqlSessionTemplate.selectOne("support.count");
+	}
+	
+	
+}

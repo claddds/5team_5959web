@@ -96,9 +96,10 @@ input{
 	margin-left: -215px;          
     padding-left: 215px;          
     box-sizing: border-box;
-}	
-    
-
+}
+#com_field{
+	text-align: left;
+}
 </style>
 <script type="text/javascript"
 	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
@@ -115,8 +116,37 @@ input{
 		location.href ="/lounge_updateForm.do"
 		submit();
 	}
+	function list_go(f) {
+		location.href ="/lounge_list.do"
+		submit();
+	}
+	function delete_gp(f) {
+		f.action="/lounge_deleteForm.do"
+	}
+	// 댓글
+	function comment_go(f) {
+	// 유효성 검사
+	// 댓글 작성자는 닉네임 바로 입력되게 만들기
+	// 댓글 입력 
+		if(f.com_content.value.trim().length <=0){
+			alert("내용을 입력해 주세요");
+			f.content.focus();
+			return;
+		}
+		f.action = "/com_insert.do";
+		f.submit();
+	}
+	// 댓글 삭제
+	function comment_del(f) {
+		f.action = "/com_delete.do";
+		f.submit();
+	}
+	// 댓글 수정
+	function comment_up(f) {
+		f.action = "/com_update.do";
+		f.submit();
+	}
 </script>
-
 </head>
 <body>
 	<!-- 헤더 구역 -->
@@ -129,28 +159,13 @@ input{
 	<!-- 사이드바 구역 -->      
  <div class="sidebar">
     <ul class="sidebar-menu">
-      <li class="all"><a href="/lounge_list.do">전체글보기</a></li>
+      <li class="all" style="font-weight: bold;"><a href="/lounge_list.do">전체글보기</a></li>
       <hr>
       <li class="share"><a href="/lounge/lounge_share_list.do">일상 공유</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
       <hr>
       <li class="recomm"><a href="/lounge/lounge_recomm_list.do">추천탭</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
       <hr>
       <li class="question"><a href="/lounge/lounge_qna_list.do">질문</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
       <!-- 기타 사이드바 메뉴 항목 추가 -->
     </ul>
   </div>      
@@ -206,14 +221,49 @@ input{
 							<input type="button" value="삭제" onclick="delete_go(this.form)">
 							<input type="button" value="수정" onclick="update_go()">
 							</c:if>
-							<input type="button" value="답글" onclick="ans_write(this.form)">
-							<input type="button" value="목록" onclick="list_go(this.form)">
 						</div>
 					</td>
 				</tr>
 		</table>
+		<hr style="width: 1200px; text-align:center; margin-left: 510px; margin-top: 50px;" >
 	</form>
 	</div>  
-	</div>  
+	
+	<!-- 댓글 작성 영역 -->
+	<%-- 댓글 입력 --%>
+	<div style="padding:50px; width:1200px; margin-left: 460px; ">
+		<form method="post">
+			<fieldset id="com_field">
+				<p>이름  <input type="text" name="user_id" ></p>
+				<p>내용  <br>
+					<textarea rows="4" cols="40" name="content" style="width: 1000px;"></textarea>
+				 </p>
+				 <input type="button" value="댓글저장" onclick="comment_go(this.form)">
+				 <input type="hidden" name="lo_idx" value="${lvo.lo_idx}">
+				 <input type="hidden" name="cPage" value="${cPage}">
+			 </fieldset>
+		</form>
+	</div>
+	<br><br><br>
+	
+	<%-- 댓글 출력 --%>
+	<div style="display: table;" >
+		<c:forEach var="k" items="${c_list}">
+		 <div style="border: 1px solid #cc00cc; width: 400px; margin: 20px; padding: 20px;">
+		 	<form method="post">
+		 		<p>이름 : ${k.user_id}</p>
+		 		<p>내용 : ${k.com_content }</p>
+		 		<p>날짜 : ${k.com_date.substring(0,10)}</p>
+		 		<%-- 실제로는 로그인 성공해야 지만 삭제번트이 보여야 한다. --%>
+		 		<input type="button" value="삭제" onclick="comment_del(this.form)">
+		 		<input type="button" value="수정" onclick="comment_up(this.form)">
+		 		<input type="hidden" value="${k.com_idx}" name="com_idx">
+		 		<input type="hidden" value="${k.lo_idx}" name="lo_idx">
+		 		<input type="hidden" name="cPage" value="${cPage}">
+		 	</form>
+		 </div>
+		</c:forEach>
+	</div>
+</div>  
 </body>
 </html>

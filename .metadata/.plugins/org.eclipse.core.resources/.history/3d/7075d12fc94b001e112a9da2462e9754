@@ -1,0 +1,63 @@
+package com.oguogu.lounge.model.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.oguogu.lounge.model.dao.Lounge_DAO;
+import com.oguogu.lounge.model.vo.Lounge_VO;
+
+@Service
+public class Lounge_ServiceImpl implements Lounge_Service{
+
+	@Autowired
+	private Lounge_DAO lounge_DAO;
+	
+	@Override
+	public List<Lounge_VO> getList() {
+		return lounge_DAO.getList();
+	}
+
+	@Override
+	public int getInsert(Lounge_VO lvo) {
+		return 0;
+	}
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Lounge_VO> getList(int offset, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Lounge_VO getOneList(String lo_idx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getHitUpdate(String lo_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getDelete(String lo_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getUpdate(Lounge_VO lvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

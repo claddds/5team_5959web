@@ -1,0 +1,5 @@
+package com.oguogu.lounge.model.vo;
+
+public class Lounge_VO {
+	private String lo_idx, lo_type, lo_content, lo_petkind, lo_date, lo_hit, lo_fname, status, user_id;
+}

@@ -1,0 +1,38 @@
+package com.oguogu.comment.model.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.oguogu.comment.model.dao.Comment_DAO;
+import com.oguogu.comment.model.vo.Comment_VO;
+
+public class Comment_ServiceImpl implements Comment_Service{
+
+	@Autowired
+	private Comment_DAO comment_DAO;
+	
+	@Override
+	public List<Comment_VO> getCommList(String lo_idx) {
+		return co;
+	}
+
+	@Override
+	public int getCommInsert(Comment_VO cvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getCommDelete(Comment_VO cvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getCommUpdate(Comment_VO cvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

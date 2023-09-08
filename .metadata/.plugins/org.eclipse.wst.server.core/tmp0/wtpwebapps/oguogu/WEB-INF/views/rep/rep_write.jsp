@@ -135,7 +135,7 @@
 				cellspacing="0">
 				<tr height="50">
 					<th>신고 제목</th>
-					<td style="padding: 8px; text-align: left;"><input name="not_title" type="text" style="width: 90%; height: 30px;" /></td>
+					<td style="padding: 8px; text-align: left;"><input name="rep_title" type="text" style="width: 90%; height: 30px;" /></td>
 				</tr>
 				<tr height="50">
 					<th>신고자 이름</th>
@@ -144,17 +144,20 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><textarea id="not_content" name="not_write"
+					<td style="padding: 8px; text-align: left;"><textarea id="rep_content" name="rep_write"
 							style="width: 90%; height: 200px;"></textarea>
 					</td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
-					<td style="padding: 8px; text-align: left;"><input name="not_fname" type="file" style="font-size: 20px;"/></td>
+					<td style="padding: 8px; text-align: left;"><input name="rep_fname" type="file" style="font-size: 20px;"/></td>
+				</tr>
+				<tr height="50">
+					<th>비밀번호</th>
+					<td><input type="password" name="pwd" size="20" style="width: 90%; height: 30px;"/></td>
 				</tr>
 				<tr height="50">
 					<td class="button" colspan="2" align="center">
-					<!-- 관리자 아이디만 등록 가능함 -->
 						<input type="button" value="저장" style="font-size: 20px;" onclick="save_go(this.form)">
 				
 						<input type="button" value="목록" style="font-size: 20px;"

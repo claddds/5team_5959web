@@ -1,0 +1,5 @@
+package com.oguogu.report.model.service;
+
+public interface Report_Service {
+
+}

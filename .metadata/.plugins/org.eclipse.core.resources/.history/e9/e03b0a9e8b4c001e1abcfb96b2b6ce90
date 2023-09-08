@@ -1,0 +1,5 @@
+package com.oguogu.faq.model.dao;
+
+public class FAQ_DAO {
+
+}

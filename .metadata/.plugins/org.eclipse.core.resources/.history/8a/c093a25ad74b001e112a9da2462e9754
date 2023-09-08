@@ -1,0 +1,5 @@
+package com.oguogu.comment.model.dao;
+
+public class Comment_DAO {
+
+}

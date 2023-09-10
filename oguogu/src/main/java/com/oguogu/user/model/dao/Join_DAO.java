@@ -24,4 +24,8 @@ public class Join_DAO {
 	public int userEmailChk(User_VO userVO) {
 		return sqlSessionTemplate.selectOne("join.userEmailChk", userVO);
 	}
+	
+	public int getUserAdd(User_VO userVO) {
+		return sqlSessionTemplate.insert("join.userAdd",userVO);
+	}
 }

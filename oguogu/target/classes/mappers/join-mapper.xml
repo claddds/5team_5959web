@@ -15,6 +15,11 @@
 	<select id="userEmailChk" resultType="int">
 		select count(*) from user where email = #{email}
 	</select>
+	
+	<insert id="userAdd" parameterType="uvo">
+		insert into user(user_id,pw,email,nickname,type,initdate,enddate,user_fname,status) 
+		values(#{user_id},#{pw},#{email},#{nickname},1,sysdate(),null,null,0);
+ 	</insert>
 </mapper>
 
 

@@ -12,4 +12,7 @@ public interface Join_Service {
 	
 	//이메일 중복 체크
 	public int userEmailChk(User_VO userVO);
+	
+	//회원 가입
+	public int getUserAdd(User_VO userVO);
 }

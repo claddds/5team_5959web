@@ -27,4 +27,8 @@ public class Join_ServiceImpl implements Join_Service {
 		return join_DAO.userEmailChk(userVO);
 	}
 	
+	@Override
+	public int getUserAdd(User_VO userVO) {
+		return join_DAO.getUserAdd(userVO);
+	}
 }

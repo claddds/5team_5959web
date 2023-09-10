@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>오구오구 회원가입</title>
 <style type="text/css">
 
 .login-wrapper{
@@ -43,10 +43,10 @@
 #login-form > div input[type="submit"]{
     color: #fff;
     font-size: 16px;
-    background-color: #FFA629;
+    background-color: #F3F1EF;
     margin-top: 15px;
 }
-#term-use{margin-top:50px;margin-right:10px;}
+#term-use{margin-top:50px;padding-right:20px;}
 #term-use ul li{
 	list-style-type: none;
 }
@@ -74,11 +74,9 @@
 	width:60px;
 	margin-left:10px;
 	border-radius: 8px;
-}
-
-.button-link {
 	text-decoration: none;
 }
+
 
 #email_dupl,#nick_dupl,#id_dupl{
 	cursor: pointer;
@@ -92,93 +90,238 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#nick_dupl").on("click", function() {
-			$.ajax({
-				url: "/nicknameChk.do",
-				dataType:"json",
-				method:"post",
-				//data : "nickname="+$("#nickname").val(),
-				data : {"nickname":$("#nickname").val()},
-				//async: false,
-				success: function(data) {
-					if(data == 1){
-						$("#nickCheck").text("사용 불가능한 닉네임입니다.");
-						$("#nickCheck").css("color","red");
-						$("#nick_dupl").removeAttr("disabled");
-					}else{
-						$("#nickCheck").text("사용 가능한 닉네임입니다.");
-						$("#nickCheck").css("color","green");
-						$("#nick_dupl").attr("disabled","disabled");
-						$("#nickname").attr("readonly", true);
-					}
-				},
-				error: function() {
-	                alert("오류 발생");
-	            }
-			});
+		//닉네임, 아이디, 이메일, 비밀번호 일치, 비밀번호 조건
+		var isNicknameValid = false;
+	    var isIdValid = false;
+	    var isEmailValid = false;
+	    var isPasswordMatch = false;
+	    var isPasswordValid = false;
+	    var isAllTermsChecked = false;
+	    
+	    //회원가입 버튼 활성/비활성
+	    function updateButtonState() {
+	        if (isNicknameValid && isIdValid && isEmailValid && isPasswordMatch && isPasswordValid && isAllTermsChecked) {
+	            $("#join").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer");
+	        } else {
+	            $("#join").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
+	        }
+	    }
+	    //닉네임 유효성
+	    $("#nickname").on("input", function() {
+	    	  var nick_input = $("#nickname").val();
+	    	  var pattern = /^[A-Za-z0-9가-힣].{1,20}$/;
+
+	    	  if (pattern.test(nick_input)) {
+	    	    $.ajax({
+	    	      url: "/nicknameChk.do",
+	    	      dataType: "json",
+	    	      method: "post",
+	    	      data: {
+	    	        "nickname": nick_input
+	    	      },
+	    	      success: function(data) {
+	    	        if (data == 1) {
+	    	          $("#nickCheck").text("다른 닉네임을 사용해주세요.").css("color", "red");
+	    	          isNicknameValid = false;
+	    	        } else if (data == 0) {
+	    	          $("#nickCheck").text("사용 가능한 닉네임입니다.").css("color", "green");
+	    	          isNicknameValid = true;
+	    	        }
+	    	        console.log(isNicknameValid);
+	    	        updateButtonState();
+	    	      },
+	    	      error: function() {
+	    	        alert("오류 발생");
+	    	      }
+	    	    });
+	    	  } else {
+	    	    $("#nickCheck").text("닉네임 조건에 맞지 않습니다.").css("color", "red");
+	    	    isNicknameValid = false;
+	    	    console.log(isNicknameValid);
+	    	  }
+	    	  updateButtonState();
+	    	});
+		//아이디 유효성
+	    $("#user_id").on("input", function() {
+	    	  var user_id_Input = $("#user_id").val();
+	    	  var pattern = /^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,20}$/;
+
+	    	  if (pattern.test(user_id_Input)) {
+	    	    $.ajax({
+	    	      url: "/IdChk.do",
+	    	      dataType: "json",
+	    	      method: "post",
+	    	      data: {
+	    	        "user_id": user_id_Input
+	    	      },
+	    	      success: function(data) {
+	    	        if (data == 1) {
+	    	          $("#idCheck").text("다른 아이디를 사용해주세요.").css("color", "red");
+	    	          isIdValid = false;
+	    	        } else if (data == 0) {
+	    	          $("#idCheck").text("사용 가능한 아이디입니다.").css("color", "green");
+	    	          isIdValid = true;
+	    	        }
+	    	        console.log(isIdValid);
+	    	        updateButtonState();
+	    	      },
+	    	      error: function() {
+	    	        alert("오류 발생");
+	    	      }
+	    	    });
+	    	  } else {
+	    	    $("#idCheck").text("아이디 조건에 맞지 않습니다.").css("color", "red");
+	    	    isIdValid = false;
+	    	    console.log(isIdValid);
+	    	  }
+	    	  updateButtonState();
+	    	});
+		// 이메일 유효성
+	    $("#email").on("input", function() {
+	    	  var emailInput = $("#email").val();
+	    	  var pattern = /^[\w\.-]+@[\w\.-]+\.\w{2,}$/;
+
+	    	  if (pattern.test(emailInput)) {
+	    	    $.ajax({
+	    	      url: "/emailChk.do",
+	    	      dataType: "json",
+	    	      method: "post",
+	    	      data: {
+	    	        "email": emailInput
+	    	      },
+	    	      success: function(data) {
+	    	        if (data == 1) {
+	    	          $("#emailCheck").text("다른 이메일을 사용해주세요.").css("color", "red");
+	    	          isEmailValid = false;
+	    	        } else {
+	    	          $("#emailCheck").text("사용 가능한 이메일입니다.").css("color", "green");
+	    	          isEmailValid = true;
+	    	        }
+	    	        updateButtonState();
+	    	        console.log(isEmailValid);
+	    	      },
+	    	      error: function() {
+	    	        alert("오류 발생");
+	    	      }
+	    	    });
+	    	  } else {	
+	    	    $("#emailCheck").text("이메일 주소가 유효하지 않습니다.").css("color", "red");
+	    	    isEmailValid = false;
+	    	    console.log(isEmailValid);
+	    	  }
+	    	  updateButtonState();
+	    	});
+		
+		//비밀번호 일치
+		
+		// 비밀번호 입력 필드
+		var passwordInput = $("#password");
+		// 비밀번호 확인 필드
+		var passwordChkInput = $("#passwordChk");
+		// 비밀번호 일치/불일치 메시지
+		var matchMessage = $("#matchMessage");
+		// 비밀번호 정규식 메시지
+		var validationMessage = $("#validationMessage");
+		
+		// 비밀번호 일치 확인 함수
+		function checkPasswordMatch() {
+		  var password = passwordInput.val();
+		  var passwordChk = passwordChkInput.val();
+		
+		  if (password != "" || passwordChk != "") {
+		    if (password == passwordChk) {
+		      matchMessage.text("*비밀번호가 일치합니다.").css("color", "green");
+		      isPasswordMatch = true;
+		    } else {
+		      matchMessage.text("*비밀번호가 일치하지 않습니다.").css("color", "red");
+		      isPasswordMatch = false;
+		    }
+		    console.log(isPasswordMatch);
+		    updateButtonState();
+		  }
+		}
+		
+		// 비밀번호 유효성 검사 함수
+		function validatePassword() {
+		  var password = passwordInput.val();
+		  var pattern = /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/;
+		
+		  if (!pattern.test(password)) {
+		    validationMessage.text("*비밀번호는 8자 이상, 20자 미만 또는 특수문자(#?!@$ %^&*-)를 포함해야 합니다.").css("color", "red").css("marginBottom", "10px");
+		    isPasswordValid = false;
+		  } else {
+		    validationMessage.text("");
+		    isPasswordValid = true;
+		  }
+		  console.log(isPasswordValid);
+		  updateButtonState();
+		}
+		
+		// 비밀번호 입력 필드에 대한 이벤트 리스너 추가
+		passwordInput.on("keyup", checkPasswordMatch);
+		passwordInput.on("keyup", validatePassword);
+		// 비밀번호 확인 필드에 대한 이벤트 리스너 추가
+		passwordChkInput.on("keyup", checkPasswordMatch);
+				
+		
+		// 체크박스 전체 선택/해제
+		$("#ChkAll").on("click",function () {
+		  var checked = $(this).is(":checked");
+
+		  if(checked){
+		  	$(".term-use-chk").prop("checked", true);
+		  } else {
+			$(".term-use-chk").prop("checked", false);
+		  }
+		  termCheck()
 		});
 		
-		$("#id_dupl").on("click", function() {
-			$.ajax({
-				url: "/IdChk.do",
-				dataType:"json",
-				method:"post",
-				//data : "nickname="+$("#nickname").val(),
-				data : {"user_id":$("#user_id").val()},
-				//async: false,
-				success: function(data) {
-					if(data == 1){
-						$("#idCheck").text("사용 불가능한 아이디입니다.");
-						$("#idCheck").css("color","red");
-						$("#id_dupl").removeAttr("disabled");
-					}else{
-						$("#idCheck").text("사용 가능한 닉네임입니다.");
-						$("#idCheck").css("color","green");
-						$("#id_dupl").attr("disabled","disabled");
-						$("#user_id").attr("readonly", true);
-					}
-				},
-				error: function() {
-	                alert("오류 발생");
-	            }
-			});
+		
+		// 전체선택 후 하나만 해제했을 때, 전체선택도 해체 해주기
+		$(".term-use-chk").on("click", function() {
+			  var checked = $(this).is(":checked");
+
+			  if (!checked) {
+				termCheck()
+			  	$("#ChkAll").prop("checked", false);
+			  }
 		});
 		
-		$("#email_dupl").on("click", function() {
-			$.ajax({
-				url: "/emailChk.do",
-				dataType:"json",
-				method:"post",
-				//data : "nickname="+$("#nickname").val(),
-				data : {"email":$("#email").val()},
-				//async: false,
-				success: function(data) {
-					if(data == 1){
-						$("#emailCheck").text("사용 불가능한 이메일입니다.");
-						$("#emailCheck").css("color","red");
-						$("#email_dupl").removeAttr("disabled");
-					}else{
-						$("#emailCheck").text("사용 가능한 이메일입니다.");
-						$("#emailCheck").css("color","green");
-						$("#email_dupl").attr("disabled","disabled");
-						$("#email").attr("readonly", true);
-					}
-				},
-				error: function(xhr, status, error) {
-	                alert("오류 발생");
-	            }
-			});
+		//개별 선택으로 전체 다 선택되었을 때, 전체선택에도 체크 해주기
+		$(".term-use-chk").on("click",function() {
+		    var isChecked = true;
+		    
+		    $(".term-use-chk").each(function(){
+		    	isChecked = isChecked && $(this).is(":checked");
+		    });
+		    termCheck()
+		    $("#ChkAll").prop("checked", isChecked);
+		    
 		});
+		//체크박스 체크
+		function termCheck() {
+		    var Chk1 = $("#Chk1").is(":checked");
+		    var Chk2 = $("#Chk2").is(":checked");
+		    var Chk3 = $("#Chk3").is(":checked");
+		    
+		    if (Chk1 && Chk2 && Chk3) {
+		    	$("#term_essntial_agree").css("display", "none");
+		        isAllTermsChecked = true;
+		    } 
+ 		    else {
+ 		    	$("#term_essntial_agree").css("display", "block");
+		       	isAllTermsChecked = false;
+ 		    }
+		    updateButtonState();
+		}
 		
-		$("#ChkAll").on("click", function() {
-			var checked = $('#ChkAll').is(':checked');
-			if(checked){
-				$(".term-use-chk").attr("checked", true);
-			}else{
-				$(".term-use-chk").attr("checked", false);
-			}
-		});
+		updateButtonState();
 	});
+</script>
+<script type="text/javascript">
+	function joinUsers(f) {
+		f.action="/user_add.do"
+	}
 </script>
 </head>
 <body>
@@ -187,12 +330,11 @@
 	</header>
     <div class="login-wrapper">
         <h1 style="text-align: center;font-family: 'Bagel Fat One', cursive;">Join Us</h1>
+        <h2 id="all-input" style="display:flex;justify-content: center;">모든 칸을 입력해주세요</h2>
         <form method="post"id="login-form">
         	<div style="display: flex; align-items: center;">
              	<!-- 요청 정보(request)  -->
 	           	<input type="text" name="nickname" id="nickname" maxlength="20" placeholder="닉네임(2~20자/한글,영문자 대소문자,숫자만 입력)" required> &nbsp;&nbsp;&nbsp;
-	           	<!-- db로 가서 닉네임 중복 체크함 -->	
-	           	<input type="button" value="중복체크" id="nick_dupl" style="width:80px; display:none;">
            	</div>
         	<!-- 닉네임 유효성 검사 메세지 -->
            	<div id="nickCheck" style="width:400px;"></div>
@@ -200,8 +342,6 @@
            	<div style="display: flex; align-items: center;">
              	<!-- 요청 정보(request)  -->
             	<input type="text" name="user_id" id="user_id" maxlength="20" placeholder="아이디 입력(8~20자/영문자 대소문자,숫자만 입력)"  required> &nbsp;&nbsp;&nbsp;
-				<!-- db로 가서 아이디 중복 체크함 -->	
-            	<input type="button" value="중복체크" id="id_dupl" style="width:80px; display:none;">
             </div>
             <!-- 아이디 유효성 검사 메세지 -->
             <div id="idCheck" style="width:400px;"></div>
@@ -209,8 +349,6 @@
             <div style="display: flex; align-items: center;">
              	<!-- 요청 정보(request)  -->
             	<input type="text" name="email" id="email" maxlength="20" placeholder="이메일" required> &nbsp;&nbsp;&nbsp;
-				<!-- db로 가서 이메일 중복 체크함 -->	
-            	<input type="button" value="중복체크" id="email_dupl" style="width:80px; display:none;">
             </div>
             <!-- 이메일 유효성 검사 메세지 -->
             <div id="emailCheck" style="width:400px;"></div>
@@ -226,136 +364,23 @@
              	<!-- 비밀번호 정규식 특수문자 검사 -->	
              	<div id="validationMessage" style="width:400px;height:15px;"></div> 
              </div>
-             <div id="term-use">
+             <div id="term-use" >
              		<ul>
              			<li><input type="checkbox" id="ChkAll"><span><b>모두 동의</b></span></li>
-             			<li><input type="checkbox" class="term-use-chk"><span>서비스 이용약관 동의</span><a href="https://www.naver.com" target="_blank" class="button-link" style="margin-left:75px;">내용보기</a></li>             			
-             			<li><input type="checkbox" class="term-use-chk"><span>개인정보 수집 및 이용 동의</span><a href="https://www.naver.com" target="_blank" class="button-link" style="margin-left:33px;">내용보기</a></li>
-             			<li><input type="checkbox" class="term-use-chk"><span>만 14세 이상입니다</span></li>
-             			<li><input type="checkbox" class="term-use-chk"><span>(선택) 마케팅 정보 수신 동의</span><a href="https://www.naver.com" target="_blank" class="button-link" style="margin-left:20px;">내용보기</a></li>
+             			<li><input type="checkbox" class="term-use-chk" id="Chk1"><span>서비스 이용약관 동의</span><a href="/term_serviceAddForm.do" target="_blank" class="button-link" style="margin-left:75px;">내용보기</a></li>             			
+             			<li><input type="checkbox" class="term-use-chk" id="Chk2"><span>개인정보 수집 및 이용 동의</span><a href="/term_infoAddForm.do" target="_blank" class="button-link" style="margin-left:33px;">내용보기</a></li>
+             			<li><input type="checkbox" class="term-use-chk" id="Chk3"><span>만 14세 이상입니다</span></li>
+             			<li><input type="checkbox" class="term-use-chk" id="Chk4"><span>(선택) 마케팅 정보 수신 동의</span><a href="/term_marketingAddForm.do" target="_blank" class="button-link" style="margin-left:20px;">내용보기</a></li>
              			<!-- 모두 동의 누르면 모든 버튼 눌려야 되고 / 모두 동의 or 선택 제외한 체크박스 눌리면 회원가입 버튼 누를 수 있음 -->
              		</ul>
              </div>
-             <div>
-             	<input type="submit" id ="join" value="회원가입" onclick="joinUsers(this.form)" style="width:200px; margin-left: 100px; margin-top:20px;"> 
+             <h3 id="term_essntial_agree" style="font-size: 15px;color:red;padding-left:20px;">
+             	필수 동의사항에 동의 해야 회원 가입이 가능합니다.
+             </h3>
+               <div>
+             	<input type="submit" id ="join" value="회원가입" onclick="joinUsers(this.form)" style="width:200px; margin-left: 100px; margin-top:20px;" disabled> 
              </div>
         </form>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script type="text/javascript">
-		var passwordInput = document.getElementById("password"); //비밀번호
-		var passwordChkInput = document.getElementById("passwordChk"); //비밀번호 확인
-		var matchMessage = document.getElementById("matchMessage"); // 비밀번호 일치/불일치 메세지
-	    var validationMessage = document.getElementById("validationMessage"); // 비밀번호 정규식
-		var user_id = document.getElementById("user_id"); //유저 아이디 
-		var email = document.getElementById("email"); //이메일
-		var nicknameInput = document.getElementById("nickname");//닉네임
-		
-	    // 1.비밀번호 일치 펑션
-		function checkPasswordMatch() {
-		// 변수는 script 내부 최상단에 위치
-			var password = passwordInput.value;
-			var passwordChk = passwordChkInput.value;
-			
-			if(password == null && passwordChk == null){
-		        matchMessage.textContent = null;				
-			}
-			
-		    if (password === passwordChk) {
-		        matchMessage.textContent = "*비밀번호가 일치합니다.";
-		        matchMessage.style.color = "green";
-		    } else {
-		        matchMessage.textContent = "*비밀번호가 일치하지 않습니다.";
-		        matchMessage.style.color = "red";
-		    }
-			
-		}
-		
-	    // 2.비밀번호 유효성 펑션(8자 이상 20자 미만, 특수문자)
-		  function validatePassword() {
-			// 변수는 script 내부 최상단에 위치
-	            var password = passwordInput.value;
-	            var pattern = /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/;
-	            
-	            if (!pattern.test(password)) {
-	            	validationMessage.textContent = "*비밀번호는 8자 이상, 20자 미만 또는 특수문자(#?!@$ %^&*-)를 포함해야 합니다.";
-		            validationMessage.style.color = "red";
-		            validationMessage.style.marginBottom = "10px";
-	            }else{
-	            	validationMessage.textContent = "";
-	            }
-	            
-	        }
-	    
-		  // 3.유저 아이디 유효성 검사
-		  
-		  function IDLengthChk() {
-			// 변수는 script 내부 최상단에 위치
-	            var user_id_Input = user_id.value;
-	            var pattern = /^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,20}$/;
-	            
-	            
-	            if (!pattern.test(user_id_Input)) {
-	            	idCheck.textContent = "*아이디 입력 조건을 확인해 주세요";
-	            	id_dupl.style.display= "none";// 중복체크 버튼 비활성화
-	            	idCheck.style.color = "red";
-	            }else{
-	            	idCheck.textContent = "*유효한 아이디입니다. 중복체크를 진행해주세요.";
-	            	id_dupl.style.display= ""; // 중복체크 버튼 활성화
-	            	idCheck.style.color = "green";
-	            }
-	        }
-		  
-		
-		  // 4.이메일 유효성 검사
-		  
-		  function emailChk() {
-			// 변수는 script 내부 최상단에 위치
-	            var emailInput = email.value;
-	            var pattern = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-	            
-	            if (!pattern.test(emailInput)) {
-	            	emailCheck.textContent = "*올바른 이메일 형식이 아닙니다.";
-	            	email_dupl.style.display= "none";// 중복체크 버튼 비활성화
-	            	emailCheck.style.color = "red";	            	
-	            }else{
-	            	emailCheck.textContent = "*이메일 중복체크를 진행해 주세요";
-	            	email_dupl.style.display= ""; // 중복체크 버튼 활성화
-	            	emailCheck.style.color = "green";
-	            }
-	        }
-		// 5. 닉네임 유효성 검사
-		function nickChk(){
-			// 변수는 script 내부 최상단에 위치
-			var nicknameInput = nickname.value;
-			var pattern = /^[A-Za-z0-9가-힣].{1,20}$/;
-			
-			if(!pattern.test(nicknameInput)){
-				nickCheck.textContent = "*닉네임 조건을 확인해주세요."
-				nick_dupl.style.display="none"; //중복체크 버튼 비활성화
-				nickCheck.style.color = "red";
-			}else{
-				nickCheck.textContent = "*유효한 닉네임 방식입니다."
-				nick_dupl.style.display = ""; //중복체크 버튼 활성화
-				nickCheck.style.color = "green";
-			}
-		}
-		  
-		passwordInput.addEventListener("input", checkPasswordMatch); // 1. 비밀번호칸 이벤트 리스너
-		passwordChkInput.addEventListener("input", checkPasswordMatch); // 1. 비밀번호 확인칸 이벤트 리스너
-		passwordInput.addEventListener("input", validatePassword);   // 2. 비밀번호 정규식 확인 이벤트 리스너
-		
-		user_id.addEventListener("input", IDLengthChk); // 3. 유저아이디 유효성 검사
-		email.addEventListener("input", emailChk);		// 4. 이메일 유효성 검사
-		nickname.addEventListener("input", nickChk);	// 5. 닉네임 유효성 검사
-		
-		// 비밀번호가 같고 === / 아이디, 이메일, 닉네임 중복체크도 했고 / 모든 칸이 다 입력되어 있으면 회원가입 submit 활성화
-		// 체크박스도 체크 되어 있어야 회원가입 버튼 누를 수 있음
-		// 중복체크 완료 됐으면 nickCheck.textContent,emailCheck.textContent,idCheck.textContent
-		// 중복체크 완료 메세지 띄우기
-		
-		
-		
-	</script>
 </body>
 </html>

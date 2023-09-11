@@ -63,6 +63,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+     $("#mypage-logout").on("click", function() {
+			alert("로그아웃 되었습니다.");
+			location.href="/user_logout.do"
+		})
+    });
+</script>
 </head>
 <body>
 	<header>
@@ -87,8 +96,6 @@
 				<button class="button" onclick="" style="margin-bottom:20px;">회원 정보 수정</button>
 				<br><!-- 회원정보 수정 페이지로 go -->
 				<button class="button" onclick="">아이디/비밀번호 찾기</button><!-- 누르면 비번 찾기 페이지로 이동  -->
-				<hr>
-				<button class="button" onclick="">로그아웃</button><!-- 누르면 비번 찾기 페이지로 이동  -->
 			</div>
 		</div>
 	</div>

@@ -18,12 +18,12 @@
     font-size: 20px;
 }
 
-.login-wrapper > h1{
+.login-wrapper h1{
     font-size: 60px;
     color: #FFA629;
     margin-bottom: 40px;
 }
-#login-form > input{
+.login-wrapper input{
     width: 100%;
     height: 50px;
     padding: 0 10px;
@@ -33,17 +33,21 @@
     background-color: #F3F1EF;
     border:none;
 }
-#login-form > input::placeholder{
+.login-wrapper input::placeholder{
     color: #B2B1AD;
 }
-#login-form > input[type="submit"]{
+.login-wrapper input[type="submit"]{
     color: #fff;
     font-size: 16px;
     background-color: #FFA629;
     margin-top: 20px;
 }
 
-#login-form input[type="button"]{
+.login-wrapper input[type="button"]{
+ 	color: #fff;
+    font-size: 16px;
+    background-color: #FFA629;
+    margin-top: 20px;
     border:none;
 }
 
@@ -52,13 +56,16 @@
 	justify-content: center;
 	align-items: center;
 	margin-top:10px;
+	cursor:pointer;
 }
 .social-login-img > img{
 	width:200px; 
 	height:50px;
 	margin:5px;
 }
-
+#login_submit_btn,#id_pw_find_btn{
+	cursor:pointer;
+}
 
 </style>
 <!-- 구글 폰트 -->
@@ -66,10 +73,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
 <script type="text/javascript">
-	function user_login(f) {
-		f.action = "/user_login.do"
-	}
+		function user_login(f) {
+			alert("로그인 하시겠습니까?")
+			f.action = "/user_login.do"
+		}
+		function id_pw_find() {
+			location.href = "/IdPwFinddisplay.do"
+		}
 </script>
 </head>
 <body>
@@ -80,14 +92,14 @@
     <div class="login-wrapper">
         <h1 style="text-align: center;font-family: 'Bagel Fat One', cursive;">LogIn</h1>
         <form method="post" action="" id="login-form">
-            <input type="text" name="user_id" placeholder="아이디" required maxlength="20">
-            <input type="password" name="pw" placeholder="비밀번호" required maxlength="20">
-            <div style="display:flex; justify-content: flex-end;">
-            	<input type="button" value="회원가입" style="width:60px;height:20px;border-radius: 6px; color: #585652;"> &nbsp;&nbsp;&nbsp;
-            	<input type="button" value="ID찾기, 비밀번호 찾기" style="width:140px;height:20px;border-radius: 6px; color: #585652;">
-            </div>
+            <input type="text" name="user_id" placeholder="아이디" id="login_user_id" required maxlength="20">
+            <input type="password" name="pw" placeholder="비밀번호" id="login_pwd" required maxlength="20">
+            <input type="submit" value="Login" id="login_submit_btn" onclick="user_login(this.form)">
+        </form>
 
-            <input type="submit" value="Login" onclick="user_login(this.form)">
+            <div>
+            	<input type="button" value="ID찾기, 비밀번호 찾기" id="id_pw_find_btn" onclick="id_pw_find()"style="width:420px;border-radius: 6px;">
+            </div>
             <hr>
 			<div class="social-login-img">
 				<img src="resources/images/login/kakao_login.png">
@@ -95,7 +107,7 @@
 			<div class="social-login-img">
 				<img src="resources/images/login/naver_login.png">
 			</div>
-        </form>
+        
     </div>
     
 </body>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,11 +95,21 @@ ul.midmenu > li ul.sub{
     $(document).ready(function(){
         if(loginChk == "fail"){
             alert("비밀번호가 틀렸습니다.")
-            location.href="/clearSession.do"
-        } else if(loginChk == "ok"){            
-            $("#login_go").css("display", "none") //감추기
-            $("#mypage_go").css("display", "block") //나타내기
+           	/* $.ajax({
+            	url:"/clearSession.do",
+            	type:"get",
+            	succcess: function() {
+				},
+				error: function() {
+				}
+            }); */
+           location.href="/clearSession.do"
         }
+        
+        
+         $("#logout_go").on("click", function() {
+        	 alert("로그아웃 되었습니다.");
+        })  
     });
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,9 +126,16 @@ ul.midmenu > li ul.sub{
 	  <ul class="topmenu">
 	    <li><a href="" style="color:tomato; display:none;" class="header-ALink">관리자 페이지</a></li><!-- id가 admin일 때 display:"" JS 처리  -->
 	    <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
-	    <li><a href="/joindisplay.do" style="color:#FFA629;" class="header-ALink">JOIN US</a></li>
-	    <li><a href="/logindisplay.do" style="color:#FFA629;" class="header-ALink" id="login_go">LOGIN</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
-	    <li><a href="/mypagedisplay.do" style="color:#FFA629; display:none;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+	    <c:choose>
+	    	<c:when test="${loginChk eq 'ok'}">
+	    		<li><a href="/mypagedisplay.do" style="color:#FFA629;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+			    <li><a href="/user_logout.do" style="color:#FFA629;" class="header-ALink" id="logout_go">LOGOUT</a></li>
+	    	</c:when>
+	    	<c:otherwise>
+			     <li><a href="/joindisplay.do" style="color:#FFA629;" class="header-ALink">JOIN US</a></li>
+	   			 <li><a href="/logindisplay.do" style="color:#FFA629;" class="header-ALink" id="login_go">LOGIN</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+	    	</c:otherwise>
+	    </c:choose>
 	  </ul>
 	</div>
 	<!-- 5959 메인 로고 -->

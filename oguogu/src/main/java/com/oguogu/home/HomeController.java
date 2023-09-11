@@ -2,6 +2,7 @@ package com.oguogu.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -112,6 +113,11 @@ public class HomeController {
 	public ModelAndView getRepDisplay() {
 		return new ModelAndView("rep/rep_list");
 	}
+	
+	@RequestMapping("/IdPwFinddisplay.do")
+	public ModelAndView IdPwFinddisplay() {
+		return new ModelAndView("home/id_pw_find");
+	}	
 	
 	//=====home_top.jsp 끝========
 	// =====ogu_main.jsp(오구닥터메인화면에서 해당 기능으로 이동) 시작========

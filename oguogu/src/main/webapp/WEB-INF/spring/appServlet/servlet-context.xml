@@ -31,7 +31,6 @@
 	<beans:bean id="log_inter" class="com.oguogu.common.LogInterceptor" />
 	<interceptors>
 		<interceptor>
-<!-- 			<mapping path="/bbs_list.do"/> -->
 			<mapping path="/board_insertForm.do"/>		
 			<beans:ref bean="log_inter"/>
 		</interceptor>

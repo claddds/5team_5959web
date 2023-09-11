@@ -52,6 +52,7 @@ footer{
 			//return;
 			$("#login_ok").css("display", "block") //나타내기
 		}
+		
 	});
 </script>
 </head>
@@ -92,7 +93,7 @@ footer{
 
 	function currentDiv(n) {
 	    showDivs(slideIndex = n);
-	}
+	}9633
 
 	function showDivs(n) {
 	    var i;

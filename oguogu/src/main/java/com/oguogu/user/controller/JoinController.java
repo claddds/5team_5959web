@@ -76,28 +76,39 @@ public class JoinController {
 
 	// 로그인
 	@RequestMapping("/user_login.do")
-	public ModelAndView getUserLogin(User_VO userVO, HttpSession session, RedirectAttributes redirectAttributes) {
-		ModelAndView mv = new ModelAndView("redirect:/");
-
+	public String getUserLogin(User_VO userVO, HttpSession session, RedirectAttributes redirectAttributes) {
 		String pwd = join_Service.getMemberPwd(userVO.getUser_id());
 
 		if (!passwordEncoder.matches(userVO.getPw(), pwd)) {
 			session.setAttribute("loginChk", "fail");
 			// 로그인실패한걸 세션에 줄 필요 없겟지
-			return mv;
+			return "redirect:/logindisplay.do";
 		} else {
 			session.setAttribute("loginChk", "ok");
 			session.setAttribute("user_id", userVO.getUser_id());
+			session.setAttribute("email", userVO.getEmail());
+			session.setAttribute("nickname", userVO.getNickname());
 //			if (userVO.getUser_id().equals("admin")) {
 //				session.setAttribute("admin", "ok");
 //			}
-			return mv;
+			return "redirect:/";
 		}
 	}
 	
+	//로그인 실패 했을 때 세션 삭제
 	@RequestMapping("/clearSession.do")
 	public ModelAndView SessionClear(HttpSession session) {
 		session.invalidate();
+		System.out.println("세션 삭제");
 	    return new ModelAndView("redirect:/logindisplay.do");
+	}
+	
+	//로그아웃
+	@RequestMapping("/user_logout.do")
+	public ModelAndView getLogout(HttpSession session, RedirectAttributes redirectAttributes ) {
+		session.invalidate();
+		System.out.println("세션 삭제22");
+		redirectAttributes.addFlashAttribute("message","ok");
+		return new ModelAndView("redirect:/");
 	}
 }

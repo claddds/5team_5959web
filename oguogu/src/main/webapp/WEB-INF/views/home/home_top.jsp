@@ -88,10 +88,18 @@ ul.midmenu > li ul.sub{
 }
 
 </style>
-
-<!-- 메인화면에서 각각 화면이동할 수 있는 컨트롤러 스크립트 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
-	
+    var loginChk = "${loginChk}";
+    $(document).ready(function(){
+        if(loginChk == "fail"){
+            alert("비밀번호가 틀렸습니다.")
+            location.href="/clearSession.do"
+        } else if(loginChk == "ok"){            
+            $("#login_go").css("display", "none") //감추기
+            $("#mypage_go").css("display", "block") //나타내기
+        }
+    });
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,7 +116,8 @@ ul.midmenu > li ul.sub{
 	    <li><a href="" style="color:tomato; display:none;" class="header-ALink">관리자 페이지</a></li><!-- id가 admin일 때 display:"" JS 처리  -->
 	    <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    <li><a href="/joindisplay.do" style="color:#FFA629;" class="header-ALink">JOIN US</a></li>
-	    <li><a href="/logindisplay.do" style="color:#FFA629;" class="header-ALink">LOGIN</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+	    <li><a href="/logindisplay.do" style="color:#FFA629;" class="header-ALink" id="login_go">LOGIN</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+	    <li><a href="/mypagedisplay.do" style="color:#FFA629; display:none;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
 	  </ul>
 	</div>
 	<!-- 5959 메인 로고 -->

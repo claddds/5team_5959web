@@ -24,8 +24,12 @@ public class Join_DAO {
 	public int userEmailChk(User_VO userVO) {
 		return sqlSessionTemplate.selectOne("join.userEmailChk", userVO);
 	}
-	
+	//회원 가입
 	public int getUserAdd(User_VO userVO) {
 		return sqlSessionTemplate.insert("join.userAdd",userVO);
+	}
+	
+	public String getMemberPwd(String user_id) {
+		return sqlSessionTemplate.selectOne("join.findPw",user_id);
 	}
 }

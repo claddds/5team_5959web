@@ -101,11 +101,12 @@
 	    //회원가입 버튼 활성/비활성
 	    function updateButtonState() {
 	        if (isNicknameValid && isIdValid && isEmailValid && isPasswordMatch && isPasswordValid && isAllTermsChecked) {
-	            $("#join").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer");
+	            $("#join").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
 	        } else {
 	            $("#join").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
 	        }
 	    }
+	    
 	    //닉네임 유효성
 	    $("#nickname").on("input", function() {
 	    	  var nick_input = $("#nickname").val();
@@ -141,6 +142,7 @@
 	    	  }
 	    	  updateButtonState();
 	    	});
+	    
 		//아이디 유효성
 	    $("#user_id").on("input", function() {
 	    	  var user_id_Input = $("#user_id").val();
@@ -176,6 +178,7 @@
 	    	  }
 	    	  updateButtonState();
 	    	});
+		
 		// 이메일 유효성
 	    $("#email").on("input", function() {
 	    	  var emailInput = $("#email").val();
@@ -298,6 +301,7 @@
 		    $("#ChkAll").prop("checked", isChecked);
 		    
 		});
+		
 		//체크박스 체크
 		function termCheck() {
 		    var Chk1 = $("#Chk1").is(":checked");
@@ -318,8 +322,10 @@
 		updateButtonState();
 	});
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
-	function joinUsers(f) {
+	function joinUser(f) {
+		alert("회원가입이 완료 되었습니다.")
 		f.action="/user_add.do"
 	}
 </script>
@@ -378,7 +384,7 @@
              	필수 동의사항에 동의 해야 회원 가입이 가능합니다.
              </h3>
                <div>
-             	<input type="submit" id ="join" value="회원가입" onclick="joinUsers(this.form)" style="width:200px; margin-left: 100px; margin-top:20px;" disabled> 
+             	<input type="submit" id ="join" value="회원가입" onclick="joinUser(this.form)" style="width:200px; margin-left: 100px; margin-top:20px;" disabled> 
              </div>
         </form>
     </div>

@@ -22,6 +22,10 @@ public class HomeController {
 	public ModelAndView getJoinDisplay() {
 		return new ModelAndView("home/join");
 	}
+	@GetMapping("/mypagedisplay.do")
+	public ModelAndView getMypageDisplay() {
+		return new ModelAndView("mypage/mypage_myprofile_onelist");
+	}
 	// 상단 메뉴에서 교육정보를 누르면 전체 교육정보 페이지로 이동
 	@GetMapping("/alledudisplay.do")
 	public ModelAndView getAllEduDisplay() {

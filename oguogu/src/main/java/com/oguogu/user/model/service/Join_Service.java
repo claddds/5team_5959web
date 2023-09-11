@@ -15,4 +15,7 @@ public interface Join_Service {
 	
 	//회원 가입
 	public int getUserAdd(User_VO userVO);
+	
+	//id로 패스워드 검사
+	String getMemberPwd(String user_id);
 }

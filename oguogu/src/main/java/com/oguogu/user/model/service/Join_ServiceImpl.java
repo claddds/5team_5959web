@@ -31,4 +31,9 @@ public class Join_ServiceImpl implements Join_Service {
 	public int getUserAdd(User_VO userVO) {
 		return join_DAO.getUserAdd(userVO);
 	}
+	
+	@Override
+	public String getMemberPwd(String user_id) {
+		return join_DAO.getMemberPwd(user_id);
+	}
 }

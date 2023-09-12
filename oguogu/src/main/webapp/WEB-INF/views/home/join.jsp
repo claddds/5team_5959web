@@ -89,6 +89,13 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
+	window.onpageshow = function(event) {
+	    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+	    // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
+	    alert("발생!");
+	    location.href="/logindisplay.do";
+	  }
+	}
 	$(document).ready(function(){
 		//닉네임, 아이디, 이메일, 비밀번호 일치, 비밀번호 조건
 		var isNicknameValid = false;
@@ -109,7 +116,7 @@
 	    
 	    //닉네임 유효성
 	    $("#nickname").on("input", function() {
-	    	  var nick_input = $("#nickname").val();
+	    	  nick_input = $("#nickname").val();
 	    	  var pattern = /^[A-Za-z0-9가-힣].{1,20}$/;
 
 	    	  if (pattern.test(nick_input)) {
@@ -145,7 +152,7 @@
 	    
 		//아이디 유효성
 	    $("#user_id").on("input", function() {
-	    	  var user_id_Input = $("#user_id").val();
+	    	  user_id_Input = $("#user_id").val();
 	    	  var pattern = /^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,20}$/;
 
 	    	  if (pattern.test(user_id_Input)) {
@@ -181,7 +188,7 @@
 		
 		// 이메일 유효성
 	    $("#email").on("input", function() {
-	    	  var emailInput = $("#email").val();
+	    	  emailInput = $("#email").val();
 	    	  var pattern = /^[\w\.-]+@[\w\.-]+\.\w{2,}$/;
 
 	    	  if (pattern.test(emailInput)) {

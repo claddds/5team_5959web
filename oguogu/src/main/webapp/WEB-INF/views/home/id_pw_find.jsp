@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,20 +54,43 @@
 	input[type="text"]{
 		border:none;
 	}
-
-	
+	#id_submit,#pw_submit{
+		cursor: pointer;
+	}
 </style>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script type="text/javascript">
+	var kakaomessage = "";
+	var message = "";
+
+    // 페이지 로드 시 실행
+    $(document).ready(function () {
+        // 서버에서 데이터를 가져오는 AJAX 요청
+        $.ajax({
+            url: "/getDataFromServer", // 서버에서 데이터를 가져오는 엔드포인트
+            method: "GET",
+            success: function (data) {
+                
+            },
+            error: function () {
+                console.log("데이터를 가져오는 중 오류가 발생했습니다.");
+            }
+        });
+    });
+</script>
+</script>
 </head>
 <body>
 	<header>
 	<jsp:include page="home_top.jsp" />
 	</header>
 	<div class="main">
-		<h1 style="text-align: center;font-family: 'Bagel Fat One', cursive; color:#FFA629; font-size: 60px;">아이디<br>비밀번호 찾기</h1>
-			<form action="" id="id-form" method="post">
+		<h1 style="text-align: center;font-family: 'Bagel Fat One', cursive; color:#FFA629;background-color: #F3F1EF; font-size: 60px;border-radius:10px;">아이디<br>비밀번호 찾기</h1>
+			<form  id="id-form" method="post">
 				<div>
 					<div>
 						<h1>아이디 찾기</h1>
@@ -75,11 +99,11 @@
 						<label class="input-label" for="">이메일 : </label>
 						<input type="text" name="email" id="id_find_email" maxlength="20">
 						<div style="height:10px;margin-bottom:5px;" id="id_email_chk"></div>
-						<input type="submit" id="id_submit" style="width:120px;margin-left:80px;" value="아이디 찾기">
+						<input type="submit" onclick="id_find(this.form)" id="id_submit" style="width:120px;margin-left:80px;" value="아이디 찾기" >
 					</div>
 				</div>
 			</form>
-			<form action="" id="pw-form" method="post">
+			<form id="pw-form" method="post">
 				<div>
 					<div>
 						<h1>비밀번호 찾기</h1>
@@ -88,11 +112,12 @@
 						<label class="input-label" for="">아이디 : </label>
 						<input type="text" name="user_id" id="pw_find_id" maxlength="20">
 					</div>
+					
 					<div style="margin-left:60px;">
 						<label class="input-label" for="">이메일 : </label>
 						<input type="text" name="email" id="pw_find_email" maxlength="20">
 						<div style="height:10px;margin-bottom:5px;" id="pw_email_chk"></div>
-						<input type="submit" id="pw_submit" style="width:120px;margin-left:80px;" value="비밀번호 재설정">
+						<input type="submit" onclick="pw_find(this.form)" id="pw_submit" style="width:120px;margin-left:80px;" value="비밀번호 재설정">
 					</div>
 				</div>
 			</form>
@@ -112,7 +137,6 @@
 		            	id_email_chk.style.color = "red";
 		            }else{
 		            	id_email_chk.textContent = "";
-		            	button.style.pointerEvents = "auto";
 		            }
 
 		        }
@@ -133,5 +157,23 @@
 		 id_find_email.addEventListener("input", id_emailChk);
 		 pw_find_email.addEventListener("input", pw_emailChk);
 	</script>
+	<script type="text/javascript">
+	function id_find(f) {
+		f.action = "/id_find.do"
+	}
+	function pw_find(f) {
+		f.action = "/id_pw_find.do"
+	}
+	
+	var kakaomessage = "${kakaomessage}";
+	var message = "${message}";
+	
+	if(kakaomessage == "ok"){
+		alert("카카오 회원가입을 하셨습니다. 카카오 로그인을 해주세요.")	
+	}else if(message == "ok"){
+		alert("찾으시는 아이디가 없습니다. 회원가입을 진행해주세요.")
+	}
+	
+</script>
 </body>
 </html>

@@ -21,4 +21,7 @@ public interface Join_Service {
 	
 	//유저 아이디 찾기
 	User_VO getUserOneList(String user_id);
+	
+	//이메일로 유저 아이디 찾기
+	User_VO getIdFind(User_VO userVO);
 }

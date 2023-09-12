@@ -41,8 +41,9 @@ footer{
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
+	var loginChk = "";
 	$(document).ready(function(){
-		var loginChk = "${loginChk}";
+		loginChk = "${loginChk}";
 		if(loginChk == "fail"){
 			alert("비밀번호가 틀렸습니다.")
 			history.go(-1)

@@ -58,7 +58,7 @@
 	margin-top:10px;
 	cursor:pointer;
 }
-.social-login-img > img{
+.social-login-img img{
 	width:200px; 
 	height:50px;
 	margin:5px;
@@ -75,13 +75,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
 <script type="text/javascript">
-		function user_login(f) {
-			alert("로그인 하시겠습니까?")
-			f.action = "/user_login.do"
-		}
-		function id_pw_find() {
-			location.href = "/IdPwFinddisplay.do"
-		}
+	window.onpageshow = function(event) {
+	    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+	    // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
+	    alert("발생!");
+	    location.href="/homedisplay.do";
+	  }
+	}
+	
+	function user_login(f) {
+		alert("로그인 하시겠습니까?")
+		f.action = "/user_login.do"
+	}
+	function id_pw_find() {
+		location.href = "/IdPwFinddisplay.do"
+	}
 </script>
 </head>
 <body>
@@ -102,8 +110,8 @@
             </div>
             <hr>
 			<div class="social-login-img">
-				<c:set var ="REST_API_KEY" value="64e389d2d688211ab0016951d3cc766d" />
-				<c:set var ="REDIRECT_URI" value="http://localhost:8080/kakaologin.do" />
+				<c:set var ="REST_API_KEY" value="c4bde35c9854b5a1ab6b7a2d22cf05a1" />
+				<c:set var ="REDIRECT_URI" value="http://localhost:8090/kakaologin.do" />
 				<a href="https://kauth.kakao.com/oauth/authorize?response_type=code
 							&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}">
 					<img src="resources/images/login/kakao_login.png">

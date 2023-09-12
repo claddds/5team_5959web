@@ -91,14 +91,15 @@ ul.midmenu > li ul.sub{
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
-    var loginChk = "${loginChk}";
+    var loginChk = "";
     $(document).ready(function(){
+    	loginChk = "${loginChk}";
         if(loginChk == "fail"){
             alert("이메일 또는 비밀번호가 올바르지 않습니다.다시 확인해 주세요.")
            	/* $.ajax({
             	url:"/clearSession.do",
             	type:"get",
-            	succcess: function() {
+            	success: function() {
 				},
 				error: function() {
 				}

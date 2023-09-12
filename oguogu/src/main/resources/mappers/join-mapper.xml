@@ -28,6 +28,10 @@
  	<select id="findUser" parameterType="String" resultType="uvo">
  		select * from user where user_id = #{user_id}
  	</select>
+ 	
+ 	<select id="findIdForEmail" parameterType="uvo" resultType="uvo">
+ 		select * from user where email = #{email}
+ 	</select>
 </mapper>
 
 

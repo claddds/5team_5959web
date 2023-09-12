@@ -94,21 +94,43 @@ public class JoinController {
 			return "redirect:/";
 		}
 	}
-	
-	//로그인 실패 했을 때 세션 삭제
+
+	// 로그인 실패 했을 때 세션 삭제
 	@RequestMapping("/clearSession.do")
 	public ModelAndView SessionClear(HttpSession session) {
 		session.invalidate();
 		System.out.println("로그인 실패 세션 삭제");
-	    return new ModelAndView("redirect:/logindisplay.do");
+		return new ModelAndView("redirect:/logindisplay.do");
 	}
-	
-	//로그아웃
+
+	// 로그아웃
 	@RequestMapping("/user_logout.do")
-	public ModelAndView getLogout(HttpSession session, RedirectAttributes redirectAttributes ) {
+	public ModelAndView getLogout(HttpSession session) {
 		ModelAndView mv = new ModelAndView("redirect:/");
 		session.invalidate();
 		System.out.println("로그아웃 세션 삭제");
 		return mv;
 	}
+
+	// 이메일로 id 찾기
+	@RequestMapping("/id_find.do")
+	public ModelAndView getIdFind(User_VO userVO) {
+		ModelAndView mv = new ModelAndView("home/id_pw_find");
+//		String kakaoMessage = "";
+//		String message = "";
+		User_VO uvo = join_Service.getIdFind(userVO);
+		
+		if(uvo != null) {
+			if("1".equals(uvo.getType())) {
+				mv.addObject("uvo", uvo);
+			}else if("2".equals(uvo.getType())) {
+				mv.addObject("kakaomessage","ok");
+			}
+		}else{			
+				mv.addObject("message","ok");
+		}
+		
+		return mv;
+	}
+
 }

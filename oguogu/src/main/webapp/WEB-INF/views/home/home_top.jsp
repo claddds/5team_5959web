@@ -94,7 +94,7 @@ ul.midmenu > li ul.sub{
     var loginChk = "${loginChk}";
     $(document).ready(function(){
         if(loginChk == "fail"){
-            alert("비밀번호가 틀렸습니다.")
+            alert("이메일 또는 비밀번호가 올바르지 않습니다.다시 확인해 주세요.")
            	/* $.ajax({
             	url:"/clearSession.do",
             	type:"get",
@@ -119,7 +119,6 @@ ul.midmenu > li ul.sub{
 <body style="font-family: 'Noto Sans KR', sans-serif;">
 
 <header id="top_head" style="width:1920px; position: relative; left: 50%; transform: translate(-50%);">
-
 	
 	<!-- 최상단 NOTICE,LOGIN,JOIN US -->
 	<div>

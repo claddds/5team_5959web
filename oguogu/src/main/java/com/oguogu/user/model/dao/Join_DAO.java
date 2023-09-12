@@ -32,4 +32,8 @@ public class Join_DAO {
 	public String getMemberPwd(String user_id) {
 		return sqlSessionTemplate.selectOne("join.findPw",user_id);
 	}
+	
+	public User_VO getUserOneList(String user_id) {
+		return sqlSessionTemplate.selectOne("join.findUser",user_id);
+	}
 }

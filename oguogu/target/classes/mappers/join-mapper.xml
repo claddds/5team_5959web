@@ -18,11 +18,15 @@
 	<!-- 회원가입 -->
 	<insert id="userAdd" parameterType="uvo">
 		insert into user(user_id,pw,email,nickname,type,initdate,enddate,user_fname,status) 
-		values(#{user_id},#{pw},#{email},#{nickname},1,sysdate(),null,null,0);
+		values(#{user_id},#{pw},#{email},#{nickname},#{type},sysdate(),null,null,0);
  	</insert>
  	<!-- 로그인을 위한 비밀번호 찾기 -->
  	<select id="findPw" parameterType="String" resultType="String">
  		select pw from user where user_id = #{user_id}
+ 	</select>
+ 	
+ 	<select id="findUser" parameterType="String" resultType="uvo">
+ 		select * from user where user_id = #{user_id}
  	</select>
 </mapper>
 

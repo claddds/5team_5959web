@@ -18,4 +18,7 @@ public interface Join_Service {
 	
 	//id로 패스워드 검사
 	String getMemberPwd(String user_id);
+	
+	//유저 아이디 찾기
+	User_VO getUserOneList(String user_id);
 }

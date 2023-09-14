@@ -35,7 +35,7 @@
 	</header>
 	
 	<div id=minibanner>
-        <a href=""><img src="resources/images/page_banner/listbanner_pocket.png"></a>
+        <a href="/pocketmaindisplay.do"><img src="resources/images/page_banner/listbanner_pocket.png"></a>
     </div>
     
     <!-- Page Content-->
@@ -55,7 +55,7 @@
             	<!-- 나의 포켓 만들기 content -->
                 <p>반려동물과 함께 갈 장소를 선택해 여행 플래너를 만들어 나만의 여행 포켓을 만들어봐요.  </p>
                 <!-- 포켓 만들기 버튼 -->
-                <a class="btn btn-primary" href="#!" style="background-color: #FFA629; border-color: #FFA629;">포켓 만들러 가기</a>
+                <a class="btn btn-primary" href="/gopocketform.do" style="background-color: #FFA629; border-color: #FFA629;">포켓 만들러 가기</a>
                 <!-- 나의 포켓 리스트 보러가기 버튼 -->
                 <a class="btn btn-primary" href="#!" style="background-color: #FFA629; border-color: #FFA629;">나의 포켓 리스트</a>
             </div>

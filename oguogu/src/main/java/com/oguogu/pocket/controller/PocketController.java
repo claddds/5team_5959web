@@ -24,4 +24,13 @@ public class PocketController {
 	public ModelAndView getGoPocketForm() {
 	return new ModelAndView("pocket/pocketform");
 	}
+	
+	// json파일을 전체list에 담기(장소 추가하기 버튼을 눌렀을때 검색버튼 전에 밑에 전체 리스트가 뜬다)
+	@RequestMapping("/pocket_json_go.do")
+	public ModelAndView getpocket_json_go() {
+		try {
+			
+		} catch (Exception e) {
+		}
+	}
 }

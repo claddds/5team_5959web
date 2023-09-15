@@ -21,6 +21,13 @@
 		font-size: 20px;
 		margin:20px;
 	}
+	footer{
+        width:1920px;
+        display:flex;
+        margin:auto;
+        margin-top:20px;
+        margin-bottom: 20px;
+    }
 </style>
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,5 +58,8 @@ rel="stylesheet">
 			시행일자 : 2023. 08. 28
 		</div>
 	</div>
+	<footer>
+		<jsp:include page="home_bottom.jsp" />
+	</footer>
 </body>
 </html>

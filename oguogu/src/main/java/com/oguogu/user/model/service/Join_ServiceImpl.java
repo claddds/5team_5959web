@@ -31,19 +31,33 @@ public class Join_ServiceImpl implements Join_Service {
 	public int getUserAdd(User_VO userVO) {
 		return join_DAO.getUserAdd(userVO);
 	}
+	
 	//id로 비밀번호 찾아옴 로그인에 활용
 	@Override
 	public String getMemberPwd(String user_id) {
 		return join_DAO.getMemberPwd(user_id);
 	}
+	
 	//카카오에서 활용함 id 하나로 onelist
 	@Override
 	public User_VO getUserOneList(String user_id) {
 		return join_DAO.getUserOneList(user_id);
 	}
-	//이메일로 아이디 찾기 위함
-	@Override
-	public User_VO getIdFind(User_VO userVO) {
-		return join_DAO.getIdFind(userVO);
+	
+	 //이메일로 아이디 찾기 위함
+	 @Override 
+	 public User_VO getFindId(String email) { 
+		 return join_DAO.getFindId(email); 
 	}
+	 
+	
+	//유저 비밀번호 업데이트
+	@Override
+	public int getPwUpdate(User_VO userVO) {
+		return join_DAO.getPwUpdate(userVO);
+	}
+	/*
+	 * @Override public int getUserForIdPw(Map<String, String> map) { return
+	 * join_DAO.getUserForIdPw(map); }
+	 */
 }

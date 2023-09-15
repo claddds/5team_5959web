@@ -15,22 +15,19 @@ public class MailService {
 	private MimeMessage message;
 	private MimeMessageHelper messageHelper;
 	
-	public void sendEmail(String randomNumber, String toMail) {
+	public void sendEmail(String randomNumber, String toMail, String user_id) {
 		MailHandler sendMail;
 		try {
 			sendMail = new MailHandler(mailSender);
-			sendMail.setSubject("[ICT EDU 인증메일입니다.]"); //메일 제목
+			sendMail.setSubject("[OguOgu 비밀번호 재설정]"); //메일 제목
 			// 내용
-			sendMail.setText("<table><tbody>"
-							+"<tr><td><h2> ICT메일 인증 2 </h2></td></tr>"
-							+"<tr><td><h3> ICT메일 인증 3 </h3></td></tr>"
-							+"<tr><td><font size='20px'> 인증번호 안내입니다. </font></td></tr>"
-							+"<tr><td></td></tr>"
-							+"<tr><td>안녕하세요 인증번호가 생성되었습니다.</td></tr>"
-							+"<tr><td><font size='20px'> 확인번호 : "+randomNumber+" </font></td></tr>"
-							+"</tbody></table>");
+			sendMail.setText("<div><h3>안녕하세요 OguOgu입니다.</h3></div>"
+					+ "<div style='font-size:20px;'>임시 번호를 다음과 같이 보내드립니다.</div>"
+					+ "<div style='font-size:20px;'>" +user_id+ " 님의 비밀 번호 : "+randomNumber+"</div>"
+					+ "<div style='font-size:20px;'>로그인 후 마이페이지 - 나의 프로필에서 비밀 번호를 변경 해주세요.</div>"
+					);
 			// 보내는 이
-			sendMail.setFrom("poiu62875@gmail.com", "ICTEDU");
+			sendMail.setFrom("poiu62875@gmail.com", "OguOgu");
 			
 			// 받는 이
 			sendMail.setTo(toMail);

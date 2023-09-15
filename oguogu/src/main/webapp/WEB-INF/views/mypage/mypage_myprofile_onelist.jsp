@@ -95,7 +95,7 @@
 			<div id="info_pw">
 				<button class="button" onclick="" style="margin-bottom:20px;">회원 정보 수정</button>
 				<br><!-- 회원정보 수정 페이지로 go -->
-				<button class="button" onclick="">아이디/비밀번호 찾기</button><!-- 누르면 비번 찾기 페이지로 이동  -->
+				<button class="button" onclick="">비밀번호 변경</button><!-- 누르면 비번 찾기 페이지로 이동  -->
 			</div>
 		</div>
 	</div>

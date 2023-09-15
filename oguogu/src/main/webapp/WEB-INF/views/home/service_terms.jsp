@@ -23,6 +23,13 @@
 		margin:20px;
 		font-size: 20px;
 	}
+	footer{
+        width:1920px;
+        display:flex;
+        margin:auto;
+        margin-top:20px;
+        margin-bottom: 20px;
+    }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,5 +120,8 @@ rel="stylesheet">
 		이 약관은 2023. 08. 28일부터 시행합니다.
 		</div>
 	</div>
+	<footer>
+		<jsp:include page="home_bottom.jsp" />
+	</footer>
 </body>
 </html>

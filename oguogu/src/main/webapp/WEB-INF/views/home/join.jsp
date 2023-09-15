@@ -81,6 +81,14 @@
 #email_dupl,#nick_dupl,#id_dupl{
 	cursor: pointer;
 }
+
+footer{
+        width:1920px;
+        display:flex;
+        margin:auto;
+        margin-top:20px;
+        margin-bottom: 20px;
+    }
 </style>
 <!-- 구글 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,7 +100,6 @@
 	window.onpageshow = function(event) {
 	    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
 	    // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
-	    alert("발생!");
 	    location.href="/logindisplay.do";
 	  }
 	}
@@ -395,5 +402,8 @@
              </div>
         </form>
     </div>
+    <footer>
+		<jsp:include page="home_bottom.jsp" />
+	</footer>
 </body>
 </html>

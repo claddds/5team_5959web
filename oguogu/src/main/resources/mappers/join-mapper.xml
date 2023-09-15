@@ -24,14 +24,18 @@
  	<select id="findPw" parameterType="String" resultType="String">
  		select pw from user where user_id = #{user_id}
  	</select>
- 	
+ 	<!-- 아이디로 유저 한명 찾기 -->
  	<select id="findUser" parameterType="String" resultType="uvo">
  		select * from user where user_id = #{user_id}
  	</select>
- 	
- 	<select id="findIdForEmail" parameterType="uvo" resultType="uvo">
+ 	<!-- 이메일로 유저 한명 찾기 -->
+ 	<select id="findUserId" parameterType="String" resultType="uvo">
  		select * from user where email = #{email}
  	</select>
+ 	
+	<update id="userPwUpdate" parameterType="uvo">
+		update user set pw = #{pw} where user_id = #{user_id}
+	</update>
 </mapper>
 
 

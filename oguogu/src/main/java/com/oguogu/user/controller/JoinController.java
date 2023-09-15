@@ -1,5 +1,9 @@
 package com.oguogu.user.controller;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,8 +81,10 @@ public class JoinController {
 
 	// 로그인
 	@RequestMapping("/user_login.do")
-	public String getUserLogin(User_VO userVO, HttpSession session, RedirectAttributes redirectAttributes) {
+	public String getUserLogin(User_VO userVO, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
+		//id로 비밀번호 찾아옴 로그인에 활용
 		String pwd = join_Service.getMemberPwd(userVO.getUser_id());
+		
 		if (!passwordEncoder.matches(userVO.getPw(), pwd)) {
 			session.setAttribute("loginChk", "fail");
 			// 로그인실패한걸 세션에 줄 필요 없겟지
@@ -94,43 +100,48 @@ public class JoinController {
 			return "redirect:/";
 		}
 	}
-
+	
 	// 로그인 실패 했을 때 세션 삭제
 	@RequestMapping("/clearSession.do")
-	public ModelAndView SessionClear(HttpSession session) {
+	public ModelAndView SessionClear(HttpSession session) throws Exception {
 		session.invalidate();
 		System.out.println("로그인 실패 세션 삭제");
 		return new ModelAndView("redirect:/logindisplay.do");
 	}
-
+	
 	// 로그아웃
 	@RequestMapping("/user_logout.do")
-	public ModelAndView getLogout(HttpSession session) {
+	public ModelAndView getLogout(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/");
 		session.invalidate();
 		System.out.println("로그아웃 세션 삭제");
 		return mv;
 	}
-
-	// 이메일로 id 찾기
-	@RequestMapping("/id_find.do")
-	public ModelAndView getIdFind(User_VO userVO) {
-		ModelAndView mv = new ModelAndView("home/id_pw_find");
-//		String kakaoMessage = "";
-//		String message = "";
-		User_VO uvo = join_Service.getIdFind(userVO);
-		
-		if(uvo != null) {
-			if("1".equals(uvo.getType())) {
-				mv.addObject("uvo", uvo);
-			}else if("2".equals(uvo.getType())) {
-				mv.addObject("kakaomessage","ok");
-			}
-		}else{			
-				mv.addObject("message","ok");
-		}
-		
-		return mv;
+	
+	//아이디,비번찾기 창으로 이동
+	@RequestMapping("/IdPwFinddisplay.do")
+	public ModelAndView IdPwFinddisplay() throws Exception {
+		return new ModelAndView("home/id_pw_find");
 	}
+	
+	//아이디 찾기 할 때 씀
+	@RequestMapping("/IdFindEmail.do")
+	@ResponseBody
+	public Map<String, String> getIdFind(User_VO userVO) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		//아이디 찾기 할 때 씀
+		User_VO uvo = join_Service.getFindId(userVO.getEmail());
+		
+		if(uvo == null) {
+			map.put("message", "ok");
+		}else {
+			System.out.println(uvo.getType());
+			System.out.println(uvo.getUser_id());
+			map.put("type", uvo.getType());
+			map.put("user_id", uvo.getUser_id());
+		}
+		return map;
+	}
+
 
 }

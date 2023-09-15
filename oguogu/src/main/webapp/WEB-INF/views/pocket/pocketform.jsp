@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <title>포켓 만들기</title>
 
 <style type="text/css">
@@ -15,44 +17,6 @@
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-#pocket_form {
-	width: 1920px;
-	display: flex;
-	margin: auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-#pocket_info{
-	width: 1000px;
-	margin: auto;
-	transform: translate(0, -50%);
-}
-
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
 
 footer {
 	width: 1920px;
@@ -75,27 +39,27 @@ footer {
 		<a href="/pocketmaindisplay.do"><img src="resources/images/page_banner/listbanner_pocket.png"></a>
 	</div>
 	
-	<div id = pocket_form>
+	<div id = container>
 		<form method="post" enctype="multipart/form-data">
-			<div id = img_upload>
+			<div class="form_group">
+				<label for="title">제목</label>
+    			<input type="text" class="form-control" name="title" id="title" size ="20" />
 			</div>
-			<div id = pocket_info>
-				<label for="fname">First Name</label>
-    			<input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-    			<label for="lname">Last Name</label>
-    			<input type="text" id="lname" name="lastname" placeholder="Your last name..">
+			<div class="form_group">
+				<label for="content">포켓의 내용</label>
+    			<textarea  rows="10" cols="60" name="content" id="content"></textarea>
 			</div>
-			<div id = location_add>
+			<div class="form_group">
+				<label for="pocket_img">포켓사진</label>
+				<input type="file" class="form-control" name="pocket_img" id="pocket_img" size ="20" />
 			</div>
-			<div id = form_submit>
-				<input type="submit" value="Submit">
-			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
 	</div>
 	
 	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
+	
 </body>
 </html>

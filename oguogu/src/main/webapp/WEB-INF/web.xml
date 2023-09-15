@@ -55,7 +55,7 @@
 	
 	<!-- 첫페이지 지정 (선택사항) -->
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/views/education/admin_edu_list.jsp</welcome-file>
+		<welcome-file>/WEB-INF/views/pocket/pocketform.jsp</welcome-file>
 	</welcome-file-list>
 	
 </web-app>

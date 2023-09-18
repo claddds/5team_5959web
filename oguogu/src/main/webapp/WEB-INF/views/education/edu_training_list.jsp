@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,7 @@
 	background-color: #FFA629;
 	box-sizing: border;
 	border-radius: 8px;
-	width: 900px;
+	width: 600px;
 	margin: auto;
 }
 
@@ -155,6 +156,14 @@
 .div_card{
 	margin:30px;
 }
+
+footer{
+        width:1920px;
+        display:flex;
+        margin:auto;
+        margin-top:20px;
+        margin-bottom: 20px;
+    }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -285,9 +294,57 @@
 					</li>
 				</ul>
 				</div>
+				<div>
+			<ol class="paging">
+			   <!-- 이전 -->
+			   <c:choose>
+			   		<%-- 시작블록과 pagePerBlock를 비교해서 
+			   		시작블록 작으면 이전으로 가 비활성화 된다. --%>
+			   		<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+			   			<li class="disable">이전으로</li>
+			   		</c:when>
+			   		<c:otherwise>
+			   			<!-- a링크처리 -->
+			   			<li><a href="/board_list.do?page=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
+			   		</c:otherwise>
+			   </c:choose>
+			    <!-- 블록안에 들어간 페이지번호들 -->
+				<c:forEach begin="${paging.beginBlock}" end="${paging.endBlock }" step="1" var="k">
+				   <%-- 현재 페이지와 현재 페이지가 아닌 것을 나누자  --%>
+				   <%-- 현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리  --%>
+				   <%-- <c:choose>
+				   		<c:when test="${k == paging.nowPage}">
+				   			<li class="now">${k}</li>
+				   		</c:when>
+				   		<c:otherwise>
+				   			<li><a href="/bbs_list.do?page=${k}">${k}</a></li>
+				   		</c:otherwise>
+				   </c:choose> --%>
+				   <c:if test="${k == paging.nowPage}">
+				   		<li class="now">${k}</li>
+				   </c:if>
+				   <c:if test="${k != paging.nowPage}">
+				   		<!-- a링크처리 -->
+				   		<li><a href="/board_list.do?page=${k}">${k}</a></li>
+				   </c:if>
+				</c:forEach>
+				<!-- 다음 -->
+				  <c:choose>
+			   		<%-- 시작블록과 pagePerBlock를 비교해서 
+			   		시작블록 작으면 이전으로 가 비활성화 된다. --%>
+			   		<c:when test="${paging.endBlock >= paging.totalPage }">
+			   			<li class="disable">다음으로</li>
+			   		</c:when>
+			   		<c:otherwise>
+			   			<!-- a링크처리 -->
+			   			<li><a href="/board_list.do?page=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
+			   		</c:otherwise>
+			   </c:choose> 
+			</ol>
+		</div>
 	</div>
-	<div>
-	<!-- 검색바 -->
-	</div>
+	<footer>
+		<jsp:include page="../home/home_bottom.jsp" />
+	</footer>
 </body>
 </html>

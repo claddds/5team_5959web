@@ -29,14 +29,12 @@ public class Edu_ServiceImpl implements Edu_Service{
 	public int getEdudInsert(Education_VO evo) {
 		return education_DAO.getEdudInsert(evo);
 	}
-
+	
+	
+	
 	@Override
 	public int getTotalCount() {
 		return education_DAO.getTotalCount();
 	}
-
-
-	
-	
 	
 }

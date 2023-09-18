@@ -23,7 +23,7 @@ public class LogInterceptor implements AsyncHandlerInterceptor{
 		
 		if(obj == null) {
 			//로그인 하지 않은 상태일 때
-			request.getRequestDispatcher("/WEB-INF/views/login_error.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/log_interceptor.jsp").forward(request, response);
 			return false;
 		}
 		

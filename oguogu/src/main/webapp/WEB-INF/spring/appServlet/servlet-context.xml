@@ -28,13 +28,13 @@
 	
 	<context:component-scan base-package="com.oguogu" />
 	
-	<beans:bean id="log_inter" class="com.oguogu.common.LogInterceptor" />
+	<!-- <beans:bean id="log_inter" class="com.oguogu.common.LogInterceptor" />
 	<interceptors>
 		<interceptor>
-			<mapping path="/board_insertForm.do"/>		
+			<mapping path="/heartChk.do"/>		
 			<beans:ref bean="log_inter"/>
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 	
 	
 </beans:beans>

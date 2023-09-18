@@ -35,7 +35,6 @@
 	border-radius: 8px;
 	width: 600px;
 	margin: auto;
-	margin-bottom: 30px;
 }
 
 #edumenu ul {
@@ -52,7 +51,7 @@
 #edumenu li:not(:first-child) a::before {
 	content: "|";
 	margin: 0 40px; /* 원하는 간격으로 설정 */
-} 
+}
 
 #edumenu a {
 	color: #f8f8ff;
@@ -73,10 +72,10 @@
 	height: 400px;
 	width: 1100px;
 	padding: 5px;
-	margin-bootom: 10px;
+	margin-botom: 10px;
 }
 
-.cardimg {
+.card-img {
 	float: left;
 }
 
@@ -140,7 +139,10 @@
 	text-overflow: ellipsis;
 	color: 5E5958;
 }
-
+#onelistlink{
+	text-decoration: none;
+	color:black;
+}
 .edu_content {
 	margin-right: 30px;
 	margin-top: 30px;
@@ -165,6 +167,54 @@ footer{
         margin-top:20px;
         margin-bottom: 20px;
     }
+    
+    
+/* paging */
+
+
+ol.paging {
+	list-style: none;
+	display:flex;
+	justify-content: center;
+	margin-top:20px;
+}
+
+ol.paging li {
+	float: left;
+	margin-right: 8px;
+	font-size: 40px;
+}
+
+ol.paging li a {
+	display: block;
+	padding: 3px 7px;
+	border: 1px solid #FFA629;
+	color: #2f313e;
+	font-weight: bold;
+	border-radius:10px;
+}
+
+ol.paging li a:hover {
+	background: #FFA629;
+	color: white;
+	font-weight: bold;
+}
+
+.disable {
+	padding: 3px 7px;
+	border: 1px solid silver;
+	color: silver;
+	border-radius:10px;
+}
+
+.now {
+	padding: 3px 7px;
+	border: 1px solid #FFA629;
+	background: #FFA629;
+	color: white;
+	font-weight: bold;
+	border-radius:10px;
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,7 +225,8 @@ footer{
 <!-- 
 	1. edumenu list(강아지,고양이,기타동물) 눌렀을 때 #edumenu a color:를 변경 할것
 	2. 검색바 넣기
-	3. label class two에 el 써서 강아지, 고양이, 기타동물 분류
+	3. label class one에 el 써서 초보 반려인들의 필수 상식!/반려 동물 잘 키우는 방법!/훈련 방법 모음집!으로 db에서 긁을수 있게
+	4. label class two에 el 써서 강아지, 고양이, 기타동물 분류
  -->
 <body>
 	<header>
@@ -183,55 +234,51 @@ footer{
 	</header>
 	<div id="eduform">
 		<div id=minibanner>
-			<a href=""><img
-				src="resources/images/list_banner/listbanner_edu.png"></a>
+			<a href=""><img src="resources/images/page_banner/listbanner_edu.png"></a>
 		</div>
 
 
 		<div id="edumenu">
 			<ul id="">
-				<li><a href=""># 강아지</a></li>
-				<li><a href=""># 고양이</a></li>
+				<li><a href="/essentialdisplayDog.do"># 강아지</a></li>
+				<li><a href="/essentialdisplayCat.do"># 고양이</a></li>
 			</ul>
 		</div>
 
 
 
 		<div class="edu_menu_title">
-			<label class="label_one">양육 정보! 반려 동물 잘 키우는 방법! >> </label> <label
-				class="label_two"> # 강아지</label>
+			<label class="label_one">필수 정보! 초보 반려인들의 필수 상식! >> </label>
+			<label class="label_two"> # 고양이</label>
 		</div>
 
 		<div class="div_card">
 			<ul class="cardList">
+			<c:forEach var = "k" items="${CatElist}">
 				<li>
+				<a href = "/essentialOneListCat.do?b_idx=${k.edu_idx}&page=${paging.nowPage}" id="onelistlink">
 					<div class="onecard">
 						<div class="edu-card">
 							<div id="essential">
 								<div class="edutext">
-									<div class="edu_title">안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요
-										안녕하세요</div>
-									<div class="edu_content">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요
-										안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요
-										안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요
-										안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요
-										안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요
-									</div>
+									<div class="edu_title">${k.edu_title}</div>
+									<div class="edu_content">${k.edu_content}</div>
 								</div>
 							</div>
 						</div>
-						<div class="cardimg">
+						<div class="card-img">
 							<div class="edu_img">
-								<img
-									src="resources/images/list_banner/minibanner_eduexplain.png">
+								<img src="resources/images/${k.edu_F_name}">
 							</div>
 						</div>
 					</div>
+				</a>
 				</li>
-
+			</c:forEach>
 			</ul>
 		</div>
-		<div>
+	</div>
+	<div>
 			<ol class="paging">
 			   <!-- 이전 -->
 			   <c:choose>
@@ -242,7 +289,7 @@ footer{
 			   		</c:when>
 			   		<c:otherwise>
 			   			<!-- a링크처리 -->
-			   			<li><a href="/board_list.do?page=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
+			   			<li><a href="/essentialdisplayCat.do?page=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
 			   		</c:otherwise>
 			   </c:choose>
 			    <!-- 블록안에 들어간 페이지번호들 -->
@@ -262,7 +309,7 @@ footer{
 				   </c:if>
 				   <c:if test="${k != paging.nowPage}">
 				   		<!-- a링크처리 -->
-				   		<li><a href="/board_list.do?page=${k}">${k}</a></li>
+				   		<li><a href="/essentialdisplayCat.do?page=${k}">${k}</a></li>
 				   </c:if>
 				</c:forEach>
 				<!-- 다음 -->
@@ -274,12 +321,11 @@ footer{
 			   		</c:when>
 			   		<c:otherwise>
 			   			<!-- a링크처리 -->
-			   			<li><a href="/board_list.do?page=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
+			   			<li><a href="/essentialdisplayCat.do?page=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
 			   		</c:otherwise>
 			   </c:choose> 
 			</ol>
 		</div>
-	</div>
 	<footer>
 		<jsp:include page="../home/home_bottom.jsp" />
 	</footer>

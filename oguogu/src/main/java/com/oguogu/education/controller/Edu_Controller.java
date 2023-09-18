@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.oguogu.common.Paging;
+import com.oguogu.common.EduPaging;
 import com.oguogu.education.model.service.Edu_Service;
 import com.oguogu.education.model.vo.Education_VO;
 
@@ -26,7 +26,7 @@ public class Edu_Controller {
 	private Edu_Service edu_Service;
 	
 	@Autowired
-	private Paging paging;
+	private EduPaging paging;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -71,6 +71,8 @@ public class Edu_Controller {
 		}
 		return null;
 	}
+	
+	
 	
  
 }

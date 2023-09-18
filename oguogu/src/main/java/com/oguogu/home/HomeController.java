@@ -1,5 +1,6 @@
 package com.oguogu.home;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,26 +29,8 @@ public class HomeController {
 	public ModelAndView getMypageDisplay() {
 		return new ModelAndView("mypage/mypage_myprofile_onelist");
 	}
-	// 상단 메뉴에서 교육정보를 누르면 전체 교육정보 페이지로 이동
-	@GetMapping("/alledudisplay.do")
-	public ModelAndView getAllEduDisplay() {
-		return new ModelAndView("education/edu_list");
-	}
-	// 상단 메뉴에서 필수정보를 누르면 필수정보 페이지로 이동
-	@GetMapping("/essentialdisplay.do")
-	public ModelAndView getEssentialDisplay() {
-		return new ModelAndView("education/edu_essential_list");
-	}
-	// 상단 메뉴에서 양육정보를 누르면 양육정보 페이지로 이동
-	@GetMapping("/bringingdisplay.do")
-	public ModelAndView getBringingDisplay() {
-		return new ModelAndView("education/edu_bringing_list");
-	}
-	// 상단 메뉴에서 훈련정보를 누르면 훈련정보 페이지로 이동
-	@GetMapping("/trainingdisplay.do")
-	public ModelAndView getTrainingDisplay() {
-		return new ModelAndView("education/edu_training_list");
-	}
+	
+	
 	// 상단 메뉴바에서 플레이스를 누르면 플레이스 화면으로 이동
 	@GetMapping("/placemaindisplay.do")
 	public ModelAndView getPlaceMainDisplay() {

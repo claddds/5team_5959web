@@ -96,14 +96,6 @@ ul.midmenu > li ul.sub{
     	loginChk = "${loginChk}";
         if(loginChk == "fail"){
             alert("이메일 또는 비밀번호가 올바르지 않습니다.다시 확인해 주세요.")
-           	/* $.ajax({
-            	url:"/clearSession.do",
-            	type:"get",
-            	success: function() {
-				},
-				error: function() {
-				}
-            }); */
            location.href="/clearSession.do"
         }
         
@@ -149,7 +141,7 @@ ul.midmenu > li ul.sub{
 			    <li><a href="/homedisplay.do" class="header-ALink">HOME</a></li>
 			    <li class="edu_main"><a href="/alledudisplay.do" class="header-ALink">교육정보</a>
 			    	<ul class="edu sub">
-			    		<li><a href="/essentialdisplay.do" class="header-ALink">필수 정보</a></li>
+			    		<li><a href="/essentialdisplayDog.do" class="header-ALink">필수 정보</a></li>
 			    		<li><a href="/bringingdisplay.do" class="header-ALink">양육 정보</a></li>
 			    		<li><a href="/trainingdisplay.do" class="header-ALink">훈련 정보</a></li>
 			    	</ul>

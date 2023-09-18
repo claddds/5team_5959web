@@ -20,9 +20,8 @@ public interface Join_Service {
 	// id로 패스워드 검사
 	public String getMemberPwd(String user_id);
 
-	// 유저 아이디 찾기
+	// 카카오 및 joincontroller에서 활용함 / 유저 아이디 찾기
 	public User_VO getUserOneList(String user_id);
-
 	
 	//이메일로 유저 아이디 찾기 
 	public User_VO getFindId(String email);

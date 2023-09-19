@@ -223,7 +223,10 @@
 	#category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
 	#category li:last-child{margin-right:0;border-right:0;}
 	#category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> daece5ee1dde2d146bfb63d94105a6f52976785f
 	#category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
 	#category li .bank {background-position: -10px 0;}
 	#category li .mart {background-position: -10px -36px;}
@@ -232,6 +235,7 @@
 	#category li .cafe {background-position: -10px -144px;}
 	#category li .store {background-position: -10px -180px;}
 	#category li.on .category_bg {background-position-x:-46px;}
+<<<<<<< HEAD
 	.category, .category *{margin:0;padding:0;color:#000;}   
 	.category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
 	#category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
@@ -245,6 +249,8 @@
 	#category .ico_hotel {background-position:-10px -180px;} 
 	#category .ico_park {background-position:-10px -216px;}
 	
+=======
+>>>>>>> daece5ee1dde2d146bfb63d94105a6f52976785f
 	.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
 	.placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
 	.placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
@@ -287,6 +293,7 @@
 			<div id="pagination"></div>
 		</div>
 		 <ul id="category">
+<<<<<<< HEAD
 			 <li id="coffeeMenu" onclick="changeMarker('coffee')">
 	         	<span class="ico_comm ico_hospital"></span>
 	            동물병원
@@ -317,6 +324,33 @@
 	         </li>
         
     	</ul>
+=======
+        <li id="BK9" data-order="0"> 
+            <span class="category_bg bank"></span>
+            은행
+        </li>       
+        <li id="MT1" data-order="1"> 
+            <span class="category_bg mart"></span>
+            마트
+        </li>  
+        <li id="PM9" data-order="2"> 
+            <span class="category_bg pharmacy"></span>
+            약국
+        </li>  
+        <li id="OL7" data-order="3"> 
+            <span class="category_bg oil"></span>
+            주유소
+        </li>  
+        <li id="CE7" data-order="4"> 
+            <span class="category_bg cafe"></span>
+            카페
+        </li>  
+        <li id="CS2" data-order="5"> 
+            <span class="category_bg store"></span>
+            편의점
+        </li>      
+    </ul>
+>>>>>>> daece5ee1dde2d146bfb63d94105a6f52976785f
 	</div>
 	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />

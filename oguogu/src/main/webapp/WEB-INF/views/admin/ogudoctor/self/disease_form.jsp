@@ -57,7 +57,10 @@
 			<table>
 				<tr align="center">
 					<td bgcolor="#99ccff">동물종류</td>
+<<<<<<< HEAD
 					
+=======
+>>>>>>> daece5ee1dde2d146bfb63d94105a6f52976785f
 				</tr>
 				<tr align="center">
 					<td bgcolor="#99ccff">증상유형</td>
@@ -90,7 +93,11 @@
     <footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
+<<<<<<< HEAD
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+=======
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+>>>>>>> daece5ee1dde2d146bfb63d94105a6f52976785f
     <script src="resources/js/summernote-lite.js"></script>
     <script src="resources/js/lang/summernote-ko-KR.js"></script>
     <script type="text/javascript">

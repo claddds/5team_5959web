@@ -18,4 +18,9 @@ public class Ogu_Self_DAO {
 	public List<Ogu_Self_VO> getDogmealfoodlist(){
 		return sqlSessionTemplate.selectList("oguself.dogmealfoodlist");
 	}
+
+	public List<Ogu_Self_VO> getDogmealwaterlist(){
+		return sqlSessionTemplate.selectList("oguself.dogmealwaterlist");
+	}
 }
+

@@ -55,7 +55,7 @@
 	
 	<!-- 첫페이지 지정 (선택사항) -->
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/views/place/safefile/place_main_safe.jsp</welcome-file>
+		<welcome-file>/WEB-INF/views/ogudoctor/self/ogu_dog_category.jsp</welcome-file>
 	</welcome-file-list>
 	
 </web-app>

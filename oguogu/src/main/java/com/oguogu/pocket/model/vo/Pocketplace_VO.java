@@ -1,13 +1,20 @@
-package com.oguogu.place.vo;
+package com.oguogu.pocket.model.vo;
 
-public class Place_VO {
-
-	// String: 도로명 주소(roadaddr), 기본 정보_장소설명(locationex), 시설명(facilities), 카테고리3(category3)
+public class Pocketplace_VO {
+	// String: 도로명 주소(roadaddr), 기본 정보_장소설명(locationex), 시설명(facilities)
 	// double: 경도(lon), 위도(lat)
-	
-	private String roadaddr, locationex, facilities, category;
+	private String roadaddr,locationex, facilities;
 	private double lon, lat;
 	
+	public Pocketplace_VO(String roadaddr, String locationex, String facilities, double lon, double lat) {
+		super();
+		this.roadaddr = roadaddr;
+		this.locationex = locationex;
+		this.facilities = facilities;
+		this.lon = lon;
+		this.lat = lat;
+	}
+
 	public String getRoadaddr() {
 		return roadaddr;
 	}
@@ -26,12 +33,6 @@ public class Place_VO {
 	public void setFacilities(String facilities) {
 		this.facilities = facilities;
 	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
 	public double getLon() {
 		return lon;
 	}
@@ -44,5 +45,6 @@ public class Place_VO {
 	public void setLat(double lat) {
 		this.lat = lat;
 	}
+	
 	
 }

@@ -5,16 +5,16 @@
 <mapper namespace="oguself">
 	<!-- meal-식사량 리스트 뽑기 -->
 	<select id="dogmealfoodlist" resultType="oguselfvo">
-		select * from ogudoctor_disease
+		select * 
+		from ogudoctor_disease
+		where sym_chk = "식사량"
+	</select>
+	
+	<!-- meal-식수량 리스트 뽑기 -->
+	<select id="dogmealwaterlist" resultType="oguselfvo">
+		select * 
+		from ogudoctor_disease
+		where sym_chk = "음수량"
 	</select>
 	
 </mapper>
-
-
-
-
-
-
-
-
-

@@ -18,6 +18,10 @@ public class Ogu_Self_ServiceImpl implements Ogu_Self_Service{
 	public List<Ogu_Self_VO> getDogmealfoodlist() {
 		return ogu_Self_DAO.getDogmealfoodlist();
 	}
-	
+
+	@Override
+	public List<Ogu_Self_VO> getDogmealwaterlist() {
+		return ogu_Self_DAO.getDogmealwaterlist();
+	}
 	
 }

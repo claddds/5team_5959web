@@ -7,10 +7,22 @@
 <meta charset="UTF-8">
 <title>증상체크-식사</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
+
+<!-- 라디오 버튼 부트스트랩 (아래2개다 넣어야함 (왜인지는 모름,,,,))-->
+<link href="resources/css/oguself/sym_check/radio.css" rel="stylesheet" id="bootstrap-css">
+<link href="resources/css/start_bootstrap/styles.css" rel="stylesheet" />
+
 <style type="text/css">
+	@font-face {
+	    font-family: 'Cafe24Ssurround';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	h1, h2, h3, h4, h5, h6{
+		font-family: 'Cafe24Ssurround';
+	}
+
 	#minibanner img{
 		width:1920px;
 		height:200px;
@@ -37,6 +49,11 @@
 		text-align: center;
 		margin: 0 auto;
 		margin-bottom: 30px;
+    }
+
+    .col-md-4{
+    	width: 1000px;
+    	margin: 0 auto;
     }
     .food_amount{
     	width: 1000px;
@@ -69,7 +86,7 @@
   		align-items: center;
 	}
 	.button_location{
-		width: 1920px;
+		width: 1000px;
 		text-align: center;
 		margin: 0 auto;
 		margin-top: 30px;
@@ -105,15 +122,55 @@
 		margin-top:20px;
 		margin-bottom: 20px;
 	}
-	 /* 스타일링을 위한 CSS */
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-        }
-        .radio-item {
-            margin-bottom: 10px;
-        }
 </style>
+<script type="text/javascript">
+	function onNextButtonClick() {
+		 var chkBox1 = document.getElementsByName("option1");
+	     var selectedvalues1 = [];	// 배열 초기화
+	       
+	     for (var i = 0; i < chkBox1.length; i++) {
+	     	if (chkBox1[i].checked) {
+	        	selectedvalues1.push(chkBox1[i].value);
+	        }
+	     }
+	     
+	     if (selectedvalues1.length === 0) {
+	     	alert("증상을 최소 하나 선택해야 합니다.");
+	     	event.preventDefault(); // 폼 제출을 막음
+	        return;
+	     }
+	     
+	     var chkBox2 = document.getElementsByName("option2");
+	     var selectedvalues2 = [];	// 배열 초기화
+	       
+	     for (var i = 0; i < chkBox2.length; i++) {
+	     	if (chkBox2[i].checked) {
+	        	selectedvalues2.push(chkBox2[i].value);
+	        }
+	     }
+	     
+	     if (selectedvalues2.length === 0) {
+	     	alert("증상을 최소 하나 선택해야 합니다.");
+	     	event.preventDefault(); // 폼 제출을 막음
+	        return;
+	     }
+	     
+	     var chkBox3 = document.getElementsByName("period");
+	     var selectedvalues3 = [];	// 배열 초기화
+	       
+	     for (var i = 0; i < chkBox3.length; i++) {
+	     	if (chkBox3[i].checked) {
+	        	selectedvalues3.push(chkBox3[i].value);
+	        }
+	     }
+	     
+	     if (selectedvalues3.length === 0) {
+	     	alert("증상을 최소 하나 선택해야 합니다.");
+	     	event.preventDefault(); // 폼 제출을 막음
+	        return;
+	     }
+	}
+</script>
 </head>
 <body>
 	<header>
@@ -124,134 +181,94 @@
         <a href="/ogudoctormaindisplay.do"><img src="resources/images/page_banner/listbanner_ogudoctor.png"></a>
     </div>
     
-  <%--   <div class="category_explain">
-			<h2 style="font-family:'Noto Sans KR', sans-serif;">증상체크</h2>
-			<br>
+    <div class="category_explain">
+		<h2>증상체크</h2>
+		<br>
 	</div>
-    
+	
 	<div class="sym_form">
 		<form action="/goresult.do" method="post">
+		
 			<div class="category_ex">
 				<h1>식사</h1>
 				<h4>평소와 다른 반려견의 식사 행동에 대해서 아래 항목 중 선택해 주세요.</h4>
 			</div>
 		
-			<div class="food_amount">
-				<h3>필수</h3><h2>식사량</h2>
-				<!-- 여기서부터는 DB에서 가져오기 -->
-				<c:choose>
-					<c:when test="${empty mealfoodlist}">
-						<h2>원하는 정보가 존재하지 않습니다.</h2>
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="k" items="${mealfoodlist}">
-							${k.dis_info}
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-				
-				<select id="mealfoodSelect">
+			<div class="col-md-4">
+			<div class="col-md-6">
+			<div class="funkyradio">
+			
+				<div class="food_amount">
+					<h5>필수</h5><h3>식사량</h3>
+					<!-- 여기서부터는 DB에서 가져오기 -->
 					<c:choose>
 						<c:when test="${empty mealfoodlist}">
-							<option value="">원하는 정보가 존재하지 않습니다.</option>
+							<h2>원하는 정보가 존재하지 않습니다.</h2>
 						</c:when>
 						<c:otherwise>
-							<c:forEach var="k" items="${mealfoodlist}">
-								<option value="${k.dis_info}">${k.dis_info}</option>
+							<c:forEach var="k" items="${mealfoodlist}" varStatus="vs">
+								<div class="funkyradio-warning">
+	            					<input type="radio" name="option1" id="meal_food_${vs.count}" value="${k.dis_info}" />
+	            					<label for="meal_food_${vs.count}">${k.dis_info}</label>
+	        					</div>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-				</select>
-
-				<c:choose>
-					<c:when test="${empty mealfoodlist}">
-						<h2>원하는 정보가 존재하지 않습니다.</h2>
-					</c:when>
-					<c:otherwise>
-						<form>
-							<c:forEach var="k" items="${mealfoodlist}">
-								<input type="radio" name="mealFood" value="${k.dis_info}"
-									id="${k.id}">
-								<label for="${k.id}">${k.dis_info}</label>
-								<br>
+				</div>
+				<br><br><br>
+				
+				<div class="water_amount">
+					<h5>필수</h5><h3>음수량</h3>
+					<c:choose>
+						<c:when test="${empty mealfoodlist}">
+							<h2>원하는 정보가 존재하지 않습니다.</h2>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="k" items="${mealwaterlist}" varStatus="vs">
+								<div class="funkyradio-warning">
+	            					<input type="radio" name="option2" id="meal_water_${vs.count}" value="${k.dis_info}"/>
+	            					<label for="meal_water_${vs.count}">${k.dis_info}</label>
+	        					</div>
 							</c:forEach>
-						</form>
-					</c:otherwise>
-				</c:choose>
- 
- 			
- 			<div class="radio-group">
-        <label class="radio-item">
-            <input type="radio" name="meal" value="평소"> 평소와 변화없는 식사
-        </label>
-        
-        <label class="radio-item">
-            <input type="radio" name="meal" value="과식"> 과식
-        </label>
-        <label class="radio-item">
-            <input type="radio" name="meal" value="식욕저하"> 식욕저하
-        </label>
-        <label class="radio-item">
-            <input type="radio" name="meal" value="식사거부"> 식사거부
-        </label>
-    </div>
-			</div>
+						</c:otherwise>
+					</c:choose>
+				</div>
+				<br><br><br>
+				
+				<div class="meal_period">
+					<h5>필수</h5><h3>지속시기</h3>
+					<div class="funkyradio-warning">
+	            		<input type="radio" name="period" id="oneday" value="oneday"/>
+	            		<label for="oneday">1일 이내</label>
+	        		</div>
+					<div class="funkyradio-warning">
+	            		<input type="radio" name="period" id="threeday" value="threeday"/>
+	            		<label for="threeday">3일 이내</label>
+	        		</div>
+					<div class="funkyradio-warning">
+	            		<input type="radio" name="period" id="week_d" value="week_d"/>
+	            		<label for="week_d">1주일 미만</label>
+	        		</div>
+					<div class="funkyradio-warning">
+	            		<input type="radio" name="period" id="week_u" value="week_u"/>
+	            		<label for="week_u">1주일 이상</label>
+	        		</div>
+				</div>
+				
+				
+				<div class="button_location">
+					<button class="button" style="vertical-align: middle" onclick="onNextButtonClick()">
+						<span>결과보기</span>
+					</button>	
+				</div>	
 			
-			<div class="water_amount">
-				<h3>필수</h3><h2>음수량</h2>
-				<div class="radio-group">
-        <label class="radio-item">
-            <input type="radio" name="meal" value="평소"> 평소와 변화 없는 물 마시기
-        </label>
-        
-        <label class="radio-item">
-            <input type="radio" name="meal" value="과식"> 평소보다 많은 물 마시기
-        </label>
-        <label class="radio-item">
-            <input type="radio" name="meal" value="식욕저하"> 평소보다 적은 물 마시기
-        </label>
-        <label class="radio-item">
-            <input type="radio" name="meal" value="식사거부"> 물 마시지 않음
-        </label>
-    </div>
 			</div>
-			
-			<div class="meal_period">
-				<h3>필수</h3><h2>지속지기</h2>
-				<div class="radio-group">
-        <label class="radio-item">
-            <input type="radio" name="meal" value="평소"> 1일 이내
-        </label>
-        
-        <label class="radio-item">
-            <input type="radio" name="meal" value="과식"> 3일 이내
-        </label>
-        <label class="radio-item">
-            <input type="radio" name="meal" value="식욕저하"> 1주일 미만
-        </label>
-        <label class="radio-item">
-            <input type="radio" name="meal" value="식사거부"> 1주일 이상
-        </label>
-    </div>
 			</div>
-			
-			<div class="button_location">
-				<button class="button" style="vertical-align: middle" onclick="onNextButtonClick()">
-					<span>결과보기</span>
-				</button>	
 			</div>
 			
 		</form>
-	</div> --%>
-	<div class="category_explain">
-	<h4> 선택하신 증상은 하루이상 지속 시 병원 방문이 필요합니다.</h4><br>
-	<h2>식사</h2><br>
-	<h4>식사량이 줄어든 경우 아이가 평소처럼 잘 노는지 잘 살펴 보셔야 합니다. 식사 투정으로 안 먹는 경우 평소와 같은 활동량을 보이지만 질병으로 인한 경우 기운이 없고 움직임의
-	변화가 동반됩니다.</h4><br>
-	<h2>관련질병리스트</h2>
-	<h4>스트레스</h4><br>
-	<h4>식욕부진</h4><br>
 	</div>
+	
 	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>

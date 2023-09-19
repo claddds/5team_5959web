@@ -1,7 +1,7 @@
-package com.oguogu.ogudoctor.self.model.vo;
+package com.oguogu.pocket.model.vo;
 
-public class Ogu_Self_VO {
-	private String ogu_idx, pet_kind, body_part, sym_chk, period_line, dis_info, dis_info_img,
+public class Pocket_VO {
+	private String ogu_idx, pet_kind, body_part, sym_chk, dis_info, dis_info_img, 
 	admin_nickname, ogu_date, TIMESTAMP, status;
 
 	public String getOgu_idx() {
@@ -34,14 +34,6 @@ public class Ogu_Self_VO {
 
 	public void setSym_chk(String sym_chk) {
 		this.sym_chk = sym_chk;
-	}
-
-	public String getPeriod_line() {
-		return period_line;
-	}
-
-	public void setPeriod_line(String period_line) {
-		this.period_line = period_line;
 	}
 
 	public String getDis_info() {
@@ -91,5 +83,6 @@ public class Ogu_Self_VO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
+	
 }

@@ -18,6 +18,13 @@
 		
 	}
 	
+	@font-face {
+	    font-family: 'Cafe24Ssurround';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
 	#minibanner img{
 		width:1920px;
 		height:200px;
@@ -203,7 +210,7 @@
 	 <form action="/gosym.do" method="post">
 	 <div class="category_check">
 		<div class="category_explain">
-			<h2 style="font-family:'Noto Sans KR', sans-serif;">유형 선택</h2>
+			<h2 style=font-family: 'Cafe24Ssurround';>유형 선택</h2>
 			<br>
 			<h3 style="font-family: 'Noto Sans KR', sans-serif;">반려견의 증상 유형을 선택해주세요</h3>
 			<h4 style="font-family: 'Noto Sans KR', sans-serif; color: gray;"><p>최대 3개까지 가능합니다.</h4>

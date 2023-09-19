@@ -1,74 +1,48 @@
 package com.oguogu.place.vo;
 
 public class Place_VO {
+	// String: 도로명 주소(roadaddr), 기본 정보_장소설명(locationex), 시설명(facilities), 카테고리3(category3)
+	// double: 경도(lon), 위도(lat)
+	private String roadaddr,locationex, facilities, category;
+	private double lon, lat;
+	public String getRoadaddr() {
+		return roadaddr;
+	}
+	public void setRoadaddr(String roadaddr) {
+		this.roadaddr = roadaddr;
+	}
+	public String getLocationex() {
+		return locationex;
+	}
+	public void setLocationex(String locationex) {
+		this.locationex = locationex;
+	}
+	public String getFacilities() {
+		return facilities;
+	}
+	public void setFacilities(String facilities) {
+		this.facilities = facilities;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public double getLon() {
+		return lon;
+	}
+	public void setLon(double lon) {
+		this.lon = lon;
+	}
+	public double getLat() {
+		return lat;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
 	
-	private String pla_idx, pla_region, pla_name, pla_content, pla_lat, pla_lon, status, user_id;
-
-	public String getPla_idx() {
-		return pla_idx;
-	}
-
-	public void setPla_idx(String pla_idx) {
-		this.pla_idx = pla_idx;
-	}
-
-	public String getPla_region() {
-		return pla_region;
-	}
-
-	public void setPla_region(String pla_region) {
-		this.pla_region = pla_region;
-	}
-
-	public String getPla_name() {
-		return pla_name;
-	}
-
-	public void setPla_name(String pla_name) {
-		this.pla_name = pla_name;
-	}
-
-	public String getPla_content() {
-		return pla_content;
-	}
-
-	public void setPla_content(String pla_content) {
-		this.pla_content = pla_content;
-	}
-
-	public String getPla_lat() {
-		return pla_lat;
-	}
-
-	public void setPla_lat(String pla_lat) {
-		this.pla_lat = pla_lat;
-	}
-
-	public String getPla_lon() {
-		return pla_lon;
-	}
-
-	public void setPla_lon(String pla_lon) {
-		this.pla_lon = pla_lon;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-
-
 
 	
 }

@@ -6,47 +6,131 @@
 <head>
 <meta charset="UTF-8">
 <title>증상체크</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
 <style type="text/css">
-	#minibanner img{
-		width:1920px;
-		height:200px;
-		display:flex;
-		margin:auto;
-		margin-top:20px;
-		margin-bottom: 20px;
-    }
-    footer{
-		width:1920px;
-		display:flex;
-		margin:auto;
-		margin-top:20px;
-		margin-bottom: 20px;
+	.sym_chek{
+		width: 1920px;
+		text-align: center;
+		margin: 0 auto;
+		margin-bottom: 30px;
 	}
 </style>
+
 </head>
 <body>
-	<header>
-		<jsp:include page="/WEB-INF/views/home/home_top.jsp" />
-	</header>
-	<div id=minibanner>
-        <a href="/ogudoctormaindisplay.do"><img src="resources/images/page_banner/listbanner_ogudoctor.png"></a>
-    </div>
-	<div>
-		<%
-		String[] value = request.getParameterValues("bodypart_dog");
-		if (value != null) {
-		    for (String val : value) {
-		        out.print(val + "<br>");
-		    }
-		} else {
-		    out.print("bodypart_dog parameter is null or missing");
-		}
-			
-		%>
+	<div class="sym_chek">
+		<c:choose>
+    		<c:when test="${not empty param.bodypart_dog}">
+        <c:forEach var="val" items="${paramValues.bodypart_dog}">
+            <c:choose>
+                <c:when test="${val eq 'stool'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'urine'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'meal'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'vomit'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'ear'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'face'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'eye'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'paw'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'joint'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'skin'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'tooth'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'breath'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'genitals'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'behavior'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'abdomen'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:when test="${val eq 'waist'}">
+                     <script type="text/javascript">
+            			window.location.href = "/dog_meal_food_list.do";
+        			</script>
+                </c:when>
+                
+                <c:otherwise>
+                    Invalid option.
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </c:when>
+    <c:otherwise>
+        bodypart_dog parameter is null or missing
+    </c:otherwise>
+</c:choose>
 	</div>
-	<footer>
-		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
-	</footer>
 </body>
 </html>

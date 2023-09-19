@@ -18,6 +18,13 @@
 		
 	}
 	
+	@font-face {
+	    font-family: 'Cafe24Ssurround';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
 	#minibanner img{
 		width:1920px;
 		height:200px;
@@ -174,41 +181,22 @@
 			return false;
 		}
 	}
-	/*
-	// 다음으로 버튼 클릭 시 체크박스 확인 및 액션 수행
-    function onNextButtonClick() {
-        var chkBox = document.getElementsByName("bodypart_dog");
-        var selectedvalues = [];	// 배열 초기화
-        
-        for (var i = 0; i < chkBox.length; i++) {
-            if (chkBox[i].checked) {
-            	selectedvalues.push(chkBox[i].value);
-            }
-        }
-        if (selectedvalues.length === 0) {
-            alert("증상을 최소 하나 선택해야 합니다.");
-            return;
-        } else{
-        	//alert(selectedvalues)
-        	$.ajax({
-        		url:"/ogunextbt.do",
-        		type:"post",
-        		dataType:"text",
-        		data:{
-        			selectedvalues:selectedvalues
-        		},
-        		success:function(data){
-        			sessionStorage.setItem("selectedvalues", JSON.stringify(selectedvalues));
-        			window.location.href = "/gosymsel.do"; // 새 페이지의 URL로 이동
-        		},
-        		error:function(request,error){
-        			alert("code:"+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-        			
-        		}
-        	});
-        } 
-    }
-	*/
+	 function onNextButtonClick() {
+		 var chkBox = document.getElementsByName("bodypart_dog");
+	        var selectedvalues = [];	// 배열 초기화
+	        
+	        for (var i = 0; i < chkBox.length; i++) {
+	            if (chkBox[i].checked) {
+	            	selectedvalues.push(chkBox[i].value);
+	            }
+	        }
+	        if (selectedvalues.length === 0) {
+	            alert("증상을 최소 하나 선택해야 합니다.");
+	            event.preventDefault(); // 폼 제출을 막음
+	            return;
+	        }
+	 }
+	
 </script>
 </head>
 <body>
@@ -218,123 +206,11 @@
 	<div id=minibanner>
         <a href="/ogudoctormaindisplay.do"><img src="resources/images/page_banner/listbanner_ogudoctor.png"></a>
     </div>
-    <!-- 
-	<div class="category_check">
-		<div class="category_explain">
-			<h2 style="font-family:'Noto Sans KR', sans-serif;">유형 선택</h2>
-			<br>
-			<h3 style="font-family: 'Noto Sans KR', sans-serif;">반려견의 증상 유형을 선택해주세요</h3>
-			<h4 style="font-family: 'Noto Sans KR', sans-serif; color: gray;"><p>최대 3개까지 가능합니다.</h4>
-		</div>
-		<div class="wrapper">
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="stool" value="stool">
-				<label for="stool">
- 					<img src="resources/images/ogudoctor/self_category/stool.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="urine" value="urine">
-				<label for="urine">
- 					<img src="resources/images/ogudoctor/self_category/urine.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="meal" value="meal">
-				<label for="meal">
- 					<img src="resources/images/ogudoctor/self_category/meal.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="vomit" value="vomit">
-				<label for="vomit">
- 					<img src="resources/images/ogudoctor/self_category/vomit.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="ear" value="ear">
-				<label for="ear">
- 					<img src="resources/images/ogudoctor/self_category/ear.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="face_dog" value="face">
-				<label for="face_dog">
- 					<img src="resources/images/ogudoctor/self_category/face_dog.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="eye" value="eye">
-				<label for="eye">
- 					<img src="resources/images/ogudoctor/self_category/eye.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="paw" value="paw">
-				<label for="paw">
- 					<img src="resources/images/ogudoctor/self_category/paw.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="joint" value="joint">
-				<label for="joint">
- 					<img src="resources/images/ogudoctor/self_category/joint.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="skin" value="skin">
-				<label for="skin">
- 					<img src="resources/images/ogudoctor/self_category/skin.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="tooth" value="tooth">
-				<label for="tooth">
- 					<img src="resources/images/ogudoctor/self_category/tooth.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="breath" value="breath">
-				<label for="breath">
- 					<img src="resources/images/ogudoctor/self_category/breath.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="genitals_dog" value="genitals">
-				<label for="genitals_dog">
- 					<img src="resources/images/ogudoctor/self_category/genitals_dog.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="behavior_dog" value="behavior">
-				<label for="behavior_dog">
- 					<img src="resources/images/ogudoctor/self_category/behavior_dog.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="abdomen_dog" value="abdomen">
-				<label for="abdomen_dog">
- 					<img src="resources/images/ogudoctor/self_category/abdomen_dog.png" />
- 				</label>
-			</div>
-			<div class="container">
-				<input type="checkbox" name="bodypart_dog" onclick="count_check(this);" id="waist_dog" value="waist">
-				<label for="waist_dog">
- 					<img src="resources/images/ogudoctor/self_category/waist_dog.png" />
- 				</label>
-			</div>
-		</div>
-		<div class="button_location">
-			<button class="button" style="vertical-align: middle" onclick="onNextButtonClick()">
-				<span>다음으로</span>
-			</button>	
-		</div>
-	</div>
-	 -->
+    
 	 <form action="/gosym.do" method="post">
 	 <div class="category_check">
 		<div class="category_explain">
-			<h2 style="font-family:'Noto Sans KR', sans-serif;">유형 선택</h2>
+			<h2 style=font-family: 'Cafe24Ssurround';>유형 선택</h2>
 			<br>
 			<h3 style="font-family: 'Noto Sans KR', sans-serif;">반려견의 증상 유형을 선택해주세요</h3>
 			<h4 style="font-family: 'Noto Sans KR', sans-serif; color: gray;"><p>최대 3개까지 가능합니다.</h4>
@@ -438,7 +314,7 @@
 			</div>
 		</div>
 		<div class="button_location">
-			<input type="submit">
+			<!-- <input type="submit"> -->
 			<button class="button" style="vertical-align: middle" onclick="onNextButtonClick()">
 				<span>다음으로</span>
 			</button>	

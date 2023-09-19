@@ -1,4 +1,4 @@
-package com.oguogu.food.vo;
+package com.oguogu.food.model.vo;
 
 public class Food_VO {
 	private String fd_idx, fd_name, fd_company, fd_fname, fd_age_group,

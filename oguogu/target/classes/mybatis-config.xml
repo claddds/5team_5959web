@@ -12,7 +12,8 @@
 	<typeAliases><!-- 별칭/ com.ict.db.VO 같은 너낌 -->
 		<typeAlias type="com.oguogu.user.model.vo.User_VO" alias="uvo"/>
 		<typeAlias alias="evo" type="com.oguogu.education.model.vo.Education_VO"/>
-		<typeAlias alias="ehvo" type="com.oguogu.education.model.vo.EduHeart_VO"/>
+		<typeAlias type="com.oguogu.education.model.vo.EduHeart_VO" alias="ehvo"/>
+		<typeAlias type="com.oguogu.food.model.vo.Food_VO" alias="fvo"/>
 	</typeAliases>
 	
 	<mappers>
@@ -21,6 +22,7 @@
 		<mapper resource="mappers/eduuser-essential-mapper.xml"/>
 		<mapper resource="mappers/eduuser-bringing-mapper.xml"/>
 		<mapper resource="mappers/eduuser-training-mapper.xml"/>
+		<mapper resource="mappers/fooduser-mapper.xml"/>
 	</mappers>
 	
 </configuration>

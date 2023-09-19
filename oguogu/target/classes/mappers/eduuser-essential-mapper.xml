@@ -8,17 +8,17 @@
 	<!-- edulist 4개씩 긁어오기 -->
 	<select id="getEList" resultType="evo">
 		SELECT * FROM Education 
-		WHERE edu_kind = '필수 정보' ORDER BY edu_date desc LIMIT 4 OFFSET 0;
+		WHERE edu_kind = '필수 정보' ORDER BY edu_date desc LIMIT 4 OFFSET 0
 	</select>
 	<!-- edulist 4개씩 긁어오기 -->
 	<select id="getBList" resultType="evo">
 		SELECT * FROM Education 
-		WHERE edu_kind = '양육 정보' ORDER BY edu_date desc LIMIT 4 OFFSET 0;
+		WHERE edu_kind = '양육 정보' ORDER BY edu_date desc LIMIT 4 OFFSET 0
 	</select>
 	<!-- edulist 4개씩 긁어오기 -->
 	<select id="getTList" resultType="evo">
 		SELECT * FROM Education 
-		WHERE edu_kind = '훈련 정보' ORDER BY edu_date desc LIMIT 4 OFFSET 0;
+		WHERE edu_kind = '훈련 정보' ORDER BY edu_date desc LIMIT 4 OFFSET 0
 	</select>
 	
 	<!-- ========================================= 필수정보 메인 페이지 =============================================== -->
@@ -26,13 +26,13 @@
 	<!-- 필수정보 강아지 -->
 	<select id="getDogElist" resultType="evo" parameterType="map">
 		SELECT * FROM Education 
-		WHERE edu_kind = '필수 정보' and edu_aml_kind = '강아지' ORDER BY edu_date desc limit #{limit} offset #{offset};
+		WHERE edu_kind = '필수 정보' and edu_aml_kind = '강아지' ORDER BY edu_date desc limit #{limit} offset #{offset}
 	</select>
 	
 	<!-- 필수정보 고양이 -->
 	<select id="getCatElist" resultType="evo" parameterType="map">
 		SELECT * FROM Education 
-		WHERE edu_kind = '필수 정보' and edu_aml_kind = '고양이' ORDER BY edu_date desc limit #{limit} offset #{offset};
+		WHERE edu_kind = '필수 정보' and edu_aml_kind = '고양이' ORDER BY edu_date desc limit #{limit} offset #{offset}
 	</select>
 	
 	<!-- edu_essential_Doglist 전체 게시물 수 구하기 -->

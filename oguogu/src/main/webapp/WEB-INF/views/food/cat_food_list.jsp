@@ -95,7 +95,7 @@ rel="stylesheet">
 	</header>
 	<div id = "dog-food-form">
 	<div id=minibanner>
-		<a href=""><img src="resources/images/list_banner/listbanner_food.png"></a>
+		<a href=""><img src="resources/images/page_banner/listbanner_food.png"></a>
 	</div>
 	<div id="link-step">
 		<a href="">Home </a><label>></label>
@@ -115,7 +115,6 @@ rel="stylesheet">
 			<li><a href="">퍼피키튼</a></li>
 			<li><a href="">어덜트</a></li>
 			<li><a href="">시니어</a></li>
-		
 		</ul>
 	</div>
 	<div id="sort">

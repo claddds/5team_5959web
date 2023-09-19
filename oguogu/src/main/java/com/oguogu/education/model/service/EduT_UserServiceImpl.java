@@ -13,55 +13,55 @@ import com.oguogu.education.model.vo.Education_VO;
 public class EduT_UserServiceImpl implements EduT_UserService{
 
 	@Autowired
-	EduT_UserDAO eduT_UserDAO;
+	private EduT_UserDAO eduT_UserDAO;
 	
 	@Override
-	public List<Education_VO> getDogTlist(int offset, int limit) {
+	public List<Education_VO> getDogTlist(int offset, int limit) throws Exception{
 		return eduT_UserDAO.getDogTlist(offset,limit);
 	}
 
 	@Override
-	public List<Education_VO> getCatTlist(int offset, int limit) {
+	public List<Education_VO> getCatTlist(int offset, int limit) throws Exception{
 		return eduT_UserDAO.getCatTlist(offset,limit);
 	}
 
 	@Override
-	public int getDogListTCount() {
+	public int getDogListTCount() throws Exception{
 		return eduT_UserDAO.getDogListTCount();
 	}
 
 	@Override
-	public int getCatListTCount() {
+	public int getCatListTCount() throws Exception{
 		return eduT_UserDAO.getCatListTCount();
 	}
 
 	@Override
-	public EduHeart_VO getTHeartOnelist(EduHeart_VO ehVo) {
+	public EduHeart_VO getTHeartOnelist(EduHeart_VO ehVo) throws Exception{
 		return eduT_UserDAO.getTHeartOnelist(ehVo);
 	}
 
 	@Override
-	public int getTHitUpdate(String edu_idx) {
+	public int getTHitUpdate(String edu_idx) throws Exception{
 		return eduT_UserDAO.getTHitUpdate(edu_idx);
 	}
 
 	@Override
-	public Education_VO getTDogOneList(String edu_idx) {
+	public Education_VO getTDogOneList(String edu_idx) throws Exception{
 		return eduT_UserDAO.getTDogOneList(edu_idx);
 	}
 
 	@Override
-	public int getTHeartInsert(EduHeart_VO ehVo) {
+	public int getTHeartInsert(EduHeart_VO ehVo) throws Exception{
 		return eduT_UserDAO.getTHeartInsert(ehVo);
 	}
 
 	@Override
-	public int getTHeartDelete(EduHeart_VO ehVo) {
+	public int getTHeartDelete(EduHeart_VO ehVo) throws Exception{
 		return eduT_UserDAO.getTHeartDelete(ehVo);
 	}
 
 	@Override
-	public int getTHeartCount(String edu_idx) {
+	public int getTHeartCount(String edu_idx) throws Exception{
 		return eduT_UserDAO.getTHeartCount(edu_idx);
 	}
 	

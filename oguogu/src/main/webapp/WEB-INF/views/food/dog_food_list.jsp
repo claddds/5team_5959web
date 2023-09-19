@@ -94,7 +94,7 @@ rel="stylesheet">
 	</header>
 	<div id = "dog-food-form">
 	<div id=minibanner>
-		<a href=""><img src="resources/images/list_banner/listbanner_food.png"></a>
+		<a href=""><img src="resources/images/page_banner/listbanner_food.png"></a>
 	</div>
 	<div id="link-step">
 		<a href="">Home </a><label>></label>

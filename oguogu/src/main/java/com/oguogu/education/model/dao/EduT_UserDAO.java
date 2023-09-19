@@ -15,51 +15,51 @@ import com.oguogu.education.model.vo.Education_VO;
 public class EduT_UserDAO {
 	
 	@Autowired
-	SqlSessionTemplate sqlSessionTemplate;
+	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<Education_VO> getDogTlist(int offset, int limit) {
+	public List<Education_VO> getDogTlist(int offset, int limit) throws Exception{
 		Map<String, Integer> map= new HashMap<String, Integer>();
 		map.put("limit", limit);
 		map.put("offset",offset);
 		return sqlSessionTemplate.selectList("eduUserT.getDogTlist",map);
 	}
 
-	public List<Education_VO> getCatTlist(int offset, int limit) {
+	public List<Education_VO> getCatTlist(int offset, int limit) throws Exception{
 		Map<String, Integer> map= new HashMap<String, Integer>();
 		map.put("limit", limit);
 		map.put("offset",offset);
 		return sqlSessionTemplate.selectList("eduUserT.getCatTlist",map);
 	}
 
-	public int getDogListTCount() {
+	public int getDogListTCount() throws Exception{
 		return sqlSessionTemplate.selectOne("eduUserT.doglistcount");
 	}
 
-	public int getCatListTCount() {
+	public int getCatListTCount() throws Exception{
 		return sqlSessionTemplate.selectOne("eduUserT.catlistcount");
 	}
 	
-	public EduHeart_VO getTHeartOnelist(EduHeart_VO ehVo) {
+	public EduHeart_VO getTHeartOnelist(EduHeart_VO ehVo) throws Exception{
 		return sqlSessionTemplate.selectOne("eduUserT.getTHeartOnelist",ehVo);
 	}
 
-	public int getTHitUpdate(String edu_idx) {
+	public int getTHitUpdate(String edu_idx) throws Exception{
 		return sqlSessionTemplate.update("eduUserT.getTHitUpdate",edu_idx);
 	}
 
-	public Education_VO getTDogOneList(String edu_idx) {
+	public Education_VO getTDogOneList(String edu_idx) throws Exception{
 		return sqlSessionTemplate.selectOne("eduUserT.getTDogOneList",edu_idx);
 	}
 
-	public int getTHeartInsert(EduHeart_VO ehVo) {
+	public int getTHeartInsert(EduHeart_VO ehVo) throws Exception{
 		return sqlSessionTemplate.insert("eduUserT.getTHeartInsert",ehVo);
 	}
 
-	public int getTHeartDelete(EduHeart_VO ehVo) {
+	public int getTHeartDelete(EduHeart_VO ehVo) throws Exception{
 		return sqlSessionTemplate.delete("eduUserT.getTHeartDelete",ehVo);
 	}
 
-	public int getTHeartCount(String edu_idx) {
+	public int getTHeartCount(String edu_idx) throws Exception{
 		return sqlSessionTemplate.selectOne("eduUserT.getTHeartCount",edu_idx);
 	}
 	

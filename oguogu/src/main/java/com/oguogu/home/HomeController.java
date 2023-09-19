@@ -29,8 +29,7 @@ public class HomeController {
 	public ModelAndView getMypageDisplay() {
 		return new ModelAndView("mypage/mypage_myprofile_onelist");
 	}
-	
-	
+
 	// 상단 메뉴바에서 플레이스를 누르면 플레이스 화면으로 이동
 	@GetMapping("/placemaindisplay.do")
 	public ModelAndView getPlaceMainDisplay() {
@@ -62,16 +61,6 @@ public class HomeController {
 		return new ModelAndView("lounge/lounge_qna_list");
 	}
 	
-	// 상단 메뉴바에서 먹거리를 누르면 먹거리(기본 강아지) 화면으로 이동
-	@GetMapping("/dogfooddisplay.do")
-	public ModelAndView getDogFoodDisplay() {
-		return new ModelAndView("food/dog_food_list");
-	}
-	// 상단 메뉴바에서 고양이 먹거리를 누르면 고양이 먹거리 화면으로 이동
-	@GetMapping("/catfooddisplay.do")
-	public ModelAndView getCatFoodDisplay() {
-		return new ModelAndView("food/cat_food_list");
-	}
 	// 상단 메뉴바에서 오구닥터를 누르면 오구닥터 메인 화면으로 이동
 	@GetMapping("/ogudoctormaindisplay.do")
 	public ModelAndView getOguDoctorMainDisplay() {

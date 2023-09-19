@@ -29,6 +29,8 @@ public class Edu_UserDAO {
 		return sqlSessionTemplate.selectList("eduUser.getTList");
 	}
 	
+	////////////////////////////////////////////////////////////////////
+	
 	public List<Education_VO> getDogElist(int offset, int limit) {
 		Map<String, Integer> map= new HashMap<String, Integer>();
 		map.put("limit", limit);
@@ -69,5 +71,9 @@ public class Edu_UserDAO {
 
 	public int getHeartDelete(EduHeart_VO ehVo) {
 		return sqlSessionTemplate.delete("eduUser.getHeartDelete",ehVo);
+	}
+	
+	public int getHeartCount(String edu_idx) {
+		return sqlSessionTemplate.selectOne("eduUser.getHeartCount",edu_idx);
 	}
 }

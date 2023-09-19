@@ -160,6 +160,7 @@
 	margin: 30px;
 }
 
+
 footer{
         width:1920px;
         display:flex;
@@ -234,45 +235,46 @@ ol.paging li a:hover {
 	</header>
 	<div id="eduform">
 		<div id=minibanner>
-			<a href=""><img src="resources/images/page_banner/listbanner_edu.png"></a>
+			<img src="resources/images/page_banner/listbanner_edu.png">
 		</div>
 
 
 		<div id="edumenu">
-			<ul id="">
-				<li><a href="/essentialdisplayDog.do"># 강아지</a></li>
-				<li><a href="/essentialdisplayCat.do"># 고양이</a></li>
+			<ul>
+				<li><a href="/trainingdisplayDog.do"># 강아지</a></li>
+				<li><a href="/trainingdisplayCat.do"># 고양이</a></li>
 			</ul>
 		</div>
 
 
-
+		
 		<div class="edu_menu_title">
-			<label class="label_one">필수 정보! 초보 반려인들의 필수 상식! >> </label>
-			<label class="label_two"> # 고양이</label>
+			<label class="label_one">훈련 방법 모음집 ! >> </label>
+			<label class="label_two"> # 강아지</label>
 		</div>
-
+		
 		<div class="div_card">
 			<ul class="cardList">
-			<c:forEach var = "k" items="${CatElist}">
+			<c:forEach var = "k" items="${DogTlist}">
 				<li>
-				<a href = "/essentialOneListDog.do?edu_idx=${k.edu_idx}&page=${paging.nowPage}" id="onelistlink">
-					<div class="onecard">
-						<div class="edu-card">
-							<div id="essential">
-								<div class="edutext">
-									<div class="edu_title">${k.edu_title}</div>
-									<div class="edu_content">${k.edu_content}</div>
+					<a href = "/trainingOneListDog.do?edu_idx=${k.edu_idx}&page=${paging.nowPage}" id="onelistlink">
+						<div class="onecard">
+							<div class="edu-card">
+								<div id="essential">
+									<div class="edutext">
+										<div class="edu_title">${k.edu_title}</div>
+										<div class="edu_content">${k.edu_content}</div>
+									</div>
+								</div>
+							</div>
+							<div class="card-img">
+								<div class="edu_img">
+									<img src="resources/images/home/mainlogo.png">
+									<!-- ${k.edu_F_name} -->
 								</div>
 							</div>
 						</div>
-						<div class="card-img">
-							<div class="edu_img">
-								<img src="resources/images/home/mainlogo.png">
-							</div>
-						</div>
-					</div>
-				</a>
+					</a>
 				</li>
 			</c:forEach>
 			</ul>
@@ -289,7 +291,7 @@ ol.paging li a:hover {
 			   		</c:when>
 			   		<c:otherwise>
 			   			<!-- a링크처리 -->
-			   			<li><a href="/essentialdisplayCat.do?page=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
+			   			<li><a href="/trainingdisplayDog.do?page=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
 			   		</c:otherwise>
 			   </c:choose>
 			    <!-- 블록안에 들어간 페이지번호들 -->
@@ -309,7 +311,7 @@ ol.paging li a:hover {
 				   </c:if>
 				   <c:if test="${k != paging.nowPage}">
 				   		<!-- a링크처리 -->
-				   		<li><a href="/essentialdisplayCat.do?page=${k}">${k}</a></li>
+				   		<li><a href="/trainingdisplayDog.do?page=${k}">${k}</a></li>
 				   </c:if>
 				</c:forEach>
 				<!-- 다음 -->
@@ -321,7 +323,7 @@ ol.paging li a:hover {
 			   		</c:when>
 			   		<c:otherwise>
 			   			<!-- a링크처리 -->
-			   			<li><a href="/essentialdisplayCat.do?page=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
+			   			<li><a href="/trainingdisplayDog.do?page=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
 			   		</c:otherwise>
 			   </c:choose> 
 			</ol>

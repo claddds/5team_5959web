@@ -90,6 +90,7 @@ public class JoinController {
 			// 로그인실패한걸 세션에 줄 필요 없겟지
 			return "redirect:/logindisplay.do";
 		} else {
+			
 			session.setAttribute("loginChk", "ok");
 			session.setAttribute("user_id", uvo.getUser_id());
 			session.setAttribute("email", uvo.getEmail());
@@ -100,7 +101,15 @@ public class JoinController {
 //			if (userVO.getUser_id().equals("admin")) {
 //				session.setAttribute("admin", "ok");
 //			}
-			return "redirect:/";
+			
+			String returnUrl = (String) session.getAttribute("returnUrl");
+
+		    if (returnUrl != null && !returnUrl.isEmpty()) {
+		        session.removeAttribute("returnUrl"); // 이후에 또 사용하지 않도록 제거
+		        return "redirect:" + returnUrl; // 이전 페이지 URL로 리다이렉트
+		    } else {
+		        return "redirect:/"; // 이전 페이지 URL이 없으면 홈페이지로 리다이렉트
+		    }
 		}
 	}
 	

@@ -84,16 +84,6 @@
 	color: #ffa629;
 }
 
-.edu_menu_title button {
-	background-color: #FFA629;
-	color: #f8f8ff;
-	border-radius: 10px;
-	border: 1px solid #FFA629;
-	width: 120px;
-	height: 30px;
-	font-size: 20px;
-}
-
 #eduform li {
 	list-style-type: none;
 }
@@ -139,6 +129,7 @@ footer{
 <link
 	href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+
 </head>
 <body>
 	<header>
@@ -154,15 +145,14 @@ footer{
 
 		<div id="edumenu">
 			<ul id="">
-				<li><a href="">필수 정보</a></li>
-				<li><a href="">양육 정보</a></li>
-				<li><a href="">훈련 정보</a></li>
+				<li><a href="/essentialdisplayDog.do">필수 정보</a></li>
+				<li><a href="/bringingldisplayDog.do">양육 정보</a></li>
+				<li><a href="/trainingdisplayDog.do">훈련 정보</a></li>
 			</ul>
 		</div>
 
 		<div class="edu_menu_title">
-			<label>초보 반려인들의 필수 상식 >></label>
-			<button onclick="">전체 보기</button>
+			<label>초보 반려인들의 필수 상식 !</label>
 		</div>
 
 		<div>
@@ -172,7 +162,7 @@ footer{
 						<div class="edu-card">
 							<div id="essential">
 								<div class="edu_img">
-									<a href="/eduonelist.do?idx=${k.edu_idx}">
+									<a href="/essentialOneListDog.do?edu_idx=${k.edu_idx}">
 										<img src="resources/images/${k.edu_F_name}">
 									</a>
 								</div>
@@ -188,8 +178,7 @@ footer{
 		</div>
 
 		<div class="edu_menu_title">
-			<label>반려 동물 잘 키우는 방법 >></label>
-			<button onclick="">전체 보기</button>
+			<label>반려 동물 잘 키우는 방법 !</label>
 		</div>
 
 		<ul class="cardList">
@@ -198,7 +187,9 @@ footer{
 				<div class="edu-card">
 					<div id="essential">
 						<div class="edu_img">
-							<img src="resources/images/${k.edu_F_name }">
+							<a href="/bringingOneListDog.do?edu_idx=${k.edu_idx}">
+								<img src="resources/images/${k.edu_F_name}">
+							</a>
 						</div>
 						<div class="edutext">
 							<div class="edu_title">${k.edu_title}</div>
@@ -213,8 +204,7 @@ footer{
 		</ul>
 
 		<div class="edu_menu_title">
-			<label>훈련 방법 모음집 >></label>
-			<button onclick="">전체 보기</button>
+			<label>훈련 방법 모음집 !</label>
 		</div>
 		
 		<ul class="cardList">
@@ -223,7 +213,9 @@ footer{
 				<div class="edu-card">
 					<div id="essential">
 						<div class="edu_img">
-							<img src="resources/images/${k.edu_F_name }">
+							<a href="/trainingOneListDog.do?edu_idx=${k.edu_idx}">
+								<img src="resources/images/${k.edu_F_name }">
+							</a>
 						</div>
 						<div class="edutext">
 							<div class="edu_title">${k.edu_title}</div>

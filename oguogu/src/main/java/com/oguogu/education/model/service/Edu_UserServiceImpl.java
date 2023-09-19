@@ -32,7 +32,7 @@ public class Edu_UserServiceImpl implements Edu_UserService{
 	public List<Education_VO> getTlist() {
 		return edu_UserDAO.getTList();
 	}
-	
+	////////////////////////////////////////////////////////////////////
 	//필수정보 강아지 리스트
 	@Override
 	public List<Education_VO> getDogElist(int offset, int limit) {
@@ -83,8 +83,8 @@ public class Edu_UserServiceImpl implements Edu_UserService{
 		return edu_UserDAO.getHeartDelete(ehVo);
 	}
 	
-	
-	
-	
-	
+	@Override
+	public int getHeartCount(String edu_idx) {
+		return edu_UserDAO.getHeartCount(edu_idx);
+	}
 }

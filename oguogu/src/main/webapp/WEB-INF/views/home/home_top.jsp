@@ -142,8 +142,8 @@ ul.midmenu > li ul.sub{
 			    <li class="edu_main"><a href="/alledudisplay.do" class="header-ALink">교육정보</a>
 			    	<ul class="edu sub">
 			    		<li><a href="/essentialdisplayDog.do" class="header-ALink">필수 정보</a></li>
-			    		<li><a href="/bringingdisplay.do" class="header-ALink">양육 정보</a></li>
-			    		<li><a href="/trainingdisplay.do" class="header-ALink">훈련 정보</a></li>
+			    		<li><a href="/bringingdisplayDog.do" class="header-ALink">양육 정보</a></li>
+			    		<li><a href="/trainingdisplayDog.do" class="header-ALink">훈련 정보</a></li>
 			    	</ul>
 			    </li>
 			    <li class="ogu_main"><a href="/ogudoctormaindisplay.do" class="header-ALink">오구닥터</a>

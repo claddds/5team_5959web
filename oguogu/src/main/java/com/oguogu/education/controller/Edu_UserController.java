@@ -40,10 +40,10 @@ public class Edu_UserController {
 		mv.addObject("Blist", Blist);
 		List<Education_VO> Tlist = edu_UserService.getTlist();
 		mv.addObject("Tlist", Tlist);
-
+				
 		return mv;
 	}
-
+	////////////////////////////////////////////////////////////////////
 	// 상단 메뉴에서 필수정보를 누르면 필수정보 페이지로 이동(기본 강아지)
 	@GetMapping("/essentialdisplayDog.do")
 	public ModelAndView getDogEssentialDisplay(HttpServletRequest request) {
@@ -135,74 +135,66 @@ public class Edu_UserController {
 	
 	
 	@RequestMapping("/essentialOneListDog.do")
-	public String getDogOneList(HttpServletRequest request,HttpServletResponse response,Education_VO dog_evo, HttpSession session, Model model) {
-		
-		// 1. 좋아요 기능 구현
-		//새로운 객체를 만들어 ehvo에 에듀 게시판 번호와 닉네임을 저장한다.
-		EduHeart_VO ehVo = new EduHeart_VO();
-		ehVo.setEdu_idx(dog_evo.getEdu_idx()); // 에듀 게시판 번호 저장
-		ehVo.setNickname((String) session.getAttribute("nickname")); // 닉네임 저장
-		EduHeart_VO resultEhVo = edu_UserService.getHeartOnelist(ehVo);
-		
-		if (resultEhVo == null) {
-		    resultEhVo = new EduHeart_VO();
-		    resultEhVo.setEdu_idx(dog_evo.getEdu_idx());
-		    resultEhVo.setHeart("0"); // 초기값 설정
-		    model.addAttribute("heartvo", resultEhVo);
-		} else {
-			resultEhVo.setEdu_idx(dog_evo.getEdu_idx());
-		    model.addAttribute("heartvo", resultEhVo);
-		}
+	public String getDogOneList(HttpServletRequest request, HttpServletResponse response, Education_VO dog_evo, HttpSession session, Model model) throws Exception {
+
+	    // 1. 좋아요 기능 구현
+	    // 새로운 객체를 만들어 ehvo에 에듀 게시판 번호와 닉네임을 저장한다.
+	    EduHeart_VO ehVo = new EduHeart_VO();
+	    ehVo.setEdu_idx(dog_evo.getEdu_idx()); // 에듀 게시판 번호 저장
+	    ehVo.setNickname((String) session.getAttribute("nickname")); // 닉네임 저장
+	    EduHeart_VO resultEhVo = edu_UserService.getHeartOnelist(ehVo);
+	    
+	    
+	    if (resultEhVo == null) {
+	        resultEhVo = new EduHeart_VO();
+	        resultEhVo.setEdu_idx(dog_evo.getEdu_idx());
+	        resultEhVo.setHeart("0"); // 초기값 설정
+	        model.addAttribute("heartvo", resultEhVo);
+	    } else {
+	        resultEhVo.setEdu_idx(dog_evo.getEdu_idx());
+	        model.addAttribute("heartvo", resultEhVo);
+	    }
 
 	    // 2. 상세조회
 	    String page = request.getParameter("page"); // 페이지 저장
 
+	    String eduIdx = dog_evo.getEdu_idx();
+	    
 	    // 클라이언트 쿠키에서 조회한 게시물 ID를 가져옴
 	    Cookie[] cookies = request.getCookies();
 	    boolean alreadyViewed = false;
 
 	    if (cookies != null) {
 	        for (Cookie cookie : cookies) {
-	            if (cookie.getName().equals("viewed_posts")) {
-	                String[] viewedPostIds = cookie.getValue().split(",");
-	                for (String postId : viewedPostIds) {
-	                    if (postId.equals(String.valueOf(dog_evo.getEdu_idx()))) {
-	                        alreadyViewed = true;
-	                        break;
-	                    }
-	                }
+	            if (cookie.getName().equals("viewed_post_" + eduIdx)) {
+	                alreadyViewed = true;
 	                break;
 	            }
 	        }
 	    }
-
+	    
 	    // 게시물을 이미 조회한 경우 조회수를 증가시키지 않음
 	    if (!alreadyViewed) {
-	        int res = edu_UserService.getHitUpdate(dog_evo.getEdu_idx()); // 조회수 1 증가
+	        int res = edu_UserService.getHitUpdate(eduIdx); // 조회수 1 증가
 
 	        // 클라이언트 쿠키에 조회한 게시물 ID를 추가
-	        String viewedPosts = "";
-	        Cookie[] existingCookies = request.getCookies();
-	        if (existingCookies != null) {
-	            for (Cookie cookie : existingCookies) {
-	                if (cookie.getName().equals("viewed_posts")) {
-	                    viewedPosts = cookie.getValue();
-	                    break;
-	                }
-	            }
-	        }
-	        viewedPosts += (viewedPosts.isEmpty() ? "" : ",") + dog_evo.getEdu_idx();
-	        Cookie viewedCookie = new Cookie("viewed_posts", viewedPosts);
+	        Cookie viewedCookie = new Cookie("viewed_post_" + eduIdx, "1");
 	        viewedCookie.setMaxAge(60 * 60 * 24); // 쿠키 유효 기간 (예: 1일)
+	        viewedCookie.setPath("/"); // 쿠키 경로 설정
 	        response.addCookie(viewedCookie);
 	    }
-
+	    
+	    int heartcount = edu_UserService.getHeartCount(dog_evo.getEdu_idx());
 	    Education_VO evo = edu_UserService.getDogOneList(dog_evo.getEdu_idx()); // 상세보기
 	    
 	    // 3. 좋아요 정보/페이지 정보/상세조회 정보 저장
 	    model.addAttribute("page", page);
 	    model.addAttribute("evo", evo);
-
+	    model.addAttribute("heartcount", heartcount);
+	    
+	    String referer = request.getHeader("Referer");
+	    session.setAttribute("referer", referer);
+	    
 	    return "education/edu_onelist";
 	}
 	
@@ -224,24 +216,15 @@ public class Edu_UserController {
 			edu_UserService.getHeartDelete(EheartVO);
 			result = 0;
 		}
+		
 		System.out.println("하트 체크:"+result);
 		return result;
 	}
 	
-	 // 상단 메뉴에서 양육정보를 누르면 양육정보 페이지로 이동
-	  
-//	  @GetMapping("/bringingdisplay.do") public ModelAndView getBringingDisplay() {
-//	  ModelAndView mv = new ModelAndView("education/edu_bringing_list");
-//	  
-//	  List<Education_VO> Blist = edu_UserService.getDogBlist();
-//	  mv.addObject("Blist", Blist); return mv; }
-//	  
-//	 // 상단 메뉴에서 훈련정보를 누르면 훈련정보 페이지로 이동
-//	  
-//	  @GetMapping("/trainingdisplay.do") public ModelAndView getTrainingDisplay() {
-//	  ModelAndView mv = new ModelAndView("education/edu_training_list");
-//	  
-//	  List<Education_VO> Tlist = edu_UserService.getDogTlist();
-//	  mv.addObject("Tlist", Tlist); return mv; }
-
+	@RequestMapping("/heartCount.do")
+	@ResponseBody
+	public int  getHeartCount(Education_VO dog_evo) {
+		int heartcount = edu_UserService.getHeartCount(dog_evo.getEdu_idx());
+		return heartcount;
+	}
 }

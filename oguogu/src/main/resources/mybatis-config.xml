@@ -18,7 +18,9 @@
 	<mappers>
 		<mapper resource="mappers/join-mapper.xml" />
 		<mapper resource="mappers/edu-mapper.xml"/>
-		<mapper resource="mappers/eduuser-mapper.xml"/>
+		<mapper resource="mappers/eduuser-essential-mapper.xml"/>
+		<mapper resource="mappers/eduuser-bringing-mapper.xml"/>
+		<mapper resource="mappers/eduuser-training-mapper.xml"/>
 	</mappers>
 	
 </configuration>

@@ -51,7 +51,7 @@ public class KakaoController {
 			StringBuffer sb = new StringBuffer();
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=64e389d2d688211ab0016951d3cc766d");
-			sb.append("&redirect_uri=http://localhost:8080/kakaologin.do");
+			sb.append("&redirect_uri=http://localhost:8090/kakaologin.do");
 			sb.append("&code=" + code);
 			bw.write(sb.toString());
 			bw.flush();

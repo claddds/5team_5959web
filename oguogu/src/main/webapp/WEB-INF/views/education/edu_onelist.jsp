@@ -96,6 +96,7 @@ footer {
 	   var heart = "${heartvo}"
        var heartval = "${heartvo.heart}" // 초기값을 0으로 설정
        var edu_idx = "${heartvo.edu_idx}"
+       
 		$(document).ready(function() {
 // 		       console.log(heartval)
 // 		       console.log(nickname)
@@ -109,6 +110,7 @@ footer {
 	           
 	           $("#eduheart").on("click", function() {
 			       var nickname = "${sessionScope.nickname}"
+			       sessionStorage.setItem("returnUrl", window.location.href);
 	               $.ajax({
 	                   url: '/heartChk.do',
 	                   type: 'get',
@@ -116,91 +118,34 @@ footer {
 	                   success: function(data) {
 	                       if (data == 1) {
 	                    	   console.log(nickname);
-	                           alert("좋아요를 누르시겠습니까?");
+                           	   alert("좋아요를 눌렀습니다. 마이 페이지에서 목록을 확인 할 수 있습니다.")
 	                           $("#eduheart").attr('class', 'bi-heart-fill');
 	                       } else if(data == 0){
-	                           alert("좋아요를 취소하시겠습니까?");
+                           	   alert("좋아요를 취소하시겠습니까?")
 	                           $("#eduheart").attr('class', 'bi-heart');
 	                       } else{
-	                    	   alert("로그인을 하셔야겠어요")
-	                           $("#eduheart").attr('class', 'bi-heart');
+	                    	   alert("로그인을 해야 이용할 수 있습니다.")
+		                       $("#eduheart").attr('class', 'bi-heart');
 	                       }
+	                       
+	                       $.ajax({
+	   						url:"/heartCount.do",
+	   						type:"get",
+	   						data: {'edu_idx' : edu_idx},
+	   						success: function(likeCount) {
+	   							$("#heartcount").text(likeCount);
+	   						},
+	   						error: function() {
+	   							//에러 처리 로직
+	   						}
+	   					})
 	                   },
 	                   error: function() {
 	                       // 에러 처리 로직
 	                   }
 	               });
-	           });
-	       
+	           });    
 		});
-// 		       if (nickname == null || nickname == "") {
-// 		           // 닉네임이 null인 경우, 로그인해야 함을 알림
-// 		           $("#eduheart").on("click", function() {
-// 		               alert("로그인 후 좋아요를 누를 수 있습니다.");
-// 		               if(confirm("로그인을 하시겠습니까?")){
-// 			               location.href="/logindisplay.do"	            	   
-// 		               }
-// 		           });
-// 		       } else {
-// 		           // 닉네임이 존재하는 경우, 좋아요 처리 가능
-// 		           if (heartval > 0) { 
-// 		               $("#eduheart").attr('class', 'bi-heart-fill');
-// 		           } else {
-// 		               $("#eduheart").attr('class', 'bi-heart');   
-// 		           }
-		           
-// 		           $("#eduheart").on("click", function() {
-// 		               $.ajax({
-// 		                   url: '/heartChk.do',
-// 		                   type: 'POST',
-// 		                   data: {'edu_idx': edu_idx, 'nickname': nickname},
-// 		                   success: function(data) {
-// 		                       if (data == 1) {
-// 		                           alert("좋아요를 누르시겠습니까?");
-// 		                           $("#eduheart").attr('class', 'bi-heart-fill');
-// 		                       } else {
-// 		                           alert("좋아요를 취소하시겠습니까?");
-// 		                           $("#eduheart").attr('class', 'bi-heart');
-// 		                       }
-// 		                   },
-// 		                   error: function() {
-// 		                       // 에러 처리 로직
-// 		                   }
-// 		               });
-// 		           });
-// 		       }
-
-		       
-		       
-		       
-		       
-// 		       if(heartval > 0){ 
-// 		           $("#eduheart").attr('class','bi-heart-fill');
-// 		       } else {
-// 		           $("#eduheart").attr('class','bi-heart');   
-// 		       }
-				
-		       
-// 		       $("#eduheart").on("click", function() {
-		    	   
-// 			    	   $.ajax({
-// 			   	    	url :'/heartChk.do',
-// 			   	        type :'POST',
-// 			   	        data : {'edu_idx':edu_idx, 'nickname':nickname},
-// 			   	    	success : function(data){
-// 			   	        	if(data == 1) {
-// 			   	        		alert("좋아요를 누르시겠습니까?")
-// 			   	        		$("#eduheart").attr('class','bi-heart-fill');
-// 			   	        	} else{
-// 			   	        		alert("좋아요를 취소하시겠습니까?")
-// 			   	        		$("#eduheart").attr('class','bi-heart');
-// 			   	        	}
-// 			              },
-// 			            error: function() {
-							
-// 						}
-// 				   	  })
-// 				})
 
 		
 </script>
@@ -225,8 +170,18 @@ footer {
 			<c:choose>
 				<c:when test="${not empty evo}">
 					<div id="link-step">
-						<a href="/homedisplay.do">Home </a><label>></label> 
-						<a href="/essentialdisplayDog.do">필수정보 </a><label>></label>
+						<a href="/homedisplay.do">Home </a><label>></label>
+						<c:choose>
+							<c:when test="${evo.edu_kind == '필수 정보'}">
+								<a href="/essentialdisplayDog.do">필수 정보 </a><label>></label>
+							</c:when>
+							<c:when test="${evo.edu_kind == '훈련 정보'}">
+								<a href="/trainingdisplayDog.do">훈련 정보 </a><label>></label>
+							</c:when>
+							<c:otherwise>
+								<a href="/bringingdisplayDog.do">양육 정보 </a><label>></label>							
+							</c:otherwise>
+						</c:choose>
 						<c:choose>
 							<c:when test="${evo.edu_aml_kind == '강아지'}">
 								<a href="/essentialdisplayDog.do">#강아지</a>							
@@ -243,14 +198,14 @@ footer {
 						<span id="hit">조회수 : ${evo.edu_hit} </span> 
 						<span style="display: flex; justify-content: flex-end; align-items: center;">
 							<i id="eduheart" class="bi-heart" style="font-size:2.5rem; color: red; cursor: pointer;"></i>&nbsp;&nbsp;&nbsp;
-							<label style="font-size: 40px;">756</label>								
+							<label id="heartcount" style="font-size: 40px;">${heartcount}</label>								
 						</span>
 					</div>
 					<div id="content">
 						${evo.edu_content}
 					</div>
 				</c:when>
-				</c:choose>
+			</c:choose>
 			</div>
 		</div>
 		<div id="sidebar-parent">

@@ -5,14 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>모두의 포켓 메인화면</title>
-<<<<<<< HEAD
-=======
-
-<!-- Core theme CSS (includes Bootstrap)-->
-<!-- <link href="css/styles.css" rel="stylesheet" /> -->
 <link href="resources/css/start_bootstrap/styles.css" rel="stylesheet" />
->>>>>>> daece5ee1dde2d146bfb63d94105a6f52976785f
 <style type="text/css">
+	a:hover {
+  		color: white;
+	}
+	
 	#minibanner img{
 		width:1920px;
 		height:200px;
@@ -21,9 +19,7 @@
 		margin-top:20px;
 		margin-bottom: 20px;
     }
-<<<<<<< HEAD
-    
-=======
+
     footer{
 		width:1920px;
 		display:flex;
@@ -31,7 +27,6 @@
 		margin-top:20px;
 		margin-bottom: 20px;
 	}
->>>>>>> daece5ee1dde2d146bfb63d94105a6f52976785f
 </style>
 <script type="text/javascript">
 </script>
@@ -42,17 +37,6 @@
 	</header>
 	
 	<div id=minibanner>
-<<<<<<< HEAD
-        <a href=""><img src="resources/images/page_banner/listbanner_pocket.png"></a>
-    </div>
-    <div class="main">
-    	<div class="hotlist_title">
-    	<h3>지금 핫한 포켓 리스트<input type="button">+나의 포켓 만들기</h3>
-    	</div>
-    	
-    </div>
-    
-=======
         <a href="/pocketmaindisplay.do"><img src="resources/images/page_banner/listbanner_pocket.png"></a>
     </div>
     
@@ -124,8 +108,6 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-   	<!--  <script src="js/scripts.js"></script> -->
     <script src="resources/js/start_bootstrap/scripts.js"></script>
->>>>>>> daece5ee1dde2d146bfb63d94105a6f52976785f
 </body>
 </html>

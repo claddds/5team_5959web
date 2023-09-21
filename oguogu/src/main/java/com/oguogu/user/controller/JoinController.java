@@ -83,21 +83,33 @@ public class JoinController {
 	@RequestMapping("/user_login.do")
 	public String getUserLogin(User_VO userVO, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
 		//id로 비밀번호 찾아옴 로그인에 활용
-		String pwd = join_Service.getMemberPwd(userVO.getUser_id());
+		User_VO uvo = join_Service.getUserOneList(userVO.getUser_id());
 		
-		if (!passwordEncoder.matches(userVO.getPw(), pwd)) {
+		if (!passwordEncoder.matches(userVO.getPw(), uvo.getPw())) {
 			session.setAttribute("loginChk", "fail");
 			// 로그인실패한걸 세션에 줄 필요 없겟지
 			return "redirect:/logindisplay.do";
 		} else {
+			
 			session.setAttribute("loginChk", "ok");
-			session.setAttribute("user_id", userVO.getUser_id());
-			session.setAttribute("email", userVO.getEmail());
-			session.setAttribute("nickname", userVO.getNickname());
+			session.setAttribute("user_id", uvo.getUser_id());
+			session.setAttribute("email", uvo.getEmail());
+			session.setAttribute("nickname", uvo.getNickname());
+			System.out.println(uvo.getUser_id());
+			System.out.println(uvo.getEmail());
+			System.out.println(uvo.getNickname());
 //			if (userVO.getUser_id().equals("admin")) {
 //				session.setAttribute("admin", "ok");
 //			}
-			return "redirect:/";
+			
+			String returnUrl = (String) session.getAttribute("returnUrl");
+
+		    if (returnUrl != null && !returnUrl.isEmpty()) {
+		        session.removeAttribute("returnUrl"); // 이후에 또 사용하지 않도록 제거
+		        return "redirect:" + returnUrl; // 이전 페이지 URL로 리다이렉트
+		    } else {
+		        return "redirect:/"; // 이전 페이지 URL이 없으면 홈페이지로 리다이렉트
+		    }
 		}
 	}
 	

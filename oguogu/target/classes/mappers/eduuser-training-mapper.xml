@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="eduUserT">
+	<!-- ========================================= 훈련정보 메인 페이지 =============================================== -->
+	
+	<!-- 훈련정보 강아지 -->
+	<select id="getDogTlist" resultType="evo" parameterType="map">
+		SELECT * FROM Education 
+		WHERE edu_kind = '훈련 정보' and edu_aml_kind = '강아지' ORDER BY edu_date desc limit #{limit} offset #{offset};
+	</select>
+	
+	<!-- 훈련정보 고양이 -->
+	<select id="getCatTlist" resultType="evo" parameterType="map">
+		SELECT * FROM Education 
+		WHERE edu_kind = '훈련 정보' and edu_aml_kind = '고양이' ORDER BY edu_date desc limit #{limit} offset #{offset};
+	</select>
+	
+	<!-- edu_essential_Doglist 전체 게시물 수 구하기 -->
+	<select id="doglistcount" resultType="int">
+		select count(*) from Education where edu_aml_kind = '강아지' and edu_kind = '훈련 정보' 
+	</select>
+	
+	<!-- edu_essential_Catlist 전체 게시물 수 구하기 -->
+	<select id="catlistcount" resultType="int">
+		select count(*) from Education where edu_aml_kind = '고양이' and edu_kind = '훈련 정보'
+	</select>
+	
+	<!-- 좋아요 있는지 없는지 구하기 -->
+	<select id="getTHeartOnelist" resultType="ehvo" parameterType="ehvo">
+		select heart from edu_heart_table where edu_idx = #{edu_idx} and nickname = #{nickname}
+	</select>
+	
+	<!-- 조회수 + 1 -->
+	<update id="getTHitUpdate" parameterType="String">
+		update Education set edu_hit = edu_hit + 1 where edu_idx = #{edu_idx}
+	</update>
+	
+	<!-- 훈련정보 상세보기 -->
+	<select id="getTDogOneList" parameterType="String" resultType="evo">
+		select * from Education where edu_idx = #{edu_idx}
+	</select>
+	
+	<!-- 좋아요 없을 때 insert -->
+	<insert id="getTHeartInsert" parameterType="ehvo">
+		insert into edu_heart_table(edu_idx,nickname,heart)
+		values(#{edu_idx},#{nickname},1)
+	</insert>
+
+	<!-- 좋아요 있을 때 delete -->
+	<delete id="getTHeartDelete" parameterType="ehvo">
+		delete from edu_heart_table where edu_idx = #{edu_idx} and nickname = #{nickname}
+	</delete>
+	
+	<!-- 좋아요 하트 갯수 세기 -->
+	<select id="getTHeartCount" parameterType="String" resultType="int">
+		select count(*) from edu_heart_table where edu_idx = #{edu_idx}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

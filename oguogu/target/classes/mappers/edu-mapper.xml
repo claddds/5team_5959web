@@ -17,7 +17,6 @@
 		values(#{edu_kind},#{edu_aml_kind},#{edu_title},#{edu_content},#{edu_F_name},sysdate(),0)	
 	</insert>
 	
-	
 </mapper>
 
 

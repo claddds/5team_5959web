@@ -21,7 +21,8 @@ public class EmailController {
 	@Autowired
 	private MailService mailService;
 	
-	@Autowired Join_Service join_Service;
+	@Autowired 
+	private Join_Service join_Service;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;

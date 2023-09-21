@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>교육 정보</title>
 <style type="text/css">
 #eduform {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -158,21 +158,23 @@ footer{
 		<div>
 			<ul class="cardList">
 				<c:forEach var="k" items="${Elist}" >
-					<li>
-						<div class="edu-card">
-							<div id="essential">
-								<div class="edu_img">
-									<a href="/essentialOneListDog.do?edu_idx=${k.edu_idx}">
-										<img src="resources/images/${k.edu_F_name}">
-									</a>
-								</div>
-								<div class="edutext">
-									<div class="edu_title">${k.edu_title}</div>
-									<div class="edu_content">${k.edu_content}</div>
+					<c:if test="${k.status == 0}">
+						<li>
+							<div class="edu-card">
+								<div id="essential">
+									<div class="edu_img">
+										<a href="/essentialOneListDog.do?edu_idx=${k.edu_idx}">
+											<img src="resources/images/${k.edu_F_name}">
+										</a>
+									</div>
+									<div class="edutext">
+										<div class="edu_title">${k.edu_title}</div>
+										<div class="edu_content">${k.edu_content}</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</li>
+						</li>
+					</c:if>
 				</c:forEach>
 			</ul>
 		</div>
@@ -183,23 +185,25 @@ footer{
 
 		<ul class="cardList">
 			<c:forEach var="k" items="${Blist}" >
-			<li>
-				<div class="edu-card">
-					<div id="essential">
-						<div class="edu_img">
-							<a href="/bringingOneListDog.do?edu_idx=${k.edu_idx}">
-								<img src="resources/images/${k.edu_F_name}">
-							</a>
-						</div>
-						<div class="edutext">
-							<div class="edu_title">${k.edu_title}</div>
-							<div class="edu_content">
-								${k.edu_content}
+				<c:if test="${k.status == 0}">
+					<li>
+						<div class="edu-card">
+							<div id="essential">
+								<div class="edu_img">
+									<a href="/bringingOneListDog.do?edu_idx=${k.edu_idx}">
+										<img src="resources/images/${k.edu_F_name}">
+									</a>
+								</div>
+								<div class="edutext">
+									<div class="edu_title">${k.edu_title}</div>
+									<div class="edu_content">
+										${k.edu_content}
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</li>
+					</li>
+				</c:if>
 			</c:forEach>
 		</ul>
 
@@ -209,23 +213,25 @@ footer{
 		
 		<ul class="cardList">
 			<c:forEach var="k" items="${Tlist}" >
-			<li>
-				<div class="edu-card">
-					<div id="essential">
-						<div class="edu_img">
-							<a href="/trainingOneListDog.do?edu_idx=${k.edu_idx}">
-								<img src="resources/images/${k.edu_F_name }">
-							</a>
-						</div>
-						<div class="edutext">
-							<div class="edu_title">${k.edu_title}</div>
-							<div class="edu_content">
-								${k.edu_content}
+				<c:if test="${k.status == 0}">
+					<li>
+						<div class="edu-card">
+							<div id="essential">
+								<div class="edu_img">
+									<a href="/trainingOneListDog.do?edu_idx=${k.edu_idx}">
+										<img src="resources/images/${k.edu_F_name }">
+									</a>
+								</div>
+								<div class="edutext">
+									<div class="edu_title">${k.edu_title}</div>
+									<div class="edu_content">
+										${k.edu_content}
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</li>
+					</li>
+				</c:if>
 			</c:forEach>
 		</ul>
 	</main>

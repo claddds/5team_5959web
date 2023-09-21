@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>훈련 정보 - 고양이</title>
 <style type="text/css">
 #eduform {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -256,26 +256,28 @@ ol.paging li a:hover {
 		<div class="div_card">
 			<ul class="cardList">
 			<c:forEach var = "k" items="${CatTlist}">
-				<li>
-					<a href = "/trainingOneListDog.do?edu_idx=${k.edu_idx}&page=${paging.nowPage}" id="onelistlink">
-						<div class="onecard">
-							<div class="edu-card">
-								<div id="essential">
-									<div class="edutext">
-										<div class="edu_title">${k.edu_title}</div>
-										<div class="edu_content">${k.edu_content}</div>
+				<c:if test="${k.status == 0}">
+					<li>
+						<a href = "/trainingOneListDog.do?edu_idx=${k.edu_idx}&page=${paging.nowPage}" id="onelistlink">
+							<div class="onecard">
+								<div class="edu-card">
+									<div id="essential">
+										<div class="edutext">
+											<div class="edu_title">${k.edu_title}</div>
+											<div class="edu_content">${k.edu_content}</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-img">
+									<div class="edu_img">
+										<img src="resources/images/home/mainlogo.png">
+										<!-- ${k.edu_F_name} -->
 									</div>
 								</div>
 							</div>
-							<div class="card-img">
-								<div class="edu_img">
-									<img src="resources/images/home/mainlogo.png">
-									<!-- ${k.edu_F_name} -->
-								</div>
-							</div>
-						</div>
-					</a>
-				</li>
+						</a>
+					</li>
+				</c:if>
 			</c:forEach>
 			</ul>
 		</div>
@@ -284,8 +286,6 @@ ol.paging li a:hover {
 			<ol class="paging">
 			   <!-- 이전 -->
 			   <c:choose>
-			   		<%-- 시작블록과 pagePerBlock를 비교해서 
-			   		시작블록 작으면 이전으로 가 비활성화 된다. --%>
 			   		<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
 			   			<li class="disable">이전으로</li>
 			   		</c:when>
@@ -296,16 +296,7 @@ ol.paging li a:hover {
 			   </c:choose>
 			    <!-- 블록안에 들어간 페이지번호들 -->
 				<c:forEach begin="${paging.beginBlock}" end="${paging.endBlock }" step="1" var="k">
-				   <%-- 현재 페이지와 현재 페이지가 아닌 것을 나누자  --%>
-				   <%-- 현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리  --%>
-				   <%-- <c:choose>
-				   		<c:when test="${k == paging.nowPage}">
-				   			<li class="now">${k}</li>
-				   		</c:when>
-				   		<c:otherwise>
-				   			<li><a href="/bbs_list.do?page=${k}">${k}</a></li>
-				   		</c:otherwise>
-				   </c:choose> --%>
+				   
 				   <c:if test="${k == paging.nowPage}">
 				   		<li class="now">${k}</li>
 				   </c:if>
@@ -316,8 +307,6 @@ ol.paging li a:hover {
 				</c:forEach>
 				<!-- 다음 -->
 				  <c:choose>
-			   		<%-- 시작블록과 pagePerBlock를 비교해서 
-			   		시작블록 작으면 이전으로 가 비활성화 된다. --%>
 			   		<c:when test="${paging.endBlock >= paging.totalPage }">
 			   			<li class="disable">다음으로</li>
 			   		</c:when>

@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-#cat-food-form{font-family: 'Noto Sans KR', sans-serif;width: 1920px;margin: auto;margin-top:20px;}
-#cat-food-form a{text-decoration: none;}
-#cat-food-form ul li{list-style-type: none;}
+#dog-food-form{font-family: 'Noto Sans KR', sans-serif;width: 1920px;margin: auto;margin-top:20px;}
+#dog-food-form a{text-decoration: none;}
+#dog-food-form ul li{list-style-type: none;}
 #minibanner img {width: 1920px;height: 200px;}
 
 #product-type ul {display: flex;justify-content: center;margin: 50px;margin-bottom:30px;}
@@ -22,11 +22,11 @@
 #product-type a {font-size: 40px;font-family: 'Bagel Fat One', cursive;width:90px;
 					color:#FFC700;border-radius: 10px;border:none;}
 
-#cat-food-type ul{list-style:none;display:flex;padding:0;justify-content: center;margin-bottom:100px;}
+#dog-food-type ul{list-style:none;display:flex;padding:0;justify-content: center;margin-bottom:100px;}
 
-#cat-food-type ul li{display:inline;margin:20px;padding:20px;border:none;font-size: 25px;}
+#dog-food-type ul li{display:inline;margin:20px;padding:20px;border:none;font-size: 25px;}
 
-.catFeedAge{color:black; border:1px solid #FFC700; border-radius:50px; padding:10px;}
+.dogFeedAge{color:black; border:1px solid #FFC700; border-radius:50px; padding:10px;}
 
 .prod {margin:auto; border: 1px solid black; border-radius: 5px; height: 500px;width: 350px;
 		padding: 5px;margin-bootom: 10px;}
@@ -44,8 +44,6 @@
 #prod-list li{margin-bottom:30px;}
 #feed,#desert,#supplies{cursor:pointer;}
 
-/* #sort{display:flex; justify-content: flex-end; font-size:25px; margin-bottom:50px; margin-right:40px;}
-#sort input[type="radio"]{width:25px; height:25px; margin:10px;} */
 
 /* HOME>필수/양육/훈련 정보/#강아지,#고양이 */
 #link-step{margin-left:100px; margin-top:40px;}
@@ -82,14 +80,14 @@ footer{
 <script type="text/javascript">
 $(document).ready(function() {
 	$.ajax({
-		  url: '/catfooddisplay.do',
+		  url: '/dogFoodSenior.do',
 		  type: 'GET',
 		  success: function(data) {
 		    // Ajax 요청이 성공했을 때 실행되는 코드
 		    $("#feed").css("color", "tomato");
-		    $("#catAllAges").css("background-color", "tomato");
-		    $("#catKittenAges, #catAdultAges, #catSeniorAges").css("background-color", "");
-		    // 여기에 /catfooddisplay.do에 대한 특별한 처리를 추가
+		    $("#dogSeniorAges").css("background-color", "tomato");
+		    $("#dogPuppyAges, #dogAdultAges, #dogAllAges").css("background-color", "");
+		    // 여기에 /dogfooddisplay.do에 대한 특별한 처리를 추가
 		  },
 		  error: function() {
 		    // Ajax 요청이 실패했을 때 실행되는 코드
@@ -107,39 +105,35 @@ $(document).ready(function() {
 	<header>
 		<jsp:include page="../home/home_top.jsp" />
 	</header>
-	<div id = "cat-food-form">
+	<div id = "dog-food-form">
 		<div id=minibanner>
 			<a href=""><img src="resources/images/page_banner/listbanner_food.png"></a>
 		</div>
 		<div id="link-step">
 			<a href="/homedisplay.do">Home </a><label>></label>
 			<a href="/dogfooddisplay.do">먹거리 </a><label>></label><!--  -->
-			<a href="/catfooddisplay.do">#고양이</a><!--  -->
+			<a href="/dogfooddisplay.do">#강아지</a><!--  -->
 		</div>
 		<div id="product-type" style="margin-bottom:90px;">
 			<ul>
-				<li><a href="/catfooddisplay.do" id="feed">사료</a></li>
-				<li><a href="/catFooddesert.do" id="desert">간식</a></li>
-				<li><a href="/catFoodsupplies.do" id="supplies">용품</a></li>
+				<li><a href="/dogfooddisplay.do" id="feed">사료</a></li>
+				<li><a href="/dogFooddesert.do" id="desert">간식</a></li>
+				<li><a href="/dogFoodsupplies.do" id="supplies">용품</a></li>
 			</ul>
 		</div>
-		<div id="cat-food-type">
+		<div id="dog-food-type">
 			<ul>
-				<li><a href="/catfooddisplay.do" class="catFeedAge" id="catAllAges">전연령</a></li>
-				<li><a href="/catFoodKitten.do" class="catFeedAge" id="catKittenAges">키튼</a></li>
-				<li><a href="/catFoodAdult.do" class="catFeedAge" id="catAdultAges">어덜트</a></li>
-				<li><a href="/catFoodSenior.do" class="catFeedAge" id="catSeniorAges">시니어</a></li>
+				<li><a href="/dogfooddisplay.do" class="dogFeedAge" id="dogAllAges">전연령</a></li>
+				<li><a href="/dogFoodPuppy.do" class="dogFeedAge" id="dogPuppyAges">퍼피</a></li>
+				<li><a href="/dogFoodAdult.do" class="dogFeedAge" id="dogAdultAges">어덜트</a></li>
+				<li><a href="/dogFoodSenior.do" class="dogFeedAge" id="dogSeniorAges">시니어</a></li>
 			</ul>
 		</div>
-	<!-- 	<div id="sort">
-			<input type="radio" name="align" value="popul" checked/>인기순
-			<input type="radio" name="align" value="recent"/>최신순
-			<input type="radio" name="align" value="min-price"/>낮은 가격순
-			<input type="radio" name="align" value="max-price"/>높은 가격순
-		</div> -->
+
 		<div>
 			<ul id="prod-list">
-				<c:forEach var="k" items="${CatFoodlist}">
+				
+				<c:forEach var="k" items="${DogFoodSeniorlist}">
 					<c:if test="${k.status == 0}">
 						<li>
 							<div class="prod">
@@ -161,6 +155,7 @@ $(document).ready(function() {
 						</li>
 					</c:if>
 				</c:forEach>
+				
 			</ul>
 		</div>
 	</div>

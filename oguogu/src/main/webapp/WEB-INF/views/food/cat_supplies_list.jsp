@@ -82,13 +82,11 @@ footer{
 <script type="text/javascript">
 $(document).ready(function() {
 	$.ajax({
-		  url: '/catfooddisplay.do',
+		  url: '/catFoodsupplies.do',
 		  type: 'GET',
 		  success: function(data) {
 		    // Ajax 요청이 성공했을 때 실행되는 코드
-		    $("#feed").css("color", "tomato");
-		    $("#catAllAges").css("background-color", "tomato");
-		    $("#catKittenAges, #catAdultAges, #catSeniorAges").css("background-color", "");
+		    $("#supplies").css("color", "tomato");
 		    // 여기에 /catfooddisplay.do에 대한 특별한 처리를 추가
 		  },
 		  error: function() {
@@ -116,30 +114,20 @@ $(document).ready(function() {
 			<a href="/dogfooddisplay.do">먹거리 </a><label>></label><!--  -->
 			<a href="/catfooddisplay.do">#고양이</a><!--  -->
 		</div>
-		<div id="product-type" style="margin-bottom:90px;">
+		<div id="product-type" style="margin-bottom:50px;">
 			<ul>
 				<li><a href="/catfooddisplay.do" id="feed">사료</a></li>
 				<li><a href="/catFooddesert.do" id="desert">간식</a></li>
 				<li><a href="/catFoodsupplies.do" id="supplies">용품</a></li>
 			</ul>
 		</div>
-		<div id="cat-food-type">
-			<ul>
-				<li><a href="/catfooddisplay.do" class="catFeedAge" id="catAllAges">전연령</a></li>
-				<li><a href="/catFoodKitten.do" class="catFeedAge" id="catKittenAges">키튼</a></li>
-				<li><a href="/catFoodAdult.do" class="catFeedAge" id="catAdultAges">어덜트</a></li>
-				<li><a href="/catFoodSenior.do" class="catFeedAge" id="catSeniorAges">시니어</a></li>
-			</ul>
+
+		<div style="display:flex;justify-content: center; margin:50px;">
+			<img src="resources/images/food/cat_supplies.png" style="width:200px;height:200px;border-radius:10px;">
 		</div>
-	<!-- 	<div id="sort">
-			<input type="radio" name="align" value="popul" checked/>인기순
-			<input type="radio" name="align" value="recent"/>최신순
-			<input type="radio" name="align" value="min-price"/>낮은 가격순
-			<input type="radio" name="align" value="max-price"/>높은 가격순
-		</div> -->
 		<div>
 			<ul id="prod-list">
-				<c:forEach var="k" items="${CatFoodlist}">
+				<c:forEach var="k" items="${CatSupplieslist}">
 					<c:if test="${k.status == 0}">
 						<li>
 							<div class="prod">

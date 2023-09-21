@@ -6,13 +6,13 @@
 
 	<!-- ========================================= 양육정보 메인 페이지 =============================================== -->
 	
-	<!-- 필수정보 강아지 -->
+	<!-- 양육정보 강아지 -->
 	<select id="getDogBlist" resultType="evo" parameterType="map">
 		SELECT * FROM Education 
 		WHERE edu_kind = '양육 정보' and edu_aml_kind = '강아지' ORDER BY edu_date desc limit #{limit} offset #{offset};
 	</select>
 	
-	<!-- 필수정보 고양이 -->
+	<!-- 양육정보 고양이 -->
 	<select id="getCatBlist" resultType="evo" parameterType="map">
 		SELECT * FROM Education 
 		WHERE edu_kind = '양육 정보' and edu_aml_kind = '고양이' ORDER BY edu_date desc limit #{limit} offset #{offset};
@@ -38,7 +38,7 @@
 		update Education set edu_hit = edu_hit + 1 where edu_idx = #{edu_idx}
 	</update>
 	
-	<!-- 필수정보 상세보기 -->
+	<!-- 양육정보 상세보기 -->
 	<select id="getBDogOneList" parameterType="String" resultType="evo">
 		select * from Education where edu_idx = #{edu_idx}
 	</select>

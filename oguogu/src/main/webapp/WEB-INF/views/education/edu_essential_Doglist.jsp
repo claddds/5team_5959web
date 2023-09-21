@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>필수 정보 - 강아지</title>
 <style type="text/css">
 #eduform {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -256,26 +256,28 @@ ol.paging li a:hover {
 		<div class="div_card">
 			<ul class="cardList">
 			<c:forEach var = "k" items="${DogElist}">
-				<li>
-					<a href = "/essentialOneListDog.do?edu_idx=${k.edu_idx}&page=${paging.nowPage}" id="onelistlink">
-						<div class="onecard">
-							<div class="edu-card">
-								<div id="essential">
-									<div class="edutext">
-										<div class="edu_title">${k.edu_title}</div>
-										<div class="edu_content">${k.edu_content}</div>
+				<c:if test="${k.status == 0}">
+					<li>
+						<a href = "/essentialOneListDog.do?edu_idx=${k.edu_idx}&page=${paging.nowPage}" id="onelistlink">
+							<div class="onecard">
+								<div class="edu-card">
+									<div id="essential">
+										<div class="edutext">
+											<div class="edu_title">${k.edu_title}</div>
+											<div class="edu_content">${k.edu_content}</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-img">
+									<div class="edu_img">
+										<img src="resources/images/home/mainlogo.png">
+										<!-- ${k.edu_F_name} -->
 									</div>
 								</div>
 							</div>
-							<div class="card-img">
-								<div class="edu_img">
-									<img src="resources/images/home/mainlogo.png">
-									<!-- ${k.edu_F_name} -->
-								</div>
-							</div>
-						</div>
-					</a>
-				</li>
+						</a>
+					</li>
+				</c:if>
 			</c:forEach>
 			</ul>
 		</div>

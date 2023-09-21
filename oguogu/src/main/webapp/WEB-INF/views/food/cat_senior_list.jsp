@@ -82,13 +82,13 @@ footer{
 <script type="text/javascript">
 $(document).ready(function() {
 	$.ajax({
-		  url: '/catfooddisplay.do',
+		  url: '/catFoodSenior.do',
 		  type: 'GET',
 		  success: function(data) {
 		    // Ajax 요청이 성공했을 때 실행되는 코드
 		    $("#feed").css("color", "tomato");
-		    $("#catAllAges").css("background-color", "tomato");
-		    $("#catKittenAges, #catAdultAges, #catSeniorAges").css("background-color", "");
+		    $("#catSeniorAges").css("background-color", "tomato");
+		    $("#catKittenAges, #catAllAges, #catAdultAges").css("background-color", "");
 		    // 여기에 /catfooddisplay.do에 대한 특별한 처리를 추가
 		  },
 		  error: function() {
@@ -139,7 +139,7 @@ $(document).ready(function() {
 		</div> -->
 		<div>
 			<ul id="prod-list">
-				<c:forEach var="k" items="${CatFoodlist}">
+				<c:forEach var="k" items="${CatFoodSeniorlist}">
 					<c:if test="${k.status == 0}">
 						<li>
 							<div class="prod">

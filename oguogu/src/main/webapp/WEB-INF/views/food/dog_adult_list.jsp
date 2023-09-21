@@ -82,13 +82,13 @@ footer{
 <script type="text/javascript">
 $(document).ready(function() {
 	$.ajax({
-		  url: '/dogfooddisplay.do',
+		  url: '/dogFoodAdult.do',
 		  type: 'GET',
 		  success: function(data) {
 		    // Ajax 요청이 성공했을 때 실행되는 코드
 		    $("#feed").css("color", "tomato");
-		    $("#dogAllAges").css("background-color", "tomato");
-		    $("#dogPuppyAges, #dogAdultAges, #dogSeniorAges").css("background-color", "");
+		    $("#dogAdultAges").css("background-color", "tomato");
+		    $("#dogPuppyAges, #dogAllAges, #dogSeniorAges").css("background-color", "");
 		    // 여기에 /dogfooddisplay.do에 대한 특별한 처리를 추가
 		  },
 		  error: function() {
@@ -139,28 +139,104 @@ $(document).ready(function() {
 		</div> -->
 		<div>
 			<ul id="prod-list">
-				<c:forEach var="k" items="${DogFoodlist}">
-					<c:if test="${k.status == 0}">
-						<li>
-							<div class="prod">
-								<div class="prod-img">
-									<img src="resources/images/home/mainlogo.png">
-								</div>
-								<div class="prod-info">
-									<div style="color:gray;font-size: 18px;">${k.fd_company}</div>
-									<div class="prod-title"><b>${k.fd_name}</b></div>
-									<hr>
-									<div style="display:flex; justify-content: space-between;">
-										<span class="prod-price"><fmt:formatNumber value="${k.fd_price}" pattern="#,##0"/></span>
-										<span>
-											<a href="${k.fd_link}" target="_blank" class="coupang-buy">쿠팡 바로 가기</a>
-										</span>
+				<c:choose>
+					<c:when test="${not empty DogFoodlist}">
+						<c:forEach var="k" items="${DogFoodlist}">
+							<c:if test="${k.status == 0}">
+								<li>
+									<div class="prod">
+										<div class="prod-img">
+											<img src="resources/images/home/mainlogo.png">
+										</div>
+										<div class="prod-info">
+											<div style="color:gray;font-size: 18px;">${k.fd_company}</div>
+											<div class="prod-title"><b>${k.fd_name}</b></div>
+											<hr>
+											<div style="display:flex; justify-content: space-between;">
+												<span class="prod-price"><fmt:formatNumber value="${k.fd_price}" pattern="#,##0"/></span>
+												<span>
+													<a href="${k.fd_link}" target="_blank" class="coupang-buy">쿠팡 바로 가기</a>
+												</span>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-						</li>
-					</c:if>
-				</c:forEach>
+								</li>
+							</c:if>
+						</c:forEach>
+					</c:when>
+					<c:when test="${not empty DogFoodPuppylist}">
+						<c:forEach var="k" items="${DogFoodPuppylist}">
+							<c:if test="${k.status == 0}">
+								<li>
+									<div class="prod">
+										<div class="prod-img">
+											<img src="resources/images/home/mainlogo.png">
+										</div>
+										<div class="prod-info">
+											<div style="color:gray;font-size: 18px;">${k.fd_company}</div>
+											<div class="prod-title"><b>${k.fd_name}</b></div>
+											<hr>
+											<div style="display:flex; justify-content: space-between;">
+												<span class="prod-price"><fmt:formatNumber value="${k.fd_price}" pattern="#,##0"/></span>
+												<span>
+													<a href="${k.fd_link}" target="_blank" class="coupang-buy">쿠팡 바로 가기</a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+						</c:forEach>
+					</c:when>
+					<c:when test="${not empty DogFoodAdultlist}">
+						<c:forEach var="k" items="${DogFoodAdultlist}">
+							<c:if test="${k.status == 0}">
+								<li>
+									<div class="prod">
+										<div class="prod-img">
+											<img src="resources/images/home/mainlogo.png">
+										</div>
+										<div class="prod-info">
+											<div style="color:gray;font-size: 18px;">${k.fd_company}</div>
+											<div class="prod-title"><b>${k.fd_name}</b></div>
+											<hr>
+											<div style="display:flex; justify-content: space-between;">
+												<span class="prod-price"><fmt:formatNumber value="${k.fd_price}" pattern="#,##0"/></span>
+												<span>
+													<a href="${k.fd_link}" target="_blank" class="coupang-buy">쿠팡 바로 가기</a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+						</c:forEach>
+					</c:when>
+					<c:when test="${not empty DogFoodSeniorlist}">
+						<c:forEach var="k" items="${DogFoodSeniorlist}">
+							<c:if test="${k.status == 0}">
+								<li>
+									<div class="prod">
+										<div class="prod-img">
+											<img src="resources/images/home/mainlogo.png">
+										</div>
+										<div class="prod-info">
+											<div style="color:gray;font-size: 18px;">${k.fd_company}</div>
+											<div class="prod-title"><b>${k.fd_name}</b></div>
+											<hr>
+											<div style="display:flex; justify-content: space-between;">
+												<span class="prod-price"><fmt:formatNumber value="${k.fd_price}" pattern="#,##0"/></span>
+												<span>
+													<a href="${k.fd_link}" target="_blank" class="coupang-buy">쿠팡 바로 가기</a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+						</c:forEach>
+					</c:when>
+				</c:choose>
 			</ul>
 		</div>
 	</div>

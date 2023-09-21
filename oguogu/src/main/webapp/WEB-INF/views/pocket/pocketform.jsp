@@ -123,7 +123,8 @@ footer {
 					<label for="location_add">장소 추가</label>
 					<br>
 					<div class="button_list">
-						<input type="button" class="btn btn-sm btn-primary" id="btnadd" value="장소추가하기" onclick="onAddButtonClick()">
+						<input type="button" class="btn btn-sm btn-primary" id="btnadd" value="장소 추가하기" onclick="onAddButtonClick()">
+						<input type="button" class="btn btn-sm btn-primary" id="btndel" value="장소 삭제하기" onclick="onAddButtonClick()">
 					</div>
 					
 				</div>

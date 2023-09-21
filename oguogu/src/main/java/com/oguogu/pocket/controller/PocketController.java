@@ -46,7 +46,7 @@ public class PocketController {
 		String key = "FWahqHQzbVw450Hz8s1fOKiWczaXls%2BsNXfGx8A0I9Py%2BUJ4UdvepSlBgGjS47VzL2qb59UWoHwBXmxLlNmCLQ%3D%3D";
 		
 		try {
-			URL url = new URL("https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?page=1&perPage=10000&returnType=JSON&serviceKey="
+			URL url = new URL("https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?page=1&perPage=1000&returnType=JSON&serviceKey="
 					+ key);
 			URLConnection conn = url.openConnection();
 			br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
@@ -82,6 +82,8 @@ public class PocketController {
 		}
 		return null;
 	}
+	
+	// pocketform_search페이지에서 검색어를 입력하고 검색 버튼을 누르면 검색어가.
 	
 	// 포켓 만들기 폼에서 저장버튼을 누르면 모두의 포켓 DB로 데이터들이 저장된다.
 	

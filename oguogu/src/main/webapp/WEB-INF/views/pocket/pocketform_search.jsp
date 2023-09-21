@@ -16,29 +16,39 @@
 	margin-bottom: 20px;
 }
 
-.search {
+/* 검색어 입력 폰트 컬러 회색으로 */
+input:-ms-input-placeholder{color:#a8a8a8;}
+input::-webkit-input-placeholder{color:#a8a8a8;}
+input::-moz-input-placeholder{color:#a8a8a8;}
+
+.search{
+	height: 100px;
 	width:1000px;
 	margin: auto;
 	margin-top: 20px;
-	margin-bottom: 20px;
 }
 
-input {
-  width: 600px;
-  border: 1px solid #bbb;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 14px;
+#search_text{
+	width:400px;
+	height: 40px;
+	border: 1px solid #ffa234;
+	background: #ffffff;
+	margin: auto 0;
 }
 
- .search a img {
-  position : absolute;
-  width: 17px;
-  
-  right: 12px;
-  /* margin: 0; */
-  transform: translateY(-50%);
+#search_button{
+	width: 50px;
+	height: 40px;
+	border: 0px;
+	background: #ffa234;
+	outline: none;
+	color: #ffffff;
 }
+
+form{
+	text-align: center;
+}
+
 
 footer {
 	width: 1920px;
@@ -58,12 +68,17 @@ footer {
 		<a href="/pocketmaindisplay.do"><img src="resources/images/page_banner/listbanner_pocket.png"></a>
 	</div>
 	
-	<div>
+	<div id="location_add">
+	
 		<div class="search">
-  			<input type="text" placeholder="검색어 입력">
-  			<a href=""><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></a>
+			<form action="/location_search_go.do" method="post">
+				<input type="text" id ="search_text" placeholder="상호명을 입력하세요">
+	  			<input type="submit" id="search_button" value="검색">
+			</form>
 		</div>
-		<div>
+		
+		<div class="location_list">
+			
 			<table>
 		<thead>
 			<tr><td>도로명 이름</td><td>기본 정보_장소설명</td><td>시설명</td><td>경도</td>
@@ -81,10 +96,15 @@ footer {
 			</c:forEach>
 		</tbody>
 	</table>
+			
+			
 		</div>
+		
 	</div>
+	
 	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
+	
 </body>
 </html>

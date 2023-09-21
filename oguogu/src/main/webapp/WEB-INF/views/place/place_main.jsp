@@ -231,6 +231,20 @@
 	#category li .cafe {background-position: -10px -144px;}
 	#category li .store {background-position: -10px -180px;}
 	#category li.on .category_bg {background-position-x:-46px;}
+
+	.category, .category *{margin:0;padding:0;color:#000;}   
+	.category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
+	#category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
+	.category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
+	#category .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;} 
+	#category .ico_hospital {background-position:-10px 0;}  
+	#category .ico_pharmacy {background-position:-10px -36px;}   
+	#category .ico_salon {background-position:-10px -72px;} 
+	#category .ico_cafe {background-position:-10px -108px;}  
+	#category .ico_market {background-position:-10px -144px;}   
+	#category .ico_hotel {background-position:-10px -180px;} 
+	#category .ico_park {background-position:-10px -216px;}
+
 	.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
 	.placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
 	.placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
@@ -273,37 +287,44 @@
 			<div id="pagination"></div>
 		</div>
 		 <ul id="category">
-        <li id="BK9" data-order="0"> 
-            <span class="category_bg bank"></span>
-            은행
-        </li>       
-        <li id="MT1" data-order="1"> 
-            <span class="category_bg mart"></span>
-            마트
-        </li>  
-        <li id="PM9" data-order="2"> 
-            <span class="category_bg pharmacy"></span>
-            약국
-        </li>  
-        <li id="OL7" data-order="3"> 
-            <span class="category_bg oil"></span>
-            주유소
-        </li>  
-        <li id="CE7" data-order="4"> 
-            <span class="category_bg cafe"></span>
-            카페
-        </li>  
-        <li id="CS2" data-order="5"> 
-            <span class="category_bg store"></span>
-            편의점
-        </li>      
-    </ul>
+			 <li id="coffeeMenu" onclick="changeMarker('coffee')">
+	         	<span class="ico_comm ico_hospital"></span>
+	            동물병원
+	         </li>
+	         <li id="storeMenu" onclick="changeMarker('store')">
+	         	<span class="ico_comm ico_pharmacy"></span>
+	         	동물약국
+	         </li>
+	         <li id="carparkMenu" onclick="changeMarker('carpark')">
+		         <span class="ico_comm ico_salon"></span>
+		         미용실
+	         </li>
+	         <li id="carparkMenu" onclick="changeMarker('carpark')">
+		         <span class="ico_comm ico_cafe"></span>
+		         카페
+	         </li>
+	         <li id="carparkMenu" onclick="changeMarker('carpark')">
+		         <span class="ico_comm ico_market"></span>
+		         용품점
+	         </li>
+	         <li id="carparkMenu" onclick="changeMarker('carpark')">
+		         <span class="ico_comm ico_hotel"></span>
+		         공원
+	         </li>
+	         <li id="carparkMenu" onclick="changeMarker('carpark')">
+		         <span class="ico_comm ico_park"></span>
+		         호텔
+	         </li>
+        
+    	</ul>
+
 	</div>
 	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=208825c3c44bfdb13dfa9f140f9c81f1&libraries=services"></script>
+	
 	<script>
 		// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 		var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
@@ -314,7 +335,7 @@
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-			level : 5	// 지도의 확대 레벨
+			level : 3	// 지도의 확대 레벨
 		};
 
 		// 지도를 생성합니다    
@@ -556,7 +577,7 @@
 			}
 		}
 		
-		/* =============키워드로 장속 검색하고 목록으로 표출하기쪽 함수 끝===========*/
+		/* =============키워드로 장소 검색하고 목록으로 표출하기쪽 함수 끝===========*/
 		
 		/* =============카테고리별 장소 검색하기 함수 ===========*/
 		// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다

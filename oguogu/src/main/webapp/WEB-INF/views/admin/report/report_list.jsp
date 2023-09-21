@@ -1,422 +1,332 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
-<html lang="en">
+<html lang="en" style="width: 100%; overflow-x: hidden;">
 <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>신고 (관리자 화면)</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>신고 (관리자 화면)</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
-#title {
-	margin : 10px auto;
-   text-decoration: none;
-   top: 50%;
-   width: 400px;
-   text-decoration: none;
-   background-color: white;
-   text-align: center;
-   color: #FFA629;
-   font-weight: bold;
-   text-shadow: 1px 1px 2px #D1D1D1;
-   font-size: 20pt;
-   border: 1px solid;
-   padding: 10px;
-   border-radius:20px;
-}
-#noticetWrapper{
-        width: 1130px;
-        margin: auto;
-        font-family: 'Noto Sans KR', sans-serif;
-    }
-
-#liSearchOption {clear:both;}
-#liSearchOption > div {
-	margin:0 auto; 
-	margin-top: 30px; 
-	width:auto; 
-	height:100px;
-}
-.center {
-	text-align : center;
-}
-
- .menu {
-	width: 15%;
+#report_title {
+	margin: 10px auto;
+	text-decoration: none;
+	top: 50%;
+	width: 400px;
+	text-decoration: none;
 	background-color: white;
-	font-size: 15pt;
-	float: left;
-	text-align: left;
-	padding: 20px;
-	box-sizing: border-box;
-	margin-top: 160px;
-	margin-right: 10px;
-}
-/*
-.sidebar-menu li {
-  margin-bottom: 10px;
-  list-style-type: none; 
-  text-align: left;
-}
-.sidebar-menu a {
-  text-decoration: none;
-  color: #333;
-}  */
-/*  사이드 바  */
-.submenu>li {
-    line-height: 30px;
+	text-align: center;
+	color: #FFA629;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px #D1D1D1;
+	font-size: 20pt;
+	border: 1px solid;
+	padding: 10px;
+	border-radius: 20px;
 }
 
-.menu li{
- list-style-type: none;
- margin-top:10px; 
- /* padding:20px; */
+footer {
+	width: 1920px;
+	display: flex;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
-
-.submenu {
-    height: 0; /*ul의 높이를 안보이게 처리*/
-    overflow: hidden;
-}
-
-.menu>li:hover {
-    background-color: #FFA629;
-    transition-duration: 0.5s;
-    /* margin:auto; */
-   	/* padding: 5px; */
-}
-
-.menu>li:hover .submenu {
-    height: 90px; /*서브메뉴 li한개의 높이 50*5*/
-    transition-duration: 1s;
-}
-.table{
-	width:1500px;
-	margin:0 auto;
-	float: right;
-	margin-top: 100px;
-	
-}
-.nav > div{
-    margin-left:100px;
-}
-footer{
-		width:1920px;
-		display:flex;
-		margin:auto;
-		margin-top:20px;
-		margin-bottom: 20px;
-	}
 /* paging */
 table tfoot ol.paging {
-    list-style: none;
-    display:flex;
-    justify-content: center;
-    margin-top:20px;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
 }
 
 table tfoot ol.paging li {
-    float: left;
-    margin-right: 8px;
+	float: left;
+	margin-right: 8px;
 }
 
 table tfoot ol.paging li a {
-    display: block;
-    padding: 3px 7px;
-    border: 1px solid #FFA629;
-    color: #2f313e;
-    font-weight: bold;
+	display: block;
+	padding: 3px 7px;
+	border: 1px solid #FFA629;
+	color: #2f313e;
+	font-weight: bold;
 }
 
 table tfoot ol.paging li a:hover {
-    background: #FFA629;
-    color: white;
-    font-weight: bold;
+	background: #FFA629;
+	color: white;
+	font-weight: bold;
 }
 
 .disable {
-    padding: 3px 7px;
-    border: 1px solid silver;
-    color: silver;
+	padding: 3px 7px;
+	border: 1px solid silver;
+	color: silver;
 }
 
 .now {
-    padding: 3px 7px;
-    border: 1px solid #FFA629;
-    background: #FFA629;
-    color: white;
-    font-weight: bold;
+	padding: 3px 7px;
+	border: 1px solid #FFA629;
+	background: #FFA629;
+	color: white;
+	font-weight: bold;
 }
 
-.d-flex{
-	padding:5px;
+.d-flex {
+	padding: 5px;
+}
+/* 회원검색 스타일 */
+button {
+	text-align: right;
+}
+
+#report_sea {
+	display: flex;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #bcc;
+	padding-top: 15px;
+}
+
+.report_sea:hover {
+	background: white;
+	color: blcak;
+}
+
+.report_re:hover {
+	background: white;
+	color: blcak;
+}
+
+/*  페이징  */
+.pageBtn{
+	border:2px solid #bcc;
+	background:none;
+	margin-left:5px;
+	margin-right:5px;
+}
+.notNowPage{
+	border:2px solid #bcc;
+}
+.nowPage{
+    background: #FFA629;
+}
+.textBtn{
+	background:none;
+	padding: 3px 7px;
+	border: 1px solid silver;
+	color: silver;
 }
 </style>
-<script type="text/javascript"
-    src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js">
-</script>
-<script type="text/javascript">
-	function write_go() {
-		//글쓰기로 이동하는 함수
-		location.href = "/sup_insertForm.do";
-}
-    </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 </head>
-<body>
+<body style="width: 100%;">
 	<!-- 헤더 구역 -->
-	<header>
+	<header style="width: 100%;">
 		<jsp:include page="/WEB-INF/views/home/home_top.jsp" />
 	</header>
-	
-  <div id="repWrapper" style="width: 1820px;">
-	<!-- 사이드바 구역 -->
-	<!-- <div class="sidebar">
-    <ul class="sidebar-menu">
-      <li class="all"><a href="#">전체글보기</a></li>
-      <hr>
-      <li class="share"><a href="#">회원관리</a></li>
-      <ul>
-      	<li><a href="#">└ 회원 정보</a></li>
-      	<li><a href="#">└ 탈퇴 회원정보</a></li>
-      </ul>
-      <hr>
-      <li class="recomm"><a href="#">게시글</a></li>
-      <ul>
-      	<li><a href="#">└ 공지사항</a></li>
-      	<li><a href="#">└ FAQ</a></li>
-      </ul>
-      <hr>
-      <li class="question"><a href="#">질문</a></li>
-      <ul>
-      	<li><a href="#">└ 1:1 문의</a></li>
-      	<li><a href="#">└ 신고</a></li>
-      </ul>
-      <hr>
-         <li class="question"><a href="#">오구닥터</a></li>
-      <ul>
-      	<li><a href="#">└ 오구닥터</a></li>
-      </ul>
-      <hr>
-         <li class="question"><a href="/alledudisplay.do">교육관리</a></li>
-      <ul>
-      	<li><a href="">└ 필수 정보</a></li>
-       <li><a href="">└ 양육 정보</a></li>
-		<li><a href="">└ 훈련 정보</a></li>
-      </ul>
-      <hr>
-         <li class="question"><a href="#">쇼핑관리</a></li>
-      <ul>
-      	<li><a href="#">└ 상품정보</a></li>
-      </ul>
-      <hr>
-         <li class="question"><a href="#">커뮤니티</a></li>
-      <ul>
-      	<li><a href="#">└ 일상공유</a></li>
-      	<li><a href="#">└ 추천탭</a></li>
-      	<li><a href="#">└ 질문</a></li>
-      </ul>
-      기타 사이드바 메뉴 항목 추가
-    </ul>
-  </div>
-   </div> -->
-   <ul class="menu">
-                        <a href="=" id="all_list"
-                            class="list-group-item list-group-item-action py-3 lh-sm d-flex align-items-center"
-                            aria-current="true"
-                            style="height: 50px; background-color: #FFA629;">
-                                <div class="d-flex w-100 justify-content-center">
-                                    <strong class="mb-1">전체보기</strong>
-                                </div>
-                        </a>
-                        <li><a href="" id="novel"
-                            class="list-group-item list-group-item-action d-flex align-items-center"></a> 
-                                <div class="d-flex w-100 justify-content-center">
-                                    <strong class="mb-1">회원 관리</strong>
-                                </div>
-                       	<!-- 회원관리 -->
-                          	<ul class="submenu">
-                                <li><a href="">회원 정보</a></li>
-                                <li><a href="">탈퇴 회원 정보</a></li>
-                            </ul>
-                             <li><a href="" id="novel"
-                            class="list-group-item list-group-item-action d-flex align-items-center"></a>  
-                                <div class="d-flex w-100 justify-content-center">
-                                    <strong class="mb-1">게시글</strong>
-                                </div>
-                       	<!-- 게시글 -->
-                          	<ul class="submenu">
-                                <li><a href="">공지사항</a></li>
-                                <li><a href="">FAQ</a></li>
-                            </ul>
-                             <li><a href="" id="novel"
-                            class="list-group-item list-group-item-action d-flex align-items-center"></a>
-                                <div class="d-flex w-100 justify-content-center">
-                                    <strong class="mb-1">질문</strong>
-                                </div>
-                       	 <!-- 질문 -->
-                          	<ul class="submenu">
-                                <li><a href="">1:1 문의</a></li>
-                                <li><a href="">신고</a></li>
-                            </ul>
-                             <li><a href="" id="novel"
-                            class="list-group-item list-group-item-action d-flex align-items-center"></a>
-                                <div class="d-flex w-100 justify-content-center">
-                                    <strong class="mb-1">오구닥터</strong>
-                                </div>
-                       	 <!-- 오구닥터 -->
-                          	<ul class="submenu">
-                                <li><a href="">자가진단</a></li>
-                                <li><a href="">질병 리스트</a></li>
-                            </ul>
-                             <li><a href="" id="novel"
-                            class="list-group-item list-group-item-action d-flex align-items-center"></a>
-                                <div class="d-flex w-100 justify-content-center">
-                                    <strong class="mb-1">교육 관리</strong>
-                                </div>
-                       	 <!-- 교육 관리 -->
-                          	<ul class="submenu">
-                                <li><a href="">필수 정보</a></li>
-                                <li><a href="">양육 정보</a></li>
-                                <li><a href="">훈련 정보</a></li>
-                            </ul>
-                            <li><a href="" id="novel"
-                            class="list-group-item list-group-item-action d-flex align-items-center"></a>
-                                <div class="d-flex w-100 justify-content-center">
-                                    <strong class="mb-1">쇼핑 관리</strong>
-                                </div>
-                       	 <!-- 쇼핑 관리 -->
-                          	<ul class="submenu">
-                                <li><a href="">상품 정보</a></li>
-                            </ul>
-                            <li><a href="" id="novel"
-                            class="list-group-item list-group-item-action d-flex align-items-center"></a>
-                                <div class="d-flex w-100 justify-content-center">
-                                    <strong class="mb-1">커뮤니티</strong>
-                                </div>
-                       	 <!-- 커뮤니티 -->
-                          	<ul class="submenu">
-                                <li><a href="">일상 공유</a></li>
-                                <li><a href="">추천 탭</a></li>
-                                <li><a href="">질문</a></li>
-                            </ul>
-                        </li>
-				</ul>
-  <!-- 게시판 리스트 구역 -->
-  <!-- 기본 첫 페이지는 전체글보기 -->
-  <div>
-		<p id="title">신고 관리</p>
-		<hr />
-</div>
-  <div class="report_list">
-	<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">No.</th>
-      <th scope="col">제목</th>
-      <th scope="col">내용</th>
-      <th scope="col">작성자</th>
-      <th scope="col">작성 날짜</th>
-      <th scpoe="col" style="width: 150px;">
-     	 <button class="report_write">글쓰기</button>
-   	 </th>
-    </tr>
-  </thead>
-  <tbody>
-     <c:choose>
-					<c:when test="${empty report_list}">
-						<tr>
-							<td colspan="6"><h2 style="text-align: center;">자료가 존재하지 않습니다.</h2></td>
-						</tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="s" items="${report_list}" varStatus="vs">
-							<tr>
-								<td>${paging.totalRecord - ((paging.nowPage-1)*paging.numPerPage + vs.index)}</td>
-								<c:choose>
-									<c:when test="${s.status == 1 }">
-									 <td style="color: gray"> 삭제된 게시물 입니다.</td>
-									</c:when>
-									<c:otherwise>
-									<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
-										<td><a href="/sup_onelist.do?rep_idx=${s.sup_idx}&cPage=${paging.nowPage}">${s.sup_title}</a></td>
-									</c:otherwise>
-								</c:choose>
-								<td>${s.user_id }</td>
-								<td>${s.sup_date.substring(0,10)}</td>
-							</tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-  </tbody>
-  <tfoot>
-  <!-- 페이징  기법 -->
-	<tr>
-		<td colspan="6">
-			<ol class="paging"> 
-				<!-- 이전 버튼 -->
-				<c:choose>
-					<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
-						<li class="disable">이전으로</li>
-					</c:when>
-					<c:otherwise>
-						<li><a
-							href="/edu_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
-					</c:otherwise>
-				</c:choose>
-				<!-- 페이지번호들 -->
-				<c:forEach begin="${paging.beginBlock }"
-					end="${paging.endBlock }" step="1" var="k">
-					<!--  현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리 -->
-					<c:if test="${ k == paging.nowPage}">
-						<li class="now">${k}</li>
-					</c:if>
-					<c:if test="${ k != paging.nowPage}">
-						<li><a href="/edu_list.do??cPage=${k}">${k}</a></li>
-					</c:if>
-				</c:forEach>
+	<!-- 사이드바 -->
+	<jsp:include page="/WEB-INF/views/adminhome/sidebar.jsp" />
 
-				<!-- 이후 버튼 -->
-				<c:choose>
-					<c:when test="${paging.endBlock >= paging.totalPage }">
-						<li class="disable">다음으로</li>
-					</c:when>
-					<c:otherwise>
-						<li><a
-							href="/edu_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
-					</c:otherwise>
-				</c:choose>
-			</ol>
-		</td>
-	</tr>
-</tfoot>
-</table>
-  </div>
-<%--검색 항목--%>
-		<center>
-            <div id='liSearchOption'>
-            	<form action="qnasearch.do?page=1" method="post">
-            	<!-- 공지사항은 사용자가 글 쓰는건 없어도 될듯 => 글 확인만 가능!-->
-            	<!-- <input type="button" value="글쓰기" style="float: right;" onclick="write_go()"> -->
-                <div>
-                    <select name="searchtype" >
-                        <option value="qname">제목</option>
-                        <option value="qcontent">내용</option>
-                        <option value="qid">작성자</option>                        
-                    </select>
-                    <input type="search" name="keyword">
-                    <input type="submit" value="검색">
-                </div>
-                </form>
-                </div> 
-   </div>
-   <br>
-</center>
-<footer>
+	<!-- 게시판 리스트 구역 -->
+	<div style="border-bottom: 1px solid #bcc;">
+		<p id="report_title">신고 관리</p>
+	</div>
+	<div id="report_sea">
+		<div style="margin-right: 20px;">
+				<span>기간선택</span> 
+				<input type="date" class="search-form" name="startDate" style="height: 30px; border: 1px solid #bcc; border-radius: 5px;" />
+				~ 
+				<input type="date" class="search-form" name="endDate" style="height: 30px; border: 1px solid #bcc; border-radius: 5px;" />
+			</div>
+			<div>
+				<span>검색조건</span> 
+				<select class="search-form selectBox" name="searchOption" style="width: 100px; height: 30px; border-radius: 5px; border: 1px solid #bcc;">
+					<option value="">전체</option>
+					<option value="user_id">아이디</option>
+					<option value="rep_content">내용</option>
+				</select>
+				 <input type="text" class="search-form" name="colVal" placeholder="검색어 입력"style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; border: 1px solid #bcc; height: 30px;" />
+			</div>
+			<div>
+				<button class="report_sea searchBtn" style="border: none; height: 30px; background: #FFA629; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">검색</button>
+				<button class="report_re resetBtn" style="border: none; height: 30px; background: #FFA629; border-radius: 5px; margin-left: 20px;">검색 초기화</button>
+				</div>
+	</div>
+	<div class="report_list" style="display: flex;">
+		<table class="table">
+			<colgroup>
+				<col width="140px" />
+				<col width="140px" />
+				<col width="140px" />
+				<col width="140px" />
+				<col width="140px" />
+				<col width="140px" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">번호</th>
+					<th scope="col">신고 제목</th>
+					<th scope="col">아이디</th>
+					<th scope="col">신고 내용</th>
+					<th scope="col">작성 날짜</th>
+					<th scope="col">진행 상황</th>
+				</tr>
+			</thead>
+			<tbody class="result">
+
+			</tbody>
+			<tfoot>
+				<!-- 페이징  기법 -->
+				<tr class="pageingWrap">
+					<td colspan="6" class="pageingBtnGroup">
+						<ol class="paging"></ol>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" ></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		init();
+	});
 
+	function init() {
+		
+		function getUserInfo(param) {
+			$.ajax({
+				url : '/getReportList.do',
+				data : param,
+				data : JSON.stringify(param||{}),
+				dataType : 'json', /*html, text, json, xml, script*/
+				contentType: 'application/json; charset=utf-8',
+				method : 'post',
+				cache:false,
+				success : function(res) {
+					console.log(res.replist);
+					var html = '';
+					if (res.replist.length > 0) {
+						for (var i = 0; i < res.replist.length; i++) {
+							html += '<tr>';
+							html += '<td>' +res.replist[i].rep_idx
+									+'</td>';
+							html += '<td>' + res.replist[i].rep_title
+									+ '</td>';
+							html += '<td>' + res.replist[i].user_id
+									+ '</td>';
+							html += '<td>' + res.replist[i].rep_content
+									+ '</td>';
+							html += '<td>' + res.replist[i].rep_date
+									+ '</td>';
+							html += '<td>' + res.replist[i].status
+									+	'</td>';
+							html += '</tr>';
+						}
+						
+						// 페이징
+						var totCnt = res.totCnt;
+						
+						var grpCnt = 5;
+						var countAllPage = Math.ceil(totCnt / grpCnt);
+						var pageGrpPos = (param.nowPage % grpCnt == 0) ? Math.floor(param.nowPage / grpCnt) -1 : Math.floor(param.nowPage / grpCnt);
+						var strPage = pageGrpPos * grpCnt + 1;
+						var endPage = Math.min(countAllPage, (pageGrpPos + 1) * grpCnt);
+						var pageHtm = '';
+						for(var i = strPage; i <= endPage; i++){
+							if(i == strPage){
+								if(param.nowPage > 1){
+									pageHtm += '<button class="movePage textBtn" now-page="'+(Number(param.nowPage) - 1)+'">이전으로</button>';
+								} else {
+									pageHtm += '<button class="disable textBtn">이전으로</button>';
+								}
+							}
+							if(i == param.nowPage){
+								pageHtm += '<button class="movePage pageBtn nowPage" now-page="'+i+'">'+i+'</button>';
+							} else {
+								pageHtm += '<button class="movePage pageBtn noNowPage" now-page="'+i+'">'+i+'</button>';	
+							}
+							if(i == endPage) {
+								if(param.nowPage == countAllPage){
+									pageHtm += '<button  class="disable textBtn">다음으로</button>';	
+								} else {
+									pageHtm += '<button class="movePage disable textBtn" now-page="'+(Number(param.nowPage) + 1)+'">다음으로</button>';
+								}
+							}
+						}
+					} else {
+						html += '<tr><td colspan="6"><h2 style="text-align: center;">자료가 존재하지 않습니다.</h2></td></tr>';
+					}
+					$('.result').html(html);
+					$('.paging').html(pageHtm);
+					$('.movePage').off('click').on('click',function(){	// 페이지 이동
+						var nowPage = $(this).attr('now-page');
+						var param = {nowPage : nowPage, rowCnt : '5'};
+						var $searchGroup = $('#report_sea').find('.search-form');
+					    $searchGroup.each(function(idx,inp){
+					    	param[$(inp).attr('name')] = $(inp).val();
+					    });
+					    if($('.selectBox').val() == '' ) {
+					    	param.selectBoxAll = [];
+					    	var $selectOptionGroup = $('.selectBox').find('option');
+						    $selectOptionGroup.each(function(idx,inp){
+						    	if ($(inp).val() != '') {
+						    		param.selectBoxAll.push($(inp).val());
+						    	}
+						    });	
+					    }
+						getUserInfo(param);
+					});
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+					console.log(xhr);
+					console.log(status);
+				}
+			});
+		};
+		getUserInfo({nowPage : '1', rowCnt : '5'});	// 첫페이지에서 다섯개의 회원정보만 보이게 하기
+		
+		// 검색 버튼
+		$('.searchBtn').off('click').on('click',function(){
+		    var $searchGroup = $('#report_sea').find('.search-form');
+		    var param = {};
+		    $searchGroup.each(function(idx,inp){
+		    	param[$(inp).attr('name')] = $(inp).val();
+		    });
+		    if($('.selectBox').val() == '' ) {
+		    	param.selectBoxAll = [];
+		    	var $selectOptionGroup = $('.selectBox').find('option');
+			    $selectOptionGroup.each(function(idx,inp){
+			    	if ($(inp).val() != '') {
+			    		param.selectBoxAll.push($(inp).val());
+			    	}
+			    });	
+		    }
+		    param.nowPage = $('.nowPage').attr('now-page');
+		    param.rowCnt = '5';
+		    getUserInfo(param);
+		});
+		
+		// 검색 초기화
+		$('.resetBtn').off('click').on('click',function(){
+			$('.search-form').val('');
+			$('.selectBox').val('');
+		});
+	};
+</script>
 </html>

@@ -368,7 +368,7 @@ footer{
             
             <div style="display: flex; align-items: center;">
              	<!-- 요청 정보(request)  -->
-            	<input type="text" name="email" id="email" maxlength="20" placeholder="이메일" required> &nbsp;&nbsp;&nbsp;
+            	<input type="text" name="email" id="email" maxlength="25" placeholder="이메일" required> &nbsp;&nbsp;&nbsp;
             </div>
             <!-- 이메일 유효성 검사 메세지 -->
             <div id="emailCheck" style="width:400px;"></div>

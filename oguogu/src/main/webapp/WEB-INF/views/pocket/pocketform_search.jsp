@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>모두의 포켓 - 장소 추가</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style type="text/css">
 #minibanner img {
 	width: 1920px;
@@ -58,6 +59,16 @@ footer {
 	margin-bottom: 20px;
 }
 </style>
+<script type="text/javascript">
+	function facilities_search(){
+		$("#result").empty();
+		$.ajax({
+			url:"/facilities_search.do"
+			
+		});
+	}
+</script>
+
 </head>
 <body>
 	<header>
@@ -73,13 +84,13 @@ footer {
 		<div class="search">
 			<form action="/location_search_go.do" method="post">
 				<input type="text" id ="search_text" placeholder="상호명을 입력하세요">
-	  			<input type="submit" id="search_button" value="검색">
+	  			<input type="submit" id="search_button" value="검색" onclick="facilities_search()">
 			</form>
 		</div>
 		
 		<div class="location_list">
-			
-			<table>
+			<div id="result"></div>
+			<%-- <table>
 		<thead>
 			<tr><td>도로명 이름</td><td>기본 정보_장소설명</td><td>시설명</td><td>경도</td>
 			<td>위도</td></tr>
@@ -95,7 +106,7 @@ footer {
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table> --%>
 			
 			
 		</div>

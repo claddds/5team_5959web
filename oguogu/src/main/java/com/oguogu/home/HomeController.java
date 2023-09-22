@@ -71,22 +71,26 @@ public class HomeController {
 	public ModelAndView getOguDoctorCalDisplay() {
 		return new ModelAndView("ogudoctor/cal/ogu_cal");
 	}
-	// 상단 메뉴바에서 고객지원을 누르면 공지사항 화면으로 이동
-	@GetMapping("/supdisplay.do")
-	public ModelAndView getSupDisplay() {
-		return new ModelAndView("support/sup_list");
-	}
-	// 상단 메뉴바에서 문의사항을 누르면 문의사항 화면으로 이동
-	@GetMapping("/faqdisplay.do")
-	public ModelAndView getFaqDisplay() {
-		return new ModelAndView("faq/faq_list");
+//	// 상단 메뉴바에서 고객지원을 누르면 공지사항 화면으로 이동
+//	@GetMapping("/supdisplay.do")
+//	public ModelAndView getSupDisplay() {
+//		return new ModelAndView("support/sup_list");
+//	}
+//	// 상단 메뉴바에서 문의사항을 누르면 문의사항 화면으로 이동
+//	@GetMapping("/faqdisplay.do")
+//	public ModelAndView getFaqDisplay() {
+//		return new ModelAndView("faq/faq_list");
+//	}
+	// 상단 메뉴바에서 1:1문의를 누르면 1:1문의사항 화면으로 이동
+	@GetMapping("/qnadisplay.do")
+	public ModelAndView getQnaDisplay() {
+		return new ModelAndView("qna/qna_list");
 	}
 	// 상단 메뉴바에서 신고를 누르면 신고 화면으로 이동
 	@GetMapping("/repdisplay.do")
 	public ModelAndView getRepDisplay() {
 		return new ModelAndView("rep/rep_list");
-	}
-		
+	}	
 	
 	//=====home_top.jsp 끝========
 	// =====ogu_main.jsp(오구닥터메인화면에서 해당 기능으로 이동) 시작========

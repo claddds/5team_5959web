@@ -58,6 +58,10 @@
 	font-size:20px;
 }
 
+#write table th{
+	background-color: #FFA629;
+}
+
 .sidebar {
 	width: 15%;
 	background-color: white;
@@ -97,11 +101,23 @@
 
 <script type="text/javascript">
 function list_go(f) {
-	f.action="lounge_list.do";
+	f.action="/lounge_list.do";
 	f.submit();
 }
 function save_go(f) {
-	
+	if(f.lo_title.value.trim().length <=0){
+		alert("제목을 입력하세요");
+		f.lo_title.focus();
+		return;
+	}
+	if(f.lo_content.value.trim().length <=0){
+		alert("내용을 입력하세요");
+		f.lo_content.focus();
+		return;
+	}
+	alert("성공");
+	f.action="/lounge_insert.do";
+	f.submit();
 }
 </script>
 </head>
@@ -118,27 +134,11 @@ function save_go(f) {
     <ul class="sidebar-menu">
       <li class="all"><a href="/lounge_list.do">전체글보기</a></li>
       <hr>
-      <li class="share"><a href="/lounge/lounge_share_list.do">일상 공유</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="share"><a href="/lounge_share_list.do">일상 공유</a></li>
       <hr>
-      <li class="recomm"><a href="/lounge/lounge_recomm_list.do">추천탭</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="recomm"><a href="/lounge_recomm_list.do">추천탭</a></li>
       <hr>
-      <li class="question"><a href="/lounge/lounge_qna_list.do">질문</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
-      <!-- 기타 사이드바 메뉴 항목 추가 -->
+      <li class="question"><a href="/lounge_qna_list.do">질문</a></li>
     </ul>
   </div>      
   
@@ -151,55 +151,54 @@ function save_go(f) {
 	</div>
 	
 	<div id="write">
-		<form action="qinsert.do" method="post"
-			enctype="multipart/form-data" name="boardform">
+		<form method="post" enctype="multipart/form-data">
 			<table width="1200px;"  border="1px solid" cellpadding="0"
 				cellspacing="0">
 				<tr height="50">
 					<th>게시판 종류</th>
 					<td style="padding: 8px; text-align: left;">
-						<select class="box" id="domain-list" style="font-size: 20px;">
-  							<option value="naver.com">---선 택---</option>
-  							<option value="naver.com">일상 공유</option>
-  							<option value="google.com">추천탭</option>
-  							<option value="hanmail.net">질문</option>
+						<select id="lo_type" name="lo_type" style="font-size: 20px;">
+  							<option selected>---선 택---</option>
+  							<option value="일상공유">일상 공유</option>
+  							<option value="추천탭">추천탭</option>
+  							<option value="질문">질문</option>
 						</select>
 					</td>
 				</tr>
 				<tr height="50">
 					<th>동물 선택</th>
 					<td style="padding: 8px; text-align: left;">
-						<select class="box" id="domain-list" style="font-size: 20px;">
-  							<option value="naver.com">---선 택---</option>
-  							<option value="google.com">강아지</option>
-  							<option value="google.com">고양이</option>
-  							<option value="google.com">기타</option>
+						<select id="lo_petkind" name="lo_petkind" style="font-size: 20px;">
+  							<option selected>---선 택---</option>
+  							<option value="강아지">강아지</option>
+  							<option value="고양이">고양이</option>
+  							<option value="기타">기타</option>
 						</select>
 					</td>
 				</tr>
 				<tr height="50">
-				<%-- 로그인한 아이디 정보가 들어가고 readonly는 읽기 전용이라는 의미 --%>
+				<%-- 로그인한 아이디 정보가 들어가고 readonly는 읽기 전용이라는 의미 --%> 
 					<th>작성자</th>
 					<td style="padding: 8px; text-align: left;"><input name="user_id"
-						value="${ sessionScope.loginMember.user_id }" style="width: 90%; height: 30px;" readonly /></td>
+						value="${ sessionScope.user_id }" style="width: 90%; height: 30px;" readonly /></td>
 				</tr>
 				<tr height="50">
 					<th>제목</th>
-					<td style="padding: 8px; text-align: left;"><input name="qna_title" type="text" style="width: 90%; height: 30px;"" /></td>
+					<td style="padding: 8px; text-align: left;"><input name="lo_title" type="text" style="width: 90%; height: 30px;" /></td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><textarea id="lo_content" name="lo_write"
+					<td style="padding: 8px; text-align: left;"><textarea id="lo_content" 
 							style="width: 90%; height: 200px;"></textarea>
 					</td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
-					<td style="padding: 8px; text-align: left;"><input name="upfile" type="file" style="font-size: 20px;"/></td>
+					<td style="padding: 8px; text-align: left;"><input name="file" type="file" style="font-size: 20px;"/></td>
 				</tr>
 				<tr height="50">
 					<td class="button" colspan="2" align="center" style="padding: 8px;">
-						<input type="submit" value="등록" style="font-size: 20px;">
+						<input type="submit" value="등록" style="font-size: 20px;" onclick="save_go(this.form)">
 						<input type="button" value="목록" style="font-size: 20px;"
 						onclick="list_go(this.form)">
 					</td>						
@@ -207,7 +206,6 @@ function save_go(f) {
 			</table>
 		</form>
 	</div>
-	<br>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     	<script src="resources/js/summernote-lite.js"></script>

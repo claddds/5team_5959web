@@ -54,6 +54,7 @@
 	text-align:center;
 	border:1px solid black;
 	padding:2px 4px;
+	background-color: #FFA629;
 }
 	
 #onelist table td {
@@ -96,9 +97,17 @@ input{
 	margin-left: -215px;          
     padding-left: 215px;          
     box-sizing: border-box;
-}	
-    
-
+}
+#com_field{
+	text-align: left;
+}
+.com{
+	 border: 1px solid gray;
+	 width: 1100px; 
+	 margin-left: 510px; 
+	 padding:50px;
+	 text-align: left;
+}
 </style>
 <script type="text/javascript"
 	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
@@ -111,12 +120,34 @@ input{
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 <script type="text/javascript">
-	function update_go() {
-		location.href ="/lounge_updateForm.do"
-		submit();
+	function update_go(f) {
+		f.action="/lounge_updateForm.do";
+		f.submit();
+	}
+	function list_go(f) {
+		f.action="/lounge_list.do";
+		f.submit();
+	}
+	function delete_go(f) {
+		f.action="/lounge_deleteForm.do"
+		f.submit();
+	}
+	// 댓글 저장
+	function comment_go(f) {
+		f.action = "/com_insert.do";
+		f.submit();
+	}
+	// 댓글 삭제
+	function comment_del(f) {
+		f.action = "/com_delete.do";
+		f.submit();
+	}
+	// 댓글 수정
+	function comment_up(f) {
+		f.action = "/com_update.do";
+		f.submit();
 	}
 </script>
-
 </head>
 <body>
 	<!-- 헤더 구역 -->
@@ -129,28 +160,13 @@ input{
 	<!-- 사이드바 구역 -->      
  <div class="sidebar">
     <ul class="sidebar-menu">
-      <li class="all"><a href="/lounge_list.do">전체글보기</a></li>
+      <li class="all" style="font-weight: bold;"><a href="/lounge_list.do">전체글보기</a></li>
       <hr>
-      <li class="share"><a href="/lounge/lounge_share_list.do">일상 공유</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="share"><a href="/lounge_share_list.do">일상 공유</a></li>
       <hr>
-      <li class="recomm"><a href="/lounge/lounge_recomm_list.do">추천탭</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="recomm"><a href="/lounge_recomm_list.do">추천탭</a></li>
       <hr>
-      <li class="question"><a href="/lounge/lounge_qna_list.do">질문</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="question"><a href="/lounge_qna_list.do">질문</a></li>
       <!-- 기타 사이드바 메뉴 항목 추가 -->
     </ul>
   </div>      
@@ -165,55 +181,91 @@ input{
 				cellspacing="0">
 				<tr height="50">
 					<th>게시판 종류</th>
-					<td style="padding: 8px; text-align: left;">${bv.lo_type}</td>
+					<td style="padding: 8px; text-align: left;">${lvo.lo_type}</td>
 				</tr>
 				<tr height="50">
 					<th>동물 종류</th>
-					<td style="padding: 8px; text-align: left;">${bv.lo_type}</td>
+					<td style="padding: 8px; text-align: left;">${lvo.lo_type}</td>
 				</tr>
 				<tr height="50">
 					<th>제목</th>
-					<td style="padding: 8px; text-align: left;">${bv.lo_title}</td>
+					<td style="padding: 8px; text-align: left;">${lvo.lo_title}</td>
 				</tr>
 				<tr height="50">
 					<th>이름</th>
-					<td style="padding: 8px; text-align: left;">${bv.user_id}</td>
+					<td style="padding: 8px; text-align: left;">${lvo.user_id}</td>
 				</tr>
 				<tr height="50">
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><pre>${bv.lo_content}</pre></td>
+					<td style="padding: 8px; text-align: left;"><pre>${lvo.lo_content}</pre></td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
 					<c:choose>
-						<c:when test="${empty bv.lo_fname}">
+						<c:when test="${empty lvo.lo_fname}">
 							<td style="padding: 8px; text-align: left;"><b>첨부 파일 없음</b></td>
 						</c:when>
 						<c:otherwise>
-							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?f_name=${bv.lo_fname}">
-							<img src="resources/images/${bv.lo_fname}" style="80px;"></a>
+							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?f_name=${lvo.lo_fname}">
+							<img src="resources/images/${lvo.lo_fname}" style="80px;"></a>
 							</td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
 				<tr height="50">
-					<td colspan="2" style="padding: 8px; text-align: left;">
-						<input type="hidden" value="${bv.idx}" name="idx">
+					<td colspan="2" align="center" style="padding: 8px; text-align: center;">
+						<input type="hidden" value="${lvo.lo_idx}" name="idx">
 						<input type="hidden" value="${cPage}" name="cPage">
-						
-						<div class="btn">
-							<c:if test="${sessionScope.userId == bv.writer}">
-							<input type="button" value="삭제" onclick="delete_go(this.form)">
-							<input type="button" value="수정" onclick="update_go()">
-							</c:if>
-							<input type="button" value="답글" onclick="ans_write(this.form)">
-							<input type="button" value="목록" onclick="list_go(this.form)">
-						</div>
+						<input type="button" value="목록" style="font-size: 20px;"
+						onclick="list_go(this.form)">
+						<input type="button" value="삭제" style="font-size: 20px;" 
+						onclick="delete_go(this.form)">
+						<input type="button" value="수정" style="font-size: 20px;"
+						onclick="update_go(this.form)">
 					</td>
 				</tr>
 		</table>
+		<hr style="width: 1200px; text-align:center; margin-left: 510px; margin-top: 50px;" >
 	</form>
 	</div>  
-	</div>  
+	
+	<!-- 댓글 작성 영역 -->
+	<%-- 댓글 입력 --%>
+	<div style="padding:50px; width:1200px; margin-left: 460px; ">
+		<form method="post">
+			<fieldset id="com_field">
+				<p>작성자  <input type="text" name="user_id" ></p>
+				<p>내용  <br>
+					<textarea rows="4" cols="40" name="com_content" style="width: 1000px;"></textarea>
+				 </p>
+				 <input type="button" value="댓글저장" onclick="comment_go(this.form)">
+				 <input type="hidden" name="lo_idx" value="${lvo.lo_idx}">
+				 <input type="hidden" name="cPage" value="${cPage}">
+			 </fieldset>
+		</form>
+	</div>
+	<br>
+	
+	<%-- 댓글 출력 --%>
+	<div style="display: table;" class="com">
+		<c:forEach var="k" items="${c_list}">
+	
+		 <div>
+		 	<form method="post">
+		 		<p>작성자 : ${k.user_id}</p>
+		 		<p>내용 : ${k.com_content }</p>
+		 		<p>날짜 : ${k.com_date.substring(0,10)}</p>
+		 		<%-- 실제로는 로그인 성공해야 지만 삭제번트이 보여야 한다. --%>
+		 		<input type="button" value="삭제" onclick="comment_del(this.form)">
+		 		<input type="button" value="수정" onclick="comment_up(this.form)">
+		 		<input type="hidden" value="${k.com_idx}" name="com_idx">
+		 		<input type="hidden" value="${k.lo_idx}" name="lo_idx">
+		 		<input type="hidden" name="cPage" value="${cPage}">
+		 	</form>
+		 </div>
+
+		</c:forEach>
+	</div>
+</div>  
 </body>
 </html>

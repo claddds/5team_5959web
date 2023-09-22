@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>모두의 포켓 - 장소 추가</title>
+<!-- table css -->
+<link href="resources/css/bootstrap/bootstrap.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style type="text/css">
 #minibanner img {
@@ -46,6 +48,15 @@ input::-moz-input-placeholder{color:#a8a8a8;}
 	color: #ffffff;
 }
 
+#add_button{
+	width: 100px;
+	height: 40px;
+	border: 0px;
+	background: #ffa234;
+	outline: none;
+	color: #ffffff;
+}
+
 form{
 	text-align: center;
 }
@@ -61,11 +72,25 @@ footer {
 </style>
 <script type="text/javascript">
 	function facilities_search(){
+		var searchTerm = document.getElementById('search_text').value;
+		
 		$("#result").empty();
 		$.ajax({
 			url:"/facilities_search.do"
-			
+			method:"post"
+			dataType:"json",
+			data:{searchTerm: searchTerm},	// 검색어를 서버에 전달
+			success:function(data){
+				console.log(data);
+			},
+			error: function() {
+				alert("읽기실패");
+			}
 		});
+	}
+	
+	function facilities_add() {
+		
 	}
 </script>
 
@@ -82,21 +107,31 @@ footer {
 	<div id="location_add">
 	
 		<div class="search">
-			<form action="/location_search_go.do" method="post">
+			<form>
 				<input type="text" id ="search_text" placeholder="상호명을 입력하세요">
-	  			<input type="submit" id="search_button" value="검색" onclick="facilities_search()">
+				<button type="button" id="search_button" onclick="facilities_search()">검색</button>
 			</form>
 		</div>
 		
 		<div class="location_list">
-			<div id="result"></div>
-			<%-- <table>
+			<form action="" method="post">
+				<div class="button_con">
+					<input type="submit" id="add_button" value="장소추가">
+				</div>
+				<div id="result">
+					
+				</div>
+			</form>
+		</div>
+		
+		
+			<table>
 		<thead>
 			<tr><td>도로명 이름</td><td>기본 정보_장소설명</td><td>시설명</td><td>경도</td>
 			<td>위도</td></tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${pocketlist}" var="k">
+			<c:forEach items="${pocketfilterlist}" var="k">
 				<tr>
 					<td>${k.roadaddr}</td>
 					<td>${k.locationex}</td>
@@ -106,10 +141,8 @@ footer {
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table> --%>
+	</table>	
 			
-			
-		</div>
 		
 	</div>
 	

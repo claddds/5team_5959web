@@ -55,7 +55,7 @@
 	
 	<!-- 첫페이지 지정 (선택사항) -->
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/views/place/place_main.jsp</welcome-file>
+		<welcome-file>/WEB-INF/views/pocket/pocket_main.jsp</welcome-file>
 	</welcome-file-list>
 	
 </web-app>

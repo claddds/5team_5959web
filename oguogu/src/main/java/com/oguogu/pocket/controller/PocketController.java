@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.oguogu.pocket.model.vo.Pocketplace_Filter_VO;
 import com.oguogu.pocket.model.vo.Pocketplace_VO;
 
 @Controller
@@ -46,7 +47,8 @@ public class PocketController {
 	// pocketform_search페이지에서 검색어를 입력하고 검색 버튼을 누르면 검색어가 포함된 시설명 리스트가 나온다
 	@RequestMapping(value = "/facilities_search.do", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String getFacilitiesSearch() {
+	public String getFacilitiesSearch(
+			@RequestParam("searchTerm") String searchTerm) {
 		StringBuffer sb = new StringBuffer();
 		BufferedReader br = null;
 		String key = "FWahqHQzbVw450Hz8s1fOKiWczaXls%2BsNXfGx8A0I9Py%2BUJ4UdvepSlBgGjS47VzL2qb59UWoHwBXmxLlNmCLQ%3D%3D";
@@ -57,13 +59,53 @@ public class PocketController {
 			br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
 			
 			String msg = "";
-			return null;
-		} catch (Exception e) {
-			return null;
+			
+			while ((msg = br.readLine()) != null) { 
+				sb.append(msg); 
+			}
+	
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jObject = (JSONObject)jsonParser.parse(sb.toString());
+			JSONArray dataObject = (JSONArray)jObject.get("data");
+	  
+			List<Pocketplace_VO> pocketlist = new ArrayList<Pocketplace_VO>();
+	  
+			for (int i = 0; i < dataObject.size(); i++) { 
+				JSONObject jobt = (JSONObject)dataObject.get(i);
+				String roadaddr = (String) jobt.get("도로명 이름");
+				String locationex = (String) jobt.get("기본 정보_장소설명");
+				String facilities = (String) jobt.get("시설명");
+				double lon = Double.parseDouble((String)jobt.get("경도"));
+				double lat = Double.parseDouble((String) jobt.get("위도"));
+	  
+				Pocketplace_VO ppvo = new Pocketplace_VO(roadaddr, locationex, facilities,lon, lat);
+				pocketlist.add(ppvo);
+			}
+			
+			JSONArray pocketfilterlist = new JSONArray();
+			
+			for (Pocketplace_VO facility : pocketlist) {
+				if(facility.getFacilities().contains(searchTerm)) {
+					JSONObject facilitiesJson = new JSONObject();
+					facilitiesJson.put("roadAddr", facility.getRoadaddr());
+					facilitiesJson.put("locationex", facility.getLocationex());
+					facilitiesJson.put("facilities", facility.getFacilities());
+					facilitiesJson.put("lon", facility.getLon());
+					facilitiesJson.put("lat", facility.getLat());
+					
+					pocketfilterlist.add(facilitiesJson);
+				}
+			}
+			
+			return pocketfilterlist.toJSONString();
+			
+		}catch (Exception e) {
+			System.out.println(e);
 		}
+		return null;
 	}
 
-	
+	// 안전빵 안쓰는데 위에 오류나면 참고해서 json파일 불러와야함
 	@RequestMapping("/pocketform_search_goex.do") 
 	public ModelAndView getPocketFormSearchGoEX() { 
 		ModelAndView mv = new ModelAndView("pocket/pocketform_search");
@@ -112,7 +154,7 @@ public class PocketController {
 	}
 	 
 
-	// pocketform_search페이지에서 검색어를 입력하고 검색 버튼을 누르면 검색어가.
+	
 
 	// 포켓 만들기 폼에서 저장버튼을 누르면 모두의 포켓 DB로 데이터들이 저장된다.
 

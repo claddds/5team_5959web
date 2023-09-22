@@ -41,7 +41,6 @@
 
 #loungeWrapper{
         width: 1130px;
-        height: 1200px;
         margin: auto;
     }
 #loungeWrapper > ul > li:first-child {
@@ -58,6 +57,8 @@
         margin-top: 30px; 
         width:auto; 
         height:100px;
+        display:flex;
+		justify-content:center;
 
 }
 .center {
@@ -110,6 +111,60 @@ footer{
 		margin-top:20px;
 		margin-bottom: 20px;
 	}
+/* paging */
+.paging{
+	text-align: center;
+}
+
+table tfoot ol.paging {
+	list-style: none;
+	display:flex;
+	justify-content:center;
+}
+
+table tfoot ol.paging li {
+	float: left;
+	margin-right: 8px;
+	text-align: center;
+}
+
+table tfoot ol.paging li a {
+	display: block;
+	padding: 3px 7px;
+	border: 1px solid #FFA629;
+	color: #2f313e;
+	font-weight: bold;
+	
+}
+
+table tfoot ol.paging li a:hover {
+	background: #FFA629;
+	color: white;
+	font-weight: bold;
+}	
+
+.button{
+	background-color: #FFA629;
+	color: #f8f8ff;
+	border: none;
+	width: 80px;
+    height: 40px;
+    font-size: 15pt;
+	border-radius: 10px;
+}
+.disable {
+    padding: 3px 7px;
+    border: 1px solid silver;
+    color: silver;
+}
+
+.now {
+    padding: 3px 7px;
+    border: 1px solid #FFA629;
+    background: #FFA629;
+    color: white;
+    font-weight: bold;
+ }
 </style>
 
 <script type="text/javascript"
@@ -143,26 +198,11 @@ footer{
     <ul class="sidebar-menu">
       <li class="all"><a href="/lounge_list.do">전체글보기</a></li>
       <hr>
-      <li class="share"><a href="/lounge/lounge_share_list.do">일상 공유</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="share"><a href="/lounge_share_list.do">일상 공유</a></li>
       <hr>
-      <li class="recomm"><a href="/lounge/lounge_recomm_list.do">추천탭</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="recomm"><a href="/lounge_recomm_list.do">추천탭</a></li>
       <hr>
-      <li class="question" style="font-weight: bold;"><a href="/lounge/lounge_qna_list.do">질문</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="question" style="font-weight: bold;"><a href="/lounge_qna_list.do">질문</a></li>
       <!-- 기타 사이드바 메뉴 항목 추가 -->
     </ul>
   </div>
@@ -171,52 +211,94 @@ footer{
   <div>
 	<p id="title">질문</p>
 	</div>
-  <div class="lounge_list">
+  <div class="lounge_qna_list">
 	<table class="table">
   <thead>
-    <tr>
+   <tr>
       <th scope="col">No.</th>
-      <th scope="col">제목</th>
       <th scope="col">유형</th>
+      <th scope="col">동물종류</th>
+      <th scope="col">제목</th>
       <th scope="col">작성자</th>
       <th scope="col">작성 날짜</th>
       <th scope="col">조회수</th>
     </tr>
   </thead>
   <tbody>
-   <c:choose>
-					<c:when test="${empty lounge_list}">
-						<tr>
-							<td colspan="5"><h2 style="text-align: center;">자료가 존재하지 않습니다.</h2></td>
-						</tr>
+  <c:choose>
+	<c:when test="${empty lounge_qna_list}">
+		<tr>
+			<td colspan="7"><h2 style="text-align: center;">자료가 존재하지 않습니다.</h2></td>
+		</tr>
+	</c:when>
+	<c:otherwise>
+		<c:forEach var="l" items="${lounge_qna_list}" varStatus="vs">
+			<tr>
+			<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
+			<td>${l.lo_idx}</td>
+            <td>${l.lo_type}</td>
+            <td>${l.lo_petkind}</td>
+			<td>				
+				<a href="/lounge_onelist.do?lo_idx=${l.lo_idx}">${l.lo_title}</a>
+				<span id="commnet_cnt">[${l.comment_cnt }]</span>
+			</td>
+			<td>${l.user_id }</td>
+			<td>${l.lo_date.substring(0,10)}</td>
+			<td>${l.lo_hit}</td>
+			</tr>
+		</c:forEach>
+	</c:otherwise>
+	</c:choose>
+  </tbody>
+  <tfoot>
+	<tr>
+		<td colspan="7">
+			<ol class="paging"> 
+				<!-- 이전 버튼 -->
+				<c:choose>
+					<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+						<li class="disable">이전으로</li>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="l" items="${lounge_list}" varStatus="vs">
-							<tr>
-								<td>${paging.totalRecord - ((paging.nowPage-1)*paging.numPerPage + vs.index)}</td>
-								<c:choose>
-									<c:when test="${l.status == 1 }">
-									 <td style="color: gray"> 삭제된 게시물 입니다.</td>
-									</c:when>
-									<c:otherwise>
-									<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
-										<td><a href="/lounge_onelist.do?rep_idx=${l.lounge_idx}&cPage=${paging.nowPage}">${l.lounge_title}</a></td>
-									</c:otherwise>
-								</c:choose>
-								<td>${l.user_id }</td>
-								<td>${l.lounge_date.substring(0,10)}</td>
-							</tr>
-						</c:forEach>
+						<li><a
+							href="/edu_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
 					</c:otherwise>
 				</c:choose>
-  </tbody>
+				<!-- 페이지번호들 -->
+				<c:forEach begin="${paging.beginBlock }"
+					end="${paging.endBlock }" step="1" var="k">
+					<!--  현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리 -->
+					<c:if test="${ k == paging.nowPage}">
+						<li class="now">${k}</li>
+					</c:if>
+					<c:if test="${ k != paging.nowPage}">
+						<li><a href="/edu_list.do??cPage=${k}">${k}</a></li>
+					</c:if>
+				</c:forEach>
+
+				<!-- 이후 버튼 -->
+				<c:choose>
+					<c:when test="${paging.endBlock >= paging.totalPage }">
+						<li class="disable">다음으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/edu_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ol>
+		</td>
+		<td>
+        	<input type="button" value="글쓰기" class="button" onclick=" write_go()">
+        </td>
+	</tr>
+</tfoot>	
 </table>
   </div>
 <%--검색 항목--%>
 		<center>
-            <li id='liSearchOption'>
+            <li id='liSearchOption' style="display: block;">
             	<form action="qnasearch.do?page=1" method="post">
-            	<input type="button" value="글쓰기" style="float: right;" onclick="write_go()">
                 <div>
                     <select name="searchtype" >
                         <option value="qname">제목</option>
@@ -224,7 +306,7 @@ footer{
                         <option value="qid">작성자</option>                        
                     </select>
                     <input type="search" name="keyword">
-                    <input type="submit" value="검색">
+                    <input type="submit" value="검색" class="button">
                 </div>
                 </form>
              </li>

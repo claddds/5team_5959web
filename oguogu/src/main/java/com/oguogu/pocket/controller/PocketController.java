@@ -49,6 +49,7 @@ public class PocketController {
 	@ResponseBody
 	public String getFacilitiesSearch(
 			@RequestParam("searchTerm") String searchTerm) {
+		System.out.println("컨트롤 도착");
 		StringBuffer sb = new StringBuffer();
 		BufferedReader br = null;
 		String key = "FWahqHQzbVw450Hz8s1fOKiWczaXls%2BsNXfGx8A0I9Py%2BUJ4UdvepSlBgGjS47VzL2qb59UWoHwBXmxLlNmCLQ%3D%3D";
@@ -63,6 +64,7 @@ public class PocketController {
 			while ((msg = br.readLine()) != null) { 
 				sb.append(msg); 
 			}
+			
 	
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jObject = (JSONObject)jsonParser.parse(sb.toString());
@@ -81,6 +83,8 @@ public class PocketController {
 				Pocketplace_VO ppvo = new Pocketplace_VO(roadaddr, locationex, facilities,lon, lat);
 				pocketlist.add(ppvo);
 			}
+			
+			System.out.println(pocketlist);
 			
 			JSONArray pocketfilterlist = new JSONArray();
 			

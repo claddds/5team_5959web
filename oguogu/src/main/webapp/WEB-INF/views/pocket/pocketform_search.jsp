@@ -73,15 +73,16 @@ footer {
 <script type="text/javascript">
 	function facilities_search(){
 		var searchTerm = document.getElementById('search_text').value;
-		
+		alert(searchTerm);
 		$("#result").empty();
 		$.ajax({
-			url:"/facilities_search.do"
-			method:"post"
+			url:"/facilities_search.do",
+			method:"post",
 			dataType:"json",
 			data:{searchTerm: searchTerm},	// 검색어를 서버에 전달
 			success:function(data){
 				console.log(data);
+				alert(data);
 			},
 			error: function() {
 				alert("읽기실패");
@@ -109,7 +110,7 @@ footer {
 		<div class="search">
 			<form>
 				<input type="text" id ="search_text" placeholder="상호명을 입력하세요">
-				<button type="button" id="search_button" onclick="facilities_search()">검색</button>
+				<button id="search_button" onclick="facilities_search()">검색</button>
 			</form>
 		</div>
 		

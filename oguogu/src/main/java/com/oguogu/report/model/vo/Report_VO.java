@@ -1,8 +1,20 @@
 package com.oguogu.report.model.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Report_VO {
 	
-	private String rep_idx, rep_title, rep_content, rep_date, rep_fname, rep_ing, status, user_id;
+	private String rep_idx, rep_title, rep_content, rep_date, rep_fname, rep_ing, status, user_id, rep_pw, rep_lock;
+	private MultipartFile file;
+	
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public String getRep_idx() {
 		return rep_idx;
@@ -66,6 +78,22 @@ public class Report_VO {
 
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+
+	public String getRep_pw() {
+		return rep_pw;
+	}
+
+	public void setRep_pw(String rep_pw) {
+		this.rep_pw = rep_pw;
+	}
+
+	public String getRep_lock() {
+		return rep_lock;
+	}
+
+	public void setRep_lock(String rep_lock) {
+		this.rep_lock = rep_lock;
 	}
 	
 	

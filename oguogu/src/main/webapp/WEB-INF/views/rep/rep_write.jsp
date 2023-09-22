@@ -49,7 +49,7 @@
     display: flex; /* Flexbox 사용 */
 }
 
-#sup_write table{
+#rep_write table{
 	width:1200px;
 	margin:0 auto;
 	margin-top:100px;
@@ -57,6 +57,11 @@
 	border-collapse:collapse;
 	font-size:20px;
 }
+
+#rep_write table th{
+	background-color: #FFA629;
+}
+
 .sidebar {
 	width: 15%;
 	background-color: white;
@@ -99,8 +104,31 @@
 		f.submit();
 	}
 	function save_go(f) {
-		
+		if(f.rep_title.value.length <=0){
+			alert("제목을 입력하세요");
+			f.rep_title.focus();
+			return;
+		}
+		if(f.rep_content.value.length <=0){
+			alert("내용을 입력하세요");
+			f.rep_content.focus();
+			return;
+		}
+		var checkbox = document.getElementById("chkbox");
+		// 체크박스 체크 시
+		if(checkbox.checked){
+			// 값 1을 hidden 필드에 설정한다.
+			document.getElementById("lock_flag").value="1";
+		}else{
+			// 체크 해제 시
+			document.getElementById("lock_flag").value="0";
+		}
+		alert("성공");
+		f.action="/rep_insert.do";
+		f.submit();
 	}
+	
+	// 
 </script>
 
 </head>
@@ -114,10 +142,12 @@
 	
 	<!-- 사이드바 구역 -->      
  <div class="sidebar">
-      <ul class="sidebar-menu">
+    <ul class="sidebar-menu">
       <li class="notice"><a href="/sup_list.do">공지사항</a></li>
       <hr>
-      <li class="faq"><a href="/faq_list.do">문의사항</a></li>
+      <li class="faq"><a href="/faq_list.do">자주 묻는 질문</a></li>
+      <hr>
+      <li class="qna" ><a href="/qna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report" style="font-weight: bold;"><a href="/rep_list.do">신고</a></li>
      </ul>
@@ -128,34 +158,51 @@
 		<p id="title">신고하기</p>
 	</div>
 	
-	<div id="sup_write">
-		<form action="qinsert.do" method="post"
-			enctype="multipart/form-data" name="boardform">
+	<div id="rep_write">
+		<form  method="post" enctype="multipart/form-data">
 			<table width="1200px;"  border="1px solid" cellpadding="0"
 				cellspacing="0">
 				<tr height="50">
 					<th>신고 제목</th>
-					<td style="padding: 8px; text-align: left;"><input name="not_title" type="text" style="width: 90%; height: 30px;" /></td>
+					<td style="padding: 8px; text-align: left;">
+						<input name="rep_title" type="text" style="width: 90%; height: 30px; font-size: 20px;" value="[신고] "/>
+					</td>
 				</tr>
 				<tr height="50">
 					<th>신고자 이름</th>
 					<td style="padding: 8px; text-align: left;"><input name="user_id" style="width: 90%; height: 30px;"
-						value="${ sessionScope.loginMember.user_id }" readonly /></td>
+						value="${ sessionScope.user_id }" readonly /></td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><textarea id="not_content" name="not_write"
-							style="width: 90%; height: 200px;"></textarea>
+					<td style="padding: 8px; text-align: left;">
+						<textarea id="rep_content" name="rep_content"style="width: 90%; height: 200px; font-size: 20px;">[신고 대상 아이디] :
+[신고 사유] :</textarea>
 					</td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
-					<td style="padding: 8px; text-align: left;"><input name="not_fname" type="file" style="font-size: 20px;"/></td>
+					<td style="padding: 8px; text-align: left;"><input name="file" type="file" style="font-size: 20px;"/></td>
+				</tr>
+				<tr height="50">
+					<th>비밀번호</th>
+					<td style="padding: 8px; text-align: left;">
+						<input type="password" name="pwd" size="20" style="width: 90%; height: 30px; font-size: 20px;"/>
+					</td>
+				</tr>
+				<tr height="50">
+					<th>비밀글여부</th>
+					<td>
+						<div id="chkbox_div" style="text-align: left;"> 
+							<input type="checkbox" id="chkbox" name="rep_lock" />									
+							<label for="chkbox"></label>
+							비밀글여부
+						</div>
+					</td>
 				</tr>
 				<tr height="50">
 					<td class="button" colspan="2" align="center">
-					<!-- 관리자 아이디만 등록 가능함 -->
-						<input type="button" value="저장" style="font-size: 20px;" onclick="save_go(this.form)">
+						<input type="submit" value="저장" style="font-size: 20px;" onclick="save_go(this.form)">
 				
 						<input type="button" value="목록" style="font-size: 20px;"
 						onclick="list_go(this.form)">

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repcom">
+	
+<!-- 전체 댓글 수 -->	
+<select id="count" resultType="int">
+	select count(*) from report_Comment
+</select>	
+	
+<!-- 댓글 리스트 -->
+<select id="list" resultType="rcvo">
+	select repcom_idx, user_id, repcom_content, repcom_date from report_Comment
+	where rep_idx = #{rep_idx}
+</select>
+
+<!-- 댓글 삽입 -->
+<insert id="insert" parameterType="rcvo">
+	insert into report_Comment(repcom_idx, rep_idx, user_id, repcom_content, repcom_date, status)
+	values(#{repcom_idx},#{rep_idx}, #{user_id}, #{repcom_content}, sysdate(), 0 )
+</insert>
+<!-- 댓글 삭제 >> delete문 말고 update로 할 것 (status 값으로 유지, 삭제 구분) -->
+<update id="delete" parameterType="rcvo">
+	update report_Comment set status = 1 where repcom_idx =#{repcom_idx}
+</update>
+</mapper>
+
+
+
+
+
+
+
+

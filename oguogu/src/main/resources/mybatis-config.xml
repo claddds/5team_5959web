@@ -41,6 +41,7 @@
 		<mapper resource="mappers/faq_mapper.xml"/>
 		<mapper resource="mappers/com_mapper.xml"/>
 		<mapper resource="mappers/repcom_mapper.xml"/>
+		<mapper resource="mappers/mypage-mapper.xml"/>
 	</mappers>
 	
 </configuration>

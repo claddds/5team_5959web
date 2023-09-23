@@ -4,6 +4,7 @@ package com.oguogu.user.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,20 +82,23 @@ public class JoinController {
 
 	// 로그인
 	@RequestMapping("/user_login.do")
-	public String getUserLogin(User_VO userVO, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
+	public String getUserLogin(User_VO userVO, HttpSession session, RedirectAttributes redirectAttributes, HttpServletRequest request, String username) throws Exception {
 		//id로 비밀번호 찾아옴 로그인에 활용
 		User_VO uvo = join_Service.getUserOneList(userVO.getUser_id());
-		
+		 
 		if (!passwordEncoder.matches(userVO.getPw(), uvo.getPw())) {
 			session.setAttribute("loginChk", "fail");
 			// 로그인실패한걸 세션에 줄 필요 없겟지
 			return "redirect:/logindisplay.do";
 		} else {
+			session = request.getSession();
+			session.setAttribute("username", username);
 			
 			session.setAttribute("loginChk", "ok");
 			session.setAttribute("user_id", uvo.getUser_id());
 			session.setAttribute("email", uvo.getEmail());
 			session.setAttribute("nickname", uvo.getNickname());
+			session.setAttribute("type", uvo.getType());
 			System.out.println(uvo.getUser_id());
 			System.out.println(uvo.getEmail());
 			System.out.println(uvo.getNickname());

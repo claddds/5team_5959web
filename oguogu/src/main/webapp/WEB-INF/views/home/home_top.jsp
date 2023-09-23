@@ -91,6 +91,7 @@ ul.midmenu > li ul.sub{
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
+console.log("세션정보 " + ${sessionScope.type == 0});
     var loginChk = "";
     $(document).ready(function(){
     	loginChk = "${loginChk}";
@@ -116,12 +117,26 @@ ul.midmenu > li ul.sub{
 	<!-- 최상단 NOTICE,LOGIN,JOIN US -->
 	<div>
 	  <ul class="topmenu">
-	    <li><a href="" style="color:tomato; display:none;" class="header-ALink">관리자 페이지</a></li><!-- id가 admin일 때 display:"" JS 처리  -->
-	    <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
+	   
 	    <c:choose>
-	    	<c:when test="${loginChk eq 'ok'}">
-	    		<li><a href="/mypagedisplay.do" style="color:#FFA629;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
-			    <li><a href="/user_logout.do" style="color:#FFA629;" class="header-ALink" id="logout_go">LOGOUT</a></li>
+	  <c:when test="${loginChk eq 'ok'}">
+	  <c:if test="${sessionScope.type == 0}">
+        <li><a href="/adminuserdisplay.do" style="color:#FFA629; " class="header-ALink">회원 관리 </a></li>
+	    <li><a href="/joindisplay.do" style="color:#FFA629; " class="header-ALink">고객 게시판</a></li>
+	    <li><a href="/admin_edulist.do" style="color:#FFA629; " class="header-ALink">교육정보</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+	    <li><a href="/ad_sup_list.do" style="color:#FFA629; " class="header-ALink">관리 게시판</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+	    <li><a href="/ad_food_list.do" style="color:#FFA629;" class="header-ALink">상품 관리</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+	    </c:if>
+        </c:when>    
+           </c:choose>
+		
+	    <c:choose>
+	    	<c:when test="${loginChk eq 'ok'  }">
+	    	<c:if test="${sessionScope.type != 0}">
+	    	<li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
+	    		<li><a href="/mypagedisplay.do" style="color:#FFA629;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->    
+			     </c:if>
+			     <li><a href="/user_logout.do" style="color:#FFA629;" class="header-ALink" id="logout_go">LOGOUT</a></li>
 	    	</c:when>
 	    	<c:otherwise>
 			     <li><a href="/joindisplay.do" style="color:#FFA629;" class="header-ALink">JOIN US</a></li>

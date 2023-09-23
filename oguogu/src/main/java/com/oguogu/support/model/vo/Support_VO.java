@@ -3,6 +3,7 @@ package com.oguogu.support.model.vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Support_VO {
+<<<<<<< HEAD
 	private String not_idx, not_title, not_content, not_date, not_fname, not_ing,old_f_name, admin_nickname, status;
 	private MultipartFile file;
 
@@ -13,6 +14,17 @@ public class Support_VO {
 
 	public void setOld_f_name(String old_f_name) {
 		this.old_f_name = old_f_name;
+=======
+	private String not_idx,not_title, not_content, not_date, not_fname, noting, admin_nickname, status;
+	private MultipartFile file;
+
+	public String getNot_title() {
+		return not_title;
+	}
+
+	public void setNot_title(String not_title) {
+		this.not_title = not_title;
+>>>>>>> c3c3d158bebab3bbd91be05d6d75e0ec1ccf676f
 	}
 
 	public MultipartFile getFile() {
@@ -31,6 +43,7 @@ public class Support_VO {
 		this.not_idx = not_idx;
 	}
 
+<<<<<<< HEAD
 	public String getNot_title() {
 		return not_title;
 	}
@@ -39,6 +52,8 @@ public class Support_VO {
 		this.not_title = not_title;
 	}
 
+=======
+>>>>>>> c3c3d158bebab3bbd91be05d6d75e0ec1ccf676f
 	public String getNot_content() {
 		return not_content;
 	}
@@ -63,12 +78,21 @@ public class Support_VO {
 		this.not_fname = not_fname;
 	}
 
+<<<<<<< HEAD
 	public String getNot_ing() {
 		return not_ing;
 	}
 
 	public void setNot_ing(String not_ing) {
 		this.not_ing = not_ing;
+=======
+	public String getNoting() {
+		return noting;
+	}
+
+	public void setNoting(String noting) {
+		this.noting = noting;
+>>>>>>> c3c3d158bebab3bbd91be05d6d75e0ec1ccf676f
 	}
 
 	public String getAdmin_nickname() {
@@ -86,7 +110,11 @@ public class Support_VO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+<<<<<<< HEAD
 
 	
 
+=======
+	
+>>>>>>> c3c3d158bebab3bbd91be05d6d75e0ec1ccf676f
 }

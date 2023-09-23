@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lounge">
+	
+	<!-- 전체 게시글 수 -->
+	<select id="count" resultType="int">
+		select count(*) from lounge
+	</select>
+	
+	<!-- 게시글 목록 -->
+	<!-- 페이징 처리를 위한 리스트 -->
+	<select id="list" parameterType="Map" resultType="lvo">
+		select * from lounge order by lo_idx desc limit #{limit} offset #{offset}
+	</select>
+	
+	<!-- 일상공유 목록만 보기-->
+	<select id="Alist" parameterType="Map" resultType="lvo">
+		select * from lounge where lo_type = '일상 공유' order by lo_idx desc
+	</select>
+	
+	<!-- 추천탭 목록만 보기-->
+	<select id="Blist" parameterType="Map" resultType="lvo">
+		select * from lounge where lo_type = '추천탭' order by lo_idx desc
+	</select>
+	
+	<!-- 질문 목록만 보기-->
+	<select id="Clist" parameterType="Map" resultType="lvo">
+		select * from lounge where lo_type = '질문' order by lo_idx desc
+	</select>
+	
+	
+	<!-- 게시글 삽입 -->
+	<insert id="insert" parameterType="lvo">
+		insert into lounge(lo_type, lo_petkind, user_id, lo_title, lo_content, lo_fname, lo_date, lo_hit, status)
+		values(#{lo_type}, #{lo_petkind},#{user_id}, #{lo_title}, #{lo_content}, #{lo_fname}, sysdate(),0,0)
+	</insert>
+	
+	<!-- 게시글 조회수 -->
+	<update id="hitup" parameterType="String">
+		update lounge set lo_hit = lo_hit +1 where lo_idx = #{lo_idx}
+	</update>
+	
+	<!-- 게시글 상세보기 -->
+	<select id="onelist" parameterType="String" resultType="lvo">
+		select * from lounge where lo_idx = #{lo_idx}
+	</select>
+	
+	<!-- 게시글 수정하기 -->
+	<update id="update" parameterType="lvo">
+		update lounge set lo_type=#{lo_type}, lo_petkind=#{lo_petkind}, lo_title=#{lo_title}, lo_content=#{lo_content},
+					lo_fname=#{lo_fname}, lo_date=sysdate()
+		where lo_idx=#{lo_idx}
+	</update>
+	<!-- 게시글 삭제 -->
+	<update id="delete" parameterType="String">
+		delete from lounge where lo_idx = #{lo_idx} 
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+

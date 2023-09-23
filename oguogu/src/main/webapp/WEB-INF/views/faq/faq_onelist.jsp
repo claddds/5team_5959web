@@ -55,6 +55,7 @@
 	text-align:center;
 	border:1px solid black;
 	padding:2px 4px;
+	background-color: #FFA629;
 }
 	
 #onelist table td {
@@ -111,11 +112,10 @@ input{
 
 
 <script type="text/javascript">
-	function update_go() {
-		location.href = "/faq_updateForm.do";
-	}
-	function delete_go() {
-		location.href = "/faq_deleteForm.do";
+	function list_go(f) {
+		//목록으로 이동하는 함수
+		f.action = "/faq_list.do";
+		f.submit();
 	}
 </script>
 </head>
@@ -132,14 +132,16 @@ input{
     <ul class="sidebar-menu">
       <li class="notice"><a href="/sup_list.do">공지사항</a></li>
       <hr>
-      <li class="faq" style="font-weight: bold;"><a href="/faq_list.do">문의사항</a></li>
+      <li class="faq" style="font-weight: bold;"><a href="/faq_list.do">자주 묻는 질문</a></li>
+      <hr>
+      <li class="qna"><a href="/qna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report"><a href="/rep_list.do">신고</a></li>
      </ul>
   </div>      
   <!-- 상세보기 구역 -->
 	<div>
-		<p id="title">문의사항 상세보기</p>
+		<p id="title">자주 묻는 질문</p>
 	</div>
 	<div id="onelist">
 	<form action="qinsert.do" method="post"
@@ -148,53 +150,48 @@ input{
 				cellspacing="0">
 				<tr height="50">
 					<th>제목</th>
-					<td style="padding: 8px; text-align: left;">${bv.one_title}</td>
+					<td style="padding: 8px; text-align: left;">${faqvo.faq_title}</td>
 				</tr>
 				<!-- 강아지/고양이/소동물 -->
 				<tr height="50">
 					<th>유형</th>
-					<td style="padding: 8px; text-align: left;">${bv.one_type}</td>
+					<td style="padding: 8px; text-align: left;">${faqvo.faq_type}</td>
 				</tr>
 				<tr height="50">
 					<th>진행상황</th>
-					<td style="padding: 8px; text-align: left;">${bv.one_ing}</td>
+					<td style="padding: 8px; text-align: left;">${faqvo.faq_ing}</td>
 				</tr>
 				<tr height="50">
 					<th>이름</th>
-					<td style="padding: 8px; text-align: left;">${bv.user_id}</td>
+					<td style="padding: 8px; text-align: left;">${faqvo.admin_nickname}</td>
 				</tr>
 				<tr height="50">
 					<th>작성 날짜</th>
-					<td style="padding: 8px; text-align: left;">${bv.one_date}</td>
+					<td style="padding: 8px; text-align: left;">${faqvo.faq_date}</td>
 				</tr>
 				<tr height="50">
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><pre>${bv.one_content}</pre></td>
+					<td style="padding: 8px; text-align: left;"><pre>${faqvo.faq_content}</pre></td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
 					<c:choose>
-						<c:when test="${empty bv.one_fname}">
+						<c:when test="${empty faqvo.faq_fname}">
 							<td style="padding: 8px; text-align: left;"><b>첨부 파일 없음</b></td>
 						</c:when>
 						<c:otherwise>
-							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?f_name=${bv.one_fname}">
-							<img src="resources/images/${bv.one_fname}" style="80px;"></a>
+							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?f_name=${faqvo.faq_fname}">
+							<img src="resources/images/${faqvo.faq_fname}" style="80px;"></a>
 							</td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
 				<tr height="30">
 					<td colspan="2">
-						<input type="hidden" value="${bv.one_idx}" name="idx">
+						<input type="hidden" value="${faqvo.faq_idx}" name="idx">
 						<input type="hidden" value="${cPage}" name="cPage">
 						
 						<div class="btn">
-						<!-- 자기가 쓴 글만 수정, 삭제 가능 -->
-						<c:if test="${sessionScope.user_id == bv.user_id}">
-							<input type="button" value="수정" onclick="update_go()">
-							<input type="button" value="삭제" onclick="delete_go()">
-						</c:if>	
 							<input type="button" value="목록" onclick="list_go(this.form)">
 						</div>
 					</td>

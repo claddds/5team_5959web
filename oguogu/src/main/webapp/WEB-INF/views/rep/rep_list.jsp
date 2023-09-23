@@ -28,7 +28,6 @@
 }
 #repWrapper{
         width: 1130px;
-        height: 1200px;
         margin: auto;
         font-family: 'Noto Sans KR', sans-serif;
     }
@@ -39,13 +38,14 @@
         vertical-align:middle;
         line-height:30px;
 }
-    #liSearchOption {clear:both;}
-    #liSearchOption > div {
-        margin:0 auto; 
-        margin-top: 30px; 
-        width:auto; 
-        height:100px;
-
+#liSearchOption {clear:both;}
+#liSearchOption > div {
+	margin:0 auto; 
+	margin-top: 30px; 
+	width:auto; 
+	height:100px;
+	display:flex;
+	justify-content:center;
 }
 .center {
         text-align : center;
@@ -78,12 +78,6 @@
 	margin-top: 100px;
 	
 }
-<%--
-.pagination{
-	justify-content: center;
-	margin:auto;
-}
---%>
 footer{
 		width:1920px;
 		display:flex;
@@ -91,6 +85,47 @@ footer{
 		margin-top:20px;
 		margin-bottom: 20px;
 	}
+	
+/* paging */
+.paging{
+	text-align: center;
+}
+
+table tfoot ol.paging {
+	list-style: none;
+	display:flex;
+	justify-content:center;
+}
+
+table tfoot ol.paging li {
+	float: left;
+	margin-right: 8px;
+	text-align: center;
+}
+
+table tfoot ol.paging li a {
+	display: block;
+	padding: 3px 7px;
+	border: 1px solid #FFA629;
+	color: #2f313e;
+	font-weight: bold;
+	
+}
+
+table tfoot ol.paging li a:hover {
+	background: #FFA629;
+	color: white;
+	font-weight: bold;
+}
+.button{
+	background-color: #FFA629;
+	color: #f8f8ff;
+	border: none;
+	width: 80px;
+    height: 40px;
+    font-size: 15pt;
+	border-radius: 10px;
+}
 </style>
 
 <script type="text/javascript"
@@ -101,8 +136,7 @@ footer{
 		//글쓰기로 이동하는 함수
 		location.href = "/rep_insertForm.do";
 		f.submit();
-}
-    
+}  
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,7 +154,9 @@ footer{
    <ul class="sidebar-menu">
       <li class="notice"><a href="/sup_list.do">공지사항</a></li>
       <hr>
-      <li class="faq"><a href="/faq_list.do">문의사항</a></li>
+      <li class="faq"><a href="/faq_list.do">자주 묻는 질문</a></li>
+      <hr>
+      <li class="qna" ><a href="/qna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report" style="font-weight: bold;"><a href="/rep_list.do">신고</a></li>
      </ul>
@@ -140,76 +176,105 @@ footer{
     </tr>
   </thead>
   <tbody>
-   <c:choose>
-					<c:when test="${empty rep_list}">
-						<tr>
-							<td colspan="5"><h2 style="text-align: center;">자료가 존재하지 않습니다.</h2></td>
-						</tr>
+  <c:choose>
+	<c:when test="${empty rep_list}">
+		<tr>
+			<td colspan="4"><h2 style="text-align: center;">자료가 존재하지 않습니다.</h2></td>
+		</tr>
+	</c:when>
+	<c:otherwise>
+		<c:forEach var="r" items="${rep_list}" varStatus="vs">
+			<tr>
+			<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
+			<td>${r.rep_idx}</td>
+			<td>
+	
+				<c:if test="${r.rep_lock == '1' }">
+					<c:choose>
+						
+						<c:when test="${r.User_VO.user_id || r.User_VO.type == '0'}">
+							<c:out value="${r.rep_title}"></c:out>
+						</c:when>
+						<c:otherwise>비밀글입니다.</c:otherwise>
+					</c:choose>
+				</c:if>
+				<%--
+				<c:if test="${r.rep_lock == '0' }">
+					<c:out value="${r.rep_title }"></c:out>
+				</c:if>
+				 --%>
+				<a href="/rep_onelist.do?rep_idx=${r.rep_idx}">${r.rep_title}</a>
+			</td>
+			<td>${r.user_id }</td>
+			<td>${r.rep_date.substring(0,10)}</td>
+			</tr>
+		</c:forEach>
+	</c:otherwise>
+	</c:choose>
+</tbody>
+<tfoot>
+	<tr>
+		<td colspan="4">
+			<ol class="paging"> 
+				<!-- 이전 버튼 -->
+				<c:choose>
+					<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+						<li class="disable">이전으로</li>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="r" items="${rep_list}" varStatus="vs">
-							<tr>
-								<td>${paging.totalRecord - ((paging.nowPage-1)*paging.numPerPage + vs.index)}</td>
-								<c:choose>
-									<c:when test="${r.status == 1 }">
-									 <td style="color: gray"> 삭제된 게시물 입니다.</td>
-									</c:when>
-									<c:otherwise>
-									<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
-										<td><a href="/rep_onelist.do?rep_idx=${r.rep_idx}&cPage=${paging.nowPage}">${r.rep_title}</a></td>
-									</c:otherwise>
-								</c:choose>
-								<td>${r.user_id }</td>
-								<td>${r.rep_date.substring(0,10)}</td>
-							</tr>
-						</c:forEach>
+						<li><a
+							href="/rep_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
 					</c:otherwise>
 				</c:choose>
-  </tbody>
-</table>
-<!-- 페이지네이션 -->
-<!-- 
-<div>
-	<nav aria-label="Page navigation">
-		<ul class="pagination" style=" justify-content: center;">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
-	</div>
+				<!-- 페이지번호들 -->
+				<c:forEach begin="${paging.beginBlock }"
+					end="${paging.endBlock }" step="1" var="k">
+					<!--  현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리 -->
+					<c:if test="${ k == paging.nowPage}">
+						<li class="now">${k}</li>
+					</c:if>
+					<c:if test="${ k != paging.nowPage}">
+						<li><a href="/rep_list.do??cPage=${k}">${k}</a></li>
+					</c:if>
+				</c:forEach>
 
- -->
- 
-<%--검색 항목--%>
-	<div>
+				<!-- 이후 버튼 -->
+				<c:choose>
+					<c:when test="${paging.endBlock >= paging.totalPage }">
+						<li class="disable">다음으로</li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="/rep_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ol>
+		</td>
+		<td>
+        	<input type="button" value="글쓰기" class="button" onclick=" write_go()">
+       </td>
+	</tr>
+	 
+</tfoot>
+</table>
+</div>
+		<!-- 검색 창 구역  -->
 		<center>
-            <li id='liSearchOption'>
+            <li id='liSearchOption' style="display: block;">
             	<form action="qnasearch.do?page=1" method="post">
-                 <input type="button" value="글쓰기" style="float: right;" onclick="write_go()">
                 <div>
                     <select name="searchtype" >
-                        <option value="qname">제목</option>
-                        <option value="qcontent">내용</option>
-                        <option value="qid">작성자</option>                        
+                        <option value="lo_list">제목</option>
+                        <option value="lo_content">내용</option>
+                        <option value="user_id">작성자</option>                        
                     </select>
                     <input type="search" name="keyword">
-                    <input type="submit" value="검색">
+                    <input type="submit" value="검색" class="button">
                 </div>
                 </form>
-                
              </li>
    </div>
-   <br>
-</center>
-	</div>
-</div>
+	</center>
 <footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>

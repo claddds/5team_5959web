@@ -56,6 +56,7 @@
 	text-align:center;
 	border:1px solid black;
 	padding:2px 4px;
+	background-color: #FFA629;
 }
 	
 #onelist table td {
@@ -102,26 +103,17 @@ input{
     padding-left: 215px;          
     box-sizing: border-box;
 }	
-    
-
-
 </style>
 <script type="text/javascript"
 	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js">
 	</script>
 	
 <script type="text/javascript">
-function delete_go() {
-	//삭제
-	location.href = "";
-	submit();
-}
-function list_go() {
+function list_go(f) {
 	//목록으로 이동하는 함수
-	location.href = "/sup_list.do";
-	submit();
+	f.action = "/sup_list.do";
+	f.submit();
 }
-
 </script>	
 
 <script type="text/javascript">
@@ -142,10 +134,12 @@ function list_go() {
 	
 	<!-- 사이드바 구역 -->      
  <div class="sidebar">
-   <ul class="sidebar-menu">
+     <ul class="sidebar-menu">
       <li class="notice" style="font-weight: bold;"><a href="/sup_list.do">공지사항</a></li>
       <hr>
-      <li class="faq"><a href="/faq_list.do">문의사항</a></li>
+      <li class="faq"><a href="/faq_list.do">자주 묻는 질문</a></li>
+      <hr>
+      <li class="qna" ><a href="/qna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report"><a href="/rep_list.do">신고</a></li>
      </ul>
@@ -161,43 +155,39 @@ function list_go() {
 				cellspacing="0">
 				<tr height="50">
 					<th>제목</th>
-					<td style="padding: 8px; text-align: left;">${bv.not_title}</td>
+					<td style="padding: 8px; text-align: left;">${svo.not_title}</td>
 				</tr>
 				<tr height="50">
-					<th>이름</th>
-					<td style="padding: 8px; text-align: left;">${bv.user_id}</td>
+					<th>작성자</th>
+					<td style="padding: 8px; text-align: left;">${svo.admin_nickname}</td>
 				</tr>
 				<tr height="50">
 					<th>작성 날짜</th>
-					<td style="padding: 8px; text-align: left;">${bv.not_date}</td>
+					<td style="padding: 8px; text-align: left;">${svo.not_date}</td>
 				</tr>
 				<tr height="50">
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><pre>${bv.not_content}</pre></td>
+					<td style="padding: 8px; text-align: left;"><pre>${svo.not_content}</pre></td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
 					<c:choose>
-						<c:when test="${empty bv.not_fname}">
+						<c:when test="${empty svo.not_fname}">
 							<td style="padding: 8px; text-align: left;"><b>첨부 파일 없음</b></td>
 						</c:when>
 						<c:otherwise>
-							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?f_name=${bv.not_fname}">
-							<img src="resources/images/${bv.not_fname}" style="80px;"></a>
+							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?f_name=${svo.not_fname}">
+							<img src="resources/images/${svo.not_fname}" style="80px;"></a>
 							</td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
 				<tr height="30">
 					<td colspan="2" style="padding: 8px; text-align: left;">
-						<input type="hidden" value="${bv.idx}" name="idx">
+						<input type="hidden" value="${svo.not_idx}" name="not_idx">
 						<input type="hidden" value="${cPage}" name="cPage">
 						
 						<div class="btn">
-						<!-- 관리자만 삭제 가능함 -->
-						<c:if test="${sessionScope.admin_nickname == bv.admin_nickname}">
-							<input type="button" value="삭제" onclick="delete_go(this.form)">
-						</c:if>	
 							<input type="button" value="목록" onclick="list_go(this.form)">
 						</div>
 					</td>

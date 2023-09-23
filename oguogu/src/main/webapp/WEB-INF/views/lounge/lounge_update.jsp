@@ -96,6 +96,9 @@
 		f.action="/lounge_list.do";
 		f.submit();
 	}
+	function update_go(f){
+		f.action="/lounge_update.do"
+	}
 </script>
 
 </head>
@@ -112,27 +115,11 @@
     <ul class="sidebar-menu">
       <li class="all"><a href="/lounge_list.do">전체글보기</a></li>
       <hr>
-      <li class="share"><a href="/lounge/lounge_share_list.do">일상 공유</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="share"><a href="/lounge_share_list.do">일상 공유</a></li>
       <hr>
-      <li class="recomm"><a href="/lounge/lounge_recomm_list.do">추천탭</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
+      <li class="recomm"><a href="/lounge_recomm_list.do">추천탭</a></li>
       <hr>
-      <li class="question"><a href="/lounge/lounge_qna_list.do">질문</a></li>
-      <ul>
-      	<li><a href="#">└ 강아지</a></li>
-      	<li><a href="#">└ 고양이</a></li>
-      	<li><a href="#">└ 기타동물</a></li>
-      </ul>
-      <!-- 기타 사이드바 메뉴 항목 추가 -->
+      <li class="question"><a href="/lounge_qna_list.do">질문</a></li>
     </ul>
   </div>       
   	<!-- 수정 구역 -->
@@ -175,7 +162,7 @@
 				</tr>
 				<tr height="50">
 					<th>제목</th>
-					<td style="padding: 8px; text-align: left;"><input name="qna_title" type="text" style="width: 90%; height: 30px;"" /></td>
+					<td style="padding: 8px; text-align: left;"><input name="lo_title" type="text" style="width: 90%; height: 30px;"" /></td>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -186,23 +173,21 @@
 				<tr height="50">
 					<th>첨부파일</th>
 					<c:choose>
-						<c:when test="${empty bv.f_name}">
+						<c:when test="${empty lvo.f_name}">
 							<td style="padding: 8px; text-align: left;"><input type="file" name="file" style="font-size: 20px;"></td>
-						         <input type="hidden" name="old_f_name" value="">	
+						         <input type="hidden" name="lo_old_fname" value="">	
 						</c:when>
 						<c:otherwise>
-							<td><input type="file" name="file"><b>${bv.f_name}</b></td>
-						         <input type="hidden" name="old_f_name" value="${bv.f_name}">	
+							<td><input type="file" name="file"><b>${lvo.f_name}</b></td>
+						         <input type="hidden" name="lo_old_fname" value="${lvo.f_name}">	
 						</c:otherwise>
 					</c:choose>
 				</tr>
 				<tr height="50">
-					<th>비밀번호</th>
-					<td style="padding: 8px; text-align: left;"><input type="password" name="pwd" size="20" style="width: 90%; height: 30px;"/></td>
-				</tr>
-				<tr height="50">
 					<td class="button"colspan="2" align="center">
-						<input type="submit" value="수정" style="font-size: 20px;">
+						<input type="hidden" name="lo_idx" value="${lvo.lo_idx }">
+						<input type="submit" value="수정" style="font-size: 20px;"
+						onclick="update_go(this.form)">
 						<input type="button" value="목록" style="font-size: 20px;"
 						onclick="list_go(this.form)">
 					</td>						

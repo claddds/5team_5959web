@@ -406,7 +406,7 @@
 		var map = new kakao.maps.Map(mapContainer, mapOption);
 
 		// 장소 검색 객체를 생성합니다
-		var ps = new kakao.maps.services.Places(map);
+		var ps = new kakao.maps.services.Places();
 
 		// 지도에 idle 이벤트를 등록합니다
 		kakao.maps.event.addListener(map, 'idle', searchPlaces);

@@ -51,7 +51,7 @@ public class KakaoController {
 			StringBuffer sb = new StringBuffer();
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=64e389d2d688211ab0016951d3cc766d");
-			sb.append("&redirect_uri=http://localhost:8090/kakaologin.do");
+			sb.append("&redirect_uri=http://localhost:8080/kakaologin.do");
 			sb.append("&code=" + code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -143,7 +143,8 @@ public class KakaoController {
 					User_VO userVO2 = new User_VO();
 					userVO2 = join_Service.getUserOneList(userVO.getUser_id());
 					
-					//db에 가서 찾았는데 없으면 카카오에서 받은 정보(userVO)로 회원가입하고 
+					//db에 가서 찾았는데 없으면 카카오에서 받은 정보(userVO)로 회원가입하고
+
 					if (userVO2 == null) {
 						int result1 = join_Service.getUserAdd(userVO);
 						if (result1 > 0) {
@@ -159,6 +160,14 @@ public class KakaoController {
 						}
 					// 있으면 새로운 객체로 로그인 한다.
 					} else {
+						
+						if(userVO2.getStatus().equals("1")) {
+							session.setAttribute("loginChk", "nonono");
+							// 로그인실패한걸 세션에 줄 필요 없겟지
+							mv.setViewName("redirect:/");
+							return mv;
+						}
+						
 						session.setAttribute("loginChk", "ok");
 						session.setAttribute("user_id", userVO2.getUser_id());
 						session.setAttribute("email", userVO2.getEmail());
@@ -167,6 +176,8 @@ public class KakaoController {
 						System.out.println(userVO2.getEmail());
 						System.out.println(userVO2.getNickname());
 					}
+					
+					
 				}
 			}
 			mv.setViewName("redirect:/");

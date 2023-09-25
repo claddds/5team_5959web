@@ -1,8 +1,20 @@
-package com.oguogu.pet.vo;
+package com.oguogu.pet.model.vo;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class Pet_VO {
+	private String pet_idx, pet_name, pet_fname, pet_type, pet_kind, pet_gender,pet_weight, pet_neute, pet_birth, status, user_id;
+	
+	private MultipartFile file;
+	
+	
+	public String getPet_weight() {
+		return pet_weight;
+	}
 
-	private String pet_idx, pet_name, pet_fname, pet_type, pet_kind, pet_gender, pet_neute, pet_birth, status, user_id;
+	public void setPet_weight(String pet_weight) {
+		this.pet_weight = pet_weight;
+	}
 
 	public String getPet_idx() {
 		return pet_idx;
@@ -84,6 +96,13 @@ public class Pet_VO {
 		this.user_id = user_id;
 	}
 
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	
 	
 }

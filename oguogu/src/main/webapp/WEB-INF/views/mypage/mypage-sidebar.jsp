@@ -82,8 +82,8 @@
 		<div id="mypage">마이 페이지</div>
 		<ul class="li-group">
 		  <li class="sidebar-list-title">프로필</li>
-		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">내 프로필</a></li>
-		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">반려 동물 프로필</a></li><hr>
+		  <li class="sidebar-list-item"><a href="/mypagedisplay.do" class="sidebar-list-item-a">내 프로필</a></li>
+		  <li class="sidebar-list-item"><a href="/mypagePetProfile.do" class="sidebar-list-item-a">반려 동물 프로필</a></li><hr>
 		  <li class="sidebar-list-title">즐겨찾기</li>
 		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">교육</a></li>
 		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">먹거리</a></li><hr>

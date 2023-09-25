@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pet">
+	
+	<select id="getPetProfile" parameterType="String" resultType="int">
+		select count(*) from pet where user_id = #{user_id}
+	</select>
+	
+	<insert id="getPetInsert" parameterType="pvo">
+		insert into pet(pet_name,pet_fname,pet_type,pet_kind,pet_gender,pet_weight,pet_neute,pet_birth,user_id,status)
+		values(#{pet_name},#{pet_fname},#{pet_type},#{pet_kind},#{pet_gender},#{pet_weight},#{pet_neute},#{pet_birth},#{user_id},0)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+

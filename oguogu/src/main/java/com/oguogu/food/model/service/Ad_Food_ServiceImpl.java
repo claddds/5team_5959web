@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oguogu.faq.model.vo.FAQ_VO;
 import com.oguogu.food.model.dao.Ad_Food_DAO;
 import com.oguogu.food.model.vo.Food_VO;
 
@@ -47,9 +48,15 @@ public class Ad_Food_ServiceImpl implements Ad_Food_Service{
 	}
 	
 	
-
+	@Override
+	public int getSearchTotalCount(String searchtype, String keyword) {
+		return ad_Food_DAO.getSearchTotalCount(searchtype,keyword);
+	}
 
 	
-	
+	@Override
+	public List<Food_VO> getSearch(String searchtype, String keyword, int offset, int limit) {
+	        return ad_Food_DAO.getSearch(searchtype, keyword, limit, offset);
+	    }
 	
 }

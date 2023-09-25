@@ -280,7 +280,7 @@ function update_ok(f) {
 				</div> <!-- 게시글 -->
 				<ul class="submenu">
 					<li><a href="/ad_food_onelist.do">공지사항</a></li>
-					<li><a href="/admin_faq.do">FAQ</a></li>
+					<li><a href="/ad_faq_list.do">FAQ</a></li>
 				</ul>
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>
@@ -461,6 +461,7 @@ function update_ok(f) {
 				$("#content").summernote("editor.insertImage",path+"/"+fname);
 			});
 		}
+    	
     	document.addEventListener("DOMContentLoaded", function() {
       	  var fdTypeSelect = document.getElementById("fd_type");
       	  var fdAgeGroupSelect = document.getElementById("fd_age_group");

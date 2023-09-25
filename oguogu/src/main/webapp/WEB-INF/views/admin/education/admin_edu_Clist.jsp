@@ -200,13 +200,28 @@ console.log("현재 페이지: " + ${paging.nowPage});
 	function write_go() {
 		location.href = "/edu_write.do";
 	}
-function submit() {
-	if(document.search.keyword.value==""){
-		alert('검색어를 입력하세요');
-		document.search.ketword.focus();
-		return false;
+	function search() {
+	    var keyword = document.search.keyword.value;
+	    if (keyword === "") {
+	        alert('검색어를 입력하세요');
+	        document.search.keyword.focus();
+	    } else {
+	        // 검색어를 포함한 URL 생성
+	        var searchUrl = "/edu_Csearch.do?keyword=" + encodeURIComponent(keyword);
+	        // 생성한 URL로 이동
+	        location.href = searchUrl;
+	    }
 	}
-}
+	
+	function validateSearch() {
+	    var keyword = document.search.keyword.value;
+	    if (keyword === "") {
+	        alert('검색어를 입력하세요');
+	        document.search.keyword.focus();
+	        return false; // 검색 중지
+	    }
+	    return true; // 검색 진행
+	}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -238,7 +253,7 @@ function submit() {
 				</div> <!-- 게시글 -->
 				<ul class="submenu">
 					<li><a href="/ad_food_onelist.do">공지사항</a></li>
-					<li><a href="/admin_faq.do">FAQ</a></li>
+					<li><a href="/ad_faq_list.do">FAQ</a></li>
 				</ul>
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>
@@ -374,7 +389,7 @@ function submit() {
 			</ol>
 		</td>
 		<td>
-						<input type="button" class="button" value="글쓰기" onclick=" write_go()">
+						<input type="button" class="button" value="교육등록" onclick=" write_go()">
 					</td>
 	</tr>
 	
@@ -385,11 +400,11 @@ function submit() {
 	<div>
 		<center>
             <li id='liSearchOption'  style="display: block; ">
-            	<form action="/edu_search.do?page=1" method="post">
+            	<form name="search" action="/edu_Csearch.do" method="get" onsubmit="return validateSearch()">
                 <div>
-                    <select name="searchtype" >
+                    <select name="searchtype"  >
                         <option value="edu_title">제목</option>
-                        <option value="edu_content">내용</option>
+                         <option value="edu_date">날짜</option>
                         <option value="admin_nikname">작성자</option>                        
                     </select>
                     <input type="search" name="keyword">
@@ -398,6 +413,7 @@ function submit() {
                 </form>
                 
              </li>
+             
    </div>
    <br>
 </center>

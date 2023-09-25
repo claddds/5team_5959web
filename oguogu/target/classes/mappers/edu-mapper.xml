@@ -7,6 +7,16 @@
 	<select id="count" resultType="int">
 		select count(*) from Education WHERE status = 0
 	</select>
+	
+	<select id="searchcount" parameterType="Map" resultType="int">
+	 SELECT COUNT(*) FROM Education
+    WHERE status = 0
+    <if test="searchtype != null and keyword != null and !keyword.isEmpty()">
+        AND (edu_title LIKE CONCAT('%', #{keyword}, '%') OR edu_content LIKE CONCAT('%', #{keyword}, '%'))
+    </if>
+	</select>
+	
+
 	<!-- 게시글 목록 보기-->
 <select id="list" parameterType="Map" resultType="evo">
 SELECT * FROM Education WHERE status = 0 order by edu_idx desc limit #{limit} offset #{offset}
@@ -59,6 +69,105 @@ SELECT * FROM Education WHERE status = 0 order by edu_idx desc limit #{limit} of
 		update Education set status = 1 where edu_idx=#{edu_idx}
 	</update>
 	
+	<select id="search" parameterType="Map" resultType="evo">
+    <choose>
+        <when test="searchtype != null and keyword != null and !keyword.isEmpty()">
+            <!-- 검색 조건이 존재할 때 -->
+             SELECT * FROM Education
+            WHERE status = 0
+            <if test="searchtype == 'edu_title'">
+                AND edu_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'edu_date'">
+                AND edu_date LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'admin_nikname'">
+                AND admin_nikname LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            ORDER BY edu_idx DESC
+            LIMIT #{limit} OFFSET #{offset}
+        </when>
+        <otherwise>
+            <!-- 검색 조건이 없을 때 -->
+            <!-- 아무 작업도 수행하지 않음 (빈 쿼리) -->
+            SELECT 1 WHERE 1=0
+        </otherwise>
+    </choose>
+</select>
+
+	<select id="Asearch" parameterType="Map" resultType="evo">
+    <choose>
+        <when test="searchtype != null and keyword != null and !keyword.isEmpty()">
+            <!-- 검색 조건이 존재할 때 -->
+            SELECT * FROM Education
+            WHERE status = 0
+            AND edu_kind = '필수 정보'
+            AND (edu_title LIKE CONCAT('%', #{keyword}, '%') OR edu_content LIKE CONCAT('%', #{keyword}, '%'))
+            ORDER BY edu_idx DESC
+            LIMIT #{limit} OFFSET #{offset}
+        </when>
+        <otherwise>
+            <!-- 검색 조건이 없을 때 -->
+            <!-- 아무 작업도 수행하지 않음 (빈 쿼리) -->
+            SELECT 1 WHERE 1=0
+        </otherwise>
+    </choose>
+</select>
+
+	<select id="Bsearch" parameterType="Map" resultType="evo">
+    <choose>
+        <when test="searchtype != null and keyword != null and !keyword.isEmpty()">
+            <!-- 검색 조건이 존재할 때 -->
+            SELECT * FROM Education
+            WHERE status = 0
+            AND edu_kind = '양육 정보'
+             <if test="searchtype == 'edu_title'">
+                AND edu_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'edu_date'">
+                AND edu_date LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'admin_nikname'">
+                AND admin_nikname LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            ORDER BY edu_idx DESC
+            LIMIT #{limit} OFFSET #{offset}
+        </when>
+        <otherwise>
+            <!-- 검색 조건이 없을 때 -->
+            <!-- 아무 작업도 수행하지 않음 (빈 쿼리) -->
+            SELECT 1 WHERE 1=0
+        </otherwise>
+    </choose>
+</select>
+
+	<select id="Csearch" parameterType="Map" resultType="evo">
+    <choose>
+        <when test="searchtype != null and keyword != null and !keyword.isEmpty()">
+            <!-- 검색 조건이 존재할 때 -->
+            SELECT * FROM Education
+            WHERE status = 0
+            AND edu_kind = '훈련 정보'
+             <if test="searchtype == 'edu_title'">
+                AND edu_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'edu_date'">
+                AND edu_date LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'admin_nikname'">
+                AND admin_nikname LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            ORDER BY edu_idx DESC
+            LIMIT #{limit} OFFSET #{offset}
+        </when>
+        <otherwise>
+            <!-- 검색 조건이 없을 때 -->
+            <!-- 아무 작업도 수행하지 않음 (빈 쿼리) -->
+            SELECT 1 WHERE 1=0
+        </otherwise>
+    </choose>
+</select>
+
 </mapper>
 
 

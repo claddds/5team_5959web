@@ -18,6 +18,10 @@ public class Edu_ServiceImpl implements Edu_Service{
 	public int getTotalCount() {
 		return education_DAO.getTotalCount();
 	}
+	@Override
+	public int getSearchTotalCount(String searchtype, String keyword) {
+		return education_DAO.getSearchTotalCount(searchtype,keyword);
+	}
 	
 	@Override
 	public int getA_TotalCount() {		
@@ -76,12 +80,24 @@ public class Edu_ServiceImpl implements Edu_Service{
 		return result;
 	}
 
+	@Override
+	public List<Education_VO> getSearch(String searchtype, String keyword, int offset, int limit) {
+	        return education_DAO.getSearch(searchtype, keyword, limit, offset);
+	    }
+	
+	@Override
+	public List<Education_VO> getASearch(String searchtype, String keyword, int offset, int limit) {
+	        return education_DAO.getASearch(searchtype, keyword, limit, offset);
+	    }
+	@Override
+	public List<Education_VO> getBSearch(String searchtype, String keyword, int offset, int limit) {
+	        return education_DAO.getBSearch(searchtype, keyword, limit, offset);
+	    }
+	@Override
+	public List<Education_VO> getCSearch(String searchtype, String keyword, int offset, int limit) {
+	        return education_DAO.getCSearch(searchtype, keyword, limit, offset);
+	    }
+	}
 
 	
 	
-
-
-	
-	
-	
-}

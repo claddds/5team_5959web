@@ -238,7 +238,7 @@ function submit() {
 				</div> <!-- 게시글 -->
 				<ul class="submenu">
 					<li><a href="/ad_food_onelist.do">공지사항</a></li>
-					<li><a href="/admin_faq.do">FAQ</a></li>
+					<li><a href="/ad_faq_list.do">FAQ</a></li>
 				</ul>
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>
@@ -395,13 +395,15 @@ function submit() {
 <!--검색 항목-->
 	<div>
 		<center>
-            <li id="liSearchOption"  style="display: block; ">
-            	<form action="/edu_search.do?page=1" method="post">
+            <center>
+            <li id='liSearchOption'  style="display: block; ">
+            	<form name="search" action="/food_search.do" method="get"  onsubmit="return validateSearch()"> 
                 <div>
-                    <select name="searchtype" >
-                        <option value="edu_title">제목</option>
-                        <option value="edu_content">내용</option>
-                        <option value="admin_nikname">작성자</option>                        
+                      <select name="searchtype"  >
+                        <option value="fd_name">상품명</option>
+                        <option value="fd_company">제조사</option>
+                        <option value="fd_date">날짜</option>
+                        <option value="admin_nickname">등록자</option>                        
                     </select>
                     <input type="search" name="keyword">
                     <input type="submit" class="button" value="검색">

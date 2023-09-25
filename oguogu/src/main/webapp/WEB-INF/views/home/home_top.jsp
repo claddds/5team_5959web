@@ -169,11 +169,11 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 			    </li>
 			    <li><a href="/placemaindisplay.do" class="header-ALink">플레이스</a></li>
 			    <li><a href="/pocketmaindisplay.do" class="header-ALink">모두의 포켓</a></li>
-			    <li class="lounge_main"><a href="/lounge_list.do" class="header-ALink">라운지</a>
+			    <li class="lounge_main"><a href="/loungemaindisplay.do" class="header-ALink">라운지</a>
 			   		<ul class="lounge sub">
-			    		<li><a href="/lounge_share_list.do" class="header-ALink">일상 공유</a></li>
-			    		<li><a href="/lounge_recomm_list.do" class="header-ALink">추천 탭</a></li>
-			    		<li><a href="/lounge_qna_list.do" class="header-ALink">유저간 질문</a></li>
+			    		<li><a href="/loungesharedisplay.do" class="header-ALink">일상 공유</a></li>
+			    		<li><a href="/loungerecommdisplay.do" class="header-ALink">추천 탭</a></li>
+			    		<li><a href="/loungeqnadisplay.do" class="header-ALink">유저간 질문</a></li>
 			    	</ul>
 			    </li>
 			    <li class="food_main"><a href="/dogfooddisplay.do" class="header-ALink">먹거리</a>
@@ -182,14 +182,14 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 			    		<li><a href="/catfooddisplay.do" class="header-ALink">#고양이</a></li>
 			    	</ul>
 			    </li>
-			    <li class="support_main"><a href="/sup_list.do" class="header-ALink">고객지원</a>
-			   		 <ul class="support sub">
-			    		<li><a href="/sup_list.do" class="header-ALink">공지사항</a></li>
-			    		<li><a href="/faq_list.do" class="header-ALink">자주묻는질문</a></li>
-			    		<li><a href="/qna_list.do" class="header-ALink">1:1문의</a></li>
-			    		<li><a href="/rep_list.do" class="header-ALink">신고</a></li>
-			    	</ul>
-			    </li>
+			   <li class="support_main"><a href="/sup_list.do" class="header-ALink">고객지원</a>
+                        <ul class="support sub">
+                        <li><a href="/sup_list.do" class="header-ALink">공지사항</a></li>
+                        <li><a href="/faq_list.do" class="header-ALink">자주묻는질문</a></li>
+                        <li><a href="/qna_list.do" class="header-ALink">1:1문의</a></li>
+                        <li><a href="/rep_list.do" class="header-ALink">신고</a></li>
+                    </ul>
+                </li>
 		  </ul>
 		  
 		  <div></div>

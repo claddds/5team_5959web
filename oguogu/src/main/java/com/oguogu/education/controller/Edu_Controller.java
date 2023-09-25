@@ -1,7 +1,9 @@
 package com.oguogu.education.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,9 +36,11 @@ public class Edu_Controller {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+
 	@RequestMapping("/admin_edulist.do")
 	public ModelAndView getEdu_List(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("admin/education/admin_edu_list");
+		
 		int count = edu_Service.getTotalCount();
 		paging.setTotalRecord(count);
 		System.out.println(count);
@@ -135,6 +140,7 @@ public class Edu_Controller {
 			ModelAndView mv = new ModelAndView("admin/education/admin_edu_Alist");
 			int count = edu_Service.getA_TotalCount();
 			paging.setTotalRecord(count);
+			System.out.println(count);
 			
 			if(paging.getTotalRecord() <= paging.getNumPerPage()) {
 				paging.setTotalPage(1);
@@ -294,5 +300,183 @@ public class Edu_Controller {
 			mv.addObject("evo", evo);
 			return mv;
 		}
+		
+		// 검색
+		@RequestMapping("/edu_search.do")
+		public ModelAndView getSearch( HttpServletRequest request,
+			    @RequestParam(defaultValue = "edu_title") String searchtype,
+			    @RequestParam(defaultValue = "") String keyword) {
+		    ModelAndView mv = new ModelAndView("admin/education/admin_edu_search"); // 결과를 표시할 뷰 이름
+		    int count = edu_Service.getSearchTotalCount(searchtype,keyword);
+			paging.setTotalRecord(count);
+				System.out.print(count);
+
+			if(paging.getTotalRecord() <= paging.getNumPerPage()) {
+				paging.setTotalPage(1);
+			}else {
+				paging.setTotalPage(paging.getTotalRecord()/ paging.getNumPerPage());
+				if(paging.getTotalRecord() % paging.getNumPerPage() != 0) {
+					paging.setTotalPage(paging.getTotalPage() +1);
+				}
+			}
+			
+		    String cPage = request.getParameter("cPage");
+			if(cPage == null) {
+				paging.setNowPage(1);
+			}else {
+				paging.setNowPage(Integer.parseInt(cPage));	
+			}
+		
+			paging.setOffset(paging.getNumPerPage()* (paging.getNowPage()-1));
+			
+			// 시작 블록, 끝 블록
+			paging.setBeginBlock((int)((paging.getNowPage()-1)/paging.getPagePerBlock()) * paging.getPagePerBlock()+1);
+			paging.setEndBlock(paging.getBeginBlock() + paging.getPagePerBlock() -1);
+			
+			
+			// 주의사항 (endblock이 totalpage 보다 클 때가 있다.)
+			if(paging.getEndBlock() > paging.getTotalPage()) {
+				paging.setEndBlock(paging.getTotalPage());
+			}
+		    
+		    
+			
+			 List<Education_VO> search = edu_Service.getSearch(searchtype, keyword ,paging.getOffset(), paging.getNumPerPage());
+		    mv.addObject("search", search);
+		    mv.addObject("paging", paging); // 페이징 정보를 뷰에 추가
+		    return mv;
+		}
+		
+		@RequestMapping("/edu_Asearch.do")
+		public ModelAndView getASearch( HttpServletRequest request,
+			    @RequestParam(defaultValue = "edu_title") String searchtype,
+			    @RequestParam(defaultValue = "") String keyword) {
+		    ModelAndView mv = new ModelAndView("admin/education/admin_edu_Asearch"); // 결과를 표시할 뷰 이름
+
+		    
+		    int count = edu_Service.getSearchTotalCount(searchtype,keyword);
+			paging.setTotalRecord(count);
+				System.out.print(count);
+
+			if(paging.getTotalRecord() <= paging.getNumPerPage()) {
+				paging.setTotalPage(1);
+			}else {
+				paging.setTotalPage(paging.getTotalRecord()/ paging.getNumPerPage());
+				if(paging.getTotalRecord() % paging.getNumPerPage() != 0) {
+					paging.setTotalPage(paging.getTotalPage() +1);
+				}
+			}
+			
+		    String cPage = request.getParameter("cPage");
+			if(cPage == null) {
+				paging.setNowPage(1);
+			}else {
+				paging.setNowPage(Integer.parseInt(cPage));	
+			}
+		
+			paging.setOffset(paging.getNumPerPage()* (paging.getNowPage()-1));
+			
+			// 시작 블록, 끝 블록
+			paging.setBeginBlock((int)((paging.getNowPage()-1)/paging.getPagePerBlock()) * paging.getPagePerBlock()+1);
+			paging.setEndBlock(paging.getBeginBlock() + paging.getPagePerBlock() -1);
+			
+			
+			// 주의사항 (endblock이 totalpage 보다 클 때가 있다.)
+			if(paging.getEndBlock() > paging.getTotalPage()) {
+				paging.setEndBlock(paging.getTotalPage());
+			}
+			 List<Education_VO> search = edu_Service.getASearch(searchtype, keyword ,paging.getOffset(), paging.getNumPerPage());
+		    mv.addObject("search", search);
+		    mv.addObject("paging", paging); // 페이징 정보를 뷰에 추가
+		    return mv;
+		}
+		
+		@RequestMapping("/edu_Bsearch.do")
+		public ModelAndView getBSearch( HttpServletRequest request,
+			    @RequestParam(defaultValue = "edu_title") String searchtype,
+			    @RequestParam(defaultValue = "") String keyword) {
+		    ModelAndView mv = new ModelAndView("admin/education/admin_edu_Bsearch"); // 결과를 표시할 뷰 이름
+		    
+		    int count = edu_Service.getSearchTotalCount(searchtype,keyword);
+			paging.setTotalRecord(count);
+				System.out.print(count);
+
+			if(paging.getTotalRecord() <= paging.getNumPerPage()) {
+				paging.setTotalPage(1);
+			}else {
+				paging.setTotalPage(paging.getTotalRecord()/ paging.getNumPerPage());
+				if(paging.getTotalRecord() % paging.getNumPerPage() != 0) {
+					paging.setTotalPage(paging.getTotalPage() +1);
+				}
+			}
+			
+		    String cPage = request.getParameter("cPage");
+			if(cPage == null) {
+				paging.setNowPage(1);
+			}else {
+				paging.setNowPage(Integer.parseInt(cPage));	
+			}
+		
+			paging.setOffset(paging.getNumPerPage()* (paging.getNowPage()-1));
+			
+			// 시작 블록, 끝 블록
+			paging.setBeginBlock((int)((paging.getNowPage()-1)/paging.getPagePerBlock()) * paging.getPagePerBlock()+1);
+			paging.setEndBlock(paging.getBeginBlock() + paging.getPagePerBlock() -1);
+			
+			
+			// 주의사항 (endblock이 totalpage 보다 클 때가 있다.)
+			if(paging.getEndBlock() > paging.getTotalPage()) {
+				paging.setEndBlock(paging.getTotalPage());
+			}
+			 List<Education_VO> search = edu_Service.getBSearch(searchtype, keyword ,paging.getOffset(), paging.getNumPerPage());
+		    mv.addObject("search", search);
+		    mv.addObject("paging", paging); // 페이징 정보를 뷰에 추가
+		    return mv;
+		}
+		
+		@RequestMapping("/edu_Csearch.do")
+		public ModelAndView getCSearch( HttpServletRequest request,
+			    @RequestParam(defaultValue = "edu_title") String searchtype,
+			    @RequestParam(defaultValue = "") String keyword) {
+		    ModelAndView mv = new ModelAndView("admin/education/admin_edu_Csearch"); // 결과를 표시할 뷰 이름
+		    
+		    int count = edu_Service.getSearchTotalCount(searchtype,keyword);
+			paging.setTotalRecord(count);
+				System.out.print(count);
+
+			if(paging.getTotalRecord() <= paging.getNumPerPage()) {
+				paging.setTotalPage(1);
+			}else {
+				paging.setTotalPage(paging.getTotalRecord()/ paging.getNumPerPage());
+				if(paging.getTotalRecord() % paging.getNumPerPage() != 0) {
+					paging.setTotalPage(paging.getTotalPage() +1);
+				}
+			}
+			
+		    String cPage = request.getParameter("cPage");
+			if(cPage == null) {
+				paging.setNowPage(1);
+			}else {
+				paging.setNowPage(Integer.parseInt(cPage));	
+			}
+		
+			paging.setOffset(paging.getNumPerPage()* (paging.getNowPage()-1));
+			
+			// 시작 블록, 끝 블록
+			paging.setBeginBlock((int)((paging.getNowPage()-1)/paging.getPagePerBlock()) * paging.getPagePerBlock()+1);
+			paging.setEndBlock(paging.getBeginBlock() + paging.getPagePerBlock() -1);
+			
+			
+			// 주의사항 (endblock이 totalpage 보다 클 때가 있다.)
+			if(paging.getEndBlock() > paging.getTotalPage()) {
+				paging.setEndBlock(paging.getTotalPage());
+			}
+			 List<Education_VO> search = edu_Service.getCSearch(searchtype, keyword ,paging.getOffset(), paging.getNumPerPage());
+		    mv.addObject("search", search);
+		    mv.addObject("paging", paging); // 페이징 정보를 뷰에 추가
+		    return mv;
+		}
+		
 }
+
 

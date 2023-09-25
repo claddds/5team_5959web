@@ -2,6 +2,7 @@ package com.oguogu.food.model.service;
 
 import java.util.List;
 
+import com.oguogu.faq.model.vo.FAQ_VO;
 import com.oguogu.food.model.vo.Food_VO;
 
 
@@ -22,4 +23,8 @@ public interface Ad_Food_Service {
 	int getFood_Update(Food_VO ad_f_vo);
 
 	int getFood_Delete(Food_VO ad_f_vo);
+	
+	int getSearchTotalCount(String searchtype, String keyword);
+	
+	public List<Food_VO> getSearch(String searchtype, String keyword,int offset, int limit);	
 }

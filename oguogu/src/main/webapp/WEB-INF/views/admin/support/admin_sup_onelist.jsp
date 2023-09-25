@@ -174,7 +174,7 @@ footer{
 				</div> <!-- 게시글 -->
 				<ul class="submenu">
 					<li><a href="/ad_food_onelist.do">공지사항</a></li>
-					<li><a href="/admin_faq.do">FAQ</a></li>
+					<li><a href="/ad_faq_list.do">FAQ</a></li>
 				</ul>
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>
@@ -232,20 +232,20 @@ footer{
 			<form method="post" enctype="multipart/form-data">
 			<table>
 			<tr align="center">
-					<td bgcolor="FFA629">제 목</td>
+					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">제 목</td>
 					<td>${sup_vo.not_title }</td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="FFA629">작성자</td>
+					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">작성자</td>
 					<td>${sup_vo.admin_nickname }</td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="FFA629">내용</td>
+					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">내용</td>
 					<td>${sup_vo.not_content }</td>
 				</tr>			
 
 				<tr align="center">
-					<td bgcolor="FFA629">첨부파일</td>
+					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">첨부파일</td>
 					<c:choose>
 						<c:when test="${empty sup_vo.not_fname }">
 							<td><b>첨부 파일 없음</b></td>

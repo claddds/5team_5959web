@@ -19,6 +19,13 @@ public class Education_DAO {
 	public int getTotalCount() {
 		return sqlSessionTemplate.selectOne("edu.count") ;
 	}
+	public int getSearchTotalCount(String searchtype, String keyword) {
+	    Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("searchtype", searchtype);
+	    paramMap.put("keyword", keyword);
+
+	    return sqlSessionTemplate.selectOne("edu.searchcount", paramMap);
+	}
 	
 	public int getA_TotalCount() {
 		return sqlSessionTemplate.selectOne("edu.Acount") ;
@@ -78,6 +85,50 @@ public class Education_DAO {
 	public int getEdu_Delete(Education_VO evo) {
 		int result= sqlSessionTemplate.update("edu.delete", evo);
 		return result;
+	}
+	
+	// 전체에서 검색 보기 
+	public List<Education_VO> getSearch(String searchtype, String keyword, int limit, int offset) {
+		 Map<String, Object> map = new HashMap<>();
+		 map.put("searchtype", searchtype);
+		 map.put("keyword", keyword);
+		 map.put("limit", limit);
+		 map.put("offset", offset);
+ 
+	   return sqlSessionTemplate.selectList("edu.search", map);
+	}
+	
+	// 필수정보만 보기 
+	public List<Education_VO> getASearch(String searchtype, String keyword, int limit, int offset) {
+		 Map<String, Object> map = new HashMap<>();
+		 map.put("searchtype", searchtype);
+		 map.put("keyword", keyword);
+		 map.put("limit", limit);
+		 map.put("offset", offset);
+ 
+	   return sqlSessionTemplate.selectList("edu.Asearch", map);
+	}
+	
+	// 필수정보만 보기 
+	public List<Education_VO> getBSearch(String searchtype, String keyword, int limit, int offset) {
+		 Map<String, Object> map = new HashMap<>();
+		 map.put("searchtype", searchtype);
+		 map.put("keyword", keyword);
+		 map.put("limit", limit);
+		 map.put("offset", offset);
+ 
+	   return sqlSessionTemplate.selectList("edu.Bsearch", map);
+	}
+	
+	// 필수정보만 보기 
+	public List<Education_VO> getCSearch(String searchtype, String keyword, int limit, int offset) {
+		 Map<String, Object> map = new HashMap<>();
+		 map.put("searchtype", searchtype);
+		 map.put("keyword", keyword);
+		 map.put("limit", limit);
+		 map.put("offset", offset);
+ 
+	   return sqlSessionTemplate.selectList("edu.Csearch", map);
 	}
 
 }

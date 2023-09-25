@@ -24,6 +24,11 @@ input:-ms-input-placeholder{color:#a8a8a8;}
 input::-webkit-input-placeholder{color:#a8a8a8;}
 input::-moz-input-placeholder{color:#a8a8a8;}
 
+a:hover {
+	color: white;
+	text-decoration: none;
+}
+
 .search{
 	height: 100px;
 	width:1000px;
@@ -47,7 +52,7 @@ input::-moz-input-placeholder{color:#a8a8a8;}
 	outline: none;
 	color: #ffffff;
 }
-
+ 
 #add_button{
 	width: 100px;
 	height: 40px;
@@ -71,28 +76,7 @@ footer {
 }
 </style>
 <script type="text/javascript">
-	function facilities_search(){
-		var searchTerm = document.getElementById('search_text').value;
-		alert(searchTerm);
-		$("#result").empty();
-		$.ajax({
-			url:"/facilities_search.do",
-			method:"post",
-			dataType:"json",
-			data:{searchTerm: searchTerm},	// 검색어를 서버에 전달
-			success:function(data){
-				console.log(data);
-				alert(data);
-			},
-			error: function() {
-				alert("읽기실패");
-			}
-		});
-	}
 	
-	function facilities_add() {
-		
-	}
 </script>
 
 </head>
@@ -110,7 +94,7 @@ footer {
 		<div class="search">
 			<form>
 				<input type="text" id ="search_text" placeholder="상호명을 입력하세요">
-				<button id="search_button" onclick="facilities_search()">검색</button>
+				<button id="search_button">검색</button>
 			</form>
 		</div>
 		
@@ -119,20 +103,18 @@ footer {
 				<div class="button_con">
 					<input type="submit" id="add_button" value="장소추가">
 				</div>
-				<div id="result">
-					
-				</div>
 			</form>
+			<div id="result"></div>
 		</div>
 		
-		
-			<table>
+	
+			<%-- <table>
 		<thead>
 			<tr><td>도로명 이름</td><td>기본 정보_장소설명</td><td>시설명</td><td>경도</td>
 			<td>위도</td></tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${pocketfilterlist}" var="k">
+			<c:forEach items="${pocketlist}" var="k">
 				<tr>
 					<td>${k.roadaddr}</td>
 					<td>${k.locationex}</td>
@@ -142,7 +124,7 @@ footer {
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>	
+	</table>	 --%>
 			
 		
 	</div>
@@ -150,6 +132,6 @@ footer {
 	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>	
 </body>
 </html>

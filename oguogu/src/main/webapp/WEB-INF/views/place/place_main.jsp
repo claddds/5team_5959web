@@ -316,65 +316,38 @@
 			<div id="pagination"></div>
 		</div>
 		<ul id="category">
-			<!-- <li id="coffeeMenu" onclick="changeMarker('coffee')">
-	         	<span class="ico_comm ico_hospital"></span>
-	            동물병원
-	         </li>
-	         <li id="storeMenu" onclick="changeMarker('store')">
-	         	<span class="ico_comm ico_pharmacy"></span>
-	         	동물약국
-	         </li>
-	         <li id="carparkMenu" onclick="changeMarker('carpark')">
-		         <span class="ico_comm ico_salon"></span>
-		         미용실
-	         </li>
-	         <li id="carparkMenu" onclick="changeMarker('carpark')">
-		         <span class="ico_comm ico_cafe"></span>
-		         카페
-	         </li>
-	         <li id="carparkMenu" onclick="changeMarker('carpark')">
-		         <span class="ico_comm ico_market"></span>
-		         용품점
-	         </li>
-	         <li id="carparkMenu" onclick="changeMarker('carpark')">
-		         <span class="ico_comm ico_hotel"></span>
-		         공원
-	         </li>
-	         <li id="carparkMenu" onclick="changeMarker('carpark')">
-		         <span class="ico_comm ico_park"></span>
-		         호텔
-	         </li> -->
-			<li id="BK9" data-order="0">
+			
+			<li id="hospital" data-order="0">
 				<span class="category_bg hospital"></span>
 				동물병원
 			</li>
 			
-			<li id="MT1" data-order="1">
+			<li id="pharmacy" data-order="1">
 				<span class="category_bg pharmacy"></span>
 				동물약국
 			</li>
 			
-			<li id="PM9" data-order="2">
+			<li id="salon" data-order="2">
 				<span class="category_bg salon"></span>
 				미용실
 			</li>
 			
-			<li id="OL7" data-order="3">
+			<li id="cafe" data-order="3">
 				<span class="category_bg cafe"></span>
 				카페
 			</li>
 			
-			<li id="CE7" data-order="4">
+			<li id="market" data-order="4">
 				<span class="category_bg market"></span>
 				용품점
 			</li>
 			
-			<li id="CS2" data-order="5">
+			<li id="hotel" data-order="5">
 				<span class="category_bg hotel"></span>
 				호텔
 			</li>
 			
-			<li id="CS2" data-order="6">
+			<li id="park" data-order="6">
 				<span class="category_bg park"></span>
 				공원
 			</li>
@@ -496,30 +469,7 @@
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 				// LatLngBounds 객체에 좌표를 추가합니다
 				bounds.extend(placePosition);
-				/*
-				// 마커와 검색결과 항목에 mouseover 했을때
-				// 해당 장소에 인포윈도우에 장소명을 표시합니다
-				// mouseout 했을 때는 인포윈도우를 닫습니다
-				(function(marker, title) {
-					kakao.maps.event.addListener(marker, 'mouseover',
-							function() {
-								displayInfowindow(marker, title);
-							});
-
-					kakao.maps.event.addListener(marker, 'mouseout',
-							function() {
-								infowindow.close();
-							});
-
-					itemEl.onmouseover = function() {
-						displayInfowindow(marker, title);
-					};
-
-					itemEl.onmouseout = function() {
-						infowindow.close();
-					};
-				})(marker, places[i].place_name);*/
-
+				
 				// 마커와 검색결과 항목을 클릭 했을 때
 				// 장소정보를 표출하도록 클릭 이벤트를 등록합니다
 				(function(marker, place) {
@@ -665,9 +615,11 @@
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
 
-			ps.categorySearch(currCategory, placesSearchCB, {
+			// 키워드로 장소를 검색합니다
+			ps.keywordSearch(keyword, placesSearchCB);
+			/* ps.categorySearch(currCategory, placesSearchCB, {
 				useMapBounds : true
-			});
+			}); */
 		}
 
 		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -775,6 +727,7 @@
 				changeCategoryClass();
 				removeMarker();
 			} else {
+				// 
 				currCategory = id;
 				changeCategoryClass(this);
 				searchPlaces();

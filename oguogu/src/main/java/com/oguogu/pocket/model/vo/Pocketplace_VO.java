@@ -6,6 +6,8 @@ public class Pocketplace_VO {
 	private String roadaddr,locationex, facilities;
 	private double lon, lat;
 	
+	public Pocketplace_VO() {}
+	
 	public Pocketplace_VO(String roadaddr, String locationex, String facilities, double lon, double lat) {
 		super();
 		this.roadaddr = roadaddr;

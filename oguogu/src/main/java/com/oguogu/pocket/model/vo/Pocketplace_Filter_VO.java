@@ -6,6 +6,8 @@ public class Pocketplace_Filter_VO {
 	private String roadaddr,locationex, facilities;
 	private double lon, lat;
 	
+	public Pocketplace_Filter_VO() {}
+	
 	public Pocketplace_Filter_VO(String roadaddr, String locationex, String facilities, double lon, double lat) {
 		
 		this.roadaddr = roadaddr;

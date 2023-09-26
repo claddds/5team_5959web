@@ -13,4 +13,8 @@ public interface Pet_Service {
 	public List<Pet_VO> getPetList(String user_id);
 	
 	public Pet_VO getPetProfileOnelist(String pet_idx);
+	
+	public int getPetUpdate(Pet_VO pvo);
+	
+	public int getPetDelete(String pet_idx);
 }

@@ -31,4 +31,11 @@ public class Pet_DAO {
 		return sqlSessionTemplate.selectOne("pet.getPetProfileOnelist",pet_idx);
 	}
 	
+	public int getPetUpdate(Pet_VO pvo) {
+		return sqlSessionTemplate.update("pet.getPetUpdate",pvo);
+	}
+	
+	public int getPetDelete(String pet_idx) {
+		return sqlSessionTemplate.delete("pet.getPetDelete",pet_idx);
+	}
 }

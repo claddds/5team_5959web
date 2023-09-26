@@ -36,4 +36,14 @@ public class Pet_ServiceImpl implements Pet_Service {
 	public Pet_VO getPetProfileOnelist(String pet_idx) {
 		return pet_DAO.getPetProfileOnelist(pet_idx);
 	}
+	
+	@Override
+	public int getPetUpdate(Pet_VO pvo) {
+		return pet_DAO.getPetUpdate(pvo);
+	}
+	
+	@Override
+	public int getPetDelete(String pet_idx) {
+		return pet_DAO.getPetDelete(pet_idx);
+	}
 }

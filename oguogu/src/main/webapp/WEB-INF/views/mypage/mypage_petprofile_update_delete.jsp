@@ -182,10 +182,7 @@
         
         
         
-// 		var isPetBirth = false;
-// 		var isPetName = false;
-// 		var isPetKind = false;
-// 		var isGender = false;
+
 
 		// 이름 입력 이벤트 리스너(필수)
 		$("#pet_name").on('keyup', function () {
@@ -193,28 +190,13 @@
 		    // 이름이 비어 있지 않으면 isPetName 값을 true로 설정합니다.
 		    if(petName.trim().length>0){
 		    	 $("#pet_add_btn").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
-		    	//isPetName = true;
 		    }else{
 		    	$("#pet_add_btn").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
-		    	//isPetName = false;
 		    }
 		    
-		    //updateBtnState(); // 버튼 활성화 상태를 업데이트합니다.
 		});
 		
-// 		 //펫 타입 이벤트 리스너(필수)
-// 	    $("#pet_kind_list").on("change", function() {
-// 	        // 선택한 옵션의 값 가져오기
-// 	        var selectedValue = $(this).val();
 
-// 	        if (selectedValue == "default") {
-// 	            isPetKind = false;
-// 	        } else {
-// 	            isPetKind = true;
-// 	        }
-	        
-// 	        updateBtnState();
-// 	    });
 		
         // 생년월일 유효성 검사(필수)
         $("#petbirth").on("keyup", function() {
@@ -238,13 +220,10 @@
 		//성별 유효성 검사(필수)
 		$("input[name='pet_gender']").on("change", function() {
 	        if ($(this).is(":checked")) {
-	            //isGender = true; // 라디오 버튼이 선택된 경우 isGender를 true로 설정
 	            $("#pet_add_btn").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
 	        } else {
-	        	//isGender = false;
 	            $("#pet_add_btn").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
 	        }
-	        //updateBtnState();
 		})
 		
 		// 몸무게 유효성 검사(필수)
@@ -261,26 +240,13 @@
 				$("#pet_add_btn").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
 			}
 			
-			//updateBtnState()
 			
 		  });
 		
-        
-		//버튼 활성화 
-// 		function updateBtnState() {
-// 			if(isPetBirth && isGender && isPetName && isPetWeight){ // && isPetKind
-// 				$("#pet_add_btn").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
-// 			}else{
-// 				$("#pet_add_btn").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
-// 			}
-// 		}
-		
-		//항상 활성화
-		//updateBtnState()
-		
+
 		//db에서 넘어온 pvo.pet_type이 강아지면 강아지 체크/고양이면 고양이 체크
 		if ("${pvo.pet_type}" == "강아지") {
-		    // 강아지 라디오 버튼 선택
+		    // 강아지 라디오 버튼 체크
 		    $("#DOG").prop("checked", true);
 		}else{
 			$("#CAT").prop("checked", true);
@@ -288,7 +254,7 @@
 		
 		//db에서 넘어온 pvo.pet_gender가 남아면 남아 체크/ 여아면 여아 체크
 		if ("${pvo.pet_gender}" == "남아") {
-		    // 강아지 라디오 버튼 선택
+		    //남아 버튼 체크
 		    $("#malepet").prop("checked", true);
 		}else{
 			$("#femalepet").prop("checked", true);
@@ -296,7 +262,7 @@
 		
 		//db에서 넘어온 pvo.pet_neute가 남아면 중성화면 체크/ 아니면 체크 해제
 		if ("${pvo.pet_neute}" == "중성화") {
-		    // 강아지 라디오 버튼 선택
+		    // 중성화 체크
 		    $("#pet_neut_check").prop("checked", true);
 		}else{
 			$("#pet_neut_check").prop("checked", false);
@@ -310,6 +276,13 @@
 	function petUpdate_go(f) {
 		if(confirm("반려동물 정보를 수정하시겠습니까?")){
 			f.action="/petUpdate_go.do"
+			f.submit();
+		}
+	}
+	
+	function petDelete_go(f) {
+		if(confirm("반려동물 정보를 삭제하시겠습니까?")){
+			f.action = "/petDelete.do"
 			f.submit();
 		}
 	}
@@ -360,10 +333,12 @@
 			</div>
 			<!-- 이름 입력 -->
 			<div id="pet-name">
-				<span class="pet_essential">*</span><input type="text" value="${pvo.pet_name}" name="pet_name" id="pet_name" placeholder="이름" maxlength="10" />
+				<span class="pet_essential">*</span>
+				<input type="text" value="${pvo.pet_name}" name="pet_name" id="pet_name" placeholder="이름" maxlength="10" />
 			</div>
 			<div id="pet-birth">
-				<span class="pet_essential">*</span><input type="date" value="${pvo.pet_birth}" placeholder="반려동물의 생년월일" name="pet_birth" id="petbirth" style="font-size: 20px;" />
+				<span class="pet_essential">*</span>
+				<input type="date" value="${pvo.pet_birth}" placeholder="반려동물의 생년월일" name="pet_birth" id="petbirth" style="font-size: 20px;" />
 			</div>
 			<div id ="petbirthChk" style="width:400px;"></div>
 			
@@ -412,7 +387,7 @@
 			<div id="pet_add_cancel_div">
 				<input type="hidden" name="pet_idx" value="${pvo.pet_idx}">
 				<input type="button" id="pet_add_btn" class="pet_add_cancel_btn" onclick="petUpdate_go(this.form)" value="등록" style="cursor:pointer;"/>
-				<input type="button" id="pet_delete_btn" class="pet_add_cancel_btn" value="삭제하기" style="background-color: red;"/>
+				<input type="button" id="pet_delete_btn" class="pet_add_cancel_btn" onclick="petDelete_go(this.form)" value="삭제하기" style="background-color: red;cursor:pointer;"/>
 			</div>
 		</div>
 	</form>

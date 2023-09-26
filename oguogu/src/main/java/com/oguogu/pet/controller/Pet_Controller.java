@@ -161,6 +161,7 @@ public class Pet_Controller {
 		String path = session.getServletContext().getRealPath("/resources/images");
 		
 		try {
+			
 			MultipartFile f_param = pvo.getFile();
 			String old_pet_fname = pvo.getOld_pet_fname();
 			if(f_param.isEmpty()) {
@@ -176,9 +177,10 @@ public class Pet_Controller {
 					File out = new File(path, pet_fname); //상위폴더(/resources/images) 안에 f_name이 붙음
 					FileCopyUtils.copy(in, out);
 				}else {
+				//파일이 있으면
 					UUID uuid = UUID.randomUUID();
 					String pet_fname = uuid.toString()+"_"+pvo.getFile().getOriginalFilename();// 디비에 저장할 이름이 f_name					
-					pvo.setPet_name(pet_fname);
+					pvo.setPet_fname(pet_fname);
 					
 					// 이미지 /resources/images 저장하기
 					byte[] in = pvo.getFile().getBytes();
@@ -188,12 +190,21 @@ public class Pet_Controller {
 			}
 
 			int result = pet_Service.getPetUpdate(pvo);
+			
+			return "redirect:/mypagePetProfile.do";
 		} catch (Exception e) {
-			// TODO: handle exception
+			return null;
 		}
+
+	}
+	
+	@RequestMapping("/petDelete.do")
+	public ModelAndView getPetDelete(@RequestParam("pet_idx") String pet_idx) {
+		ModelAndView mv = new ModelAndView("redirect:/mypagePetProfile.do");
 		
+		int result = pet_Service.getPetDelete(pet_idx);
 		
-		
+		return mv;
 	}
 	
 }

@@ -23,6 +23,17 @@
 	<select id="getPetProfileOnelist" parameterType="String" resultType="pvo">
 		select * from pet where pet_idx = #{pet_idx}
 	</select>
+	
+	<update id="getPetUpdate" parameterType="pvo">
+		update pet set 
+		pet_name=#{pet_name},pet_fname=#{pet_fname},pet_type=#{pet_type},pet_kind=#{pet_kind},
+		pet_gender=#{pet_gender},pet_weight=#{pet_weight},pet_neute=#{pet_neute},pet_birth=#{pet_birth}
+		where pet_idx = #{pet_idx}
+	</update>
+	
+	<delete id="getPetDelete" parameterType="String">
+		delete from pet where pet_idx = #{pet_idx}
+	</delete>
 </mapper>
 
 

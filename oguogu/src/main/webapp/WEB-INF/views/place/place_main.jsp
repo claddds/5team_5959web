@@ -404,7 +404,7 @@
 		});
 
 		// 키워드로 장소를 검색합니다
-		searchPlaces();
+		searchPlaces_keyword();
 
 		/* 키워드로 장소 검색하고 목록으로 표출하기쪽 함수*/
 
@@ -614,9 +614,33 @@
 
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
+			
+			// 현재위치를 가져와 currentCoordinate에 저장
+			if (navigator.geolocation) {
+    			// GeoLocation을 이용해서 접속 위치를 얻어옵니다
+   				navigator.geolocation.getCurrentPosition(function(position) {
+        			var lat = position.coords.latitude, // 위도
+            			lon = position.coords.longitude; // 경도
+        
+        			// 현재 위치를 currentCoordinate에 할당
+        			currentCoordinate = new kakao.maps.LatLng(lat, lon);
+            	});
+			} else {
+    			// HTML5의 GeoLocation을 사용할 수 없을 때, 기본 위치를 설정하고 검색을 수행합니다
+    			currentCoordinate = new kakao.maps.LatLng(37.554772, 126.937110);
+			}
+			
+			// location LatLng : 중심 좌표. 특정 지역을 기준으로 검색한다. 카테고리 검색에서는 필수.
+			// radius Number : 중심 좌표로부터의 거리(반경) 필터링 값. location / x , y / useMapCenter 중 하나와 같이 써야 의미가 있음. 미터(m) 단위. 기본값은 5000, 0~20000까지 가능
+			// sort SortBy : 정렬 옵션. DISTANCE 일 경우 지정한 좌표값에 기반하여 동작함. 기본값은 ACCURACY (정확도 순)
+			var options = {
+				location: currentCoordinate,
+				radius: 10000,
+				sort: kakao.maps.services.SortBy.DISTANCE
+			}
 
 			// 키워드로 장소를 검색합니다
-			ps.keywordSearch(keyword, placesSearchCB);
+			ps.keywordSearch(keyword, placesSearchCB,options);
 			/* ps.categorySearch(currCategory, placesSearchCB, {
 				useMapBounds : true
 			}); */
@@ -648,8 +672,10 @@
 			for (var i = 0; i < places.length; i++) {
 
 				// 마커를 생성하고 지도에 표시합니다
+				var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x);
 				var marker = addMarker(new kakao.maps.LatLng(places[i].y,
-						places[i].x), order);
+						places[i].x),currCategory);
+				
 
 				// 마커와 검색결과 항목을 클릭 했을 때
 				// 장소정보를 표출하도록 클릭 이벤트를 등록합니다
@@ -659,29 +685,47 @@
 					});
 				})(marker, places[i]);
 			}
+			
 		}
 
 		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-		function addMarker(position, order) {
-			var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+		function addMarker(position, currCategory) {
+			/* var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다 */
+			var imageSrc =  getCategoryMarkerImage(currCategory);
 			imageSize = new kakao.maps.Size(27, 28), // 마커 이미지의 크기
+			
 			imgOptions = {
-				spriteSize : new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
-				spriteOrigin : new kakao.maps.Point(46, (order * 36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
 				offset : new kakao.maps.Point(11, 28)
 			// 마커 좌표에 일치시킬 이미지 내에서의 좌표
-			}, markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-					imgOptions), marker = new kakao.maps.Marker({
+			};
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,imgOptions);
+			var marker = new kakao.maps.Marker({
 				position : position, // 마커의 위치
 				image : markerImage
 			});
-
+			
 			marker.setMap(map); // 지도 위에 마커를 표출합니다
 			markers.push(marker); // 배열에 생성된 마커를 추가합니다
 
 			return marker;
 		}
+		
+		function getCategoryMarkerImage(currCategory) {
+			// 각 카테고리에 대한 이미지 소스를 정의합니다
+		    var categoryImageMap = {
+		        hospital: 'resources/images/place/icon_hospital.png',
+		        pharmacy: 'resources/images/place/icon_pharmacy.png',
+		        salon: 'resources/images/place/icon_salon.png',
+		        cafe: 'resources/images/place/icon_cafe.png',
+		        market: 'resources/images/place/icon_market.png',
+		        hotel: 'resources/images/place/icon_hotel.png',
+		        park: 'resources/images/place/icon_park.png'
+		    };
 
+		    return categoryImageMap[currCategory];
+		}
+		
+		
 		// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 		function displayPlaceInfo(place) {
 			var content = '<div class="placeinfo">'
@@ -727,9 +771,21 @@
 				changeCategoryClass();
 				removeMarker();
 			} else {
-				// 
+				
 				currCategory = id;
 				changeCategoryClass(this);
+				// 각 카테고리에 따라 검색할 키워드 설정
+		        var categoryKeywords = {
+		            hospital: '동물병원',
+		            pharmacy: '동물약국',
+		            salon: '애견 미용실',
+		            cafe: '애견카페',
+		            market: '반려동물 용품점',
+		            hotel: '애견호텔',
+		            park: '공원'
+		        };
+		     	// 해당 카테고리의 키워드로 장소 검색 수행
+		        keyword = categoryKeywords[currCategory];
 				searchPlaces();
 			}
 		}

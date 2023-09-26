@@ -328,13 +328,13 @@
 			<!-- 품종선택 -->
 			<div>
 				<span class="pet_essential">*</span>
-				<select id="pet_kind_list">
+				<select id="pet_kind_list" name="pet_kind">
 					<option value="default">품종</option>
 				</select>
 			</div>
 			<!-- 성별 -->
 			<div style="margin:5px 0; width:420px;font-size:18px;">
-				<span class="pet_essential">*</span><label for="gender_radio">성별</label>
+				<span class="pet_essential">*</span><label>성별</label>
 			</div>
 			<div id="pet_gender_radio">
 				<input type="radio" name="pet_gender" value="남아" class="gender_radio"/>
@@ -373,12 +373,12 @@
 	CatRadio.addEventListener('change', updateSelectOptions);
 	
 	// 선택 박스 옵션들을 설정합니다.
-	const DogList = ["골든리트리버", "닥스훈트", "래브라도 리트리버", "말티즈", "래브라도 리트리버","미니어처 슈나우저", "미니어처 푸들",
+	const DogList = ["","골든리트리버", "닥스훈트", "래브라도 리트리버", "말티즈", "래브라도 리트리버","미니어처 슈나우저", "미니어처 푸들",
 					"미니어처 핀셔", "베들링턴 테리어", "보더 콜리", "보스턴 테리어", "비글", "비숑 프리제", "사모예드", "셰틀랜드 쉽독",
 					"스탠더드 푸들", "시바 이누", "시베리안 허스키", "시츄", "아메리칸 코카 스파니엘", "요크셔 테리어", "웰시 코기",
 					"이탈리안 그레이 하운드", "제페니스 스피츠", "진돗개", "치와와", "카바리에 킹찰스 스파니", "코카 스파니엘", "토이 푸들",
 					"파피용", "퍼그", "페키니즈", "펨브록 웰시코기", "포메라니안", "푸들", "풍산개", "프렌치 불도그","믹스견", "기타"];
-	const CatList = ["브리티시 숏헤어", "페르시안", "메인쿤", "시암", "렉돌", "스핑크스", "아비시니안","벵골", "버먼", "아메리칸 숏헤어",
+	const CatList = ["","브리티시 숏헤어", "페르시안", "메인쿤", "시암", "렉돌", "스핑크스", "아비시니안","벵골", "버먼", "아메리칸 숏헤어",
 					"엑조틱 숏헤어", "러시안 블루", "스코티시 폴드", "버마 고양이","노르웨이숲", "데본 렉스", "시베리안 고양이", "맹크스",
 					"터키시 앙고라", "아메리칸 밥테일", "코니시 렉스", "아메리칸 컬", "히말리안", "봄베이 고양이", "이집션 마우", "발리니즈",
 					"사트트뢰", "라가머핀", "터키시 반", "먼치킨", "기타"];
@@ -412,7 +412,7 @@
 	        pet_kind_list.appendChild(optionElement);
 	    }
 	}
-</script>
+	</script>
 </body>
 </html>
 

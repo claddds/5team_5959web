@@ -4,14 +4,25 @@
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pet">
 	
+	<!-- 펫 있을 때 없을 때 구분하기 위해 -->
 	<select id="getPetProfile" parameterType="String" resultType="int">
 		select count(*) from pet where user_id = #{user_id}
 	</select>
 	
+	<!-- 펫 등록 -->
 	<insert id="getPetInsert" parameterType="pvo">
 		insert into pet(pet_name,pet_fname,pet_type,pet_kind,pet_gender,pet_weight,pet_neute,pet_birth,user_id,status)
 		values(#{pet_name},#{pet_fname},#{pet_type},#{pet_kind},#{pet_gender},#{pet_weight},#{pet_neute},#{pet_birth},#{user_id},0)
 	</insert>
+	
+	<!-- 펫 목록 불러오기 -->
+	<select id="getPetList" parameterType="String" resultType="pvo">
+		select * from pet where user_id = #{user_id}
+	</select>
+	
+	<select id="getPetProfileOnelist" parameterType="String" resultType="pvo">
+		select * from pet where pet_idx = #{pet_idx}
+	</select>
 </mapper>
 
 

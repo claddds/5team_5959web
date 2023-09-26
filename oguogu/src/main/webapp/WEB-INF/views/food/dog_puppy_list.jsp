@@ -87,7 +87,7 @@ $(document).ready(function() {
 		  success: function(data) {
 		    // Ajax 요청이 성공했을 때 실행되는 코드
 		    $("#feed").css("color", "tomato");
-		    $("#dogPuppyAges").css("background-color", "tomato");dogPuppyAges
+		    $("#dogPuppyAges").css("background-color", "tomato");
 		    $("#dogAllAges, #dogAdultAges, #dogSeniorAges").css("background-color", "");
 		    // 여기에 /dogfooddisplay.do에 대한 특별한 처리를 추가
 		  },

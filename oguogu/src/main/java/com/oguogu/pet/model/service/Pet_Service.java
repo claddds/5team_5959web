@@ -1,5 +1,7 @@
 package com.oguogu.pet.model.service;
 
+import java.util.List;
+
 import com.oguogu.pet.model.vo.Pet_VO;
 
 public interface Pet_Service {
@@ -8,4 +10,7 @@ public interface Pet_Service {
 	
 	public int getPetInsert(Pet_VO pvo);
 	
+	public List<Pet_VO> getPetList(String user_id);
+	
+	public Pet_VO getPetProfileOnelist(String pet_idx);
 }

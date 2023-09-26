@@ -3,11 +3,30 @@ package com.oguogu.pet.model.vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Pet_VO {
-	private String pet_idx, pet_name, pet_fname, pet_type, pet_kind, pet_gender,pet_weight, pet_neute, pet_birth, status, user_id;
+	private String pet_idx, pet_name, pet_fname, pet_type, pet_kind, pet_gender,pet_weight, pet_neute, pet_birth, status, user_id, old_pet_fname;
 	
+	//개월수를 저장하기 위한 변수, db에는 없음
+	private int months;
+
 	private MultipartFile file;
+
 	
-	
+	public String getOld_pet_fname() {
+		return old_pet_fname;
+	}
+
+	public void setOld_pet_fname(String old_pet_fname) {
+		this.old_pet_fname = old_pet_fname;
+	}
+
+	public int getMonths() {
+		return months;
+	}
+
+	public void setMonths(int months) {
+		this.months = months;
+	}
+
 	public String getPet_weight() {
 		return pet_weight;
 	}

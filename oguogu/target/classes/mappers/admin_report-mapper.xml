@@ -6,7 +6,21 @@
 <!-- 신고관리 페이지 -->
 	<sql id="getReportListSql">
     <!-- 조회 -->
-    select *
+    select
+    	rep_idx,
+    	rep_title,
+    	user_id,
+    	rep_content,
+    	rep_fname,
+    	rep_pw,
+    	rep_date,
+    	rep_lock,
+    	case when rep_ing = 1 then '처리 대기중'
+    		 when rep_ing = 2 then '처리중'
+    		 when rep_ing = 3 then '처리 완료'
+    		 else '미분류' end as rep_ing,
+    	rep_ing as rep_ing_cde,
+    	status
     from report
     where DATE_FORMAT(rep_date, '%Y-%m-%d') between
     <choose>
@@ -25,10 +39,10 @@
             '9999-12-31'
         </otherwise>
     </choose>
-    <if test="searchOption != null  and searchOption != ''">	<!-- 조건 선택을 하고 검색하는 부분 -->
+    <if test="searchOption != null  and searchOption != '' and colVal != ''">	<!-- 조건 선택을 하고 검색하는 부분 -->
 			and ${searchOption} like concat('%',#{colVal},'%')
 		</if>
-		<if test="selectBoxAll != null and colVal != null">
+		<if test="selectBoxAll != null and colVal != null and colVal != ''">
 			and
 			<foreach collection="selectBoxAll" item="item"  separator="or" open="(" close=")">
 				${item} like concat('%',#{colVal},'%')
@@ -49,5 +63,30 @@
 			count(*) as tot_cnt
 		from(<include refid="getReportListSql"/>) a
 	</select>
+	
+	<sql id="reportOnelistSql">
+		select
+			rep_idx,
+			rep_title,
+			user_id,
+			rep_content,
+			rep_fname,
+			rep_pw,
+			rep_date,
+			status
+		from report
+		where rep_idx = #{rep_idx}
+	</sql>
+	
+	<!-- 상세 페이지 보기 -->
+	<select id="report_onelist" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<include refid="reportOnelistSql"/>
+	</select>
+	
+	<update id="setRepIng">
+		update report
+		set rep_ing = #{rep_ing}
+		where rep_idx = #{rep_idx}
+	</update>
 	
 </mapper>

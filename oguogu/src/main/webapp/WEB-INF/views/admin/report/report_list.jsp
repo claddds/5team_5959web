@@ -122,6 +122,10 @@ button {
 	border: 1px solid silver;
 	color: silver;
 }
+.title{
+	text-decoration : underline;
+	cursor: pointer;
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -207,7 +211,6 @@ button {
 	});
 
 	function init() {
-		
 		function getUserInfo(param) {
 			$.ajax({
 				url : '/getReportList.do',
@@ -223,17 +226,18 @@ button {
 					if (res.replist.length > 0) {
 						for (var i = 0; i < res.replist.length; i++) {
 							html += '<tr>';
-							html += '<td>' +res.replist[i].rep_idx
+							html += '<td id="rep_idx">' +res.replist[i].rep_idx
 									+'</td>';
-							html += '<td>' + res.replist[i].rep_title
+							html += '<td class="title" id="rep_title" style="color:blue;">' + res.replist[i].rep_title
 									+ '</td>';
-							html += '<td>' + res.replist[i].user_id
+							html += '<td id="user_id">' + res.replist[i].user_id
 									+ '</td>';
-							html += '<td>' + res.replist[i].rep_content
+							html += '<td id="rep_content">' + res.replist[i].rep_content
 									+ '</td>';
-							html += '<td>' + res.replist[i].rep_date
+							html += '<td id="rep_date">' + res.replist[i].rep_date
 									+ '</td>';
-							html += '<td>' + res.replist[i].status
+							html += '<input type="hidden" id="rep_ing_cde" value="'+res.replist[i].rep_ing_cde+'"/>';
+							html += '<td id="rep_ing">' + res.replist[i].rep_ing
 									+	'</td>';
 							html += '</tr>';
 						}
@@ -291,6 +295,36 @@ button {
 					    }
 						getUserInfo(param);
 					});
+					$('.result').find('tr').off('click').on('click',function(){
+						var param = {
+							rep_idx: $(this).find('#rep_idx').text(),
+							rep_title: $(this).find('#rep_title').text(),
+							user_id: $(this).find('#user_id').text(),
+							rep_content: $(this).find('#rep_content').text(),
+							rep_date: $(this).find('#rep_date').text(),
+							rep_ing: $(this).find('#rep_ing').text(),
+							rep_ing_cde: $(this).find('#rep_ing_cde').val()
+						};
+						localStorage.setItem("param", JSON.stringify(param));
+						location.href = '/getReportOneList.do';
+						/* $.ajax({
+							url : '/getReportOneList.do',
+							data : param,
+							data : JSON.stringify(param||{}),
+							dataType : 'json',
+							contentType: 'application/json; charset=utf-8',
+							method : 'get',
+							cache:false,
+							success : function(res) {
+								console.log(res);
+							},
+							error : function(xhr, status, error) {
+								console.log(error);
+								console.log(xhr);
+								console.log(status);
+							}
+						}); */
+					});
 				},
 				error : function(xhr, status, error) {
 					console.log(error);
@@ -321,6 +355,7 @@ button {
 		    param.rowCnt = '5';
 		    getUserInfo(param);
 		});
+		
 		
 		// 검색 초기화
 		$('.resetBtn').off('click').on('click',function(){

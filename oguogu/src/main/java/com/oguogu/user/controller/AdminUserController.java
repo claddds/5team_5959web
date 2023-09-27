@@ -54,9 +54,9 @@ public class AdminUserController {
 	}
 
 	// 사이드바 => QnA페이지
-	@GetMapping("/admin_qan.do")
+	@GetMapping("/qna_list.do")
 	public ModelAndView Admin_qan() {
-		return new ModelAndView("/admin/qna/QnA_list");
+		return new ModelAndView("/qna/qna_list");
 	}
 
 	// 사이드바 => FAQ페이지

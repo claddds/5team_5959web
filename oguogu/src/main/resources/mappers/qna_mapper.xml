@@ -27,13 +27,14 @@
 	
 	<!-- 게시글 삭제 -->
 	<update id="delete" parameterType="String">
-		update from QnA where one_idx = #{one_idx} 
+		update QnA set status = 1 where one_idx = #{one_idx}
 	</update>
  	
 	<!-- 게시글 수정 -->
 	<update id="update" parameterType="qvo">
 		update QnA set one_title = #{one_title}, user_id = #{user_id}, one_content = #{one_content}, 
-									one_fname = #{one_fname}, one_pwd = #{one_pwd})
+									one_fname = #{one_fname}, one_date = sysdate()
+		where one_idx=#{one_idx}
 	</update>
 </mapper>
 

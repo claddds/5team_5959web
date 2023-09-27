@@ -140,10 +140,7 @@ function save_go(f) {
       <hr>
       <li class="question"><a href="/lounge_qna_list.do">질문</a></li>
     </ul>
-  </div>      
-  
-	<div class="write_top">
-	</div>
+  </div>   
 	
 	<!-- 게시판 글쓰기 구역 -->
 	<div>
@@ -159,7 +156,7 @@ function save_go(f) {
 					<td style="padding: 8px; text-align: left;">
 						<select id="lo_type" name="lo_type" style="font-size: 20px;">
   							<option selected>---선 택---</option>
-  							<option value="일상공유">일상 공유</option>
+  							<option value="일상 공유">일상 공유</option>
   							<option value="추천탭">추천탭</option>
   							<option value="질문">질문</option>
 						</select>
@@ -188,13 +185,17 @@ function save_go(f) {
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><textarea id="lo_content" 
+					<td style="padding: 8px; text-align: left;"><textarea id="lo_content" name="lo_content"
 							style="width: 90%; height: 200px;"></textarea>
 					</td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
 					<td style="padding: 8px; text-align: left;"><input name="file" type="file" style="font-size: 20px;"/></td>
+				</tr>
+				<tr height="50">
+					<th>비밀번호</th>
+					<td style="padding: 8px; text-align: left;"><input name="lo_pwd" type="password" style="width: 90%; height: 30px;" /></td>
 				</tr>
 				<tr height="50">
 					<td class="button" colspan="2" align="center" style="padding: 8px;">

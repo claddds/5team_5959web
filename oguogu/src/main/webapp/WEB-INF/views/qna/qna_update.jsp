@@ -93,9 +93,14 @@
 
 <script type="text/javascript">
 	function list_go(f) {
-		f.action="/faq_list.do";
+		f.action="/qna_list.do";
 		f.submit();
 	}
+	function update_go(f) {
+		f.action="/qna_update.do";
+		f.submit();
+	}
+	
 </script>
 
 </head>
@@ -129,51 +134,38 @@
 				cellspacing="0">
 				<tr height="50">
 					<th>제목</th>
-					<td style="padding: 8px; text-align: left;"><input name="faq_title" type="text" style="width: 90%; height: 30px;" /></td>
-				</tr>
-				<!-- 강아지/고양이/소동물 -->
-				<tr height="50">
-					<th>유형</th>
-					<td style="padding: 8px; text-align: left;">
-						<select class="box" id="domain-list" style="font-size: 20px;">
-  							<option value="naver.com">---선 택---</option>
-  							<option value="google.com">강아지</option>
-  							<option value="google.com">고양이</option>
-  							<option value="google.com">기타</option>
-						</select>
-					</td>
+					<td style="padding: 8px; text-align: left;"><input name="one_title" value="${qvo.one_title }" type="text" style="width: 90%; height: 30px;" /></td>
 				</tr>
 				<tr height="50">
 					<th>작성자</th>
 					<td style="padding: 8px; text-align: left;"><input name="user_id" style="width: 90%; height: 30px;"
-						value="${ sessionScope.loginMember.user_id }" readonly /></td>
+						value="${ sessionScope.user_id }" readonly /></td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><textarea id="faq_content" name="faq_write"
-							style="width: 90%; height: 200px;"></textarea>
+					<td style="padding: 8px; text-align: left;">
+					<textarea id="one_content" name="one_content"
+							style="width: 90%; height: 200px;">${qvo.one_content}</textarea>
 					</td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
 					<c:choose>
-						<c:when test="${empty bv.f_name}">
+						<c:when test="${empty qvo.one_fname}">
 							<td style="padding: 8px; text-align: left;"><input type="file" name="file" style="font-size: 20px;"></td>
-						         <input type="hidden" name="old_f_name" value="">	
+						         <input type="hidden" name="one_old_fname" value="">	
 						</c:when>
 						<c:otherwise>
-							<td><input type="file" name="file"><b>${bv.f_name}</b></td>
-						         <input type="hidden" name="old_f_name" value="${bv.f_name}">	
+							<td><input type="file" name="file"><b>${qvo.one_fname}</b></td>
+						         <input type="hidden" name="one_old_fname" value="${qvo.one_fname}">	
 						</c:otherwise>
 					</c:choose>
 				</tr>
 				<tr height="50">
-					<th>비밀번호</th>
-					<td style="padding: 8px; text-align: left;"><input type="password" name="pwd" size="20" style="width: 90%; height: 30px;"/></td>
-				</tr>
-				<tr height="50">
 					<td class="button"colspan="2" align="center">
-						<input type="submit" value="수정" style="font-size: 20px;">
+						<input type="hidden" name="one_idx" value="${qvo.one_idx}">
+						<input type="hidden" name="cPage" value="${cPage}">
+						<input type="submit" value="수정" style="font-size: 20px;" onclick="update_go(this.form)">
 						<input type="button" value="목록" style="font-size: 20px;"
 						onclick="list_go(this.form)">
 					</td>						
@@ -192,35 +184,36 @@
     	<script src="resources/js/lang/summernote-ko-KR.js"></script>
     	<script type="text/javascript">
     	$(function(){
-    		$('#lo_content').summernote({
-    			lang : 'ko-KR',
-    			height : 300,
-    			focus : true,
-    			callbacks : {
-    				onImageUpload :  function(files, editor){
-    					for (var i = 0; i < files.length; i++) {
-							sendImage(files[i], editor);
-						}
-    				}
-    			}
-			});
-    	});
-    	function sendImage(file, editor) {
-			var frm = new FormData();
-			frm.append("s_file",file);
-			$.ajax({
-				url : "/saveImage.do",
-				data : frm,
-				type : "post",
-				contentType : false,
-				processData : false,
-				dataType : "json",
-			}).done(function(data) {
-				var path = data.path;
-				var fname = data.fname;
-				$("#content").summernote("editor.insertImage",path+"/"+fname);
-			});
-		}
+            $('#content').summernote({
+                lang : 'ko-KR',
+                height : 300,
+                focus : true,
+                callbacks : {
+                    onImageUpload :  function(files, editor){
+                        for (var i = 0; i < files.length; i++) {
+                            sendImage(files[i], editor);
+                        }
+                    }
+                }
+            });
+            $("#content").summernote("lineHeight",.7);
+        });
+        function sendImage(file, editor) {
+            var frm = new FormData();
+            frm.append("s_file",file);
+            $.ajax({
+                url : "/saveImg.do",
+                data : frm,
+                type : "post",
+                contentType : false,
+                processData : false,
+                dataType : "json",
+            }).done(function(data) {
+                var path = data.path;
+                var fname = data.fname;
+                $("#content").summernote("editor.insertImage",path+"/"+fname);
+            });
+        }
     </script>
 </body>
 </html>

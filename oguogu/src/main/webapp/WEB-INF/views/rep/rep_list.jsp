@@ -26,6 +26,7 @@
     align-items: center; /* 세로 가운데 정렬 */
     display: flex; /* Flexbox 사용 */
 }
+#subtitle{color: red; font-size: 20px; text-align: center; margin-top: 20px}
 #repWrapper{
         width: 1130px;
         margin: auto;
@@ -126,16 +127,34 @@ table tfoot ol.paging li a:hover {
     font-size: 15pt;
 	border-radius: 10px;
 }
-</style>
+.disable {
+    padding: 3px 7px;
+    border: 1px solid silver;
+    color: silver;
+}
 
-<script type="text/javascript"
-	 src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js">
+.now {
+    padding: 3px 7px;
+    border: 1px solid #FFA629;
+    background: #FFA629;
+    color: white;
+    font-weight: bold;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var rep_onelist = "${rep_onelist}"
+		if(rep_onelist == "not"){
+			alert("다른사람이 작성한 (비밀)글입니다. 조회권한이 없습니다. ")
+			return
+		}
+	});
 </script>
 <script type="text/javascript">
 	function write_go() {
 		//글쓰기로 이동하는 함수
 		location.href = "/rep_insertForm.do";
-		f.submit();
 }  
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -162,8 +181,9 @@ table tfoot ol.paging li a:hover {
      </ul>
   </div>
   <!-- 게시판 리스트 구역 -->
-  <div>
+	<div>
 	<p id="title">신고</p>
+	<p id="subtitle">신고게시물은 작성자 이름이 보호되며, 무분별한 욕설과 타인을향한 비판은 관리자에 의해 삭제됩니다</p>
 	</div>
   <div class="rep_list">
 	<table class="table">
@@ -171,8 +191,8 @@ table tfoot ol.paging li a:hover {
     <tr>
       <th scope="col">No.</th>
       <th scope="col">제목</th>
-      <th scope="col">작성자</th>
       <th scope="col">작성 날짜</th>
+      <th scope="col">처리 상태</th>
     </tr>
   </thead>
   <tbody>
@@ -188,25 +208,19 @@ table tfoot ol.paging li a:hover {
 			<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
 			<td>${r.rep_idx}</td>
 			<td>
-	
-				<c:if test="${r.rep_lock == '1' }">
-					<c:choose>
-						
-						<c:when test="${r.User_VO.user_id || r.User_VO.type == '0'}">
-							<c:out value="${r.rep_title}"></c:out>
-						</c:when>
-						<c:otherwise>비밀글입니다.</c:otherwise>
-					</c:choose>
-				</c:if>
-				<%--
-				<c:if test="${r.rep_lock == '0' }">
-					<c:out value="${r.rep_title }"></c:out>
-				</c:if>
-				 --%>
-				<a href="/rep_onelist.do?rep_idx=${r.rep_idx}">${r.rep_title}</a>
+				<a href="/rep_onelist.do?rep_idx=${r.rep_idx}&cPage=${paging.nowPage}">${r.rep_title}</a>
 			</td>
-			<td>${r.user_id }</td>
 			<td>${r.rep_date.substring(0,10)}</td>
+			<td>
+			<c:choose>
+				<c:when test="${r.rep_ing == 0}">
+					처리 대기중
+				</c:when>
+				<c:otherwise>
+					처리 완료
+				</c:otherwise>
+			</c:choose>
+			</td>
 			</tr>
 		</c:forEach>
 	</c:otherwise>
@@ -254,7 +268,6 @@ table tfoot ol.paging li a:hover {
         	<input type="button" value="글쓰기" class="button" onclick=" write_go()">
        </td>
 	</tr>
-	 
 </tfoot>
 </table>
 </div>

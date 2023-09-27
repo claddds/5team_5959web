@@ -1,9 +1,29 @@
 package com.oguogu.food.model.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Food_VO {
-	private String fd_idx, fd_name, fd_company, fd_fname, fd_age_group,
+	private String fd_idx, fd_name, fd_company, fd_fname,old_f_name, fd_age_group,
 				   fd_pet_type, fd_info, fd_price, fd_link,
-			       fd_type, fd_open, fd_like, admin_nickname, status;
+			       fd_type, fd_open, fd_like, admin_nickname,fd_date, status;
+	private MultipartFile file;
+
+	
+	public String getOld_f_name() {
+		return old_f_name;
+	}
+
+	public void setOld_f_name(String old_f_name) {
+		this.old_f_name = old_f_name;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public String getFd_idx() {
 		return fd_idx;
@@ -115,5 +135,13 @@ public class Food_VO {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getFd_date() {
+		return fd_date;
+	}
+
+	public void setFd_date(String fd_date) {
+		this.fd_date = fd_date;
 	}
 }

@@ -95,9 +95,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
 	function list_go(f) {
 		f.action="/rep_list.do";
@@ -114,15 +112,7 @@
 			f.rep_content.focus();
 			return;
 		}
-		var checkbox = document.getElementById("chkbox");
-		// 체크박스 체크 시
-		if(checkbox.checked){
-			// 값 1을 hidden 필드에 설정한다.
-			document.getElementById("lock_flag").value="1";
-		}else{
-			// 체크 해제 시
-			document.getElementById("lock_flag").value="0";
-		}
+		
 		alert("성공");
 		f.action="/rep_insert.do";
 		f.submit();
@@ -185,25 +175,8 @@
 					<td style="padding: 8px; text-align: left;"><input name="file" type="file" style="font-size: 20px;"/></td>
 				</tr>
 				<tr height="50">
-					<th>비밀번호</th>
-					<td style="padding: 8px; text-align: left;">
-						<input type="password" name="pwd" size="20" style="width: 90%; height: 30px; font-size: 20px;"/>
-					</td>
-				</tr>
-				<tr height="50">
-					<th>비밀글여부</th>
-					<td>
-						<div id="chkbox_div" style="text-align: left;"> 
-							<input type="checkbox" id="chkbox" name="rep_lock" />									
-							<label for="chkbox"></label>
-							비밀글여부
-						</div>
-					</td>
-				</tr>
-				<tr height="50">
 					<td class="button" colspan="2" align="center">
 						<input type="submit" value="저장" style="font-size: 20px;" onclick="save_go(this.form)">
-				
 						<input type="button" value="목록" style="font-size: 20px;"
 						onclick="list_go(this.form)">
 					</td>						

@@ -12,9 +12,10 @@
 <!-- 댓글 리스트 -->
 <select id="list" resultType="cvo">
 	select com_idx, user_id, com_content, com_date from Comment
-	where lo_idx = #{lo_idx}
+	where lo_idx = #{lo_idx} AND status = 0
 </select>
 
+	
 <!-- 댓글 삽입 -->
 <insert id="insert" parameterType="cvo">
 	insert into Comment(com_idx, lo_idx, user_id, com_content, com_date, status)
@@ -28,7 +29,7 @@
 </update>
 
 <!-- 댓글 삭제 >> delete문 말고 update로 할 것 (status 값으로 유지, 삭제 구분) -->
-<update id="delete" parameterType="cvo">
+<update id="delete" parameterType="String">
 	update Comment set status = 1 where com_idx =#{com_idx}
 </update>
 </mapper>

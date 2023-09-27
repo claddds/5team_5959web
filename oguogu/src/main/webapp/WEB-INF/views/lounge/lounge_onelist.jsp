@@ -138,6 +138,7 @@ input{
 	}
 	// 댓글 삭제
 	function comment_del(f) {
+		alert("댓글 삭제 성공!");
 		f.action = "/com_delete.do";
 		f.submit();
 	}

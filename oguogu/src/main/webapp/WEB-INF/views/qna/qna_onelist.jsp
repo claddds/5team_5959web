@@ -140,12 +140,7 @@ input{
 	}
 	// 댓글 삭제
 	function comment_del(f) {
-		// 서버로 댓글 삭제 요청을 보내고 성공하면 다음과 같이 해당 댓글의 DOM 요소를 제거
-	    var qnacomIdx = f.qnacom_idx.value;
-	    var deletedComment = document.getElementById('comment_' + qnacomIdx);
-	    if (deletedComment) {
-	        deletedComment.parentNode.removeChild(deletedComment);
-	    }
+		alert("댓글 삭제 성공!");
 		f.action = "/qnacom_delete.do";
 		f.submit();
 	}
@@ -247,13 +242,13 @@ input{
 		 		<p>내용 : ${k.qnacom_content }</p>
 		 		<p>날짜 : ${k.qnacom_date.substring(0,10)}</p>
 		 		<hr>
-		 		<input type="hidden" value="${k.qnacom_idx}" name="qnacom_idx">
-		 		<input type="hidden" value="${k.one_idx}" name="one_idx">
-		 		<input type="hidden" name="cPage" value="${cPage}">
 		 		<%-- 실제로는 로그인 성공해야 지만 삭제번트이 보여야 한다. --%>
-		 		<c:if test="${sessionScope.user_id == qvo.user_id}">
-		 		<input type="button" value="삭제" style="font-size: 15px;" onclick="comment_del(this.form)">
-				</c:if>
+		 		<c:if test="${sessionScope.user_id == k.user_id}">
+		 			<input type="hidden" value="${k.qnacom_idx}" name="qnacom_idx">
+	 				<input type="hidden" name="one_idx" value="${k.one_idx}">
+					<input type="hidden" name="cPage" value="${cPage}">
+		 			<input type="button" value="삭제" onclick="comment_del(this.form)">
+		 		</c:if>
 		 	</form>
 		 </div>
 		

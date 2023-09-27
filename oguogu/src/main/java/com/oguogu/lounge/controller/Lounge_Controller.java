@@ -256,7 +256,7 @@ public class Lounge_Controller {
 
 		// 댓글 가져오기
 		List<Comment_VO> c_list = lounge_Serivce.getCommList(lo_idx);
-
+		System.out.println(lo_idx);
 		mv.addObject("c_list", c_list);
 		mv.addObject("lvo", lvo);
 		mv.addObject("cPage", cPage);
@@ -342,17 +342,23 @@ public class Lounge_Controller {
 			return null;
 		}
 	}
-	
-	 @PostMapping("com_delete.do")
-     public String commDelete(@RequestParam("cPage") String cPage, RedirectAttributes rttr,
-    		 @RequestParam("lo_idx") String lo_idx, @ModelAttribute("com_idx") String com_idx, Model model) {
-		 Lounge_VO cvo = lounge_Serivce.getOneList(lo_idx);
-         int result = lounge_Serivce.getCommDelete(com_idx);
-         rttr.addFlashAttribute("cPage", cPage);
-         rttr.addAttribute("result", result);
-         rttr.addAttribute("cvo", cvo);
-         return  "redirect:/lounge_onelist.do?lo_idx=" + lo_idx;
-     }
-	 
+	@PostMapping("/com_delete.do")
+	public ModelAndView commentDelete(@RequestParam("com_idx") String com_idx, @ModelAttribute("cPage") String cPage,
+			@ModelAttribute("lo_idx") String lo_idx) {
+		ModelAndView mv = new ModelAndView("redirect:/lounge_onelist.do");
+		int result = lounge_Serivce.getCommDelete(com_idx);
+		return mv;
+	}
 
+//	 @PostMapping("/com_delete.do")
+//     public String commDelete(@RequestParam("cPage") String cPage, RedirectAttributes rttr,
+//    		 @RequestParam("lo_idx") String lo_idx,@RequestParam("com_idx") String com_idx) {
+//		 Lounge_VO cvo = lounge_Serivce.getOneList(lo_idx);
+//         int result = lounge_Serivce.getCommDelete(com_idx);
+//         System.out.println("오니?" + lo_idx);
+//         rttr.addFlashAttribute("cPage", cPage);
+//         rttr.addAttribute("cvo", cvo);
+//         rttr.addAttribute("lo_idx", lo_idx);
+//         return  "redirect:/lounge_onelist.do";
+//     }
 }

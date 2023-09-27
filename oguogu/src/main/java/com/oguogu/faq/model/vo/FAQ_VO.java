@@ -4,9 +4,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FAQ_VO {
 	
-	private String faq_idx, faq_title, faq_content, faq_date, faq_fname, faq_ing, faq_type, faq_pwd, user_id, admin_nickname, status;
+	private String faq_idx, faq_title, faq_content, faq_date, faq_fname,old_f_name, faq_ing, faq_type, faq_pwd, user_id, admin_nickname, status;
 	private MultipartFile file;
 	
+	
+	
+	public String getOld_f_name() {
+		return old_f_name;
+	}
+
+	public void setOld_f_name(String old_f_name) {
+		this.old_f_name = old_f_name;
+	}
+
 	public String getFaq_idx() {
 		return faq_idx;
 	}

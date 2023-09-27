@@ -3,11 +3,27 @@ package com.oguogu.education.model.vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Education_VO {
-	private String edu_idx, edu_kind, edu_aml_kind, edu_title, edu_content, admin_nickname,  edu_F_name, edu_date, edu_hit, status ;
+	private String edu_idx, edu_kind, edu_aml_kind, edu_title, edu_content, admin_nikname,  edu_F_name,old_f_name, edu_date, edu_hit,edu_open, status ;
 	private MultipartFile file;
 	
 	
 	
+	public String getEdu_open() {
+		return edu_open;
+	}
+
+	public void setEdu_open(String edu_open) {
+		this.edu_open = edu_open;
+	}
+
+	public String getOld_f_name() {
+		return old_f_name;
+	}
+
+	public void setOld_f_name(String old_f_name) {
+		this.old_f_name = old_f_name;
+	}
+
 	public String getEdu_F_name() {
 		return edu_F_name;
 	}
@@ -64,12 +80,12 @@ public class Education_VO {
 		this.edu_content = edu_content;
 	}
 
-	public String getAdmin_nickname() {
-		return admin_nickname;
+	public String getAdmin_nikname() {
+		return admin_nikname;
 	}
 
-	public void setAdmin_nickname(String admin_nickname) {
-		this.admin_nickname = admin_nickname;
+	public void setAdmin_nikname(String admin_nikname) {
+		this.admin_nikname = admin_nikname;
 	}
 
 	public String getEdu_date() {

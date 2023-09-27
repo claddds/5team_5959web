@@ -55,7 +55,7 @@
 	</update>
 	<!-- 게시글 삭제 -->
 	<update id="delete" parameterType="String">
-		delete from lounge where lo_idx = #{lo_idx} 
+		update lounge set status = 1 where lo_idx = #{lo_idx} 
 	</update>
 </mapper>
 

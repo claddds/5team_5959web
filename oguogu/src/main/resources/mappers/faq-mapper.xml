@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faq_vo">
+	
+	<select id="count" resultType="int">
+		select count(*) from FAQ
+	</select>
+	
+	<select id="searchcount" parameterType="Map" resultType="int">
+	 SELECT COUNT(*) FROM FAQ
+    WHERE status = 0
+    <if test="searchtype != null and keyword != null and !keyword.isEmpty()">
+        AND (faq_title LIKE CONCAT('%', #{keyword}, '%') OR faq_content LIKE CONCAT('%', #{keyword}, '%') OR admin_nickname LIKE CONCAT('%', #{keyword}, '%'))
+    </if>
+	</select>
+	<!-- 게시글 목록 보기-->
+	<select id="list" parameterType="Map" resultType="faq_vo">
+	  select * from FAQ order by faq_idx desc #limit={#limit}, #offset={#offset}
+	</select>
+	
+	<!-- 게시글 삽입 -->
+	<insert id="insert" parameterType="faq_vo">
+		insert into FAQ(faq_title,faq_content,faq_fname,admin_nickname,faq_date,faq_ing,status)
+		values(#{faq_title},#{faq_content},#{faq_fname},#{admin_nickname},sysdate(),#{faq_ing},0)	
+	</insert>
+	
+	<!-- 상세보기 -->
+	<select id="onelist" parameterType="String" resultType="faq_vo">
+		select * from FAQ where faq_idx = #{faq_idx}
+	</select>
+	
+	
+	<!-- 게시글 수정하기 -->
+	<update id="update" parameterType="faq_vo">
+		update FAQ set faq_title=#{faq_title}, faq_content=#{faq_content}, faq_fname=#{faq_fname},
+		admin_nickname=#{admin_nickname},faq_ing=#{faq_ing},faq_date=sysdate() where faq_idx=#{faq_idx}
+	</update>
+	
+	<update id="delete" parameterType="faq_vo">
+		update FAQ set status = 1 where faq_idx=#{faq_idx}
+	</update>
+	
+	<select id="search" parameterType="Map" resultType="faq_vo">
+    <choose>
+        <when test="searchtype != null and keyword != null and !keyword.isEmpty()">
+            <!-- 검색 조건이 존재할 때 -->
+            SELECT * FROM FAQ
+            WHERE status = 0
+             <if test="searchtype == 'faq_title'">
+                AND faq_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'faq_date'">
+                AND faq_date LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'admin_nickname'">
+                AND admin_nickname LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            ORDER BY faq_idx DESC
+            LIMIT #{limit} OFFSET #{offset}
+        </when>
+        <otherwise>
+         <!-- 검색 조건이 없을 때 -->
+            <!-- 아무 작업도 수행하지 않음 (빈 쿼리) -->
+            SELECT 1 WHERE 1=0
+        </otherwise>
+    </choose>
+</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+

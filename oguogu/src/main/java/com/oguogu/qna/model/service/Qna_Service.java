@@ -25,17 +25,5 @@ public interface Qna_Service {
 
 	// 원글 삭제
 	public int getDelete(String one_idx);
-	
-// 문의사항에 대한 답글?	
-//	// 댓글 목록 가져오기
-//	public List<Comment_VO> getCommList(String com_idx);
-//	
-//	// 댓글 삽입(등록)
-//	public int getCommInsert(Comment_VO cvo);
-//	
-//	// 댓글 삭제
-//	public int getCommDelete(String com_idx);
-//	
-//	// 댓글 수정
-//	public int getCommUpdate(Comment_VO cvo);
+
 }

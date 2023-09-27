@@ -40,4 +40,14 @@ public interface Lounge_Service {
 	// 댓글 카운트
 	public int getCommentcnt(String lo_idx);
 
+	// 댓글 가져오기(리스트)
+	public List<Comment_VO> getCommList(String lo_idx);
+	
+	// 댓글 입력
+	public int getCommInsert(Comment_VO cvo);
+	
+	// 댓글 삭제
+	public int getCommDelete(String com_idx);
+	
+
 }

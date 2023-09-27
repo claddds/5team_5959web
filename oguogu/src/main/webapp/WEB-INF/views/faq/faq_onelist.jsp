@@ -88,9 +88,6 @@ input{
 	padding: 10px;
 	margin:auto;
 	}
-.btn{
-	text-align: center;
-	}
 .content{
 	width: 100%;
 	float:right;
@@ -100,8 +97,6 @@ input{
 }	
     
 </style>
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
 <script type="text/javascript">
 </script>
 <title>faq_onelist</title>
@@ -109,14 +104,13 @@ input{
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
-	function list_go(f) {
-		//목록으로 이동하는 함수
-		f.action = "/faq_list.do";
-		f.submit();
-	}
+function list_go() {
+    // 목록으로 이동하는 함수
+    location.href = "/faq_list.do";
+}
+
 </script>
 </head>
 <body>
@@ -152,17 +146,8 @@ input{
 					<th>제목</th>
 					<td style="padding: 8px; text-align: left;">${faqvo.faq_title}</td>
 				</tr>
-				<!-- 강아지/고양이/소동물 -->
 				<tr height="50">
-					<th>유형</th>
-					<td style="padding: 8px; text-align: left;">${faqvo.faq_type}</td>
-				</tr>
-				<tr height="50">
-					<th>진행상황</th>
-					<td style="padding: 8px; text-align: left;">${faqvo.faq_ing}</td>
-				</tr>
-				<tr height="50">
-					<th>이름</th>
+					<th>작성자</th>
 					<td style="padding: 8px; text-align: left;">${faqvo.admin_nickname}</td>
 				</tr>
 				<tr height="50">
@@ -187,13 +172,10 @@ input{
 					</c:choose>
 				</tr>
 				<tr height="30">
-					<td colspan="2">
+					<td colspan="2" align="center" style="padding: 8px; text-align: center;">
 						<input type="hidden" value="${faqvo.faq_idx}" name="idx">
 						<input type="hidden" value="${cPage}" name="cPage">
-						
-						<div class="btn">
-							<input type="button" value="목록" onclick="list_go(this.form)">
-						</div>
+						<input type="button" value="목록" style="font-size: 20px;" onclick="list_go()">
 					</td>
 				</tr>
 		</table>

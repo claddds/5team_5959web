@@ -109,8 +109,7 @@ input{
 	 text-align: left;
 }
 </style>
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
 </script>
 <title>게시글 상세보기</title>
@@ -140,11 +139,6 @@ input{
 	// 댓글 삭제
 	function comment_del(f) {
 		f.action = "/com_delete.do";
-		f.submit();
-	}
-	// 댓글 수정
-	function comment_up(f) {
-		f.action = "/com_update.do";
 		f.submit();
 	}
 </script>
@@ -185,7 +179,7 @@ input{
 				</tr>
 				<tr height="50">
 					<th>동물 종류</th>
-					<td style="padding: 8px; text-align: left;">${lvo.lo_type}</td>
+					<td style="padding: 8px; text-align: left;">${lvo.lo_petkind}</td>
 				</tr>
 				<tr height="50">
 					<th>제목</th>
@@ -197,7 +191,7 @@ input{
 				</tr>
 				<tr height="50">
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><pre>${lvo.lo_content}</pre></td>
+					<td style="padding: 8px; text-align: left;">${lvo.lo_content}</td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
@@ -206,7 +200,7 @@ input{
 							<td style="padding: 8px; text-align: left;"><b>첨부 파일 없음</b></td>
 						</c:when>
 						<c:otherwise>
-							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?f_name=${lvo.lo_fname}">
+							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?lo_fname=${lvo.lo_fname}">
 							<img src="resources/images/${lvo.lo_fname}" style="80px;"></a>
 							</td>
 						</c:otherwise>
@@ -214,27 +208,24 @@ input{
 				</tr>
 				<tr height="50">
 					<td colspan="2" align="center" style="padding: 8px; text-align: center;">
-						<input type="hidden" value="${lvo.lo_idx}" name="idx">
-						<input type="hidden" value="${cPage}" name="cPage">
-						<input type="button" value="목록" style="font-size: 20px;"
-						onclick="list_go(this.form)">
-						<input type="button" value="삭제" style="font-size: 20px;" 
-						onclick="delete_go(this.form)">
-						<input type="button" value="수정" style="font-size: 20px;"
-						onclick="update_go(this.form)">
+						<input type="hidden" value="${lvo.lo_idx}" name="lo_idx">
+						<input type="button" value="목록" style="font-size: 20px;" onclick="list_go(this.form)">
+						<c:if test="${sessionScope.user_id == lvo.user_id}">
+							<input type="button" value="삭제" style="font-size: 20px;" onclick="delete_go(this.form)">
+							<input type="button" value="수정" style="font-size: 20px;" onclick="update_go(this.form)">
+						</c:if>
 					</td>
 				</tr>
 		</table>
 		<hr style="width: 1200px; text-align:center; margin-left: 510px; margin-top: 50px;" >
 	</form>
 	</div>  
-	
 	<!-- 댓글 작성 영역 -->
 	<%-- 댓글 입력 --%>
 	<div style="padding:50px; width:1200px; margin-left: 460px; ">
 		<form method="post">
 			<fieldset id="com_field">
-				<p>작성자  <input type="text" name="user_id" ></p>
+				<p>작성자  <input type="text" name="user_id" value="${ sessionScope.user_id }" readonly ></p>
 				<p>내용  <br>
 					<textarea rows="4" cols="40" name="com_content" style="width: 1000px;"></textarea>
 				 </p>
@@ -249,21 +240,23 @@ input{
 	<%-- 댓글 출력 --%>
 	<div style="display: table;" class="com">
 		<c:forEach var="k" items="${c_list}">
-	
+		
 		 <div>
 		 	<form method="post">
 		 		<p>작성자 : ${k.user_id}</p>
 		 		<p>내용 : ${k.com_content }</p>
 		 		<p>날짜 : ${k.com_date.substring(0,10)}</p>
+		 		<hr>
 		 		<%-- 실제로는 로그인 성공해야 지만 삭제번트이 보여야 한다. --%>
-		 		<input type="button" value="삭제" onclick="comment_del(this.form)">
-		 		<input type="button" value="수정" onclick="comment_up(this.form)">
+		 		<c:if test="${sessionScope.user_id == k.user_id}">
 		 		<input type="hidden" value="${k.com_idx}" name="com_idx">
-		 		<input type="hidden" value="${k.lo_idx}" name="lo_idx">
-		 		<input type="hidden" name="cPage" value="${cPage}">
+	 			<input type="hidden" name="lo_idx" value="${k.lo_idx}">
+				 <input type="hidden" name="cPage" value="${cPage}">
+		 		<input type="button" value="삭제" onclick="comment_del(this.form)">
+		 		</c:if>
 		 	</form>
 		 </div>
-
+		
 		</c:forEach>
 	</div>
 </div>  

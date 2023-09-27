@@ -107,6 +107,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
          $("#logout_go").on("click", function() {
         	 alert("로그아웃 되었습니다.");
         })  
+       
     });
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -18,13 +18,13 @@
 	text-align: center;
 }
 
-#loungeWrapper{
+#qnaWrapper{
         text-align: center;
         padding:10px;
         margin:auto;
         font-family: 'Noto Sans KR', sans-serif;
     }
-#loungeWrapper > ul > li:first-child {
+#qnaWrapper > ul > li:first-child {
         text-align: center;
         font-size:14pt;
         height:40px;
@@ -49,17 +49,13 @@
     display: flex; /* Flexbox 사용 */
 }
 
-#write table{
+#delete table{
 	width:1200px;
 	margin:0 auto;
 	margin-top:100px;
 	border:1px solid black;
 	border-collapse:collapse;
 	font-size:20px;
-}
-
-#write table th{
-	background-color: #FFA629;
 }
 
 .sidebar {
@@ -94,30 +90,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
 <title>게시글 작성하기</title>
-
 <script type="text/javascript">
-function list_go(f) {
-	f.action="/lounge_list.do";
-	f.submit();
-}
-function save_go(f) {
-	if(f.lo_title.value.trim().length <=0){
-		alert("제목을 입력하세요");
-		f.lo_title.focus();
+	$(document).ready(function(){
+		var pwchk = "${pwchk}"
+	    if(pwchk == "fail"){
+		   alert("비밀번호 틀림");
+		   return;
+	   }
+	});
+</script>
+<script type="text/javascript">
+function delete_go(f){
+	if(f.one_pwd.value.trim().length <=0){
+		alert("비번을 입력해주세요");
+		f.one_pwd.focus();
 		return;
 	}
-	if(f.lo_content.value.trim().length <=0){
-		alert("내용을 입력하세요");
-		f.lo_content.focus();
-		return;
-	}
-	alert("성공");
-	f.action="/lounge_insert.do";
-	f.submit();
+	if (confirm("정말 삭제하시겠습니까?")) {
+        f.action="/qna_delete.do";
+        f.submit();
+    }
 }
 </script>
 </head>
@@ -127,81 +122,39 @@ function save_go(f) {
 			<jsp:include page="../home/home_top.jsp" />
 		</header>
 		
-	<div id="loungeWrapper" style="width: 1920px;">
+	<div id="qnaWrapper" style="width: 1920px;">
 	
 	<!-- 사이드바 구역 -->      
- <div class="sidebar">
+  <div class="sidebar">
     <ul class="sidebar-menu">
-      <li class="all"><a href="/lounge_list.do">전체글보기</a></li>
+      <li class="notice"><a href="/sup_list.do">공지사항</a></li>
       <hr>
-      <li class="share"><a href="/lounge_share_list.do">일상 공유</a></li>
+      <li class="faq"><a href="/faq_list.do">자주 묻는 질문</a></li>
       <hr>
-      <li class="recomm"><a href="/lounge_recomm_list.do">추천탭</a></li>
+      <li class="qna" style="font-weight: bold;"><a href="/qna_list.do">1:1 문의</a></li>
       <hr>
-      <li class="question"><a href="/lounge_qna_list.do">질문</a></li>
-    </ul>
-  </div>   
-	
+      <li class="report"><a href="/rep_list.do">신고</a></li>
+     </ul>
+  </div>      
 	<!-- 게시판 글쓰기 구역 -->
 	<div>
-		<p id="title">게시글 작성하기</p>
+		<p id="title">게시글 삭제하기</p>
 	</div>
-	
-	<div id="write">
-		<form method="post" enctype="multipart/form-data">
+	<div id="delete">
+		<form method="post">
 			<table width="1200px;"  border="1px solid" cellpadding="0"
 				cellspacing="0">
 				<tr height="50">
-					<th>게시판 종류</th>
+					<th>비밀번호 확인</th>
 					<td style="padding: 8px; text-align: left;">
-						<select id="lo_type" name="lo_type" style="font-size: 20px;">
-  							<option selected>---선 택---</option>
-  							<option value="일상 공유">일상 공유</option>
-  							<option value="추천탭">추천탭</option>
-  							<option value="질문">질문</option>
-						</select>
+						<input type="password" name="one_pwd" style="width: 90%; height: 30px;" />
 					</td>
-				</tr>
-				<tr height="50">
-					<th>동물 선택</th>
-					<td style="padding: 8px; text-align: left;">
-						<select id="lo_petkind" name="lo_petkind" style="font-size: 20px;">
-  							<option selected>---선 택---</option>
-  							<option value="강아지">강아지</option>
-  							<option value="고양이">고양이</option>
-  							<option value="기타">기타</option>
-						</select>
-					</td>
-				</tr>
-				<tr height="50">
-				<%-- 로그인한 아이디 정보가 들어가고 readonly는 읽기 전용이라는 의미 --%> 
-					<th>작성자</th>
-					<td style="padding: 8px; text-align: left;"><input name="user_id"
-						value="${ sessionScope.user_id }" style="width: 90%; height: 30px;" readonly /></td>
-				</tr>
-				<tr height="50">
-					<th>제목</th>
-					<td style="padding: 8px; text-align: left;"><input name="lo_title" type="text" style="width: 90%; height: 30px;" /></td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><textarea id="lo_content" name="lo_content"
-							style="width: 90%; height: 200px;"></textarea>
-					</td>
-				</tr>
-				<tr height="50">
-					<th>첨부파일</th>
-					<td style="padding: 8px; text-align: left;"><input name="file" type="file" style="font-size: 20px;"/></td>
-				</tr>
-				<tr height="50">
-					<th>비밀번호</th>
-					<td style="padding: 8px; text-align: left;"><input name="lo_pwd" type="password" style="width: 90%; height: 30px;" /></td>
 				</tr>
 				<tr height="50">
 					<td class="button" colspan="2" align="center" style="padding: 8px;">
-						<input type="submit" value="등록" style="font-size: 20px;" onclick="save_go(this.form)">
-						<input type="button" value="목록" style="font-size: 20px;"
-						onclick="list_go(this.form)">
+						<input type="hidden" name="cPage" value="${cPage}">
+						<input type="hidden" name="one_idx" value="${lo_idx}">
+						<input type="button" value="삭제" style="font-size: 20px;" onclick="delete_go(this.form)">
 					</td>						
 				</tr>
 			</table>
@@ -213,7 +166,7 @@ function save_go(f) {
     	<script src="resources/js/lang/summernote-ko-KR.js"></script>
     	<script type="text/javascript">
     	$(function(){
-    		$('#lo_content').summernote({
+    		$('#content').summernote({
     			lang : 'ko-KR',
     			height : 300,
     			focus : true,

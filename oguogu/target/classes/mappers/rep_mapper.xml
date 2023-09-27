@@ -16,8 +16,8 @@
 	
 	<!-- 게시글 삽입 -->
 	<insert id="insert" parameterType="rvo">
-		insert into report(rep_title, user_id, rep_content, rep_fname, rep_pw, rep_date, rep_lock, rep_ing, status)
-		values(#{rep_title}, #{user_id},#{rep_content}, #{rep_fname}, #{rep_pw}, sysdate(), 0,0,0)
+		insert into report(rep_title, user_id, rep_content, rep_fname,  rep_date, rep_lock, rep_ing, status)
+		values(#{rep_title}, #{user_id},#{rep_content}, #{rep_fname},  sysdate(), 0,0,0)
 	</insert>
 	
 	<!-- 게시글 상세보기 -->

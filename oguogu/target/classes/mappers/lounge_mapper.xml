@@ -33,8 +33,8 @@
 	
 	<!-- 게시글 삽입 -->
 	<insert id="insert" parameterType="lvo">
-		insert into lounge(lo_type, lo_petkind, user_id, lo_title, lo_content, lo_fname, lo_date, lo_hit, status)
-		values(#{lo_type}, #{lo_petkind},#{user_id}, #{lo_title}, #{lo_content}, #{lo_fname}, sysdate(),0,0)
+		insert into lounge(lo_type, lo_petkind, user_id, lo_title, lo_content, lo_pwd, lo_fname, lo_date, lo_hit, status)
+		values(#{lo_type}, #{lo_petkind},#{user_id}, #{lo_title}, #{lo_content},#{lo_pwd}, #{lo_fname}, sysdate(),0,0)
 	</insert>
 	
 	<!-- 게시글 조회수 -->
@@ -50,13 +50,16 @@
 	<!-- 게시글 수정하기 -->
 	<update id="update" parameterType="lvo">
 		update lounge set lo_type=#{lo_type}, lo_petkind=#{lo_petkind}, lo_title=#{lo_title}, lo_content=#{lo_content},
-					lo_fname=#{lo_fname}, lo_date=sysdate()
+					lo_fname=#{lo_fname}, lo_date = sysdate()
 		where lo_idx=#{lo_idx}
 	</update>
+	
 	<!-- 게시글 삭제 -->
 	<update id="delete" parameterType="String">
 		update lounge set status = 1 where lo_idx = #{lo_idx} 
 	</update>
+	
+
 </mapper>
 
 

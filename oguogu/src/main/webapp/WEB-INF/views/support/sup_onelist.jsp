@@ -109,10 +109,9 @@ input{
 	</script>
 	
 <script type="text/javascript">
-function list_go(f) {
+function list_go() {
 	//목록으로 이동하는 함수
-	f.action = "/sup_list.do";
-	f.submit();
+	location.href = "/sup_list.do";
 }
 </script>	
 
@@ -188,7 +187,7 @@ function list_go(f) {
 						<input type="hidden" value="${cPage}" name="cPage">
 						
 						<div class="btn">
-							<input type="button" value="목록" onclick="list_go(this.form)">
+							<input type="button" value="목록" onclick="list_go()">
 						</div>
 					</td>
 				</tr>

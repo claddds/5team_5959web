@@ -106,19 +106,24 @@ table tfoot ol.paging li a:hover {
 	font-weight: bold;
 }
 
-footer{
-		width:1920px;
-		display:flex;
-		margin:auto;
-		margin-top:20px;
-		margin-bottom: 20px;
-	}
-</style>
+tfoot{
+	text-align: center;
+}
+.disable {
+    padding: 3px 7px;
+    border: 1px solid silver;
+    color: silver;
+}
 
-<script type="text/javascript"
-    src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js">
-</script>
-            
+.now {
+    padding: 3px 7px;
+    border: 1px solid #FFA629;
+    background: #FFA629;
+    color: white;
+    font-weight: bold;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>   
 <script type="text/javascript">
 	function write_go() {
 		//글쓰기로 이동하는 함수

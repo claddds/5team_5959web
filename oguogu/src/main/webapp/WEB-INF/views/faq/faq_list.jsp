@@ -115,6 +115,11 @@ table tfoot ol.paging li a:hover {
 	color: white;
 	font-weight: bold;
 }
+
+tfoot{
+	text-align: center;
+}
+
 .button{
 	background-color: #FFA629;
 	color: #f8f8ff;
@@ -123,6 +128,19 @@ table tfoot ol.paging li a:hover {
     height: 40px;
     font-size: 15pt;
 	border-radius: 10px;
+}
+.disable {
+    padding: 3px 7px;
+    border: 1px solid silver;
+    color: silver;
+}
+
+.now {
+    padding: 3px 7px;
+    border: 1px solid #FFA629;
+    background: #FFA629;
+    color: white;
+    font-weight: bold;
 }
 </style>
 <script type="text/javascript"

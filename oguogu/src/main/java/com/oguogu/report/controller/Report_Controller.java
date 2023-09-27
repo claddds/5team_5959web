@@ -5,22 +5,29 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oguogu.comment.model.service.RepComment_Service;
 import com.oguogu.comment.model.vo.RepComment_VO;
 import com.oguogu.common.Paging;
+import com.oguogu.lounge.model.service.Lounge_Service;
 import com.oguogu.report.model.service.Report_Service;
 import com.oguogu.report.model.vo.Report_VO;
+import com.oguogu.user.model.service.Join_Service;
+import com.oguogu.user.model.service.User_service;
+import com.oguogu.user.model.vo.User_VO;
 
 
 @Controller
@@ -29,6 +36,8 @@ public class Report_Controller {
 	@Autowired
 	private Report_Service report_Service;
 	
+	@Autowired
+	private Join_Service join_Service;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -82,9 +91,9 @@ public class Report_Controller {
 	
 	@PostMapping("/rep_insert.do")
 	public ModelAndView repInsert(Report_VO rvo,HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("rep/rep_list");
+		ModelAndView mv = new ModelAndView("redirect:/rep_list.do");
+		String path = request.getSession().getServletContext().getRealPath("/resources/images");
 		try {
-			String path = request.getSession().getServletContext().getRealPath("/resources/images");
 			MultipartFile file = rvo.getFile();
 			if (file.isEmpty()) {
 				rvo.setRep_fname("");
@@ -98,23 +107,10 @@ public class Report_Controller {
 				File out = new File(path, rep_fname);
 				FileCopyUtils.copy(in, out);
 			}
-			// 비밀글 체크 시 제목 앞에 붙이기
-//			String lock = request.getParameter("lock_flag");
-//			System.out.println("비밀글 여부 : " + lock); // 0:공개 | 1:비밀
-//			// 비밀글 앞에는 [비밀글] 붙이기 위해 제목 가져오기
-//			String title = rvo.getRep_title();
-//			
-//			if(lock.equals("1")) {
-//				rvo.setRep_lock("1");
-//			}else {
-//				rvo.setRep_lock("0");
-//			}
-			
-			// DB에 저장하기
 			int res = report_Service.getInsert(rvo);
-			if(res>0) {
+			if (res > 0) {
 				return mv;
-			}else {
+			} else {
 				return null;
 			}
 		} catch (Exception e) {
@@ -124,20 +120,32 @@ public class Report_Controller {
 }
 	// 상세보기
 		@GetMapping("/rep_onelist.do")
-		public ModelAndView repOneList(HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("rep/rep_onelist");
+		public String repOneList(HttpServletRequest request, HttpSession session, RedirectAttributes rttr,Model model ) {
+			session.removeAttribute("rep_onelist");
 			String rep_idx = request.getParameter("rep_idx");
 			String cPage = request.getParameter("cPage");
-			
+			String user_id = (String) session.getAttribute("user_id");
 			// 상세보기
 			Report_VO rvo = report_Service.getOneList(rep_idx);
-			
+			User_VO uvo = join_Service.getUserOneList(user_id);
 			// 댓글 가져오기
 //			List<RepComment_VO> rc_list = repComment_Service.getRepCommList(rep_idx);
 			
 //			mv.addObject("rc_list", rc_list);
-			mv.addObject("rvo", rvo);
-			mv.addObject("cPage", cPage);
-			return mv;
+			 model.addAttribute("rep_onelist", "update");
+        	 model.addAttribute("rvo", rvo);
+			
+			String userType = uvo.getType();
+			
+			System.out.println("로그인 한 아이디 : " + user_id);
+			String db_id = rvo.getUser_id();
+			System.out.println("디비에 저장된 아이디 : " +db_id);
+			 if(!db_id.equals(user_id) && !userType.equals("0")){
+				rttr.addFlashAttribute("rep_onelist", "not");
+	         	return "redirect:/rep_list.do"; 
+	         }else {
+	        	 model.addAttribute("cPage", cPage);
+	         	return "rep/rep_onelist";
+	         }
 		}	
 }	

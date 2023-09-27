@@ -41,20 +41,7 @@ footer{
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
-	var loginChk = "";
-	$(document).ready(function(){
-		loginChk = "${loginChk}";
-		if(loginChk == "fail"){
-			alert("비밀번호가 틀렸습니다.")
-			history.go(-1)
-		}else if(loginChk == "ok"){			
-			//alert("비밀번호 맞았다.")
-			$("#login").css("display", "none") //감추기
-			//return;
-			$("#login_ok").css("display", "block") //나타내기
-		}
-		
-	});
+
 </script>
 </head>
 <body>

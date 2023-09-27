@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#update-delete-pet-profileform{
+	#write-pet-profile-form{
 		width:1920px;
 		margin:auto;
 		display: flex;
 		margin-top:50px;
 	}
-	#update-delete-pet-profile{
+	
+	#write-pet-profile{
 		width:1500px;
 		display: flex;
 	    flex-direction: column;
@@ -23,15 +25,17 @@
 	    border-radius:50px;
 	   	padding-bottom:50px;
 	}
-	#update-delete-pet-profile div{
+	
+	#write-pet-profile div{
 		margin:10px 0;
 	}
-
-	#pet-img img{
+	
+	.choice-pet-img,#pet-img{
 		width:200px;
 		height:200px;
-		border-radius:50px;
+		border-radius:20px;
 	}
+	
 	#pet-upload button{
 		border-radius:10px;
 		width:100px;
@@ -40,15 +44,17 @@
 		font-family: 'Noto Sans KR', sans-serif;
 		color:black;
 	}
+	
 	#pet-name input[type="text"],
-	#pet-birth input[type="text"]{
+	#petbirth{
 		width:400px;
 		height:40px;
 		border-radius:10px;
 	}
-
 	
-	#pet-img{
+	#pet-profile-form input::placeholder{font-size: 18px;}
+	
+	#choice-pet-img-div{
 		display: flex;
 	    grid-gap: 20px;
 	    gap: 20px;
@@ -57,21 +63,13 @@
 	    align-items: center;
 	    max-width: 100%;
 	}
-	
-	#pet-img p{margin-left:70px;}
-	#pet-choice input[type="radio"]{
-		/* 라디오 버튼 이미지로 활용할 수 있게 화면 이탈 */
-		position: absolute;
-    	left: -9999px;
-	}
-	#essential_span{
-		color:red;
-	}
+
 	.pet_essential{
 		color:red;
 		font-size: 15px;
 		padding-right:10px;
 	}
+	
 	#pet_kind_list{
 		width:400px;
 		height:40px;
@@ -89,16 +87,16 @@
 		width:18px;
 		height:18px;
 	}
-	#pet_weight_div input[type="number"]{
+	#pet_weight{
 		width:400px;
 		height:30px;
 		border-radius:10px;
 	}
 	#pet_add_cancel_div{
 		display:grid;
-		grid-template-rows:1fr 1fr 1fr;
+		grid-template-rows:1fr 1fr;
 	}
-	#pet_add_cancel_div input[type="button"]{
+	.pet_add_cancel_btn{
 		width:150px;
 		height:30px;
 		font-size:20px;
@@ -115,93 +113,335 @@
         margin-top:20px;
         margin-bottom: 20px;
     }
+    
+    #pet-add-btn,#pet-delete-btn {
+	    cursor: pointer;
+	    display: inline-block;
+	    background-color: lightgray;
+	    padding:10px;
+	    text-align:center;
+	    color: #fff;
+	    border: none;
+	    border-radius:10px;
+		width:100px;
+		font-size: 15px;
+	}
+	
+	.radio_item{
+		display: none !important;
+	}
+	
+	.label_item {
+		opacity: 0.5;
+		cursor:pointer;
+	}
+	
+	.radio_item:checked + label {
+		opacity: 1;
+		border: 5px solid #FFA629;
+		border-radius:20px;
+	}
+	
+	
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
+	$(document).ready(function(){
+		
+		//파일 첨부와 이미지 변수
+        const $fileInput = $('#petfileInput');
+        const $imgElement = $('#pet-img');
 
+        // 사진 등록 이벤트 처리
+        $fileInput.on('change', function () {
+            var selectedFile = $fileInput[0].files[0]; // 첫 번째 선택한 파일을 가져옵니다.
+            
+          // 파일을 이미지로 미리보기합니다.
+            if (selectedFile) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // 이미지 파일을 읽어서 이미지 요소에 표시합니다.
+                    $imgElement.attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(selectedFile);
+                
+            }
+        });
+        
+        //사진 삭제 이벤트 처리
+		$("#pet-delete-btn").on("click", function() {
+		    // 파일 입력 요소 초기화
+		    $("#petfileInput").val("");
+		    // 이미지 속성을 기본 이미지로 바꿈
+		    $("#pet-img").attr("src", "resources/images/login/basic_profile.jpg");
+		    // db에 저장할 파일 이름을 기본 이미지로
+		    $("input[name='old_pet_fname']").val("/login/basic_profile.jpg");
+		});
+        
+        
+        
+
+
+		// 이름 입력 이벤트 리스너(필수)
+		$("#pet_name").on('keyup', function () {
+		    var petName = $("#pet_name").val().trim();
+		    // 이름이 비어 있지 않으면 isPetName 값을 true로 설정합니다.
+		    if(petName.trim().length>0){
+		    	//버튼 비활성화
+		    	 $("#pet_add_btn").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
+		    }else{
+		    	//버튼 활성화
+		    	$("#pet_add_btn").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
+		    }
+		    
+		});
+		
+
+		
+        // 생년월일 유효성 검사(필수)
+        $("#petbirth").on("keyup", function() {
+			var petbirth = $("#petbirth").val();
+			var petbirthChk = $("#petbirthChk")
+			var pattern = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			
+			if(!pattern.test(petbirth)){
+				petbirthChk.text("유효한 생일을 기재해주세요.").css("color","red");
+				//isPetBirth = false;
+				$("#pet_add_btn").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
+			}else{
+				petbirthChk.text("")
+				//isPetBirth = true;
+				$("#pet_add_btn").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
+			}
+			
+			//updateBtnState();
+		})
+		
+		//성별 유효성 검사(필수)
+		$("input[name='pet_gender']").on("change", function() {
+	        if ($(this).is(":checked")) {
+	            $("#pet_add_btn").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
+	        } else {
+	            $("#pet_add_btn").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
+	        }
+		})
+		
+		// 몸무게 유효성 검사(필수)
+		$('#pet_weight').on('input', function() {
+			var pet_weight = $("#pet_weight").val();
+			var petweightChk = $("#petweightChk")
+			var pattern = /^[0-9]+(\.[0-9]+)?$/;
+			
+			if(!pattern.test(pet_weight)){
+				petweightChk.text("숫자만 쓸 수 있습니다.").css("color","red");
+				$("#pet_add_btn").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
+			}else{
+				petweightChk.text("")
+				$("#pet_add_btn").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
+			}
+			
+			
+		  });
+		
+
+		//db에서 넘어온 pvo.pet_type이 강아지면 강아지 체크/고양이면 고양이 체크
+		if ("${pvo.pet_type}" == "강아지") {
+		    // 강아지 라디오 버튼 체크
+		    $("#DOG").prop("checked", true);
+		}else{
+			$("#CAT").prop("checked", true);
+		}
+		
+		//db에서 넘어온 pvo.pet_gender가 남아면 남아 체크/ 여아면 여아 체크
+		if ("${pvo.pet_gender}" == "남아") {
+		    //남아 버튼 체크
+		    $("#malepet").prop("checked", true);
+		}else{
+			$("#femalepet").prop("checked", true);
+		}
+		
+		//db에서 넘어온 pvo.pet_neute가 남아면 중성화면 체크/ 아니면 체크 해제
+		if ("${pvo.pet_neute}" == "중성화") {
+		    // 중성화 체크
+		    $("#pet_neut_check").prop("checked", true);
+		}else{
+			$("#pet_neut_check").prop("checked", false);
+		}
+		
+		updateSelectOptions();
+		
+		});
+</script>
+<script type="text/javascript">
+	function petUpdate_go(f) {
+		if(confirm("반려동물 정보를 수정하시겠습니까?")){
+			f.action="/petUpdate_go.do"
+			f.submit();
+		}
+	}
+	
+	function petDelete_go(f) {
+		if(confirm("반려동물 정보를 삭제하시겠습니까?")){
+			f.action = "/petDelete.do"
+			f.submit();
+		}
+	}
 </script>
 </head>
 <body>
 	<header>
 		<jsp:include page="../home/home_top.jsp" />
 	</header>
-	<form id="update-delete-pet-profileform">
+	<form id="write-pet-profile-form" method="post" enctype="multipart/form-data">
 		<div style="margin-top:100px;">
 			<jsp:include page="mypage-sidebar.jsp" />
 		</div>
-		<div id="update-delete-pet-profile">
+		<div id="write-pet-profile">
 			<div style="font-size: 50px; font-weight: bold;color:#FFA629;">반려동물 등록</div>
 			<!-- 기본 이미지 뜨게 할거고 -->
-			<div id="pet-img">
-				<img src="resources/images/home/mainbanner_eduexplain.png" />
-			</div>
+			
+			<c:choose>
+				<c:when test="${empty pvo.pet_fname}">
+				<!-- pet_fname이 null이면 -->
+					<div id="pet-img-div">
+						<img src="resources/images/login/basic_profile.jpg" id="pet-img" />				
+						<input type="hidden" name="old_pet_fname" value="">
+					</div>
+				</c:when>
+				<c:otherwise>
+				<!-- user_fname이 null이 아니면 -->
+					<div id="pet-img-div">
+						<img src="resources/images/${pvo.pet_fname}" id="pet-img" />
+					    <input type="hidden" name="old_pet_fname" value="${pvo.pet_fname}">
+					</div>						
+				 </c:otherwise>
+			</c:choose> 
+
 			<!-- 사진 첨부 버튼 -->
 			<div id="pet-upload">
-				<button>사진 첨부</button>
+				<c:if test="${pvo.pet_fname == '/login/basic_profile.jpg' || pvo.pet_fname == null}">
+					<label for="petfileInput" id="pet-add-btn" style="margin-right:15px;">
+						사진 추가<input type="file" id="petfileInput" name="file" style="display: none;">
+					</label>
+				</c:if>
+				<c:if test="${pvo.pet_fname != '/login/basic_profile.jpg' && pvo.pet_fname != null}">
+					<label for="petfileInput" id="pet-add-btn" style="margin-right:15px;">
+						사진 추가<input type="file" id="petfileInput" name="file" style="display: none;">
+					</label>
+					<label id="pet-delete-btn">삭제</label>
+				</c:if>
 			</div>
 			<!-- 이름 입력 -->
 			<div id="pet-name">
 				<span class="pet_essential">*</span>
-				<input type="text" placeholder="이름(문자와 숫자를 활용해 1-10자만 입력해주세요)" maxlength="10" />
+				<input type="text" value="${pvo.pet_name}" name="pet_name" id="pet_name" placeholder="이름" maxlength="10" />
 			</div>
-			<div><!-- 이름 조건 확인해달라는 유효성 메세지 넣어야함--></div>
 			<div id="pet-birth">
 				<span class="pet_essential">*</span>
-				<input type="text" placeholder="반려동물의 생년월일" />
+				<input type="date" value="${pvo.pet_birth}" placeholder="반려동물의 생년월일" name="pet_birth" id="petbirth" style="font-size: 20px;" />
 			</div>
-			<div><!-- 생년월일 8자리 입력하라고 유효성 메세지 넣어야 함--></div>
+			<div id ="petbirthChk" style="width:400px;"></div>
+			
 			<!-- 강아지, 고양이 선택 -->
-			<div id="pet-choice">
-				<input type="radio" name="pet" value="dog" id="DOG"/><!-- name 언제든지 vo에 맞춰 수정 -->
-				<input type="radio" name="pet" value="cat" id="CAT"/>
-				<div id="pet-img">
-					<label for="DOG"><img src="resources/images/mypage/cat.png"><p>강아지</p></label>
-					<label for="CAT"><img src="resources/images/mypage/dog.png"><p>고양이</p></label>
-				</div>
+			<div id="choice-pet-img-div">
+				<input type="radio" class="radio_item" name="pet_type" value="강아지" id="DOG"/><!-- name 언제든지 vo에 맞춰 수정 -->
+				<label for="DOG" class="label_item">
+					<img src="resources/images/mypage/dog.png" class="choice-pet-img">
+					<p style="margin-left:80px;">강아지</p>
+				</label>
+				
+				<input type="radio" class="radio_item" name="pet_type" value="고양이" id="CAT"/>
+				<label for="CAT" class="label_item">
+					<img src="resources/images/mypage/cat.png" class="choice-pet-img">
+					<p style="margin-left:80px;">고양이</p>
+				</label>
 			</div>
 			<!-- 품종선택 -->
 			<div>
 				<span class="pet_essential">*</span>
-				<select id="pet_kind_list">
-				<!-- 위에서 강아지 선택시 강아지 품종 리스트/고양이 선택시 고양이 품종 리스트 -->
-					<option value="none" selected>품종</option>
-					<option value="choice" disabled> 동물을 먼저 선택해주세요 </option>
-					<!-- 품종 for문으로 돌려야함 
-						자바스크립트로 radio dog이 선택 됐으면 강아지 리스트 뜨게
-									radio cat이 선택 됐으면 고양이 리스트 뜨게
-						<c:forEach items="$type_list}" var="k">
-							<option><c:out value="${k.name}" /></option>
-						</c:forEach>
-					-->
+				<select id="pet_kind_list" name="pet_kind">
+					<option value="default"></option>
 				</select>
 			</div>
 			<!-- 성별 -->
-			<div style="margin:5px 0; width:420px;font-size:18px;"><span class="pet_essential">*</span><label for="gender_radio">성별</label></div>
+			<div style="margin:5px 0; width:420px;font-size:18px;">
+				<span class="pet_essential">*</span><label>성별</label>
+			</div>
 			<div id="pet_gender_radio">
-				<input type="radio" name="pet_gender" value="male" class="gender_radio"/><label id="male" style="margin-right:50px;font-size:20px;">남아</label>
-				<input type="radio" name="pet_gender" value="female" class="gender_radio"/><label id="female" style="font-size:20px;">여아</label>
+				<input type="radio" name="pet_gender" value="남아" class="gender_radio" id="malepet"/>
+				<label id="male" style="margin-right:50px;font-size:20px;">남아</label>
+				<input type="radio" name="pet_gender" value="여아" class="gender_radio" id="femalepet"/>
+				<label id="female" style="font-size:20px;">여아</label>
 			</div>
 			<!-- 중성화 여부 -->
 			<div id="pet_neut_div">
-				<input type="checkbox" id="pet_neut_check"/><label for="pet_neut_check" style="font-size: 20px;">중성화 여부</label>
+				<input type="checkbox" id="pet_neut_check" name="pet_neute" value="중성화"/><label for="pet_neut_check" style="font-size: 20px;">중성화 여부</label>
 			</div>
+			
 			<!-- 몸무게 입력, 최소 0 -->
 			<div id="pet_weight_div">
-				<input type="number" placeholder="몸무게(kg)" id="pet_weight" min="0" />
+				<span class="pet_essential">*</span><input type="text" value="${pvo.pet_weight}" placeholder="몸무게(kg)" name="pet_weight" id="pet_weight" maxlength="4" />
 			</div>
+			<div id ="petweightChk" style="width:400px;"></div>
 			<!-- 등록, 취소 버튼 -->
 			<div id="pet_add_cancel_div">
-				<input type="button" id="pet_add_btn" value="등록"/>
-				<input type="button" id="pet_cancel_btn" value="취소"/>
-				<input type="button" id="pet_delete_btn" value="삭제하기" style="background-color: red;"/>
+				<input type="hidden" name="pet_idx" value="${pvo.pet_idx}">
+				<input type="button" id="pet_add_btn" class="pet_add_cancel_btn" onclick="petUpdate_go(this.form)" value="등록" style="cursor:pointer;"/>
+				<input type="button" id="pet_delete_btn" class="pet_add_cancel_btn" onclick="petDelete_go(this.form)" value="삭제하기" style="background-color: red;cursor:pointer;"/>
 			</div>
 		</div>
 	</form>
 	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
+	<script type="text/javascript">
+	//라디오 버튼 요소와 선택 박스 요소를 가져옵니다.
+	const DogRadio = document.getElementById('DOG');
+	const CatRadio = document.getElementById('CAT');
+	const pet_kind_list = document.getElementById('pet_kind_list');
+	
+	
+	// 라디오 버튼 변경 이벤트 리스너를 추가합니다.
+	DogRadio.addEventListener('change', updateSelectOptions);
+	CatRadio.addEventListener('change', updateSelectOptions);
+	
+	// 선택 박스 옵션들을 설정합니다.
+	const DogList = ["${pvo.pet_kind}","골든리트리버", "닥스훈트", "래브라도 리트리버", "말티즈", "래브라도 리트리버","미니어처 슈나우저", "미니어처 푸들",
+					"미니어처 핀셔", "베들링턴 테리어", "보더 콜리", "보스턴 테리어", "비글", "비숑 프리제", "사모예드", "셰틀랜드 쉽독",
+					"스탠더드 푸들", "시바 이누", "시베리안 허스키", "시츄", "아메리칸 코카 스파니엘", "요크셔 테리어", "웰시 코기",
+					"이탈리안 그레이 하운드", "제페니스 스피츠", "진돗개", "치와와", "카바리에 킹찰스 스파니", "코카 스파니엘", "토이 푸들",
+					"파피용", "퍼그", "페키니즈", "펨브록 웰시코기", "포메라니안", "푸들", "풍산개", "프렌치 불도그","믹스견", "기타"];
+	const CatList = ["${pvo.pet_kind}","브리티시 숏헤어", "페르시안", "메인쿤", "시암", "렉돌", "스핑크스", "아비시니안","벵골", "버먼", "아메리칸 숏헤어",
+					"엑조틱 숏헤어", "러시안 블루", "스코티시 폴드", "버마 고양이","노르웨이숲", "데본 렉스", "시베리안 고양이", "맹크스",
+					"터키시 앙고라", "아메리칸 밥테일", "코니시 렉스", "아메리칸 컬", "히말리안", "봄베이 고양이", "이집션 마우", "발리니즈",
+					"사트트뢰", "라가머핀", "터키시 반", "먼치킨", "기타"];
+	
+	// 라디오 버튼 변경에 따라 선택 박스 옵션을 업데이트하는 함수
+	function updateSelectOptions() {
+	    // 현재 선택된 라디오 버튼을 확인합니다.
+	    if (DogRadio.checked) {
+	        updateOptions(DogList);
+	    } else if (CatRadio.checked) {
+	        updateOptions(CatList);
+	    }
+	}
+	
+	// 선택 박스의 옵션을 업데이트하는 함수
+	function updateOptions(options) {
+	    // 선택 박스의 모든 옵션을 제거합니다.
+	    pet_kind_list.innerHTML = '';
+	
+	    // 새로운 옵션들을 선택 박스에 추가합니다.
+	    for (const option of options) {
+	        const optionElement = document.createElement('option');
+	        optionElement.value = option;
+	        optionElement.textContent = option;
+	        pet_kind_list.appendChild(optionElement);
+	    }
+	}
+	</script>
 </body>
 </html>
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +59,11 @@
     	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 	}
 	
+	#petOnelist{
+		text-decoration: none;
+		color:black;
+	}
+	
 	footer{
         width:1920px;
         display:flex;
@@ -67,7 +73,9 @@
     }
 </style>
 <script type="text/javascript">
-
+	function add_pet() {
+		location.href="/petRegGoForm.do"
+	}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,47 +92,30 @@
 		<div id="petprofile_list">
 			<h1 style="font-size: 50px;color:#FFA629;">나의 반려동물</h1>
 				<ul id="petprofile_ul">
-					<li class="petprofile_li">
-						<div class="petprofile_essential_info">
-							<div>
-								<img src="resources/images/home/mainbanner_eduexplain.png" style="width:200px;height:200px; border-radius:50px;margin-left:40px;">
+				<c:forEach var="k" items="${plist}">
+					<a href="/getPetProfileOnelist.do?pet_idx=${k.pet_idx}" id="petOnelist">
+						<li class="petprofile_li">
+							<div class="petprofile_essential_info">
+								<div>
+									<img src="resources/images/${k.pet_fname}" style="width:200px;height:200px; border-radius:50px;margin-left:40px;">
+								</div>
+								<div>
+									<div style="font-size: 30px;">${k.pet_name}</div>
+									<div style="font-size: 20px;">${k.pet_birth} (${k.months} 개월)</div>
+								</div>
 							</div>
-							<div>
-								<div style="font-size: 30px;">안녕하세요</div>
-								<div style="font-size: 20px;">2023-09-01(나이)</div>
-							</div>
-						</div>
-					</li>
-					<li class="petprofile_li">
-						<div class="petprofile_essential_info">
-							<div>
-								<img src="resources/images/home/mainbanner_eduexplain.png" style="width:200px;height:200px; border-radius:50px;margin-left:40px;">
-							</div>
-							<div>
-								<div style="font-size: 30px;">안녕하세요</div>
-								<div style="font-size: 20px;">2023-09-01(나이)</div>
-							</div>
-						</div>
-					</li>
-					<li class="petprofile_li">
-						<div class="petprofile_essential_info">
-							<div>
-								<img src="resources/images/home/mainbanner_eduexplain.png" style="width:200px;height:200px; border-radius:50px;margin-left:40px;">
-							</div>
-							<div>
-								<div style="font-size: 30px;">안녕하세요</div>
-								<div style="font-size: 20px;">2023-09-01(나이)</div>
-							</div>
-						</div>
-					</li>
+						</li>
+					</a>
+				</c:forEach>
 				</ul>
 			<div style="margin-bottom:50px;">
-				<button id="pet_add_btn" onclick="">추가하기</button>
+				<button id="pet_add_btn" onclick="add_pet()">추가하기</button>
 			</div>
 		</div>
 	</div>
 	<footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>
+    
 </body>
 </html>

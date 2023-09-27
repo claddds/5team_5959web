@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +33,7 @@
 		height:200px;
 		border-radius:50px;
 	}
+	
 	#info_pw button{
 		width:300px;
 		height:50px;
@@ -39,6 +41,7 @@
 		background-color:#FFA629;
 		font-size: 20px;
 		color:#fff0f5;
+		cursor:pointer;
 	}
 	
 	#myprofile-onelist-form input[type="text"]{
@@ -66,11 +69,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-     $("#mypage-logout").on("click", function() {
-			alert("로그아웃 되었습니다.");
-			location.href="/user_logout.do"
+    	
+		$("#userInfoUpdate").on("click", function() {
+			if(confirm("회원 정보를 수정하시겠습니까?")){
+				location.href="/userInfoUpdateForm.do"	
+			}
+		})
+		
+		$("#pwUpdate").on("click", function() {
+			if(confirm("비밀번호를 변경하시겠습니까?")){
+				location.href="/userPwUpdateForm.do"	
+			}	
 		})
     });
+</script>
+<script type="text/javascript">
+	var updateOk = "${updateOk}"
+	if(updateOk == "success"){
+		alert("회원 정보가 수정되었습니다.")
+	}
 </script>
 </head>
 <body>
@@ -83,19 +100,33 @@
 		</div>
 		<div id="myprofile-onelist-form">
 			<div style="font-size: 50px; font-weight: bold;color:#FFA629">프로필</div>
-			<div>
-				<img src="resources/images/home/mainbanner_eduexplain.png" id="myimg"/>
-			</div>
+				<div>
+					<c:choose>
+						<c:when test="${empty userVO.user_fname}">
+							<img src="resources/images/login/basic_profile.jpg" id="myimg"/>											
+						</c:when>
+						<c:otherwise>
+							<img src="resources/images/${userVO.user_fname}" id="myimg"/>			
+						</c:otherwise>
+					</c:choose>
+				</div>				
 			<div id="nickname">
-				<input type="text" id="" value="nickname" readonly>
+				<input type="text" value="${userVO.nickname}" readonly>
 			</div>
 			<div id="email">
-				<input type="text" id="" value="poiu62875@gmail.com" readonly>
+				<input type="text" value="${userVO.email}" readonly>
 			</div>
 			<div id="info_pw">
-				<button class="button" onclick="" style="margin-bottom:20px;">회원 정보 수정</button>
+				<button class="button" id="userInfoUpdate"style="margin-bottom:20px;">회원 정보 수정</button>
 				<br><!-- 회원정보 수정 페이지로 go -->
-				<button class="button" onclick="">비밀번호 변경</button><!-- 누르면 비번 찾기 페이지로 이동  -->
+				<c:choose>
+					<c:when test="${userVO.type == 2}">
+						<div> * 카카오 로그인을 하셨어요</div>
+					</c:when>
+					<c:otherwise>
+						<button class="button" id="pwUpdate">비밀번호 변경</button><!-- 누르면 비번 찾기 페이지로 이동  -->			
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

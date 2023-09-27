@@ -101,17 +101,17 @@
 		f.submit();
 	}
 	function save_go(f) {
-		<%-- 
-		if(f.faq_title.value.trim().length <=0){
+		if(f.one_title.value.trim().length <=0){
 			alert("제목을 입력하세요");
-			f.faq_title.focus();
+			f.one_title.focus();
 			return;
 		}
-		if(f.faq_content.value.trim().length <=0){
+		if(f.one_content.value.trim().length <=0){
 			alert("내용을 입력하세요");
-			f.faq_content.focus();
+			f.one_content.focus();
 			return;
 		}
+		<%--
 		var checkbox = document.getElementById("chkbox");
 		// 체크박스 체크 시
 		if(checkbox.checked){
@@ -181,7 +181,7 @@
 				</tr>
 				<tr height="50">
 					<th>비밀번호</th>
-					<td style="padding: 8px; text-align: left;"><input type="password" name="pwd" size="20" style="width: 90%; height: 30px;"/></td>
+					<td style="padding: 8px; text-align: left;"><input type="password" name="one_pwd" size="20" style="width: 90%; height: 30px;"/></td>
 				</tr>
 				<tr height="50">
 					<th>비밀글여부</th>

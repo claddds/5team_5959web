@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,10 +96,10 @@
 		f.submit();
 	}
 	function update_go(f){
-		f.action="/lounge_update.do"
+		f.action="/lounge_update.do";
+		f.submit();
 	}
 </script>
-
 </head>
 <body>
 		<!-- 헤더 구역 -->
@@ -128,29 +127,28 @@
 	</div>
 	
 	<div id="update">
-		<form action="qinsert.do" method="post"
-			enctype="multipart/form-data" name="boardform">
+		<form action="qinsert.do" method="post" enctype="multipart/form-data">
 			<table width="1200px;"  border="1px solid" cellpadding="0"
 				cellspacing="0">
 				<tr height="50">
 					<th>게시판 종류</th>
 					<td style="padding: 8px; text-align: left;">
-						<select class="box" id="domain-list" style="font-size: 20px;">
-  							<option value="naver.com">---선 택---</option>
-  							<option value="naver.com">일상 공유</option>
-  							<option value="google.com">추천탭</option>
-  							<option value="hanmail.net">질문</option>
+						<select class="box" id="domain-list" style="font-size: 20px;" name="lo_type"  value="${lvo.lo_type}">
+  							<option selectedstyle="display:none;">${lvo.lo_type}</option>
+  							<option value="일상공유">일상 공유</option>
+  							<option value="추천탭">추천탭</option>
+  							<option value="질문">질문</option>
 						</select>
 					</td>
 				</tr>
 				<tr height="50">
 					<th>동물 선택</th>
 					<td style="padding: 8px; text-align: left;">
-						<select class="box" id="domain-list" style="font-size: 20px;">
-  							<option value="naver.com">---선 택---</option>
-  							<option value="google.com">강아지</option>
-  							<option value="google.com">고양이</option>
-  							<option value="google.com">기타</option>
+						<select class="box" id="domain-list" style="font-size: 20px;" name="lo_petkind" value="${lvo.lo_petkind }">
+  							<option selectedstyle="display:none;">${lvo.lo_petkind}</option>
+  							<option value="강아지">강아지</option>
+  							<option value="고양이">고양이</option>
+  							<option value="기타">기타</option>
 						</select>
 					</td>
 				</tr>
@@ -158,35 +156,37 @@
 				<%-- 로그인한 아이디 정보가 들어가고 readonly는 읽기 전용이라는 의미 --%>
 					<th>작성자</th>
 					<td style="padding: 8px; text-align: left;"><input name="user_id"
-						value="${ sessionScope.loginMember.user_id }" style="width: 90%; height: 30px;" readonly /></td>
+						value="${ sessionScope.user_id }" style="width: 90%; height: 30px;" readonly /></td>
 				</tr>
 				<tr height="50">
 					<th>제목</th>
-					<td style="padding: 8px; text-align: left;"><input name="lo_title" type="text" style="width: 90%; height: 30px;"" /></td>
+					<td style="padding: 8px; text-align: left;">
+					<input name="lo_title" type="text" style="width: 90%; height: 30px;" value="${lvo.lo_title}" /></td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><textarea id="lo_content" name="lo_write"
-							style="width: 90%; height: 200px;"></textarea>
+					<td style="padding: 8px; text-align: left;">
+					<textarea id="content" name="lo_content" style="width: 90%; height: 200px;">${lvo.lo_content}</textarea>
 					</td>
 				</tr>
 				<tr height="50">
 					<th>첨부파일</th>
 					<c:choose>
-						<c:when test="${empty lvo.f_name}">
+						<c:when test="${empty lvo.lo_fname}">
 							<td style="padding: 8px; text-align: left;"><input type="file" name="file" style="font-size: 20px;"></td>
 						         <input type="hidden" name="lo_old_fname" value="">	
 						</c:when>
 						<c:otherwise>
-							<td><input type="file" name="file"><b>${lvo.f_name}</b></td>
-						         <input type="hidden" name="lo_old_fname" value="${lvo.f_name}">	
+							<td><input type="file" name="file"><b>${lvo.lo_fname}</b></td>
+						         <input type="hidden" name="lo_old_fname" value="${lvo.lo_fname}">	
 						</c:otherwise>
 					</c:choose>
 				</tr>
 				<tr height="50">
 					<td class="button"colspan="2" align="center">
-						<input type="hidden" name="lo_idx" value="${lvo.lo_idx }">
-						<input type="submit" value="수정" style="font-size: 20px;"
+						<input type="hidden" name="lo_idx" value="${lvo.lo_idx}">
+						<input type="hidden" name="cPage" value="${cPage}">
+						<input type="button" value="수정" style="font-size: 20px;"
 						onclick="update_go(this.form)">
 						<input type="button" value="목록" style="font-size: 20px;"
 						onclick="list_go(this.form)">
@@ -206,35 +206,36 @@
     	<script src="resources/js/lang/summernote-ko-KR.js"></script>
     	<script type="text/javascript">
     	$(function(){
-    		$('#lo_content').summernote({
-    			lang : 'ko-KR',
-    			height : 300,
-    			focus : true,
-    			callbacks : {
-    				onImageUpload :  function(files, editor){
-    					for (var i = 0; i < files.length; i++) {
-							sendImage(files[i], editor);
-						}
-    				}
-    			}
-			});
-    	});
-    	function sendImage(file, editor) {
-			var frm = new FormData();
-			frm.append("s_file",file);
-			$.ajax({
-				url : "/saveImage.do",
-				data : frm,
-				type : "post",
-				contentType : false,
-				processData : false,
-				dataType : "json",
-			}).done(function(data) {
-				var path = data.path;
-				var fname = data.fname;
-				$("#content").summernote("editor.insertImage",path+"/"+fname);
-			});
-		}
+            $('#content').summernote({
+                lang : 'ko-KR',
+                height : 300,
+                focus : true,
+                callbacks : {
+                    onImageUpload :  function(files, editor){
+                        for (var i = 0; i < files.length; i++) {
+                            sendImage(files[i], editor);
+                        }
+                    }
+                }
+            });
+            $("#content").summernote("lineHeight",.7);
+        });
+        function sendImage(file, editor) {
+            var frm = new FormData();
+            frm.append("s_file",file);
+            $.ajax({
+                url : "/saveImg.do",
+                data : frm,
+                type : "post",
+                contentType : false,
+                processData : false,
+                dataType : "json",
+            }).done(function(data) {
+                var path = data.path;
+                var fname = data.fname;
+                $("#content").summernote("editor.insertImage",path+"/"+fname);
+            });
+        }
     </script>
 </body>
 </html>

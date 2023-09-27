@@ -3,7 +3,8 @@ package com.oguogu.qna.model.vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Qna_VO {
-	private String one_idx, one_title, one_content, one_ans, one_date, one_fname, one_pwd, one_ing, one_lock, status, user_id;
+	private String one_idx, one_title, one_content, one_ans, one_date, one_fname, one_pwd, one_ing, 
+					one_lock, status, user_id, one_old_fname;
 	private MultipartFile file;
 	
 	public MultipartFile getFile() {
@@ -102,5 +103,14 @@ public class Qna_VO {
 		this.user_id = user_id;
 	}
 
+	public String getOne_old_fname() {
+		return one_old_fname;
+	}
+
+	public void setOne_old_fname(String one_old_fname) {
+		this.one_old_fname = one_old_fname;
+	}
+
+	
 	
 }

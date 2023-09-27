@@ -25,7 +25,7 @@ public class FAQ_Controller {
 	@Autowired
 	private Paging paging;
 	
-	@GetMapping("/faq_list.do")
+	@RequestMapping("/faq_list.do")
 	public ModelAndView getList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("faq/faq_list");
 		int count = faq_Service.getTotalCount();

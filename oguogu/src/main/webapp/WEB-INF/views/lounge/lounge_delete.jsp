@@ -90,32 +90,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
 <title>게시글 작성하기</title>
-
 <script type="text/javascript">
-function list_go(f) {
-	f.action="/lounge_list.do";
-	f.submit();
-}
-function delete_ok(f) {
-	if(f.status.value == 1){
-		var chk = confirm("정말 삭제할까요?");
-		if(chk){
-			f.action="/lounge_delete.do";
-			f.submit();
-		}else{
-			history.go(-1);
-		}
-	}else{
-		alert("비밀번호 틀림");
-		f.pwd.value = "";
-		f.pwd.focus();
+	$(document).ready(function(){
+		var pwchk = "${pwchk}"
+	    if(pwchk == "fail"){
+		   alert("비밀번호 틀림");
+		   return;
+	   }
+	});
+</script>
+<script type="text/javascript">
+function delete_go(f){
+	if(f.lo_pwd.value.trim().length <=0){
+		alert("비번을 입력해주세요");
+		f.lo_pwd.focus();
 		return;
 	}
-	
+	if (confirm("정말 삭제하시겠습니까?")) {
+        f.action="/lounge_delete.do";
+        f.submit();
+    }
 }
 </script>
 </head>
@@ -146,23 +143,20 @@ function delete_ok(f) {
 	</div>
 	
 	<div id="write">
-		<form method="post" enctype="multipart/form-data">
+		<form method="post">
 			<table width="1200px;"  border="1px solid" cellpadding="0"
 				cellspacing="0">
 				<tr height="50">
 					<th>비밀번호 확인</th>
 					<td style="padding: 8px; text-align: left;">
-						<input name="lo_pwd" type="password" style="width: 90%; height: 30px;" />
+						<input type="password" name="lo_pwd" style="width: 90%; height: 30px;" />
 					</td>
 				</tr>
 				<tr height="50">
 					<td class="button" colspan="2" align="center" style="padding: 8px;">
-						<input type="button" value="목록" style="font-size: 20px;"
-							onclick="list_go(this.form)">
-						<input type="button" value="삭제" style="font-size: 20px;" onclick="delete_ok(this.form)">
-						<input type="hidden" name="lo_idx" value=${lvo.lo_idx}">
-						
-						
+						<input type="hidden" name="cPage" value="${cPage}">
+						<input type="hidden" name="lo_idx" value="${lo_idx}">
+						<input type="button" value="삭제" style="font-size: 20px;" onclick="delete_go(this.form)">
 					</td>						
 				</tr>
 			</table>

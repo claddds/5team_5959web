@@ -22,6 +22,7 @@
 		<typeAlias type="com.oguogu.faq.model.vo.FAQ_VO" alias="faqvo"/>
 		<typeAlias type="com.oguogu.comment.model.vo.Comment_VO" alias="cvo"/>
 		<typeAlias type="com.oguogu.comment.model.vo.RepComment_VO" alias="rcvo"/>
+		<typeAlias type="com.oguogu.comment.model.vo.QnAComment_VO" alias="qcvo"/>
 	</typeAliases>
 	
 	<mappers>
@@ -41,6 +42,7 @@
 		<mapper resource="mappers/faq_mapper.xml"/>
 		<mapper resource="mappers/com_mapper.xml"/>
 		<mapper resource="mappers/repcom_mapper.xml"/>
+		<mapper resource="mappers/qnacom_mapper.xml"/>
 	</mappers>
 	
 </configuration>

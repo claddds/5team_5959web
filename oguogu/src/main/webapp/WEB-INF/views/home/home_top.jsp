@@ -103,6 +103,7 @@ ul.midmenu > li ul.sub{
          $("#logout_go").on("click", function() {
         	 alert("로그아웃 되었습니다.");
         })  
+       
     });
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">

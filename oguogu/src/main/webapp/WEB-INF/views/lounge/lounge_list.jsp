@@ -148,10 +148,19 @@ tfoot{
     background: #FFA629;
     color: white;
     font-weight: bold;
+}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var del_alert = "${del_alert}"
+		if(del_alert == "ok"){
+			alert("삭제되었습니다.")
+			return
+		}
+	});
 
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
+</script>
 <script type="text/javascript">
 function write_go() {
 		//글쓰기로 이동하는 함수
@@ -214,19 +223,21 @@ function write_go() {
 	</c:when>
 	<c:otherwise>
 		<c:forEach var="l" items="${lounge_list}" varStatus="vs">
-			<tr>
-			<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
-			<td>${l.lo_idx}</td>
-            <td>${l.lo_type}</td>
-            <td>${l.lo_petkind}</td>
-			<td>
-				<a href="/lounge_onelist.do?lo_idx=${l.lo_idx}">${l.lo_title}</a>
-				<span id="commnet_cnt">[${l.comment_cnt }]</span>
-			</td>
-			<td>${l.user_id }</td>
-			<td>${l.lo_date.substring(0,10)}</td>
-			<td>${l.lo_hit}</td>
-			</tr>
+			 <c:if test="${l.status == 0}">
+				<tr>
+				<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
+				<td>${l.lo_idx}</td>
+	            <td>${l.lo_type}</td>
+	            <td>${l.lo_petkind}</td>
+				<td>
+					<a href="/lounge_onelist.do?lo_idx=${l.lo_idx}">${l.lo_title}</a>
+					<span id="commnet_cnt">[${l.comment_cnt }]</span>
+				</td>
+				<td>${l.user_id }</td>
+				<td>${l.lo_date.substring(0,10)}</td>
+				<td>${l.lo_hit}</td>
+				</tr>
+			</c:if>
 		</c:forEach>
 	</c:otherwise>
 	</c:choose>

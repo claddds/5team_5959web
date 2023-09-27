@@ -75,7 +75,22 @@ public class Lounge_ServiceImpl implements Lounge_Service{
 		return lounge_DAO.getCommentcnt(lo_idx);
 	}
 	
-	
+	@Override
+	public List<Comment_VO> getCommList(String lo_idx) {
+		return lounge_DAO.getCommList(lo_idx);
+	}
+
+	@Override
+	public int getCommInsert(Comment_VO cvo) {
+		return lounge_DAO.getCommInsert(cvo);
+	}
+
+
+
+	@Override
+	public int getCommDelete(String com_idx) {
+		return lounge_DAO.getCommDelete(com_idx);
+	}
 
 	/*
 	 * @Override public List<Comment_VO> getCommList(String com_idx) { return

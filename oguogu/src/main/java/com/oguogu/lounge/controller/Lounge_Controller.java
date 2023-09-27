@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.oguogu.comment.model.service.Comment_Service;
 //import com.oguogu.comment.model.service.Comment_Service;
 import com.oguogu.comment.model.vo.Comment_VO;
 import com.oguogu.common.Paging;
@@ -31,8 +32,7 @@ public class Lounge_Controller {
 	@Autowired
 	private Lounge_Service lounge_Serivce;
 	
-	@Autowired
-	private Comment_Service comment_Service;
+
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -210,9 +210,9 @@ public class Lounge_Controller {
 	
 	@PostMapping("/lounge_insert.do")
 	public ModelAndView loungeInsert(Lounge_VO lvo,HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("lounge/lounge_list");
+		ModelAndView mv = new ModelAndView("redirect:/lounge_list.do");
+		String path = request.getSession().getServletContext().getRealPath("/resources/images");
 		try {
-			String path = request.getSession().getServletContext().getRealPath("/resources/images");
 			MultipartFile file = lvo.getFile();
 			if (file.isEmpty()) {
 				lvo.setLo_fname("");
@@ -227,17 +227,18 @@ public class Lounge_Controller {
 				File out = new File(path, lo_fname);
 				FileCopyUtils.copy(in, out);
 			}
-				// DB에 저장하기
-				int res = lounge_Serivce.getInsert(lvo);
-				if(res>0) {
-					return mv;
-				}else {
-					return null;
-				}
-			} catch (Exception e) {
-				System.out.println(e);
+			// 패스워드 암호화
+			lvo.setLo_pwd(passwordEncoder.encode(lvo.getLo_pwd()));
+			int res = lounge_Serivce.getInsert(lvo);
+			if (res > 0) {
+				return mv;
+			} else {
 				return null;
 			}
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
 	}
 	
 	// 상세보기
@@ -254,7 +255,7 @@ public class Lounge_Controller {
 		Lounge_VO lvo = lounge_Serivce.getOneList(lo_idx);
 
 		// 댓글 가져오기
-		List<Comment_VO> c_list = comment_Service.getCommList(lo_idx);
+		List<Comment_VO> c_list = lounge_Serivce.getCommList(lo_idx);
 
 		mv.addObject("c_list", c_list);
 		mv.addObject("lvo", lvo);
@@ -265,47 +266,41 @@ public class Lounge_Controller {
 	// 댓글은 Comment_Controller에서 작성
 	
 	// 수정
-	@GetMapping("/lounge_updateForm.do")
-	public ModelAndView loungeUpdateForm(String lo_idx) {
+	@PostMapping("/lounge_updateForm.do")
+	public ModelAndView loungeUpdateForm(@ModelAttribute("cPate") String cPage, @ModelAttribute("lo_idx") String lo_idx) {
 		ModelAndView mv = new ModelAndView("lounge/lounge_update");
 		Lounge_VO lvo = lounge_Serivce.getOneList(lo_idx);
 		mv.addObject("lvo", lvo);
 		return mv;
 	}
-	@PostMapping("/lounge_update.do")
-	public ModelAndView loungeUpdate(Lounge_VO lvo,HttpServletRequest request,
-			@ModelAttribute("lo_idx") String lo_idx,
-			@ModelAttribute("cPage") String cPage) {
-		ModelAndView mv = new ModelAndView();
-		try {
-			String path = request.getSession().getServletContext().getRealPath("/resources/images");
-			MultipartFile file = lvo.getFile();
-			if (file.isEmpty()) {
-				lvo.setLo_fname(lvo.getLo_old_fname());
-			} else {
-				// 같은 이름의 파일 없도록 UUID 사용
-				UUID uuid = UUID.randomUUID();
-				String lo_fname = uuid.toString() + "_" + lvo.getFile().getOriginalFilename();
-				lvo.setLo_fname(lo_fname);
+	// 게시글 수정 등록
+    @PostMapping("/lounge_update.do")
+    public ModelAndView getUpdate(Lounge_VO lvo, HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("lounge/");
+        String path = request.getSession().getServletContext().getRealPath("/resources/images");
+        try {
+            MultipartFile file = lvo.getFile();
+            String lo_old_fname = lvo.getLo_old_fname();
 
-				// 이미지 저장
-				byte[] in = lvo.getFile().getBytes();
-				File out = new File(path, lo_fname);
-				FileCopyUtils.copy(in, out);
-			}
-				// DB에 저장하기
-				int res = lounge_Serivce.getInsert(lvo);
-				if(res>0) {
-					mv.setViewName("redirect:/lounge_onelist.do");
-					return mv;
-				}else {
-					return null;
-				}
-			} catch (Exception e) {
-				System.out.println(e);
-				return null;
-			}
-	}
+            if (file.isEmpty()) {
+            	lvo.setLo_old_fname(lo_old_fname);
+            } else {
+                UUID uuid = UUID.randomUUID();
+                String lo_fname = uuid.toString() + "" + lvo.getFile().getOriginalFilename();
+                lvo.setLo_fname(lo_fname);
+
+                byte[] in = lvo.getFile().getBytes();
+                File out = new File(path, lo_fname);
+                FileCopyUtils.copy(in, out);
+
+            }
+            int result = lounge_Serivce.getUpdate(lvo);
+            mv.setViewName("redirect:/lounge_onelist.do?lo_idx=" + lvo.getLo_idx());
+            return mv;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 	
 	// 삭제
 	@PostMapping("/lounge_deleteForm.do")
@@ -315,27 +310,49 @@ public class Lounge_Controller {
 	}
 
 	@PostMapping("/lounge_delete.do")
-	public ModelAndView loungeDelete(@RequestParam("lo_pwd") String lo_pwd, @ModelAttribute("cPage") String cPage,
-			@ModelAttribute("lo_idx") String lo_idx) {
-		ModelAndView mv = new ModelAndView();
-
-		// 비밀번호가 맞는지 체크 하자 .
+	public String loungeDelete(@RequestParam("lo_pwd") String lo_pwd, @RequestParam("cPage") String cPage, RedirectAttributes rttr,
+			@ModelAttribute("lo_idx") String lo_idx, Model model) {
+		// 비밀번호가 맞는지 체크 하자.
 		// DB에서 암호 얻기
 		Lounge_VO lvo = lounge_Serivce.getOneList(lo_idx);
 		String dbpwd = lvo.getLo_pwd();
-
+		System.out.println(lo_pwd);
 		// passwordEncoder.matches(암호화되지 않은것, 암호화 된것 )
 		if (!passwordEncoder.matches(lo_pwd, dbpwd)) {
-			mv.setViewName("lounge/lounge_delete");
-			mv.addObject("pwchk", "fail");
-			return mv;
+			model.addAttribute("pwchk", "fail");  
+			return "lounge/lounge_delete";
 		} else {
 			// 원글삭제 시 상태값을 0 => 1 로 변경 시키자
 			int result = lounge_Serivce.getDelete(lo_idx);
-			mv.setViewName("redirect:/lounge_list.do");
-			return mv;
+			rttr.addFlashAttribute("cPage", cPage);
+			rttr.addAttribute("del_alert","ok");
+			return "redirect:/lounge_list.do";
 		}
 	}
 	
+	@PostMapping("/com_insert.do")
+	public ModelAndView commInsert(Comment_VO cvo, @ModelAttribute("cPage") String cPage,
+			@ModelAttribute("lo_idx") String lo_idx) {
+		ModelAndView mv = new ModelAndView("lounge/");
+		int result = lounge_Serivce.getCommInsert(cvo);
+		mv.setViewName("redirect:/lounge_onelist.do?com_idx=" + cvo.getCom_idx());
+		if (result > 0) {
+			return mv;
+		} else {
+			return null;
+		}
+	}
 	
+	 @PostMapping("com_delete.do")
+     public String commDelete(@RequestParam("cPage") String cPage, RedirectAttributes rttr,
+    		 @RequestParam("lo_idx") String lo_idx, @ModelAttribute("com_idx") String com_idx, Model model) {
+		 Lounge_VO cvo = lounge_Serivce.getOneList(lo_idx);
+         int result = lounge_Serivce.getCommDelete(com_idx);
+         rttr.addFlashAttribute("cPage", cPage);
+         rttr.addAttribute("result", result);
+         rttr.addAttribute("cvo", cvo);
+         return  "redirect:/lounge_onelist.do?lo_idx=" + lo_idx;
+     }
+	 
+
 }

@@ -43,23 +43,4 @@ public class Qna_ServiceImpl implements Qna_Service{
 	public int getDelete(String one_idx) {
 		return qna_DAO.getDelete(one_idx);
 	}
-
-
-	/*
-	 * @Override public List<Comment_VO> getCommList(String com_idx) { return
-	 * comment_DAO.getCommList(com_idx); }
-	 * 
-	 * // 댓글 삽입(등록)
-	 * 
-	 * @Override public int getCommInsert(Comment_VO cvo) { return
-	 * comment_DAO.getCommInsert(cvo); }
-	 * 
-	 * @Override public int getCommDelete(String com_idx) { return
-	 * comment_DAO.getCommDelete(com_idx); }
-	 * 
-	 * @Override public int getCommUpdate(Comment_VO cvo) { return
-	 * comment_DAO.getCommUpdate(cvo); }
-	 */
-
-
 }

@@ -77,13 +77,6 @@
 	margin-top: 100px;
 	
 }
-footer{
-		width:1920px;
-		display:flex;
-		margin:auto;
-		margin-top:20px;
-		margin-bottom: 20px;
-	}
 /* paging */
 .paging{
 	text-align: center;
@@ -115,6 +108,10 @@ table tfoot ol.paging li a:hover {
 	color: white;
 	font-weight: bold;
 }
+
+tfoot{
+	text-align: center;
+}
 .button{
 	background-color: #FFA629;
 	color: #f8f8ff;
@@ -124,9 +121,30 @@ table tfoot ol.paging li a:hover {
     font-size: 15pt;
 	border-radius: 10px;
 }
+.disable {
+    padding: 3px 7px;
+    border: 1px solid silver;
+    color: silver;
+}
+
+.now {
+    padding: 3px 7px;
+    border: 1px solid #FFA629;
+    background: #FFA629;
+    color: white;
+    font-weight: bold;
+}
 </style>
-<script type="text/javascript"
- 		src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var qna_onelist = "${qna_onelist}"
+		if(qna_onelist == "no"){
+			alert("다른사람이 작성한 (비밀)글입니다. 조회권한이 없습니다. ")
+			return
+		}
+	});
+</script>
 <script type="text/javascript">
 	function write_go() {
 	//글쓰기로 이동하는 함수
@@ -179,14 +197,14 @@ table tfoot ol.paging li a:hover {
 		</c:when>
 		<c:otherwise>
 			 <c:forEach var="q" items="${qna_list}"  varStatus="vs">
+			 <c:if test="${q.status == 0}">
 				<tr>
-					<c:if test="${q.status == 0}">
  						<td>${q.one_idx}</td>
                         <td><a href="/qna_onelist.do?one_idx=${q.one_idx}&cPage=${paging.nowPage}">${q.one_title}</a></td>
                         <td>${q.user_id }</td>
                         <td>${q.one_date.substring(0,10)}</td> 
-                    </c:if>
        	        </tr>
+       	    </c:if>
            	</c:forEach>
 		</c:otherwise>
 	</c:choose>
@@ -213,7 +231,7 @@ table tfoot ol.paging li a:hover {
 						<li class="now">${k}</li>
 					</c:if>
 					<c:if test="${ k != paging.nowPage}">
-						<li><a href="/qna_list.do??cPage=${k}">${k}</a></li>
+						<li><a href="/qna_list.do?cPage=${k}">${k}</a></li>
 					</c:if>
 				</c:forEach>
 

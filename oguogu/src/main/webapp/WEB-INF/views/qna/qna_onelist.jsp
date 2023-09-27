@@ -12,13 +12,13 @@
 .button{
 	text-align: center;
 }
-#faqWrapper{
+#qnaWrapper{
 	text-align: center;
     padding:10px;
     margin:auto;
     font-family: 'Noto Sans KR', sans-serif;
     }
-#faqWrapper > ul > li:first-child {
+#qnaWrapper > ul > li:first-child {
         text-align: center;
         font-size:14pt;
         height:40px;
@@ -98,13 +98,22 @@ input{
     padding-left: 215px;          
     box-sizing: border-box;
 }	
-    
+#qnacom_field{
+	text-align: left;
+}
+.qnacom{
+	 border: 1px solid gray;
+	 width: 1100px; 
+	 margin-left: 510px; 
+	 padding:50px;
+	 text-align: left;
+}   
 </style>
 <script type="text/javascript"
 	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
 <script type="text/javascript">
 </script>
-<title>faq_onelist</title>
+<title>qna_onelist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
@@ -112,11 +121,33 @@ input{
 
 
 <script type="text/javascript">
-	function update_go() {
-		location.href = "/faq_updateForm.do";
+	function list_go(f){
+		f.action="/qna_list.do";
+		f.submit();
 	}
-	function delete_go() {
-		location.href = "/faq_deleteForm.do";
+	function update_go(f) {
+		f.action= "/qna_updateForm.do";
+		f.submit();
+	}
+	function delete_go(f) {
+		f.action = "/qna_deleteForm.do";
+		f.submit();
+	}
+	// 댓글 저장
+	function comment_go(f) {
+		f.action = "/qnacom_insert.do";
+		f.submit();
+	}
+	// 댓글 삭제
+	function comment_del(f) {
+		// 서버로 댓글 삭제 요청을 보내고 성공하면 다음과 같이 해당 댓글의 DOM 요소를 제거
+	    var qnacomIdx = f.qnacom_idx.value;
+	    var deletedComment = document.getElementById('comment_' + qnacomIdx);
+	    if (deletedComment) {
+	        deletedComment.parentNode.removeChild(deletedComment);
+	    }
+		f.action = "/qnacom_delete.do";
+		f.submit();
 	}
 </script>
 </head>
@@ -126,7 +157,7 @@ input{
 		<jsp:include page="../home/home_top.jsp" />
 	</header>
 		
-	<div id="faqWrapper" style="width: 1920px;">
+	<div id="qnaWrapper" style="width: 1920px;">
 	
 	<!-- 사이드바 구역 -->      
  <div class="sidebar">
@@ -172,30 +203,62 @@ input{
 							<td style="padding: 8px; text-align: left;"><b>첨부 파일 없음</b></td>
 						</c:when>
 						<c:otherwise>
-							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?f_name=${qvo.one_fname}">
+							<td style="padding: 8px; text-align: left;"><a href="/board_down.do?one_fname=${qvo.one_fname}">
 							<img src="resources/images/${qvo.one_fname}" style="80px;"></a>
 							</td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
 				<tr height="30">
-					<td colspan="2">
-						<input type="hidden" value="${qvo.one_idx}" name="idx">
-						<input type="hidden" value="${cPage}" name="cPage">
-						
-						<div class="btn">
-						<!-- 자기가 쓴 글만 수정, 삭제 가능 -->
+					<td colspan="2" align="center" style="padding: 8px; text-align: center;">
+						<input type="hidden" value="${qvo.one_idx}" name="one_idx">
+						<input type="button" style="font-size: 20px;" value="목록" onclick="list_go(this.form)">
 						<c:if test="${sessionScope.user_id == qvo.user_id}">
-							<input type="button" value="수정" onclick="update_go()">
-							<input type="button" value="삭제" onclick="delete_go()">
+							<input type="button" value="수정" style="font-size: 20px;" onclick="update_go(this.form)">
+							<input type="button" value="삭제" style="font-size: 20px;"onclick="delete_go(this.form)">
 						</c:if>	
-							<input type="button" value="목록" onclick="list_go(this.form)">
-						</div>
 					</td>
 				</tr>
 		</table>
 	</form>
 	</div>  
+		<!-- 댓글 작성 영역 -->
+	<%-- 댓글 입력 --%>
+	<div style="padding:50px; width:1200px; margin-left: 460px; ">
+		<form method="post">
+			<fieldset id="qnacom_field">
+				<p>작성자  <input type="text" name="user_id" value="${ sessionScope.user_id }" readonly ></p>
+				<p>내용  <br>
+					<textarea rows="4" cols="40" name="qnacom_content" style="width: 1000px;"></textarea></p>
+				 <input type="button" value="댓글저장" style="font-size: 15px;" onclick="comment_go(this.form)">
+				 <input type="hidden" name="one_idx" value="${qvo.one_idx}">
+				 <input type="hidden" name="cPage" value="${cPage}">
+			 </fieldset>
+		</form>
+	</div>
+	<br>
+	<%-- 댓글 출력 --%>
+	<div style="display: table;" class="qnacom">
+		<c:forEach var="k" items="${c_list}">
+		
+		 <div>
+		 	<form method="post">
+		 		<p>작성자 : ${k.user_id}</p>
+		 		<p>내용 : ${k.qnacom_content }</p>
+		 		<p>날짜 : ${k.qnacom_date.substring(0,10)}</p>
+		 		<hr>
+		 		<input type="hidden" value="${k.qnacom_idx}" name="qnacom_idx">
+		 		<input type="hidden" value="${k.one_idx}" name="one_idx">
+		 		<input type="hidden" name="cPage" value="${cPage}">
+		 		<%-- 실제로는 로그인 성공해야 지만 삭제번트이 보여야 한다. --%>
+		 		<c:if test="${sessionScope.user_id == qvo.user_id}">
+		 		<input type="button" value="삭제" style="font-size: 15px;" onclick="comment_del(this.form)">
+				</c:if>
+		 	</form>
+		 </div>
+		
+		</c:forEach>
+	</div>
 	</div>  
 </body>
 </html>

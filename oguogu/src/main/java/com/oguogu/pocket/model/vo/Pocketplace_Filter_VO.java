@@ -1,15 +1,15 @@
 package com.oguogu.pocket.model.vo;
 
-public class Pocketplace_VO {
+public class Pocketplace_Filter_VO {
 	// String: 도로명 주소(roadaddr), 기본 정보_장소설명(locationex), 시설명(facilities)
 	// double: 경도(lon), 위도(lat)
 	private String roadaddr,locationex, facilities;
 	private double lon, lat;
 	
-	public Pocketplace_VO() {}
+	public Pocketplace_Filter_VO() {}
 	
-	public Pocketplace_VO(String roadaddr, String locationex, String facilities, double lon, double lat) {
-		super();
+	public Pocketplace_Filter_VO(String roadaddr, String locationex, String facilities, double lon, double lat) {
+		
 		this.roadaddr = roadaddr;
 		this.locationex = locationex;
 		this.facilities = facilities;

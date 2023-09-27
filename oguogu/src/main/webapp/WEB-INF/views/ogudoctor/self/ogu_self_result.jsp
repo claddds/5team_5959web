@@ -60,9 +60,7 @@
     <div id=period_ex>
     	<!-- option1,2,3,4가 NULL인지 아닌지 부터 구분 -->
     	<c:if test="${not empty param.option1}">
-        	<script type="text/javascript">
-		    	window.location.href = "/dog_meal_food_list.do";
-		    </script>
+        	<p>${param.option1}</p>
     	</c:if>
     
 	    <c:if test="${not empty param.option2}">

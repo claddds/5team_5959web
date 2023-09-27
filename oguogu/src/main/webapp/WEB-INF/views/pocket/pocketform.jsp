@@ -124,7 +124,7 @@ footer {
 					<br>
 					<div class="button_list">
 						<input type="button" class="btn btn-sm btn-primary" id="btnadd" value="장소 추가하기" onclick="onAddButtonClick()">
-						<input type="button" class="btn btn-sm btn-primary" id="btndel" value="장소 삭제하기" onclick="onAddButtonClick()">
+						<input type="button" class="btn btn-sm btn-primary" id="btndel" value="장소 삭제하기" onclick="">
 					</div>
 					
 				</div>

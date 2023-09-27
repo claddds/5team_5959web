@@ -11,10 +11,12 @@
 	
 	<typeAliases><!-- 별칭/ com.ict.db.VO 같은 너낌 -->
 		<typeAlias type="com.oguogu.user.model.vo.User_VO" alias="uvo"/>
-		<typeAlias alias="evo" type="com.oguogu.education.model.vo.Education_VO"/>
+		<typeAlias type="com.oguogu.education.model.vo.Education_VO" alias="evo"/>
 		<typeAlias type="com.oguogu.education.model.vo.EduHeart_VO" alias="ehvo"/>
 		<typeAlias type="com.oguogu.ogudoctor.self.model.vo.Ogu_Self_VO" alias="oguselfvo"/>
 		<typeAlias type="com.oguogu.food.model.vo.Food_VO" alias="fvo"/>
+		<typeAlias type="com.oguogu.support.model.vo.Support_VO" alias="sup_vo"/>
+		<typeAlias type="com.oguogu.food.model.vo.Food_VO" alias="ad_f_vo"/>
 		<typeAlias type="com.oguogu.lounge.model.vo.Lounge_VO" alias="lvo"/>
 		<typeAlias type="com.oguogu.report.model.vo.Report_VO" alias="rvo"/>
 		<typeAlias type="com.oguogu.qna.model.vo.Qna_VO" alias="qvo"/>
@@ -23,6 +25,8 @@
 		<typeAlias type="com.oguogu.comment.model.vo.Comment_VO" alias="cvo"/>
 		<typeAlias type="com.oguogu.comment.model.vo.RepComment_VO" alias="rcvo"/>
 		<typeAlias type="com.oguogu.comment.model.vo.QnAComment_VO" alias="qcvo"/>
+		<typeAlias type="com.oguogu.faq.model.vo.FAQ_VO" alias="faq_vo"/>
+		<typeAlias type="com.oguogu.qna.model.vo.Qna_VO" alias="qvo"/>
 		<typeAlias type="com.oguogu.pet.model.vo.Pet_VO" alias="pvo"/>
 
 	</typeAliases>
@@ -37,6 +41,8 @@
 		<mapper resource="mappers/fooduser-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml" /> 
 		<mapper resource="mappers/admin_report-mapper.xml" /> 
+		<mapper resource="mappers/sup-mapper.xml"/>
+		<mapper resource="mappers/food-mapper.xml"/>
 		<mapper resource="mappers/lounge_mapper.xml"/>
 		<mapper resource="mappers/rep_mapper.xml"/>
 		<mapper resource="mappers/qna_mapper.xml"/>
@@ -45,6 +51,8 @@
 		<mapper resource="mappers/com_mapper.xml"/>
 		<mapper resource="mappers/repcom_mapper.xml"/>
 		<mapper resource="mappers/qnacom_mapper.xml"/>
+		<mapper resource="mappers/faq-mapper.xml"/>
+		<mapper resource="mappers/qna-mapper.xml"/>
 		<mapper resource="mappers/mypage-mapper.xml"/>
 		<mapper resource="mappers/pet-mapper.xml"/>
 	</mappers>

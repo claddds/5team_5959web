@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="q_vo">
+	
+	<select id="count" resultType="int">
+		select count(*) from QnA
+	</select>
+	<!-- 게시글 목록 보기-->
+	<select id="list" parameterType="Map" resultType="q_vo">
+	  select * from QnA order by one_idx desc #limit={#limit}, #offset={#offset}
+	</select>
+	
+	<!-- 게시글 삽입 -->
+	<insert id="insert" parameterType="q_vo">
+		insert into Notice(admin_nickname.not_title,not_content,not_fname,admin_nickname,not_date,not_ing,status)
+		values(#{admin_nickname},#{not_title},#{not_content},#{not_fname},#{admin_nickname},sysdate(),#{not_ing},0)	
+	</insert>
+	
+	<!-- 상세보기 -->
+	<select id="onelist" parameterType="String" resultType="q_vo">
+		select * from QnA where one_idx = #{one_idx}
+	</select>
+	
+	
+	<!-- 게시글 수정하기 -->
+	<update id="update" parameterType="q_vo">
+		update QnA set one_ans=#{one_ans}, admin_nickname=#{admin_nickname},ans_ing=#{ans_ing} where one_idx=#{one_idx}
+	</update>
+	
+	<update id="delete" parameterType="sup_vo">
+		update Notice set status = 1 where not_idx=#{not_idx}
+	</update>
+	
+	<select id="searchcount" parameterType="Map" resultType="int">
+	 SELECT COUNT(*) FROM Notice
+    WHERE status = 0
+    <if test="searchtype != null and keyword != null and !keyword.isEmpty()">
+        AND (not_title LIKE CONCAT('%', #{keyword}, '%') OR not_date LIKE CONCAT('%', #{keyword}, '%') OR admin_nickname LIKE CONCAT('%', #{keyword}, '%'))
+    </if>
+	</select>
+	
+	<select id="search" parameterType="Map" resultType="sup_vo">
+    <choose>
+       <when test="searchtype != null and keyword != null and !keyword.isEmpty()">
+            <!-- 검색 조건이 존재할 때 -->
+            SELECT * FROM Notice
+            WHERE status = 0
+            <if test="searchtype == 'not_title'">
+                AND not_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'not_date'">
+                AND not_date LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchtype == 'admin_nickname'">
+                AND admin_nickname LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            ORDER BY not_idx DESC
+            LIMIT #{limit} OFFSET #{offset}
+        </when>
+        <otherwise>
+         <!-- 검색 조건이 없을 때 -->
+            <!-- 아무 작업도 수행하지 않음 (빈 쿼리) -->
+            SELECT 1 WHERE 1=0
+        </otherwise>
+    </choose>
+</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

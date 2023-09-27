@@ -85,8 +85,8 @@
 		  <li class="sidebar-list-item"><a href="/mypagedisplay.do" class="sidebar-list-item-a">내 프로필</a></li>
 		  <li class="sidebar-list-item"><a href="/mypagePetProfile.do" class="sidebar-list-item-a">반려 동물 프로필</a></li><hr>
 		  <li class="sidebar-list-title">즐겨찾기</li>
-		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">교육</a></li>
-		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">먹거리</a></li><hr>
+		  <li class="sidebar-list-item"><a href="/myfavedu.do" class="sidebar-list-item-a">교육</a></li>
+		  <li class="sidebar-list-item"><a href="/myfavfood.do" class="sidebar-list-item-a">먹거리</a></li><hr>
 		  <li class="sidebar-list-title">내가 작성한 글</li>
 		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">라운지</a></li>
 		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">나의 댓글</a></li>

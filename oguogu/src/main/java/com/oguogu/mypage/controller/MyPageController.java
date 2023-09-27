@@ -2,6 +2,7 @@ package com.oguogu.mypage.controller;
 
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.oguogu.education.model.vo.Education_VO;
 import com.oguogu.mypage.model.service.MyPageService;
 import com.oguogu.user.model.service.Join_Service;
 import com.oguogu.user.model.vo.User_VO;
@@ -41,10 +43,6 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView("mypage/mypage_myprofile_update");
 		String user_id = (String) session.getAttribute("user_id");
 		User_VO uvo = join_Service.getUserOneList(user_id);
-//		System.out.println("마이컨트롤러 이름:"+uvo.getUser_id());
-//		System.out.println("마이컨트롤러 닉네임:"+uvo.getNickname());
-//		System.out.println("마이컨트롤러 이메일:"+uvo.getEmail());
-//		System.out.println("마이컨트롤러 파일이름:"+uvo.getUser_fname());
 		mv.addObject("uvo", uvo);
 		return mv;
 	}
@@ -91,13 +89,7 @@ public class MyPageController {
 				}
 				
 			}
-			
-//			System.out.println("업데이트 컨트롤러 이름:"+uvo.getUser_id());
-//			System.out.println("업데이트 컨트롤러 닉네임:"+uvo.getNickname());
-//			System.out.println("업데이트 컨트롤러 이메일:"+uvo.getEmail());
-//			System.out.println("업데이트 컨트롤러 파일이름:"+uvo.getUser_fname());
-//			System.out.println("업데이트 컨트롤러 올드 파일이름:"+uvo.getOld_user_fname());
-			
+
 			int result = myPageService.getUpdateMyInfo(uvo);
 			mv.setViewName("redirect:/mypagedisplay.do");
 			redirectAttributes.addFlashAttribute("updateOk","success");
@@ -118,7 +110,6 @@ public class MyPageController {
 	@RequestMapping("/userPwChk.do")
 	@ResponseBody
 	public int getuserPwUpdate(HttpSession session,@RequestParam("pw") String pw) {
-		//ModelAndView mv = new ModelAndView("mypage/mypage_myprofile_pwupdate");
 		String user_id = (String) session.getAttribute("user_id");
 		String dbPw = join_Service.getMemberPwd(user_id);
 		
@@ -151,5 +142,27 @@ public class MyPageController {
 		session.invalidate();
 		return result;
 	}
+	
+	
+	@RequestMapping("/myfavedu.do")
+	public ModelAndView getMyEduFavHeart(HttpSession session, Education_VO evo) {
+		ModelAndView mv = new ModelAndView("mypage/");
+		String nickname = (String) session.getAttribute("nickname");
+		
+		//좋아요 있는지 없는지 구하기
+		int result = myPageService.getMyEduFavHeart(nickname);
+		
+		if(result>0) {
+			List<Education_VO> elist = myPageService.getMyFavEdu(nickname);
+			mv.addObject("elist", elist);
+			mv.setViewName("mypage/mypage_fav_edu");
+		}else {
+			mv.setViewName("mypage/mypage_fav_edu_none");
+		}
+		
+		return mv;
+	}
+	
+	
 	
 }

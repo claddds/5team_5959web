@@ -170,14 +170,14 @@
             }
         });
         
-        //사진 삭제 이벤츠 처리
+        //사진 삭제 이벤트 처리
 		$("#pet-delete-btn").on("click", function() {
 		    // 파일 입력 요소 초기화
 		    $("#petfileInput").val("");
 		    // 이미지 속성을 기본 이미지로 바꿈
 		    $("#pet-img").attr("src", "resources/images/login/basic_profile.jpg");
-		    // 파일 밸류를 기본 이미지로
-		    $("#petfileInput").val("/login/basic_profile.jpg");
+		    // db에 저장할 파일 이름을 기본 이미지로
+		    $("input[name='old_pet_fname']").val("/login/basic_profile.jpg");
 		});
         
         
@@ -189,8 +189,10 @@
 		    var petName = $("#pet_name").val().trim();
 		    // 이름이 비어 있지 않으면 isPetName 값을 true로 설정합니다.
 		    if(petName.trim().length>0){
+		    	//버튼 비활성화
 		    	 $("#pet_add_btn").prop("disabled", false).css("background-color", "#FFA629").css("cursor", "pointer").css("color","white");
 		    }else{
+		    	//버튼 활성화
 		    	$("#pet_add_btn").prop("disabled", true).css("background-color", "#F3F1EF").css("cursor", "default").css("color","#C4C4C4");
 		    }
 		    

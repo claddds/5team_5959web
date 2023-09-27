@@ -140,7 +140,7 @@
 		    $("#fileInput").val("");
 		    // 이미지 속성을 기본 이미지로 바꿈
 		    $("#myimg").attr("src", "resources/images/login/basic_profile.jpg");
-		    // 파일 밸류를 기본 이미지로
+		    // db에 저장할 파일 이름을 기본 이미지로
 		    $("input[name='old_user_fname']").val("/login/basic_profile.jpg");
 		    isfileimg = true;
 		    updateBtnState();

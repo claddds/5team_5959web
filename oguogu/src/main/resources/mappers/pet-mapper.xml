@@ -20,10 +20,12 @@
 		select * from pet where user_id = #{user_id}
 	</select>
 	
+	<!-- 펫정보 불러오기  -->
 	<select id="getPetProfileOnelist" parameterType="String" resultType="pvo">
 		select * from pet where pet_idx = #{pet_idx}
 	</select>
 	
+	<!-- 펫 정보 수정 -->
 	<update id="getPetUpdate" parameterType="pvo">
 		update pet set 
 		pet_name=#{pet_name},pet_fname=#{pet_fname},pet_type=#{pet_type},pet_kind=#{pet_kind},
@@ -31,9 +33,12 @@
 		where pet_idx = #{pet_idx}
 	</update>
 	
+	<!-- 펫 삭제 -->
 	<delete id="getPetDelete" parameterType="String">
 		delete from pet where pet_idx = #{pet_idx}
 	</delete>
+	
+	
 </mapper>
 
 

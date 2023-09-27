@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,47 +63,19 @@ footer {
 			<jsp:include page="mypage-sidebar.jsp" />
 		</div>
 		<div id="fav_edu_list">
-		<div style="grid-column:span 4; font-family: font-family: 'Noto Sans KR', sans-serif;
-					font-size: 50px;margin:auto;margin-bottom:60px; padding-right:100px; color:#FFA629;font-weight: bold;">
-			즐겨찾기 - 교육
-		</div>
-			<div class="fav_place_card" style="width: 200px; height: 300px;">
-				<img src="resources/images/home/mainbanner_eduexplain.png"
-					class="fav_edu_img" style="width: 200px; height: 200px;">
-				<h3 class="card-title">제목제목제목제목제목제목제목제목제목제목제목제목제목</h3>
+			<div style="grid-column:span 4; font-family: font-family: 'Noto Sans KR', sans-serif;
+						font-size: 50px;margin:auto;margin-bottom:60px; padding-right:100px; color:#FFA629;font-weight: bold;">
+				즐겨찾기 - 교육
 			</div>
-			<div class="fav_place_card" style="width: 200px; height: 300px;">
-				<img src="resources/images/home/mainbanner_eduexplain.png"
-					class="fav_edu_img" style="width: 200px; height: 200px;">
-				<h3 class="card-title">제목제목제목제목제목제목제목제목제목제목제목제목</h3>
-			</div>
-			<div class="fav_place_card" style="width: 200px; height: 300px;">
-				<img src="resources/images/home/mainbanner_eduexplain.png"
-					class="fav_edu_img" style="width: 200px; height: 200px;">
-				<div class="card-body">
-					<h3 class="card-title">제목제목제목제목제목제목제목제목제목제목제목</h3>
-				</div>
-			</div>
-			<div class="fav_place_card" style="width: 200px; height: 300px;">
-				<img src="resources/images/home/mainbanner_eduexplain.png"
-					class="fav_edu_img" style="width: 200px; height: 200px;">
-				<h3 class="card-title">제목제목제목제목제목제목제목제목제목</h3>
-			</div>
-			<div class="fav_place_card" style="width: 200px; height: 300px;">
-				<img src="resources/images/home/mainbanner_eduexplain.png"
-					class="fav_edu_img" style="width: 200px; height: 200px;">
-				<h3 class="card-title">제목제목제목제목제목제목제목제목제목제목</h3>
-			</div>
-			<div class="fav_place_card" style="width: 200px; height: 300px;">
-				<img src="resources/images/home/mainbanner_eduexplain.png"
-					class="fav_edu_img" style="width: 200px; height: 200px;">
-				<h3 class="card-title">제목제목제목제목제목제목제목제목제목제목</h3>
-			</div>
-			<div class="fav_place_card" style="width: 200px; height: 300px;">
-				<img src="resources/images/home/mainbanner_eduexplain.png"
-					class="fav_edu_img" style="width: 200px; height: 200px;">
-				<h3 class="card-title">제목제목제목제목제목제목제목제목제목제목제목제목</h3>
-			</div>
+			<c:forEach var="k" items="${elist}">
+				<a href="/mypageEduOnelist.do?edu_idx=${k.edu_idx}">
+					<div class="fav_place_card" style="width: 200px; height: 300px;">
+						<img src="resources/images/${k.edu_F_name}"
+							class="fav_edu_img" style="width: 200px; height: 200px;">
+						<h3 class="card-title">${k.edu_title}</h3>
+					</div>
+				</a>
+			</c:forEach>
 		</div>
 	</div>
 

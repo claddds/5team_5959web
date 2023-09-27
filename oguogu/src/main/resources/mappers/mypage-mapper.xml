@@ -19,6 +19,22 @@
 		update user set status = 1, enddate = sysdate where user_id = #{user_id}
 	</update>
 	
+	<!-- 좋아요 수 구하기 -->
+	<select id="getMyEduFavHeart" parameterType="String" resultType="int">
+		select count(*) from edu_heart_table where nickname = #{nickname}
+	</select>
+	
+	<select id="getMyFavEdu" parameterType="String" resultType="evo">
+		SELECT e.*
+		FROM Education e
+		JOIN edu_heart_table eh ON e.edu_idx = eh.edu_idx
+		WHERE eh.heart = 1 and eh.nickname=#{nickname}
+	</select>
+	
+	<select id="getEduOnelist" parameterType="String" resultType="evo">
+		select * from Education where edu_idx = #{edu_idx}
+	</select>
+	
 </mapper>
 
 

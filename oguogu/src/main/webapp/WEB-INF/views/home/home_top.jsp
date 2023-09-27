@@ -122,7 +122,6 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 	<div>
 	  <ul class="topmenu">   
 	    <li><a style="color:tomato; display:none;" class="header-ALink">관리자 페이지</a></li><!-- id가 admin일 때 display:"" JS 처리  -->
-	    <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    <c:choose>
 	  <c:when test="${loginChk eq 'ok'}">
 	  <c:if test="${sessionScope.type == 0}">
@@ -136,7 +135,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
            </c:choose>
 		
 	    <c:choose>
-	    	<c:when test="${loginChk eq 'ok'  }">
+	    	<c:when test="${loginChk eq 'ok'}">
 	    	<c:if test="${sessionScope.type != 0}">
 	    	<li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    		<li><a href="/mypagedisplay.do" style="color:#FFA629;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->    

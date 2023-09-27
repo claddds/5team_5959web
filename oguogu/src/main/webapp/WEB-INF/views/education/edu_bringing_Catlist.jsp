@@ -286,8 +286,6 @@ ol.paging li a:hover {
 			<ol class="paging">
 			   <!-- 이전 -->
 			   <c:choose>
-			   		<%-- 시작블록과 pagePerBlock를 비교해서 
-			   		시작블록 작으면 이전으로 가 비활성화 된다. --%>
 			   		<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
 			   			<li class="disable">이전으로</li>
 			   		</c:when>
@@ -298,16 +296,6 @@ ol.paging li a:hover {
 			   </c:choose>
 			    <!-- 블록안에 들어간 페이지번호들 -->
 				<c:forEach begin="${paging.beginBlock}" end="${paging.endBlock }" step="1" var="k">
-				   <%-- 현재 페이지와 현재 페이지가 아닌 것을 나누자  --%>
-				   <%-- 현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리  --%>
-				   <%-- <c:choose>
-				   		<c:when test="${k == paging.nowPage}">
-				   			<li class="now">${k}</li>
-				   		</c:when>
-				   		<c:otherwise>
-				   			<li><a href="/bbs_list.do?page=${k}">${k}</a></li>
-				   		</c:otherwise>
-				   </c:choose> --%>
 				   <c:if test="${k == paging.nowPage}">
 				   		<li class="now">${k}</li>
 				   </c:if>
@@ -318,8 +306,6 @@ ol.paging li a:hover {
 				</c:forEach>
 				<!-- 다음 -->
 				  <c:choose>
-			   		<%-- 시작블록과 pagePerBlock를 비교해서 
-			   		시작블록 작으면 이전으로 가 비활성화 된다. --%>
 			   		<c:when test="${paging.endBlock >= paging.totalPage }">
 			   			<li class="disable">다음으로</li>
 			   		</c:when>

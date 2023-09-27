@@ -1,7 +1,11 @@
 package com.oguogu.user.model.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class User_VO {
-	private String user_id, pw, email, nickname,type,initdate,enddate,user_fname,status;
+	private String user_id, pw, email, nickname, type ,initdate ,enddate , user_fname, status , old_user_fname;
+	
+	private MultipartFile file;
 
 	public String getUser_id() {
 		return user_id;
@@ -74,6 +78,23 @@ public class User_VO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public String getOld_user_fname() {
+		return old_user_fname;
+	}
+
+	public void setOld_user_fname(String old_user_fname) {
+		this.old_user_fname = old_user_fname;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	
 	
 	
 }

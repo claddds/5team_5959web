@@ -51,7 +51,9 @@
     }
 </style>
 <script type="text/javascript">
-
+	function petreg_go() {
+		location.href="/petRegGoForm.do"
+	}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +74,7 @@
 				style="width:200px;height:200px;border-radius:10px;">	
 			</div>
 			<div>
-				<button id="pet_add_btn" onclick="">등록하기</button>
+				<button id="pet_add_btn" onclick="petreg_go()">등록하기</button>
 			</div>
 		</div>
 	</div>

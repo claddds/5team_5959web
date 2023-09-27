@@ -14,10 +14,12 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oguogu.common.Paging;
+import com.oguogu.food.model.vo.Food_VO;
 import com.oguogu.support.model.service.Ad_Sup_Service;
 import com.oguogu.support.model.vo.Support_VO;
 @Controller
@@ -160,13 +162,57 @@ public class Ad_Sup_Controller {
 			}
 		}
 		// 게시글 삭제
-		@PostMapping("sup_delete.do")
+		@PostMapping("/sup_delete.do")
 		public ModelAndView getSup_Delete(Support_VO sup_vo) {
 			ModelAndView mv = new ModelAndView("admin/support/sup_delete");
 			int result = ad_Sup_Service.getSup_Delete(sup_vo);
 				
 			mv.addObject("result", result);
 			mv.addObject("sup_vo", sup_vo);
+			return mv;
+		}
+		
+		// 검색
+		@RequestMapping("/sup_search.do")
+		public ModelAndView getSearch(HttpServletRequest request,
+				@RequestParam(defaultValue = "faq_title") String searchtype,
+				@RequestParam(defaultValue = "") String keyword) {
+			ModelAndView mv = new ModelAndView("admin/support/admin_sup_search"); // 결과를 표시할 뷰 이름
+
+			int count = ad_Sup_Service.getSearchTotalCount(searchtype, keyword);
+			paging.setTotalRecord(count);
+			System.out.print(count);
+
+			if (paging.getTotalRecord() <= paging.getNumPerPage()) {
+				paging.setTotalPage(1);
+			} else {
+				paging.setTotalPage(paging.getTotalRecord() / paging.getNumPerPage());
+				if (paging.getTotalRecord() % paging.getNumPerPage() != 0) {
+					paging.setTotalPage(paging.getTotalPage() + 1);
+				}
+			}
+
+			String cPage = request.getParameter("cPage");
+			if (cPage == null) {
+				paging.setNowPage(1);
+			} else {
+				paging.setNowPage(Integer.parseInt(cPage));
+			}
+
+			paging.setOffset(paging.getNumPerPage() * (paging.getNowPage() - 1));
+
+			// 시작 블록, 끝 블록
+			paging.setBeginBlock(
+					(int) ((paging.getNowPage() - 1) / paging.getPagePerBlock()) * paging.getPagePerBlock() + 1);
+			paging.setEndBlock(paging.getBeginBlock() + paging.getPagePerBlock() - 1);
+
+			// 주의사항 (endblock이 totalpage 보다 클 때가 있다.)
+			if (paging.getEndBlock() > paging.getTotalPage()) {
+				paging.setEndBlock(paging.getTotalPage());
+			}
+			List<Support_VO> search = ad_Sup_Service.getSearch(searchtype, keyword, paging.getOffset(), paging.getNumPerPage());
+			mv.addObject("search", search);
+			mv.addObject("paging", paging); // 페이징 정보를 뷰에 추가
 			return mv;
 		}
 }

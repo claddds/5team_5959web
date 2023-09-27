@@ -359,7 +359,7 @@ console.log("현재 페이지: " + ${paging.nowPage});
 				<!-- 이전 버튼 -->
 				<c:choose>
 					<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
-						<li class="disable">이전으로</li>
+						<li class="disable"><<</li>
 					</c:when>
 					<c:otherwise>
 						<li><a
@@ -380,7 +380,7 @@ console.log("현재 페이지: " + ${paging.nowPage});
 				<!-- 이후 버튼 -->
 				<c:choose>
 					<c:when test="${paging.endBlock >= paging.totalPage }">
-						<li class="disable">다음으로</li>
+						<li class="disable">>></li>
 					</c:when>
 					<c:otherwise>
 						<li><a

@@ -213,6 +213,16 @@ console.log("현재 페이지: " + ${paging.nowPage});
 	    }
 	    return false;
 	}
+	
+	function validateSearch() {
+	    var keyword = document.search.keyword.value;
+	    if (keyword === "") {
+	        alert('검색어를 입력하세요');
+	        document.search.keyword.focus();
+	        return false; // 검색 중지
+	    }
+	    return true; // 검색 진행
+	}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

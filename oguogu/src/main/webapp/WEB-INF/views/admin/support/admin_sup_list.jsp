@@ -201,13 +201,29 @@ footer{
 	function write_go() {
 		location.href = "/sup_write.do";
 	}
-function submit() {
-	if(document.search.keyword.value==""){
-		alert('검색어를 입력하세요');
-		document.search.ketword.focus();
-		return false;
+	function search_go() {
+	    var keyword = document.search.keyword.value;
+	    if (keyword === "") {
+	        alert('검색어를 입력하세요');
+	        document.search.keyword.focus();
+	    } else {
+	        // 검색어를 포함한 URL 생성
+	        var searchUrl = "/sup_search.do?keyword=" + encodeURIComponent(keyword);
+	        // 생성한 URL로 이동
+	        location.href = searchUrl;
+	    }
+	    return false;
 	}
-}
+	
+	function validateSearch() {
+	    var keyword = document.search.keyword.value;
+	    if (keyword === "") {
+	        alert('검색어를 입력하세요');
+	        document.search.keyword.focus();
+	        return false; // 검색 중지
+	    }
+	    return true; // 검색 진행
+	}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -381,12 +397,12 @@ function submit() {
 	<div>
 		<center>
             <li id='liSearchOption'  style="display: block; ">
-            	<form action="/edu_search.do?page=1" method="post">
+            	<form name="search" action="/sup_search.do" method="get"  onsubmit="return validateSearch()"> 
                 <div>
-                    <select name="searchtype"">
+                      <select name="searchtype"  >
                         <option value="not_title">제목</option>
-                        <option value="not_content">내용</option>
-                        <option value="anot_nikname">작성자</option>                        
+                        <option value="not_date">날짜</option>
+                        <option value="admin_nickname">등록자</option>                        
                     </select>
                     <input type="search" name="keyword">
                     <input type="submit" class="button" value="검색">

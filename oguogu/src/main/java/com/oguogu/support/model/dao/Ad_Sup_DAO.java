@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oguogu.food.model.vo.Food_VO;
 import com.oguogu.support.model.vo.Support_VO;
 
 
@@ -45,6 +46,24 @@ public class Ad_Sup_DAO {
 	public int getSup_Delete(Support_VO sup_vo) {
 		int result= sqlSessionTemplate.update("sup_vo.delete", sup_vo);
 		return result;
+	}
+	
+	public int getSearchTotalCount(String searchtype, String keyword) {
+	    Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("searchtype", searchtype);
+	    paramMap.put("keyword", keyword);
+
+	    return sqlSessionTemplate.selectOne("sup_vo.searchcount", paramMap);
+	}
+	
+	public List<Support_VO> getSearch(String searchtype, String keyword, int limit, int offset) {
+		 Map<String, Object> map = new HashMap<>();
+		 map.put("searchtype", searchtype);
+		 map.put("keyword", keyword);
+		 map.put("limit", limit);
+		 map.put("offset", offset);
+
+	       return sqlSessionTemplate.selectList("sup_vo.search", map);
 	}
 
 }

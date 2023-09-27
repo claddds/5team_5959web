@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.oguogu.food.model.vo.Food_VO;
 import com.oguogu.support.model.dao.Ad_Sup_DAO;
 import com.oguogu.support.model.vo.Support_VO;
 
@@ -47,7 +49,16 @@ public class Ad_Sup_ServiceImpl implements Ad_Sup_Service{
 	
 	
 
+	@Override
+	public int getSearchTotalCount(String searchtype, String keyword) {
+		return ad_Sup_DAO.getSearchTotalCount(searchtype,keyword);
+	}
 
+	
+	@Override
+	public List<Support_VO> getSearch(String searchtype, String keyword, int offset, int limit) {
+	        return ad_Sup_DAO.getSearch(searchtype, keyword, limit, offset);
+	    }
 	
 	
 	

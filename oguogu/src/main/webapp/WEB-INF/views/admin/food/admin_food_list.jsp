@@ -200,13 +200,29 @@ footer{
 	function write_go() {
 		location.href = "/food_write.do";
 	}
-function submit() {
-	if(document.search.keyword.value==""){
-		alert('검색어를 입력하세요');
-		document.search.ketword.focus();
-		return false;
+	function search_go() {
+	    var keyword = document.search.keyword.value;
+	    if (keyword === "") {
+	        alert('검색어를 입력하세요');
+	        document.search.keyword.focus();
+	    } else {
+	        // 검색어를 포함한 URL 생성
+	        var searchUrl = "/food_search.do?keyword=" + encodeURIComponent(keyword);
+	        // 생성한 URL로 이동
+	        location.href = searchUrl;
+	    }
+	    return false;
 	}
-}
+	
+	function validateSearch() {
+	    var keyword = document.search.keyword.value;
+	    if (keyword === "") {
+	        alert('검색어를 입력하세요');
+	        document.search.keyword.focus();
+	        return false; // 검색 중지
+	    }
+	    return true; // 검색 진행
+	}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -246,7 +262,7 @@ function submit() {
 					<strong class="mb-1">질문</strong>
 				</div> <!-- 질문 -->
 				<ul class="submenu">
-					<li><a href="/admin_qan.do">1:1 문의</a></li>
+					<li><a href="ad_qna_list.do">1:1 문의</a></li>
 					<li><a href="/admin_report.do">신고</a></li>
 				</ul>
 			<li><a href="" id="novel"
@@ -394,7 +410,6 @@ function submit() {
  
 <!--검색 항목-->
 	<div>
-		<center>
             <center>
             <li id='liSearchOption'  style="display: block; ">
             	<form name="search" action="/food_search.do" method="get"  onsubmit="return validateSearch()"> 

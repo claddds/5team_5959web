@@ -1,11 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!doctype html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>오구오구 양육정보</title>
+    <title>오구오구 FAQ</title>
     <!-- 신고 게시판 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
@@ -198,19 +197,21 @@ footer{
 <script type="text/javascript">
 console.log("현재 페이지: " + ${paging.nowPage});
 	function write_go() {
-		location.href = "/edu_write.do";
+		location.href = "/faq_write.do";
 	}
-	function search() {
+	
+	function search_go() {
 	    var keyword = document.search.keyword.value;
 	    if (keyword === "") {
 	        alert('검색어를 입력하세요');
 	        document.search.keyword.focus();
 	    } else {
 	        // 검색어를 포함한 URL 생성
-	        var searchUrl = "/edu_Bsearch.do?keyword=" + encodeURIComponent(keyword);
+	        var searchUrl = "/sup_search.do?keyword=" + encodeURIComponent(keyword);
 	        // 생성한 URL로 이동
 	        location.href = searchUrl;
 	    }
+	    return false;
 	}
 	
 	function validateSearch() {
@@ -305,54 +306,51 @@ console.log("현재 페이지: " + ${paging.nowPage});
   </div>    
   <!-- 게시판 리스트 구역 -->
   <div>
-	<p id="title">오구오구 양육정보</p>
+	<p id="title">오구오구 공지사항</p>
 	</div>
 	<hr/>
   <div class="edu_list">
 	<table class="table">
   <thead>
-    <tr>
-      <th scope="col">등록번호</th>
-      <th scope="col">교육종류</th>
-      <th scope="col">동물종류</th>
-      <th scope="col">교육정보 제목</th>
+   <tr>
+      <th scope="col">No.</th>
+      <th scope="col">제목</th>
       <th scope="col">작성자</th>
-      <th scope="col">작성 날짜</th>
+      <th scope="col">게시 날짜</th>
       <th scope="col">게시 여부</th>
     </tr>
   </thead>
   <tbody>
-   <c:choose>
-	<c:when test="${empty e_Blist}">
-						<tr>
-							<td colspan="7"><h2>자료가 존재하지 않습니다.</h2></td>
-						</tr>
-						
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="e" items="${e_Blist}"  varStatus="vs">
+  <!-- 검색 결과 표시 -->
+<c:choose>
+    <c:when test="${empty search}">
+        <!-- 검색 결과가 없을 때 표시할 내용 -->
+        <tr>
+            <td colspan="7"><h2>검색 결과가 없습니다.</h2></td>
+        </tr>
+    </c:when>
+    <c:otherwise>
+        <!-- 검색 결과가 있을 때만 아래 내용을 표시 -->
+       <c:forEach var="ad" items="${search}"  varStatus="vs">
 							<tr>
-							<c:if test="${e.status == 0}">
-								<td>${e.edu_idx}</td>
-								<td>${e.edu_kind}</td>
-								<td>${e.edu_aml_kind}</td>
-								<td ><a id="atitle" href="/edu_onelist.do?edu_idx=${e.edu_idx}&cPage=${paging.nowPage}">${e.edu_title}</a></td>
-								<td>${e.admin_nikname }</td>
-								<td>${e.edu_date.substring(0,10)}</td>
-								<c:if test="${e.edu_open == 0}">
-								<td ${e.edu_open} > 게시</td>		
+							<c:if test="${ad.status == 0}">
+								<td>${ad.not_idx}</td>
+								<td><a id="atitle" href="/ad_sup_onelist.do?not_idx=${ad.not_idx}&cPage=${paging.nowPage}">${ad.not_title}</a></td>
+								<td>${ad.admin_nickname }</td>
+								<td>${ad.not_date.substring(0,10)}</td>
+								<c:if test="${ad.not_ing == 0}">
+								<td ${ad.not_ing} > 게시</td>		
 								</c:if>
-								<c:if test="${e.edu_open == 1}">
-								<td ${e.edu_open} > 미게시</td>		
+								<c:if test="${ad.not_ing == 1}">
+								<td ${ad.not_ing} > 미게시</td>		
 								</c:if>
 							</c:if>
 							</tr>
 						</c:forEach>
-					</c:otherwise>
-				</c:choose>	
+    </c:otherwise>
+</c:choose>
   </tbody>
- <tfoot>
-<!-- 페이징  기법 -->
+<tfoot><!-- 페이징  기법 -->
 	<tr>
 		<td colspan="6">
 			<ol class="paging"> 
@@ -363,7 +361,7 @@ console.log("현재 페이지: " + ${paging.nowPage});
 					</c:when>
 					<c:otherwise>
 						<li><a
-							href="/edu_Blist.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+							href="/sup_search.do?cPage=${paging.beginBlock-paging.pagePerBlock }"><<</a></li>
 					</c:otherwise>
 				</c:choose>
 				<!-- 페이지번호들 -->
@@ -373,7 +371,7 @@ console.log("현재 페이지: " + ${paging.nowPage});
 						<li class="now">${k}</li>
 					</c:if>
 					<c:if test="${ k != paging.nowPage}">
-						<li><a href="/edu_Blist.do?cPage=${k}">${k}</a></li>
+						<li><a href="/sup_search.do?cPage=${k}">${k}</a></li>
 					</c:if>
 				</c:forEach>
 
@@ -384,29 +382,28 @@ console.log("현재 페이지: " + ${paging.nowPage});
 					</c:when>
 					<c:otherwise>
 						<li><a
-							href="/edu_Blist.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+							href="/sup_search.do?cPage=${paging.beginBlock+paging.pagePerBlock }">>></a></li>
 					</c:otherwise>
 				</c:choose>
 			</ol>
 		</td>
-		<td>
-						<input type="button" class="button" value="교육등록" onclick=" write_go()">
-					</td>
-	</tr>
-	
+        <td>
+            <input type="button" value="공지등록" class="button" onclick=" write_go()">
+        </td>
+    </tr>
 </tfoot>
 </table>
- 
+
 <!--검색 항목-->
 	<div>
 		<center>
             <li id='liSearchOption'  style="display: block; ">
-            	<form name="search" action="/edu_Bsearch.do" method="get" onsubmit="return validateSearch()">
+            <form name="search" action="/sup_search.do" method="get"  onsubmit="return validateSearch()"> 
                 <div>
-                    <select name="searchtype"  >
-                        <option value="edu_title">제목</option>
-                         <option value="edu_date">날짜</option>
-                        <option value="admin_nikname">작성자</option>                        
+                      <select name="searchtype"  >
+                        <option value="not_title">제목</option>
+                        <option value="not_date">날짜</option>
+                        <option value="admin_nickname">등록자</option>                        
                     </select>
                     <input type="search" name="keyword">
                     <input type="submit" class="button" value="검색">
@@ -416,8 +413,9 @@ console.log("현재 페이지: " + ${paging.nowPage});
              </li>
              
    </div>
+ </center>
    <br>
-</center>
+  
 	</div>
 </div>
 <footer>

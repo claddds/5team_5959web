@@ -2,32 +2,31 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="sup_vo">
+<mapper namespace="q_vo">
 	
 	<select id="count" resultType="int">
-		select count(*) from Notice
+		select count(*) from QnA
 	</select>
 	<!-- 게시글 목록 보기-->
-	<select id="list" parameterType="Map" resultType="sup_vo">
-	  select * from Notice order by not_idx desc #limit={#limit}, #offset={#offset}
+	<select id="list" parameterType="Map" resultType="q_vo">
+	  select * from QnA order by one_idx desc #limit={#limit}, #offset={#offset}
 	</select>
 	
 	<!-- 게시글 삽입 -->
-	<insert id="insert" parameterType="sup_vo">
+	<insert id="insert" parameterType="q_vo">
 		insert into Notice(admin_nickname.not_title,not_content,not_fname,admin_nickname,not_date,not_ing,status)
 		values(#{admin_nickname},#{not_title},#{not_content},#{not_fname},#{admin_nickname},sysdate(),#{not_ing},0)	
 	</insert>
 	
 	<!-- 상세보기 -->
-	<select id="onelist" parameterType="String" resultType="sup_vo">
-		select * from Notice where not_idx = #{not_idx}
+	<select id="onelist" parameterType="String" resultType="q_vo">
+		select * from QnA where one_idx = #{one_idx}
 	</select>
 	
 	
 	<!-- 게시글 수정하기 -->
-	<update id="update" parameterType="sup_vo">
-		update Notice set not_title=#{not_title}, not_content=#{not_content}, not_fname=#{not_fname},
-		admin_nickname=#{admin_nickname},not_ing=#{not_ing},not_date=sysdate() where not_idx=#{not_idx}
+	<update id="update" parameterType="q_vo">
+		update QnA set one_ans=#{one_ans}, admin_nickname=#{admin_nickname},ans_ing=#{ans_ing} where one_idx=#{one_idx}
 	</update>
 	
 	<update id="delete" parameterType="sup_vo">

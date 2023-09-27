@@ -2,7 +2,7 @@ package com.oguogu.support.model.service;
 
 import java.util.List;
 
-
+import com.oguogu.food.model.vo.Food_VO;
 import com.oguogu.support.model.vo.Support_VO;
 
 public interface Ad_Sup_Service {
@@ -22,4 +22,8 @@ public interface Ad_Sup_Service {
 	int getSup_Update(Support_VO sup_vo);
 	
 	int getSup_Delete(Support_VO sup_vo);
+	
+	int getSearchTotalCount(String searchtype, String keyword);
+	
+	public List<Support_VO> getSearch(String searchtype, String keyword,int offset, int limit);	
 }

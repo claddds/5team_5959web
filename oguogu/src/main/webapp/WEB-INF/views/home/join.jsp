@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<meta http-equiv="Cache-Control" content="no-store" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
 <meta charset="UTF-8">
 <title>오구오구 회원가입</title>
 <style type="text/css">
@@ -97,12 +102,14 @@ footer{
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
-	window.onpageshow = function(event) {
+	 window.onpageshow = function(event) {
 	    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
 	    // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
 	    location.href="/logindisplay.do";
 	  }
-	}
+	} 
+	
+	
 	$(document).ready(function(){
 		//닉네임, 아이디, 이메일, 비밀번호 일치, 비밀번호 조건
 		var isNicknameValid = false;

@@ -54,6 +54,16 @@
         margin-bottom: 20px;
     }
 </style>
+<script type="text/javascript">
+	function petList_go() {
+		location.href="/mypagePetProfile.do"
+	}
+	
+	function petUpdate_go() {
+		location.href="/petUpdateForm.do?pet_idx=${pvo.pet_idx}"
+	}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
@@ -70,18 +80,18 @@
 			<div>
 				<div id="onelist_pet_img_name" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
 					<div>
-						<img src="resources/images/home/mainbanner_eduexplain.png" id="onelist_pet_img">
+						<img src="resources/images/${pvo.pet_fname}" id="onelist_pet_img">
 					</div>
-					<h2>안녕하세요하이루</h2>
+					<h2>${pvo.pet_name}</h2>
 				</div>
-				<div class="info_div" style="display:block;">생일 : 2023-09-01(나이 개월수까지)</div>
-				<div class="info_div">품종 : 골든 리트리버</div>
-				<div class="info_div">성별 : 남아</div>
-				<div class="info_div">몸무게 : 3.0 kg</div>
+				<div class="info_div" style="display:block;">생일 : ${pvo.pet_birth}(${pvo.months} 개월)</div>
+				<div class="info_div">품종 : ${pvo.pet_kind }</div>
+				<div class="info_div">성별 : ${pvo.pet_gender}</div>
+				<div class="info_div">몸무게 : ${pvo.pet_weight} kg</div>
 			</div>
 			<div id="onelist_list_update">
-				<button class="onelist_list_update_btn">목록으로</button>
-				<button class="onelist_list_update_btn" style="background-color: #FFA629">수정하기</button>
+				<button class="onelist_list_update_btn" onclick="petList_go()">목록으로</button>
+				<button class="onelist_list_update_btn" onclick="petUpdate_go()" style="background-color: #FFA629">수정하기</button>
 			</div>
 		</div>
 	</div>

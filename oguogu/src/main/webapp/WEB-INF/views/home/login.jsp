@@ -5,6 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<meta http-equiv="Cache-Control" content="no-store" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
 <title>Insert title here</title>
 <style type="text/css">
 
@@ -93,6 +98,7 @@ footer{
 		alert("로그인 하시겠습니까?")
 		f.action = "/user_login.do"
 	}
+	
 	function id_pw_find() {
 		location.href = "/IdPwFinddisplay.do"
 	}
@@ -105,7 +111,7 @@ footer{
 	</header>
     <div class="login-wrapper">
         <h1 style="text-align: center;font-family: 'Bagel Fat One', cursive;">LogIn</h1>
-        <form method="post" action="" id="login-form">
+        <form method="post" id="login-form">
             <input type="text" name="user_id" placeholder="아이디" id="login_user_id" required maxlength="20">
             <input type="password" name="pw" placeholder="비밀번호" id="login_pwd" required maxlength="20">
             <input type="submit" value="Login" id="login_submit_btn" onclick="user_login(this.form)">
@@ -117,7 +123,7 @@ footer{
             <hr>
 			<div class="social-login-img">
 				<c:set var ="REST_API_KEY" value="64e389d2d688211ab0016951d3cc766d" />
-				<c:set var ="REDIRECT_URI" value="http://localhost:8090/kakaologin.do" />
+				<c:set var ="REDIRECT_URI" value="http://localhost:8080/kakaologin.do" />
 				<a href="https://kauth.kakao.com/oauth/authorize?response_type=code
 							&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}">
 					<img src="resources/images/login/kakao_login.png">

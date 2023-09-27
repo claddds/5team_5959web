@@ -85,7 +85,17 @@ public class JoinController {
 	public String getUserLogin(User_VO userVO, HttpSession session, RedirectAttributes redirectAttributes, HttpServletRequest request, String username) throws Exception {
 		//id로 비밀번호 찾아옴 로그인에 활용
 		User_VO uvo = join_Service.getUserOneList(userVO.getUser_id());
+<<<<<<< HEAD
 		 
+=======
+		
+		if(uvo == null || uvo.getStatus().equals("1")) {
+			session.setAttribute("loginChk", "nonono");
+			// 로그인실패한걸 세션에 줄 필요 없겟지
+			return "redirect:/logindisplay.do";
+		}
+		
+>>>>>>> e83304f67a41f0ff0a183a839af0b5e2701f2096
 		if (!passwordEncoder.matches(userVO.getPw(), uvo.getPw())) {
 			session.setAttribute("loginChk", "fail");
 			// 로그인실패한걸 세션에 줄 필요 없겟지
@@ -102,9 +112,6 @@ public class JoinController {
 			System.out.println(uvo.getUser_id());
 			System.out.println(uvo.getEmail());
 			System.out.println(uvo.getNickname());
-//			if (userVO.getUser_id().equals("admin")) {
-//				session.setAttribute("admin", "ok");
-//			}
 			
 			String returnUrl = (String) session.getAttribute("returnUrl");
 

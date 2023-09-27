@@ -223,12 +223,7 @@ ol.paging li a:hover {
 	href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 </head>
-<!-- 
-	1. edumenu list(강아지,고양이,기타동물) 눌렀을 때 #edumenu a color:를 변경 할것
-	2. 검색바 넣기
-	3. label class one에 el 써서 초보 반려인들의 필수 상식!/반려 동물 잘 키우는 방법!/훈련 방법 모음집!으로 db에서 긁을수 있게
-	4. label class two에 el 써서 강아지, 고양이, 기타동물 분류
- -->
+
 <body>
 	<header>
 		<jsp:include page="../home/home_top.jsp" />

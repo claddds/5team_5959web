@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pet">
+	
+	<!-- 펫 있을 때 없을 때 구분하기 위해 -->
+	<select id="getPetProfile" parameterType="String" resultType="int">
+		select count(*) from pet where user_id = #{user_id}
+	</select>
+	
+	<!-- 펫 등록 -->
+	<insert id="getPetInsert" parameterType="pvo">
+		insert into pet(pet_name,pet_fname,pet_type,pet_kind,pet_gender,pet_weight,pet_neute,pet_birth,user_id,status)
+		values(#{pet_name},#{pet_fname},#{pet_type},#{pet_kind},#{pet_gender},#{pet_weight},#{pet_neute},#{pet_birth},#{user_id},0)
+	</insert>
+	
+	<!-- 펫 목록 불러오기 -->
+	<select id="getPetList" parameterType="String" resultType="pvo">
+		select * from pet where user_id = #{user_id}
+	</select>
+	
+	<!-- 펫정보 불러오기  -->
+	<select id="getPetProfileOnelist" parameterType="String" resultType="pvo">
+		select * from pet where pet_idx = #{pet_idx}
+	</select>
+	
+	<!-- 펫 정보 수정 -->
+	<update id="getPetUpdate" parameterType="pvo">
+		update pet set 
+		pet_name=#{pet_name},pet_fname=#{pet_fname},pet_type=#{pet_type},pet_kind=#{pet_kind},
+		pet_gender=#{pet_gender},pet_weight=#{pet_weight},pet_neute=#{pet_neute},pet_birth=#{pet_birth}
+		where pet_idx = #{pet_idx}
+	</update>
+	
+	<!-- 펫 삭제 -->
+	<delete id="getPetDelete" parameterType="String">
+		delete from pet where pet_idx = #{pet_idx}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+

@@ -96,7 +96,10 @@ console.log("세션정보 " + ${sessionScope.type == 0});
     $(document).ready(function(){
     	loginChk = "${loginChk}";
         if(loginChk == "fail"){
-            alert("이메일 또는 비밀번호가 올바르지 않습니다.다시 확인해 주세요.")
+           alert("이메일 또는 비밀번호가 올바르지 않습니다.다시 확인해 주세요.")
+           location.href="/clearSession.do"
+        }else if(loginChk == "nonono"){
+           alert("가입한 아이디가 없습니다.")
            location.href="/clearSession.do"
         }
         
@@ -116,8 +119,9 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 	
 	<!-- 최상단 NOTICE,LOGIN,JOIN US -->
 	<div>
-	  <ul class="topmenu">
-	   
+	  <ul class="topmenu">   
+	    <li><a style="color:tomato; display:none;" class="header-ALink">관리자 페이지</a></li><!-- id가 admin일 때 display:"" JS 처리  -->
+	    <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    <c:choose>
 	  <c:when test="${loginChk eq 'ok'}">
 	  <c:if test="${sessionScope.type == 0}">

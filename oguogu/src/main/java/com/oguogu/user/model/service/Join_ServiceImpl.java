@@ -56,8 +56,5 @@ public class Join_ServiceImpl implements Join_Service {
 	public int getPwUpdate(User_VO userVO) {
 		return join_DAO.getPwUpdate(userVO);
 	}
-	/*
-	 * @Override public int getUserForIdPw(Map<String, String> map) { return
-	 * join_DAO.getUserForIdPw(map); }
-	 */
+
 }

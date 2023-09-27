@@ -141,10 +141,9 @@ footer{
 				<img src="resources/images/page_banner/listbanner_edu.png">
 			</a>
 		</div>
-
-
+		
 		<div id="edumenu">
-			<ul id="">
+			<ul>
 				<li><a href="/essentialdisplayDog.do">필수 정보</a></li>
 				<li><a href="/bringingldisplayDog.do">양육 정보</a></li>
 				<li><a href="/trainingdisplayDog.do">훈련 정보</a></li>

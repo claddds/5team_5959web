@@ -1,13 +1,22 @@
 package com.oguogu.home;
 
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oguogu.user.model.service.Join_Service;
+import com.oguogu.user.model.vo.User_VO;
+
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	Join_Service join_Service;
 	
 	// =====home_top.jsp 시작========
 	// 메인로고를 누르면 메인홈화면으로 이동
@@ -25,9 +34,18 @@ public class HomeController {
 	public ModelAndView getJoinDisplay() {
 		return new ModelAndView("home/join");
 	}
+	
 	@GetMapping("/mypagedisplay.do")
-	public ModelAndView getMypageDisplay() {
-		return new ModelAndView("mypage/mypage_myprofile_onelist");
+	public ModelAndView getMypageDisplay(HttpSession session) {
+		ModelAndView mv = new ModelAndView("mypage/mypage_myprofile_onelist");
+		String user_id = (String) session.getAttribute("user_id");
+		User_VO userVO = join_Service.getUserOneList(user_id);
+		System.out.println("홈컨트롤러 이름:"+userVO.getUser_id());
+		System.out.println("홈컨트롤러 닉네임:"+userVO.getNickname());
+		System.out.println("홈컨트롤러 이메일:"+userVO.getEmail());
+		System.out.println(userVO.getUser_fname());
+		mv.addObject("userVO", userVO);
+		return mv;
 	}
 
 	// 상단 메뉴바에서 플레이스를 누르면 플레이스 화면으로 이동

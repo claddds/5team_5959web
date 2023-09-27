@@ -95,7 +95,6 @@ $(document).ready(function() {
 		    // Ajax 요청이 실패했을 때 실행되는 코드
 		  }
 		});
-
 });
 </script>
 </head>

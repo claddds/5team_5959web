@@ -112,65 +112,12 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
+				
 					<tr>
 						<td>1</td>
 						<td>Mark</td>
 						<td>Otto</td><!-- 2줄 이상 넘어가지 않게 처리 해야 됨. 모르면 물어봐주세요 --><!-- a링크처리도 달아서 해당 게시물 이동 -->
 						<td>@mdo</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
 					</tr>
 				</tbody>
 				<tfoot>
@@ -186,7 +133,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 						   		</c:when>
 						   		<c:otherwise>
 						   			<!-- a링크처리 -->
-						   			<li><a href="/board_list.do?page=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
+						   			<li><a href="/myWriteLounge.do?page=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
 						   		</c:otherwise>
 						   </c:choose>
 						    <!-- 블록안에 들어간 페이지번호들 -->
@@ -206,7 +153,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 							   </c:if>
 							   <c:if test="${k != paging.nowPage}">
 							   		<!-- a링크처리 -->
-							   		<li><a href="/board_list.do?page=${k}">${k}</a></li>
+							   		<li><a href="/myWriteLounge.do?page=${k}">${k}</a></li>
 							   </c:if>
 							</c:forEach>
 							<!-- 다음 -->
@@ -218,7 +165,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 						   		</c:when>
 						   		<c:otherwise>
 						   			<!-- a링크처리 -->
-						   			<li><a href="/board_list.do?page=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
+						   			<li><a href="/myWriteLounge.do?page=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
 						   		</c:otherwise>
 						   </c:choose> 
 						</ol>

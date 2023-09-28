@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oguogu.education.model.vo.Education_VO;
+import com.oguogu.lounge.model.vo.Lounge_VO;
 import com.oguogu.mypage.model.dao.MyPageDAO;
 import com.oguogu.user.model.vo.User_VO;
 
@@ -32,20 +33,28 @@ public class MyPageServiceImpl implements MyPageService{
 	public int getRemoveUser(String user_id) {
 		return myPageDAO.getRemoveUser(user_id);
 	}
-	//좋아요 있는지 없는지 구하기(select count(*))
+	//좋아요(즐겨찾기) 여부 확인(select count(*))
 	@Override
 	public int getMyEduFavHeart(String nickname) {
 		return myPageDAO.getMyEduFavHeart(nickname);
 	}
-	
+	//좋아요 한 목록 불러오기
 	@Override
 	public List<Education_VO> getMyFavEdu(String nickname) {
 		return myPageDAO.getMyFavEdu(nickname);
 	}
-	
+	//글 작성 여부 확인
 	@Override
-	public Education_VO getEduOnelist(String edu_idx) {
-		return myPageDAO.getEduOnelist(edu_idx);
+	public int getmyWriteFind(String user_id) {
+		return myPageDAO.getmyWriteFind(user_id);
 	}
+
+	//글 목록 불러오기
+	@Override
+	public List<Lounge_VO> getmyWriteLounge(String user_id) {
+		return myPageDAO.getmyWriteLounge(user_id);
+	}
+	
+	
 	
 }

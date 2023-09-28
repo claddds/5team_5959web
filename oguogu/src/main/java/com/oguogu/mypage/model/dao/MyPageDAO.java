@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oguogu.education.model.vo.Education_VO;
+import com.oguogu.lounge.model.vo.Lounge_VO;
 import com.oguogu.user.model.vo.User_VO;
 
 @Repository
@@ -37,16 +38,25 @@ public class MyPageDAO {
 		return sqlSessionTemplate.update("mypage.getRemoveUser",user_id);
 	}
 	
+	//좋아요(즐겨찾기) 여부 확인
 	public int getMyEduFavHeart(String nickname) {
 		return sqlSessionTemplate.selectOne("mypage.getMyEduFavHeart",nickname);
 	}
 	
+	//좋아요 한 목록 불러오기
 	public List<Education_VO> getMyFavEdu(String nickname) {
 		return sqlSessionTemplate.selectList("mypage.getMyFavEdu",nickname);
 	}
 	
-	public Education_VO getEduOnelist(String edu_idx) {
-		return sqlSessionTemplate.selectOne("mypage.getEduOnelist",edu_idx);
+	//글 작성 여부 확인
+	public int getmyWriteFind(String user_id) {
+		return sqlSessionTemplate.selectOne("mypage.getmyWriteFind",user_id);
+	}
+	
+	
+	//글 목록 불러오기
+	public List<Lounge_VO> getmyWriteLounge(String user_id) {
+		return sqlSessionTemplate.selectList("mypage.getmyWriteLounge",user_id);
 	}
 	
 }

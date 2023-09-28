@@ -23,7 +23,7 @@
 	<select id="getMyEduFavHeart" parameterType="String" resultType="int">
 		select count(*) from edu_heart_table where nickname = #{nickname}
 	</select>
-	
+	<!-- 좋아요 목록 불러오기 -->
 	<select id="getMyFavEdu" parameterType="String" resultType="evo">
 		SELECT e.*
 		FROM Education e
@@ -31,9 +31,16 @@
 		WHERE eh.heart = 1 and eh.nickname=#{nickname}
 	</select>
 	
-	<select id="getEduOnelist" parameterType="String" resultType="evo">
-		select * from Education where edu_idx = #{edu_idx}
+	<!-- 작성글 있는지 확인 -->
+	<select id="getmyWriteFind" parameterType="String" resultType="int">
+		select count(*) from lounge where user_id = #{user_id}
 	</select>
+
+	<!-- 작성글 불러오기 -->
+	<select id="getmyWriteLounge" parameterType="String" resultType="lvo">
+		select * from lounge where user_id = #{user_id}
+	</select>
+	
 	
 </mapper>
 

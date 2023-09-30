@@ -21,6 +21,12 @@ public interface MyPageService {
 	//글 작성 여부 확인
 	public int getmyWriteFind(String user_id);
 	//글 목록 불러오기
-	public List<Lounge_VO> getmyWriteLounge(String user_id);
+	public List<Lounge_VO> getmyWriteLounge(String user_id,int offset, int limit);
+	//댓글 갯수 카운트
+	public int getCommentCount(String lo_idx);
+	//댓글 user_id로 카운트
+	public int getmyCommFind(String user_id);
+	//댓글 목록 불러오기
+	public List<Lounge_VO> getmyComment(String user_id,int offset, int limit);
 
 }

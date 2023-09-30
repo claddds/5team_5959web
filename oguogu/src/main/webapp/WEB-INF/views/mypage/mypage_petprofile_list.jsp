@@ -86,7 +86,7 @@
 		<jsp:include page="../home/home_top.jsp" />
 	</header>
 	<div id="petprofile_list_form">
-		<div style="margin-top:100px;">
+		<div style="margin-top:10px;">
 			<jsp:include page="mypage-sidebar.jsp" />
 		</div>
 		<div id="petprofile_list">

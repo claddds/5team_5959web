@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.oguogu.common.EduPaging;
 import com.oguogu.common.Paging;
 import com.oguogu.education.model.vo.Education_VO;
 import com.oguogu.lounge.model.vo.Lounge_VO;
@@ -213,13 +214,73 @@ public class MyPageController {
 				paging.setEndBlock(paging.getTotalPage());
 			}
 			
-			List<Lounge_VO> loungelist = myPageService.getmyWriteLounge(user_id);
+			List<Lounge_VO> loungelist = myPageService.getmyWriteLounge(user_id,paging.getOffset(), paging.getNumPerPage());
+			
+			for (Lounge_VO lvo : loungelist) {
+				int comment_cnt = myPageService.getCommentCount(lvo.getLo_idx());
+				lvo.setComment_cnt(String.valueOf(comment_cnt));
+			}
+			
 			model.addAttribute("loungelist", loungelist);
 			model.addAttribute("paging", paging);
 			return "mypage/mypage_mywrite_lounge";
 		}else {
 			return "mypage/mypage_mywrite_lounge_none";
 		}
+	}
+	
+	@RequestMapping("/myWriteComment.do")
+	public String getmyWriteComment(HttpSession session, Model model, HttpServletRequest request) {
+			String user_id = (String) session.getAttribute("user_id");
+			
+			//작성한글 있는지 없는지 조회
+			int result = myPageService.getmyCommFind(user_id);
+			
+			if(result>0) {
+				//작성글이 있으면
+				
+				// 전체 게시물 수 조회
+				paging.setTotalRecord(result);
+				
+				if (paging.getTotalRecord() <= paging.getNumPerPage()) {
+					paging.setTotalPage(1);
+					// 게시글의 수가 페이지당 게시물수보다 작으면 페이지는 1개
+				} else {
+					paging.setTotalPage(paging.getTotalRecord() / paging.getNumPerPage());
+					if (paging.getTotalRecord() % paging.getNumPerPage() != 0) {
+						paging.setTotalPage(paging.getTotalPage() + 1);
+					}
+				}
+				
+				// 현재 페이지 구하기
+				String Page = request.getParameter("page");
+				if (Page == null) {
+					paging.setNowPage(1);
+				} else {
+					paging.setNowPage(Integer.parseInt(Page));
+				}
+				
+				paging.setOffset(paging.getNumPerPage() * (paging.getNowPage() - 1));
+				
+				// ** 현재 페이지의 시작 블록과 끝 블록 구하자
+				paging.setBeginBlock(
+						(int) ((paging.getNowPage() - 1) / paging.getPagePerBlock()) * paging.getPagePerBlock() + 1);
+				paging.setEndBlock(paging.getBeginBlock() + paging.getPagePerBlock() - 1);
+				
+				
+				if (paging.getEndBlock() > paging.getTotalPage()) {
+					paging.setEndBlock(paging.getTotalPage());
+				}
+				
+				List<Lounge_VO> commentlist = myPageService.getmyComment(user_id,paging.getOffset(), paging.getNumPerPage());
+				
+				
+				model.addAttribute("commentlist", commentlist);
+				model.addAttribute("paging", paging);
+				return "mypage/mypage_mywrite_comment";
+			}else {
+				return "mypage/mypage_mywrite_comment_none";
+			}
 	}
 	
 	

@@ -55,8 +55,33 @@ public class MyPageDAO {
 	
 	
 	//글 목록 불러오기
-	public List<Lounge_VO> getmyWriteLounge(String user_id) {
-		return sqlSessionTemplate.selectList("mypage.getmyWriteLounge",user_id);
+	public List<Lounge_VO> getmyWriteLounge(String user_id, int offset, int limit) {
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    
+	    map.put("user_id", user_id);
+	    map.put("limit", limit);
+	    map.put("offset", offset);
+	    return sqlSessionTemplate.selectList("mypage.getmyWriteLounge", map);
 	}
+	
+	//댓글 개수 세기
+	public int getCommentCount(String lo_idx) {
+		return sqlSessionTemplate.selectOne("mypage.getCommentCount", lo_idx);
+	}
+	
+	//내가 쓴 댓글 갯수 구하기
+	public int getmyCommFind(String user_id) {
+		return sqlSessionTemplate.selectOne("mypage.getmyCommFind", user_id);
+	}
+	
+	//내가 쓴 댓글 갯수 구하기
+	public List<Lounge_VO> getmyComment(String user_id, int offset, int limit) {
+		Map<String, Object> map = new HashMap<String, Object>();  
+	    map.put("user_id", user_id);
+	    map.put("limit", limit);
+	    map.put("offset", offset);
+		return sqlSessionTemplate.selectList("mypage.getmyComment", map);
+	}
+
 	
 }

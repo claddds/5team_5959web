@@ -39,39 +39,40 @@
 	.sidebar-list-title,.sidebar-list-item{
 		margin:10px;
 	}
-	
+     /* 선택된 링크의 스타일 */
+    .selected {
+        background-color: #FFA629;
+        color: white;
+    }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-<script type="text/javascript">
- 	$(document).ready(function() {
- 	// 로컬 스토리지에서 저장된 클릭한 링크의 인덱스를 가져옵니다.
- 		  var clickedLinkIndex = localStorage.getItem("clickedLinkIndex");
+ <script type="text/javascript">
+        $(document).ready(function() {
+            // 페이지 로드 시 저장된 클릭한 링크의 인덱스를 가져옵니다.
+            var clickedLinkIndex = localStorage.getItem("clickedLinkIndex");
 
- 		  // 모든 링크에 대한 jQuery 객체를 가져옵니다.
- 		  var links = $(".sidebar-list-item a");
+            // 모든 링크에 대한 jQuery 객체를 가져옵니다.
+            var links = $(".sidebar-list-item a");
 
- 		  // 클릭한 링크의 색상을 변경하고 유지합니다.
- 		  if (clickedLinkIndex !== null) {
- 		    links.eq(clickedLinkIndex).css("background-color", "#FFA629");
- 		    links.eq(clickedLinkIndex).css("color", "white");
- 		  }
+            // 클릭한 링크의 색상을 변경하고 유지합니다.
+            if (clickedLinkIndex !== null) {
+                links.eq(clickedLinkIndex).addClass("selected");
+            }
 
- 		  // 링크를 클릭했을 때 실행할 함수
- 		  links.click(function(event) {
- 		    // 클릭한 링크의 인덱스를 가져옵니다.
- 		    var clickedIndex = links.index(this);
+            // 링크를 클릭했을 때 실행할 함수
+            links.click(function(event) {
+                // 클릭한 링크의 인덱스를 가져옵니다.
+                var clickedIndex = links.index(this);
 
- 		    // 클릭한 링크의 색상을 변경하고 유지합니다.
- 		    links.css("background-color", ""); // 모든 링크의 색상을 초기화합니다.
- 		    links.css("color", ""); // 모든 링크의 색상을 초기화합니다.
- 		    $(this).css("background-color", "#FFA629"); // 클릭한 링크의 색상을 변경합니다.
- 		    $(this).css("color", "white"); // 클릭한 링크의 색상을 변경합니다.
+                // 클릭한 링크의 색상을 변경하고 유지합니다.
+                links.removeClass("selected"); // 모든 링크의 선택 상태를 초기화합니다.
+                $(this).addClass("selected"); // 클릭한 링크에 선택 상태를 적용합니다.
 
- 		    // 클릭한 링크의 인덱스를 로컬 스토리지에 저장합니다.
- 		    localStorage.setItem("clickedLinkIndex", clickedIndex);
-		});
-	}); 
-</script>
+                // 클릭한 링크의 인덱스를 로컬 스토리지에 저장합니다.
+                localStorage.setItem("clickedLinkIndex", clickedIndex);
+            });
+        });
+    </script>
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -89,8 +90,7 @@
 		 <!--  <li class="sidebar-list-item"><a href="/myfavfood.do" class="sidebar-list-item-a">먹거리</a></li><hr> -->
 		  <li class="sidebar-list-title">내가 작성한 글</li>
 		  <li class="sidebar-list-item"><a href="/myWriteLounge.do" class="sidebar-list-item-a">라운지</a></li>
-		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">나의 댓글</a></li>
-		  <li class="sidebar-list-item"><a href="" class="sidebar-list-item-a">1:1 문의</a></li>
+		  <li class="sidebar-list-item"><a href="/myWriteComment.do" class="sidebar-list-item-a">나의 댓글</a></li>
 		</ul>
 	</div>
 			

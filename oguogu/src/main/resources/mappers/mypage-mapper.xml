@@ -37,11 +37,28 @@
 	</select>
 
 	<!-- 작성글 불러오기 -->
-	<select id="getmyWriteLounge" parameterType="String" resultType="lvo">
-		select * from lounge where user_id = #{user_id}
+	<select id="getmyWriteLounge" parameterType="map" resultType="lvo">
+		SELECT * FROM lounge WHERE user_id = #{user_id} and status= 0 
+		ORDER BY lo_date DESC limit #{limit, jdbcType=INTEGER} offset #{offset, jdbcType=INTEGER}
 	</select>
-	
-	
+	<!-- 게시글 댓글 수 구하기 -->
+	<select id="getCommentCount" parameterType="String" resultType="int">
+		select count(*) from lounge where lo_idx = #{lo_idx}
+	</select>
+	<!-- 내가 쓴 댓글 수 -->
+	<select id="getmyCommFind" parameterType="String" resultType="int">
+		select count(*) from Comment where user_id = #{user_id}
+	</select>
+	<!-- 내가 쓴 댓글 목록 불러오기 -->
+	<select id="getmyComment" parameterType="map" resultType="cvo">
+	    SELECT c.*, l.lo_type
+	    FROM Comment c
+	    JOIN lounge l ON c.lo_idx = l.lo_idx
+	    WHERE c.user_id = #{user_id} AND c.status = 0
+	    ORDER BY c.com_date DESC
+	    LIMIT #{limit, jdbcType=INTEGER}
+	    OFFSET #{offset, jdbcType=INTEGER}
+	</select>
 </mapper>
 
 

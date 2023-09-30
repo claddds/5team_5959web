@@ -51,10 +51,24 @@ public class MyPageServiceImpl implements MyPageService{
 
 	//글 목록 불러오기
 	@Override
-	public List<Lounge_VO> getmyWriteLounge(String user_id) {
-		return myPageDAO.getmyWriteLounge(user_id);
+	public List<Lounge_VO> getmyWriteLounge(String user_id,int offset, int limit) {
+		return myPageDAO.getmyWriteLounge(user_id,offset,limit);
+	}
+	//게시물 댓글 갯수 구하기
+	@Override
+	public int getCommentCount(String lo_idx) {
+		return myPageDAO.getCommentCount(lo_idx);
+	}
+	//내가 쓴 댓글 갯수 구하기
+	@Override
+	public int getmyCommFind(String user_id) {
+		return myPageDAO.getmyCommFind(user_id);
 	}
 	
-	
+	//내가 쓴 댓글 갯수 구하기
+	@Override
+	public List<Lounge_VO> getmyComment(String user_id, int offset, int limit) {
+		return myPageDAO.getmyComment(user_id,offset,limit);
+	}
 	
 }

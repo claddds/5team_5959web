@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>자가진단 - 결과</title>
-
+<link href="resources/css/start_bootstrap/styles.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
 <style type="text/css">
@@ -35,6 +35,16 @@
 		margin-bottom: 30px;
     }
     
+    a:hover {
+	color: white;
+	text-decoration: none;
+	}
+    
+    .card-body{
+    	width: 1200px;
+    	margin: 0 auto;
+    }
+    
     footer{
 		width:1920px;
 		display:flex;
@@ -55,6 +65,14 @@
 	
 	<div id=minibanner>
         <a href="/ogudoctormaindisplay.do"><img src="resources/images/page_banner/listbanner_ogudoctor.png"></a>
+    </div>
+    
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+    	<div class="card-body">
+        	<p class="text-white m-0">
+        		이달의 Best 포켓
+        	</p>
+    	</div>
     </div>
     
     <div id=period_ex>

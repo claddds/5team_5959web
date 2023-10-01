@@ -109,7 +109,11 @@ public class HomeController {
 	public ModelAndView getRepDisplay() {
 		return new ModelAndView("rep/rep_list");
 	}	
-	
+	// 관리자화면으로 로그인시 상단에 관리자페이지 화면으로 이동
+		@GetMapping("/adminuserdisplay.do")
+		public ModelAndView getAdminUserDisplay() {
+			return new ModelAndView("admin/user/admin_user");
+		}	
 	//=====home_top.jsp 끝========
 	// =====ogu_main.jsp(오구닥터메인화면에서 해당 기능으로 이동) 시작========
 	@GetMapping("/ogu_dog_categorydisplay.do")

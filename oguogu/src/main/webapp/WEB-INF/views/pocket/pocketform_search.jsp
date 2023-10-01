@@ -66,7 +66,7 @@ a:hover {
 	color: #ffffff;
 }
  
-#add_button{
+#map_button{
 	width: 100px;
 	height: 40px;
 	border: 0px;
@@ -101,14 +101,16 @@ $(document).ready(function() {
 				pocketlist = data.pocketlist;
 				var table = "<table>";
 				table += "<thead><tr>";
-				table += "<td>시설명</td><td>도로명 주소</td><td>장소 리스트 추가</td></tr></thead>";
+				table += "<td>선택</td><td>시설명</td><td>도로명 주소</td><td>경도</td><td>위도</td></tr></thead>";
 				
 				table += "<tbody>";
 				for(var i=0; i< pocketlist.length; i++) {
 					table += "<tr>";
+					table += "<td><input type='checkbox' name='location_CheckBox'></td>";
 					table += "<td>"+pocketlist[i].facilities+"</td>";
 					table += "<td>"+pocketlist[i].roadaddr+"</td>";
-					table += "<td><button onclick='addToList("+i+")'>장소 추가</button></td>";
+					table += "<td>"+ pocketlist[i].lon +"</td>";
+					table += "<td>"+ pocketlist[i].lat +"</td>";
 					table += "</tr>";					
 				}
 				table += "</tbody></table>";
@@ -122,28 +124,7 @@ $(document).ready(function() {
 	});
 });
 
-/* 장소추가를 눌렀을때 */
-var selectedPlacesList = [];
 
-function addToList(index) {
-	if (pocketlist) {
-    	var selectedData = {
-            roadaddr: pocketlist[index].roadaddr,
-            locationex: pocketlist[index].locationex,
-            facilities: pocketlist[index].facilities,
-            lon: pocketlist[index].lon,
-            lat: pocketlist[index].lat
-        };
-        
-    	// Add selectedData to the list
-        selectedPlacesList.push(selectedData);
-        
-        // Optionally, you can log the selected places list
-        console.log(selectedPlacesList);
-	} else{
-		alert("먼저 목록을 불러와야 합니다.");
-	}
-}
 
 $(document).ready(function() {
     $("#gopocketformlist").on("click", function() {
@@ -160,6 +141,55 @@ $(document).ready(function() {
                 console.error("Error sending data: " + error);
             }
         });
+    });
+});
+
+//상단 선택버튼 클릭시 체크된 Row의 값을 가져간다
+$(document).ready(function() {
+    $("#map_button").on("click", function() {
+    	var params = "";
+    	var rowData = [];
+		var tdArr = new Array();
+		var checkbox = $("input[name=location_CheckBox]:checked");
+		
+		// 체크된 체크박스 값을 가져온다
+		checkbox.each(function(i){
+			/*
+			// checkbox.parent() : checkbox의 부모는 <td>이다.
+			// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+			
+			var tr = checkbox.parent().parent().eq(i);
+			var td = tr.children();
+			/*
+			// 체크된 row의 모든 값을 배열에 담는다.
+			rowData.push(tr.text());
+			
+			
+			var facilities = td.eq(1).text();
+			var roadaddr = td.eq(2).text();
+			var lon = td.eq(3).text();
+			var lat = td.eq(4).text();
+			 */
+			var tr = $(this).closest('tr');
+            var td = tr.children('td');
+
+            var facility = encodeURIComponent(td.eq(1).text());
+            var roadAddress = encodeURIComponent(td.eq(2).text());
+            var lon = encodeURIComponent(td.eq(3).text());
+            var lat = encodeURIComponent(td.eq(4).text());
+
+            // Add the values to the URL parameters
+            params += "&facility=" + facility;
+            params += "&roadAddress=" + roadAddress;
+            params += "&lon=" + lon;
+            params += "&lat=" + lat;
+		});
+		// Remove the leading "&"
+        params = params.substring(1);
+
+        // Send the parameters to the server using window.location.href
+        window.location.href = "/yourControllerEndpoint?" + params;
+		 
     });
 });
 </script>
@@ -179,11 +209,9 @@ $(document).ready(function() {
 		<div class="search">
 			<input type="text" id ="search_text" placeholder="상호명을 입력하세요">
 			<button id="search_button">검색</button>
+			<button id="map_button">지도보기</button>
 		</div>
 		
-		<div>
-			<button id="gopocketformlist">추가 완료</button>
-		<div>
 		
 		<div class="location_list">
 			<div id="result"></div>	

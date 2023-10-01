@@ -124,16 +124,12 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 	    <li><a style="color:tomato; display:none;" class="header-ALink">관리자 페이지</a></li><!-- id가 admin일 때 display:"" JS 처리  -->
 	    <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    <c:choose>
-	  <c:when test="${loginChk eq 'ok'}">
-	  <c:if test="${sessionScope.type == 0}">
-        <li><a href="/adminuserdisplay.do" style="color:#FFA629; " class="header-ALink">회원 관리 </a></li>
-	    <li><a href="/joindisplay.do" style="color:#FFA629; " class="header-ALink">고객 게시판</a></li>
-	    <li><a href="/admin_edulist.do" style="color:#FFA629; " class="header-ALink">교육정보</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
-	    <li><a href="/ad_sup_list.do" style="color:#FFA629; " class="header-ALink">관리 게시판</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
-	    <li><a href="/ad_food_list.do" style="color:#FFA629;" class="header-ALink">상품 관리</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
-	    </c:if>
-        </c:when>    
-           </c:choose>
+	  		<c:when test="${loginChk eq 'ok'}">
+	  			<c:if test="${sessionScope.type == 0}">
+			        <li><a href="/adminuserdisplay.do" style="color:#FFA629; " class="header-ALink">관리자페이지 </a></li>
+	    		</c:if>
+        	</c:when>    
+        </c:choose>
 		
 	    <c:choose>
 	    	<c:when test="${loginChk eq 'ok'  }">

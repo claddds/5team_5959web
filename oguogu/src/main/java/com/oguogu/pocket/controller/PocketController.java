@@ -110,6 +110,15 @@ public class PocketController {
 		mv.addObject("selectedPlacesList", selectedPlacesList);
         return mv; // pocketform.jsp로 이동
     }
+	
+	// 페이지 이동
+    @RequestMapping(value ="/map_go.do")
+    public ModelAndView processRowData(@RequestBody List<Pocketplace_VO> rowData) {
+    	// 여기서 선택한 장소 목록을 활용할 수 있음
+    	ModelAndView mv = new ModelAndView("pocket/pocketplanmap");
+    	mv.addObject("rowData", rowData);
+    	return mv; // pocketform.jsp로 이동
+    }
 
 	/*
 	 * // 안전빵 안쓰는데 위에 오류나면 참고해서 json파일 불러와야함

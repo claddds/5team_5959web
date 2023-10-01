@@ -70,9 +70,18 @@
 	height: 90px; /*서브메뉴 li한개의 높이 50*5*/
 	transition-duration: 1s;
 }
+.menu a{
+	color: white;
+	text-decoration: none;
+}
+.menu a:hover {
+	color: white;
+	text-decoration: none;
+}
 .nav>div {
 	margin-left: 100px;
 }
+
 </style>
 </head>
 <body>
@@ -111,8 +120,8 @@
 					<strong class="mb-1">오구닥터</strong>
 				</div> <!-- 오구닥터 -->
 				<ul class="submenu">
-					<li><a href="">자가진단</a></li>
-					<li><a href="">질병 리스트</a></li>
+					<li><a href="/goadmindiseaselist.do">질병 체크 리스트</a></li>
+					<li><a href="/goadmindiseasedictionary.do">질병 사전 리스트</a></li>
 				</ul>
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>

@@ -140,16 +140,14 @@
 	            $("#pw_email_chk").text("올바른 이메일 형식이 아닙니다.").css("color", "red");
 	            $("#pw_submit").prop("disabled", true);
 	        } else {
-	            $("#pw_email_chk").text("아이디 찾기 버튼을 눌러주세요.").css("color", "green");
+	            $("#pw_email_chk").text("비밀번호 재설정 버튼을 눌러주세요.").css("color", "green");
 	            $("#pw_submit").prop("disabled", false)
 	        }
    		});
 		
 		//비밀번호 찾기 버튼 눌렀을 때
 		$("#pw_submit").on("click", function(event) {
-			
 			event.preventDefault();
-			
 			var pwIdInput = $("#pw_find_id").val();
 			var pwEmailInput = $("#pw_find_email").val();
 			
@@ -179,8 +177,7 @@
 						alert("비밀번호 찾기 - 등록되지 않은 이메일입니다.")
 					}else if(data == 2){
 						alert("비밀번호 찾기 - 이메일로 임시 비밀번호를 발송하였습니다")
-						
-						//로그인 페이지로 이동 하자. 이동 시켜 놓고 마이페이지 비밀번호 변경으로 가자
+						location.href="/"
 					}
 				},
 				error:function(){

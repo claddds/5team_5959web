@@ -144,7 +144,7 @@ $(document).ready(function() {
 						<li>
 							<div class="prod">
 								<div class="prod-img">
-									<img src="resources/images/home/mainlogo.png">
+									<img src="resources/images/${k.fd_fname}">
 								</div>
 								<div class="prod-info">
 									<div style="color:gray;font-size: 18px;">${k.fd_company}</div>

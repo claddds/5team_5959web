@@ -218,6 +218,7 @@ function update_ok(f) {
 			f.edu_content.focus();
 			return;
 		}
+
 	if(f.edu_open.value.trim().length <=0){
 		alert("공개여부를 선택하세요.");
 		f.edu_open.focus();
@@ -239,7 +240,7 @@ function update_ok(f) {
 		
 <div id="repWrapper" style="width: 1920px;">
 <!-- 사이드바 구역 -->
- <div class="sidebar" style="font-family: 'Bagel Fat One', cursive;">
+ <div class="sidebar" >
      <ul class="menu">
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>
@@ -346,7 +347,7 @@ function update_ok(f) {
 			
 				<tr align="center">
 					<td colspan="2">
-						<textarea rows="10" cols="60" name="edu_content" id="content"  style="border-radius:20px;">${evo.edu_content}</textarea>
+						<textarea rows="10" cols="1000" name="edu_content" id="content"  style="border-radius:20px;">${evo.edu_content}</textarea>
 					</td>
 				</tr>
 				
@@ -365,8 +366,11 @@ function update_ok(f) {
 					</c:choose>                    
 				</tr>
 				<tfoot>
-					<td colspan="2">
-					
+					<tr align="center">
+						<td colspan="4">
+   			 			<input type="radio" name="edu_open" value="0" class="radio" /><span class="ml_10">공개</span>&nbsp;&nbsp;&nbsp;&nbsp;
+   					 	<input type="radio" name="edu_open" value="1" class="radio" /><span class="ml_10">비공개</span>&nbsp;	
+   					 	<hr style=" border-color:white;">
 						<input type="hidden" name="edu_idx" value="${evo.edu_idx}">
 						<input type="hidden" name="cPage" value="${cPage}">
 						<input type="button" class="button" value="수정" onclick="update_ok(this.form)"/>

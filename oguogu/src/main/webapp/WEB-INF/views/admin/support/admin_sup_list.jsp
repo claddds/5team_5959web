@@ -236,7 +236,7 @@ footer{
 	</header>
 <div id="repWrapper" style="width: 1920px;">
 <!-- 사이드바 구역 -->
- <div class="sidebar" style="font-family: 'Bagel Fat One', cursive;">
+ <div class="sidebar" >
      <ul class="menu">
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>

@@ -263,7 +263,7 @@ if(f.fd_open.value.trim().length <=0){
 		
 <div id="repWrapper" style="width: 1920px;">
 <!-- 사이드바 구역 -->
- <div class="sidebar" style="font-family: 'Bagel Fat One', cursive;">
+ <div class="sidebar" >
      <ul class="menu">
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>
@@ -366,7 +366,8 @@ if(f.fd_open.value.trim().length <=0){
 			<select id="fd_age_group"  name="fd_age_group" >
 						<option selected>-연령 선택-</option>
 						<option value="전연령">전연령</option>
-						<option value="퍼피키튼">퍼피키튼</option>
+						<option value="퍼피">퍼피</option>
+						<option value="키튼">키튼</option>
 						<option value="어덜트">어덜트</option>
 						<option value="시니어">시니어</option>
 						</select>				

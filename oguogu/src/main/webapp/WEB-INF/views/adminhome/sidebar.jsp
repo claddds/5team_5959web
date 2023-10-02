@@ -93,8 +93,8 @@
 					<strong class="mb-1">게시글</strong>
 				</div> <!-- 게시글 -->
 				<ul class="submenu">
-					<li><a href="">공지사항</a></li>
-					<li><a href="/admin_faq.do">FAQ</a></li>
+					<li><a href="/ad_sup_list.do">공지사항</a></li>
+					<li><a href="/ad_faq_list.do">FAQ</a></li>
 				</ul>
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>
@@ -120,9 +120,9 @@
 					<strong class="mb-1">교육 관리</strong>
 				</div> <!-- 교육 관리 -->
 				<ul class="submenu">
-					<li><a href="">필수 정보</a></li>
-					<li><a href="">양육 정보</a></li>
-					<li><a href="">훈련 정보</a></li>
+					<li><a href="/edu_Alist.do">필수 정보</a></li>
+					<li><a href="/edu_Blist.do">양육 정보</a></li>
+					<li><a href="/edu_Clist.do">훈련 정보</a></li>
 				</ul>
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>
@@ -130,7 +130,7 @@
 					<strong class="mb-1">쇼핑 관리</strong>
 				</div> <!-- 쇼핑 관리 -->
 				<ul class="submenu">
-					<li><a href="">상품 관리</a></li>
+					<li><a href="/ad_food_list.do">상품 관리</a></li>
 				</ul>
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>

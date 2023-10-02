@@ -252,7 +252,7 @@ console.log("현재 페이지: " + ${paging.nowPage});
 					<strong class="mb-1">게시글</strong>
 				</div> <!-- 게시글 -->
 				<ul class="submenu">
-					<li><a href="/ad_food_onelist.do">공지사항</a></li>
+					<li><a href="/ad_sup_list.do">공지사항</a></li>
 					<li><a href="/ad_faq_list.do">FAQ</a></li>
 				</ul>
 			<li><a href="" id="novel"

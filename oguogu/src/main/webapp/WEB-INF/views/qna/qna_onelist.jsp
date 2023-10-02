@@ -158,9 +158,8 @@ input{
 
 
 <script type="text/javascript">
-	function list_go(f){
-		f.action="/qna_list.do";
-		f.submit();
+	function list_go(){
+		location.href="userqna_list.do";
 	}
 	function update_go(f) {
 		f.action= "/qna_updateForm.do";
@@ -244,7 +243,7 @@ input{
 				<tr height="30">
 					<td colspan="2" align="center" style="padding: 8px; text-align: center;">
 						<input type="hidden" value="${qvo.one_idx}" name="one_idx">
-						<input type="button" style="font-size: 20px;" value="목록" onclick="list_go(this.form)">
+						<input type="button" style="font-size: 20px;" value="목록" onclick="list_go()">
 						<c:if test="${sessionScope.user_id == qvo.user_id}">
 							<input type="button" value="수정" style="font-size: 20px;" onclick="update_go(this.form)">
 							<input type="button" value="삭제" style="font-size: 20px;"onclick="delete_go(this.form)">

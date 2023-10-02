@@ -50,7 +50,7 @@ public class Qna_Controller {
 	private Paging paging;
 	
 	// qna는 유저의 1:1 문의 게시판
-	@RequestMapping("/qna_list.do")
+	@RequestMapping("/userqna_list.do")
 	public ModelAndView qnaList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("qna/qna_list");
 		// 페이징

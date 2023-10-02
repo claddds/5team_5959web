@@ -92,9 +92,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 <script type="text/javascript">
-	function list_go(f) {
-		f.action="/qna_list.do";
-		f.submit();
+	function list_go() {
+		location.href="userqna_list.do";
 	}
 	function update_go(f) {
 		f.action="/qna_update.do";

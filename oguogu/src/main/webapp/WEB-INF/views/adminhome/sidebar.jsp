@@ -102,7 +102,7 @@
 					<strong class="mb-1">질문</strong>
 				</div> <!-- 질문 -->
 				<ul class="submenu">
-					<li><a href="/qna_list.do">1:1 문의</a></li>
+					<li><a href="/userqna_list.do">1:1 문의</a></li>
 					<li><a href="/admin_report.do">신고</a></li>
 				</ul>
 			<li><a href="" id="novel"

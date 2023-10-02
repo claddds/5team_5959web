@@ -329,30 +329,30 @@ public class Lounge_Controller {
 			return "redirect:/lounge_list.do";
 		}
 	}
+//	
+//	@PostMapping("/com_insert.do")
+//	public ModelAndView commInsert(Comment_VO cvo, @ModelAttribute("cPage") String cPage,
+//			@ModelAttribute("lo_idx") String lo_idx) {
+//		ModelAndView mv = new ModelAndView("lounge/");
+//		int result = lounge_Serivce.getCommInsert(cvo);
+//		mv.setViewName("redirect:/lounge_onelist.do?com_idx=" + cvo.getCom_idx());
+//		if (result > 0) {
+//			return mv;
+//		} else {
+//			return null;
+//		}
+//	}
 	
-	@PostMapping("/com_insert.do")
-	public ModelAndView commInsert(Comment_VO cvo, @ModelAttribute("cPage") String cPage,
-			@ModelAttribute("lo_idx") String lo_idx) {
-		ModelAndView mv = new ModelAndView("lounge/");
-		int result = lounge_Serivce.getCommInsert(cvo);
-		mv.setViewName("redirect:/lounge_onelist.do?com_idx=" + cvo.getCom_idx());
-		if (result > 0) {
-			return mv;
-		} else {
-			return null;
-		}
-	}
-	
-	 @PostMapping("com_delete.do")
-     public String commDelete(@RequestParam("cPage") String cPage, RedirectAttributes rttr,
-    		 @RequestParam("lo_idx") String lo_idx, @ModelAttribute("com_idx") String com_idx, Model model) {
-		 Lounge_VO cvo = lounge_Serivce.getOneList(lo_idx);
-         int result = lounge_Serivce.getCommDelete(com_idx);
-         rttr.addFlashAttribute("cPage", cPage);
-         rttr.addAttribute("result", result);
-         rttr.addAttribute("cvo", cvo);
-         return  "redirect:/lounge_onelist.do?lo_idx=" + lo_idx;
-     }
+//	 @PostMapping("com_delete.do")
+//     public String commDelete(@RequestParam("cPage") String cPage, RedirectAttributes rttr,
+//    		 @RequestParam("lo_idx") String lo_idx, @ModelAttribute("com_idx") String com_idx, Model model) {
+//		 Lounge_VO cvo = lounge_Serivce.getOneList(lo_idx);
+//         int result = lounge_Serivce.getCommDelete(com_idx);
+//         rttr.addFlashAttribute("cPage", cPage);
+//         rttr.addAttribute("result", result);
+//         rttr.addAttribute("cvo", cvo);
+//         return  "redirect:/lounge_onelist.do?lo_idx=" + lo_idx;
+//     }
 	 
 
 }

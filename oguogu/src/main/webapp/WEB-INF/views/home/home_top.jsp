@@ -158,11 +158,11 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 			    </li>
 			    <li><a href="/placemaindisplay.do" class="header-ALink">플레이스</a></li>
 			    <li><a href="/pocketmaindisplay.do" class="header-ALink">모두의 포켓</a></li>
-			    <li class="lounge_main"><a href="/loungemaindisplay.do" class="header-ALink">라운지</a>
+			    <li class="lounge_main"><a href="/lounge_list.do" class="header-ALink">라운지</a>
 			   		<ul class="lounge sub">
-			    		<li><a href="/loungesharedisplay.do" class="header-ALink">일상 공유</a></li>
-			    		<li><a href="/loungerecommdisplay.do" class="header-ALink">추천 탭</a></li>
-			    		<li><a href="/loungeqnadisplay.do" class="header-ALink">유저간 질문</a></li>
+			    		<li><a href="/lounge_share_list.do" class="header-ALink">일상 공유</a></li>
+			    		<li><a href="/lounge_recomm_list.do" class="header-ALink">추천 탭</a></li>
+			    		<li><a href="/lounge_qna_list.do" class="header-ALink">유저간 질문</a></li>
 			    	</ul>
 			    </li>
 			    <li class="food_main"><a href="/dogfooddisplay.do" class="header-ALink">먹거리</a>

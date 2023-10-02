@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oguogu.comment.model.service.QnAComment_Service;
+import com.oguogu.comment.model.vo.Comment_VO;
 import com.oguogu.comment.model.vo.QnAComment_VO;
 import com.oguogu.common.Paging;
 import com.oguogu.lounge.model.vo.Lounge_VO;
@@ -227,6 +228,27 @@ public class Qna_Controller {
 				rttr.addAttribute("del_alert","ok");
 				return "redirect:/qna_list.do";
 			}
-		}	    
+		}
+		
+		@PostMapping("/qnacom_insert.do")
+		public ModelAndView commInsert(QnAComment_VO qcvo, @ModelAttribute("cPage") String cPage,
+				@ModelAttribute("one_idx") String one_idx) {
+			ModelAndView mv = new ModelAndView("qna/");
+			int result = qna_Service.getQnACommInsert(qcvo);
+			mv.setViewName("redirect:/qna_onelist.do?qnacom_idx=" + qcvo.getQnacom_idx());
+			if (result > 0) {
+				return mv;
+			} else {
+				return null;
+			}
+		}
+	
+		@PostMapping("/qnacom_delete.do")
+		public ModelAndView commentDelete(@RequestParam("qnacom_idx") String qnacom_idx, @ModelAttribute("cPage") String cPage,
+				@ModelAttribute("one_idx") String one_idx) {
+			ModelAndView mv = new ModelAndView("redirect:/qna_onelist.do");
+			int result = qna_Service.getQnACommDelete(qnacom_idx);
+			return mv;
+		}
 }	
 

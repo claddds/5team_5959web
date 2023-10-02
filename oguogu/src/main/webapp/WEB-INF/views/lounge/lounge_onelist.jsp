@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style type="text/css">
 /* 하단 버튼만 가운데 정렬 */
 .button{
@@ -98,16 +99,49 @@ input{
     padding-left: 215px;          
     box-sizing: border-box;
 }
-#com_field{
+/* 댓글 입력 폼*/
+#com_field {
+	margin-bottom: 20px;
+	width: 80%;
+	margin: 0 auto;
 	text-align: left;
-}
+	}
+
+#com_field input[type="text"],
+#com_field textarea {
+	width: calc(100% - 20px); 
+	padding: 10px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	}
+
+#com_field textarea {
+	resize: vertical;
+	}
+
+#com_field input[type="button"] {
+	background-color: #FFA629;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 18px;
+	border-radius: 5px;
+	}
+
+#com_field input[type="button"]:hover {
+	background-color: #2980b9;
+    }
 .com{
-	 border: 1px solid gray;
 	 width: 1100px; 
 	 margin-left: 510px; 
 	 padding:50px;
 	 text-align: left;
 }
+
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -138,6 +172,7 @@ input{
 	}
 	// 댓글 삭제
 	function comment_del(f) {
+		alert("댓글 삭제 성공!");
 		f.action = "/com_delete.do";
 		f.submit();
 	}
@@ -208,6 +243,10 @@ input{
 				</tr>
 				<tr height="50">
 					<td colspan="2" align="center" style="padding: 8px; text-align: center;">
+						<span style="display: flex; justify-content: center; align-items: center;">
+							<i id="loungeheart" class="bi-heart" style="font-size:2.5rem; color: red; cursor: pointer;"></i>
+							<label id="lo_heartcount" style="font-size: 40px;">${lo_heartcount}</label>								
+						</span>
 						<input type="hidden" value="${lvo.lo_idx}" name="lo_idx">
 						<input type="button" value="목록" style="font-size: 20px;" onclick="list_go(this.form)">
 						<c:if test="${sessionScope.user_id == lvo.user_id}">
@@ -240,8 +279,6 @@ input{
 	<%-- 댓글 출력 --%>
 	<div style="display: table;" class="com">
 		<c:forEach var="k" items="${c_list}">
-		
-		 <div>
 		 	<form method="post">
 		 		<p>작성자 : ${k.user_id}</p>
 		 		<p>내용 : ${k.com_content }</p>
@@ -255,8 +292,6 @@ input{
 		 		<input type="button" value="삭제" onclick="comment_del(this.form)">
 		 		</c:if>
 		 	</form>
-		 </div>
-		
 		</c:forEach>
 	</div>
 </div>  

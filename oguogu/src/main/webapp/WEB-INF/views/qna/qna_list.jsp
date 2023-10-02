@@ -26,7 +26,7 @@
     align-items: center; /* 세로 가운데 정렬 */
     display: flex; /* Flexbox 사용 */
 }
-
+#subtitle{color: red; font-size: 20px; text-align: center; margin-top: 20px;}
 #qnaWrapper{
         width: 1130px;
         margin: auto;
@@ -175,9 +175,10 @@ tfoot{
      </ul>
   </div>
   <!-- 게시판 리스트 구역 -->
-  <div>
+ <div>
 	<p id="title">1:1 문의</p>
-	</div>
+	<p id="subtitle">문의글은 작성자 본인 및 관리자 외 열람이 불가합니다.</p>
+</div>
   <div class="qna_list">
 	<table class="table">
   <thead>
@@ -254,23 +255,6 @@ tfoot{
 </tfoot>
 </table>
 </div>
-<%--검색 항목--%>
-		<center>
-            <li id='liSearchOption' style="display: block;">
-            	<form action="qnasearch.do?page=1" method="post">
-                <div>
-                    <select name="searchtype" >
-                        <option value="qname">제목</option>
-                        <option value="qcontent">내용</option>
-                        <option value="qid">작성자</option>                        
-                    </select>
-                    <input type="search" name="keyword">
-                    <input type="submit" value="검색">
-                </div>
-                </form>
-             </li>
-   </div>
-</center>
 <footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>

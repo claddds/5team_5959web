@@ -183,7 +183,6 @@ tfoot{
   <thead>
     <tr>
       <th scope="col">No.</th>
-      <th scope="col">유형</th>
       <th scope="col">제목</th>
       <th scope="col">작성자</th>
       <th scope="col">작성 날짜</th>
@@ -201,7 +200,6 @@ tfoot{
 				<tr>
 				<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
 				<td>${q.faq_idx}</td>
-           		<td>${q.faq_type}</td>
 				<td><a href="/faq_onelist.do?faq_idx=${q.faq_idx}">${q.faq_title}</a></td>
 				<td>${q.admin_nickname }</td>
 				<td>${q.faq_date.substring(0,10)}</td>

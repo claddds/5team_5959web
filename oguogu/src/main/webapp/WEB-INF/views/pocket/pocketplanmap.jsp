@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>마이포켓 지도맵 보기</title>
-    <style>
+<meta charset="utf-8">
+<title>마이포켓 지도맵 보기</title>
+<style>
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
 .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
@@ -14,19 +15,83 @@
 .distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
 .distanceInfo .label {display:inline-block;width:50px;}
 .distanceInfo:after {content:none;}
+.map_wrap, .map_wrap * {
+		margin: 0;
+		padding: 0;
+		font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+		font-size: 12px;
+	}
+	
+	.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
+		color: #000;
+		text-decoration: none;
+	}
+	
+	.map_wrap {
+		position: relative;
+		width: 1600px;;
+		height: 1200px;
+		text-align: center;
+		margin: 0 auto;
+		display: grid;
+		place-items: center;
+		gap:15px;
+		margin-bottom: 30px;
+	}
+#minibanner img{
+		width:1920px;
+		height:200px;
+		display:flex;
+		margin:auto;
+		margin-top:20px;
+		margin-bottom: 20px;
+    }
+
+    footer{
+		width:1920px;
+		display:flex;
+		margin:auto;
+		margin-top:20px;
+		margin-bottom: 20px;
+	}
 </style>
 </head>
 <body>
-<div id="map" style="width:100%;height:350px;"></div>  
-<p>
-    <em>지도를 마우스로 클릭하면 선 그리기가 시작되고<br>오른쪽 마우스를 클릭하면 선 그리기가 종료됩니다</em>
-</p>
+	<header>
+		<jsp:include page="/WEB-INF/views/home/home_top.jsp" />
+	</header>
+	
+	<div id=minibanner>
+        <a href="/pocketmaindisplay.do"><img src="resources/images/page_banner/listbanner_pocket.png"></a>
+    </div>
+	
+	<div class="map_wrap">
+		<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>  
+	</div>
+	
+	<div>
+		<c:forEach var="facility" items="${selectedFacilities}">
+            <li>
+                Facility: ${facility.facilities}<br>
+                Road Address: ${facility.roadaddr}<br>
+                Longitude: ${facility.lon}<br>
+                Latitude: ${facility.lat}<br>
+            </li>
+        </c:forEach>
+	</div>
+	<footer>
+		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
+	</footer>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 사용하세요"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=208825c3c44bfdb13dfa9f140f9c81f1"></script>
 <script>
+
+
+// Load the map SDK by adding a script tag
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.53325958,126.903741), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
 

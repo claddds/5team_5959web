@@ -87,6 +87,7 @@ footer {
 </style>
 <script type="text/javascript">
 var pocketlist;
+
 $(document).ready(function() {
 	$("#search_button").on("click", function() {
 		var searchValue = $("#search_text").val();  // 검색어 가져오기
@@ -125,72 +126,63 @@ $(document).ready(function() {
 });
 
 
-
 $(document).ready(function() {
-    $("#gopocketformlist").on("click", function() {
-        $.ajax({
-            url: "/gopocketformlist.do",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(selectedPlacesList),
-            success: function(response) {
-                // 서버로부터 응답을 받았을 때 실행할 코드
-                console.log("Data sent successfully!");
-            },
-            error: function(error) {
-                console.error("Error sending data: " + error);
-            }
-        });
+//상단 선택버튼 클릭시 체크된 Row의 값을 가져온다.
+$("#map_button").click(function(){
+	var rowData = new Array();
+	var tdArr = [];
+	var checkbox = $("input[name=location_CheckBox]:checked");
+	
+	// 체크된 체크박스 값을 가져온다
+	checkbox.each(function(i) {
+		// checkbox.parent() : checkbox의 부모는 <td>이다.
+		// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+		var tr = checkbox.parent().parent().eq(i);
+		var td = tr.children();
+		/*
+		// 체크된 row의 모든 값을 배열에 담는다.
+		rowData.push(tr.text());*/
+		
+		// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+		var facilities = td.eq(1).text();
+		var roadaddr = td.eq(2).text();
+		var lon = td.eq(3).text();
+		var lat = td.eq(4).text();
+		
+		var rowData = {
+                facilities: facilities,
+                roadaddr: roadaddr,
+                lon: lon,
+                lat: lat
+            };
+
+		
+		// 가져온 값을 배열에 담는다.
+		tdArr.push(rowData);
+		
+		
+		//console.log("userid : " + userid);
+		//console.log("name : " + name);
+		//console.log("email : " + email);
+	});
+	
+	var jsonData = JSON.stringify(tdArr);
+
+    // Send the JSON data to the server using Ajax
+    $.ajax({
+        url: "/processSelectedFacilities",
+        type: "POST",
+        contentType: "application/json",
+        data: jsonData,
+        success: function(response) {
+            console.log("Data sent successfully!");
+            window.location.href = "/map_go.do";
+        },
+        error: function(error) {
+            console.error("Error sending data: " + error);
+        }
     });
 });
-
-//상단 선택버튼 클릭시 체크된 Row의 값을 가져간다
-$(document).ready(function() {
-    $("#map_button").on("click", function() {
-    	var params = "";
-    	var rowData = [];
-		var tdArr = new Array();
-		var checkbox = $("input[name=location_CheckBox]:checked");
-		
-		// 체크된 체크박스 값을 가져온다
-		checkbox.each(function(i){
-			/*
-			// checkbox.parent() : checkbox의 부모는 <td>이다.
-			// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
-			
-			var tr = checkbox.parent().parent().eq(i);
-			var td = tr.children();
-			/*
-			// 체크된 row의 모든 값을 배열에 담는다.
-			rowData.push(tr.text());
-			
-			
-			var facilities = td.eq(1).text();
-			var roadaddr = td.eq(2).text();
-			var lon = td.eq(3).text();
-			var lat = td.eq(4).text();
-			 */
-			var tr = $(this).closest('tr');
-            var td = tr.children('td');
-
-            var facility = encodeURIComponent(td.eq(1).text());
-            var roadAddress = encodeURIComponent(td.eq(2).text());
-            var lon = encodeURIComponent(td.eq(3).text());
-            var lat = encodeURIComponent(td.eq(4).text());
-
-            // Add the values to the URL parameters
-            params += "&facility=" + facility;
-            params += "&roadAddress=" + roadAddress;
-            params += "&lon=" + lon;
-            params += "&lat=" + lat;
-		});
-		// Remove the leading "&"
-        params = params.substring(1);
-
-        // Send the parameters to the server using window.location.href
-        window.location.href = "/yourControllerEndpoint?" + params;
-		 
-    });
 });
 </script>
 

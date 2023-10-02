@@ -106,125 +106,59 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 				<thead>
 					<tr style="text-align: center;">
 						<th scope="col" style="width:10%;font-size: 25px;">No</th>
-						<th scope="col" style="width:15%;font-size: 25px;">대상 게시판</th><!-- 라운지 내부 일상/추천/유저간 질문 -->
+						<th scope="col" style="width:15%;font-size: 25px;">대상 게시판</th>
 						<th scope="col" style="width:60%;font-size: 25px;">제목</th>
 						<th scope="col" style="width:20%;font-size: 25px;">날짜</th>
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
+				<c:forEach var="k" items="${loungelist}" varStatus="vs">
 					<tr>
-						<td>1</td>
-						<td>Mark</td>
-						<td>Otto</td><!-- 2줄 이상 넘어가지 않게 처리 해야 됨. 모르면 물어봐주세요 --><!-- a링크처리도 달아서 해당 게시물 이동 -->
-						<td>@mdo</td>
+						<td>${loungelist.size() - vs.count + 1}</td>
+						<td>${k.lo_type}</td>
+						<td><a href="/lounge_onelist.do?lo_idx=${k.lo_idx}" style="color:black;text-decoration: none;">${k.lo_title}</a> [${k.comment_cnt}]</td>
+						<td>${k.lo_date.substring(0,10)}</td>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Thornton</td>
-						<td>Thornton</td>
-						<td>@twitter</td>
-					</tr>
+				</c:forEach>
 				</tbody>
 				<tfoot>
-				<tr>
-					<td id="paging_list" colspan="4">
-						<ol class="paging">
-						   <!-- 이전 -->
-						   <c:choose>
-						   		<%-- 시작블록과 pagePerBlock를 비교해서 
-						   		시작블록 작으면 이전으로 가 비활성화 된다. --%>
-						   		<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
-						   			<li class="disable">이전으로</li>
-						   		</c:when>
-						   		<c:otherwise>
-						   			<!-- a링크처리 -->
-						   			<li><a href="/board_list.do?page=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
-						   		</c:otherwise>
-						   </c:choose>
-						    <!-- 블록안에 들어간 페이지번호들 -->
-							<c:forEach begin="${paging.beginBlock}" end="${paging.endBlock }" step="1" var="k">
-							   <%-- 현재 페이지와 현재 페이지가 아닌 것을 나누자  --%>
-							   <%-- 현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리  --%>
-							   <%-- <c:choose>
-							   		<c:when test="${k == paging.nowPage}">
-							   			<li class="now">${k}</li>
+					<tr>
+						<td id="paging_list" colspan="4">
+							<ol class="paging">
+							   <!-- 이전 -->
+							   <c:choose>
+							   		<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+							   			<li class="disable">이전으로</li>
 							   		</c:when>
 							   		<c:otherwise>
-							   			<li><a href="/bbs_list.do?page=${k}">${k}</a></li>
+							   			<!-- a링크처리 -->
+							   			<li><a href="/myWriteLounge.do?page=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
 							   		</c:otherwise>
-							   </c:choose> --%>
-							   <c:if test="${k == paging.nowPage}">
-							   		<li class="now">${k}</li>
-							   </c:if>
-							   <c:if test="${k != paging.nowPage}">
-							   		<!-- a링크처리 -->
-							   		<li><a href="/board_list.do?page=${k}">${k}</a></li>
-							   </c:if>
-							</c:forEach>
-							<!-- 다음 -->
-							  <c:choose>
-						   		<%-- 시작블록과 pagePerBlock를 비교해서 
-						   		시작블록 작으면 이전으로 가 비활성화 된다. --%>
-						   		<c:when test="${paging.endBlock >= paging.totalPage }">
-						   			<li class="disable">다음으로</li>
-						   		</c:when>
-						   		<c:otherwise>
-						   			<!-- a링크처리 -->
-						   			<li><a href="/board_list.do?page=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
-						   		</c:otherwise>
-						   </c:choose> 
-						</ol>
-					</td>
-				</tr>
-			</tfoot>
+							   </c:choose>
+							    <!-- 블록안에 들어간 페이지번호들 -->
+								<c:forEach begin="${paging.beginBlock}" end="${paging.endBlock }" step="1" var="k">
+								   <c:if test="${k == paging.nowPage}">
+								   		<li class="now">${k}</li>
+								   </c:if>
+								   <c:if test="${k != paging.nowPage}">
+								   		<!-- a링크처리 -->
+								   		<li><a href="/myWriteLounge.do?page=${k}">${k}</a></li>
+								   </c:if>
+								</c:forEach>
+								<!-- 다음 -->
+								  <c:choose>
+							   		<c:when test="${paging.endBlock >= paging.totalPage }">
+							   			<li class="disable">다음으로</li>
+							   		</c:when>
+							   		<c:otherwise>
+							   			<!-- a링크처리 -->
+							   			<li><a href="/myWriteLounge.do?page=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
+							   		</c:otherwise>
+							   </c:choose> 
+							</ol>
+						</td>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
 	</div>

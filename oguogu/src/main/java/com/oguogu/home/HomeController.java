@@ -40,10 +40,6 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("mypage/mypage_myprofile_onelist");
 		String user_id = (String) session.getAttribute("user_id");
 		User_VO userVO = join_Service.getUserOneList(user_id);
-		System.out.println("홈컨트롤러 이름:"+userVO.getUser_id());
-		System.out.println("홈컨트롤러 닉네임:"+userVO.getNickname());
-		System.out.println("홈컨트롤러 이메일:"+userVO.getEmail());
-		System.out.println(userVO.getUser_fname());
 		mv.addObject("userVO", userVO);
 		return mv;
 	}

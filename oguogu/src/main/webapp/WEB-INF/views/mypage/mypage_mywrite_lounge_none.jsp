@@ -48,6 +48,11 @@ footer {
 	margin-bottom: 20px;
 }
 </style>
+<script type="text/javascript">
+	function lounge_go() {
+		location.href="/loungemaindisplay.do"
+	}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -64,14 +69,14 @@ footer {
 			<jsp:include page="mypage-sidebar.jsp" />
 		</div>
 		<div id="mywrite_lounge_none_list">
-			<h1 style="font-size: 50px;color:#FFA629;margin-top:50px;">나의 작성글</h1>
+			<h1 style="font-size: 50px;color:#FFA629;margin-top:25px;">나의 작성글</h1>
 			<div style="margin:50px 0;">
 				<img src="resources/images/mypage/write_reg.png" 
 				style="width:200px;height:200px;border-radius:10px;">	
 			</div>
 			<div style="font-size:20px;margin-bottom:30px;">작성된 글이 없어요~</div>
 			<div>
-				<button id="lounge_add_btn" onclick="">등록하기</button>
+				<button id="lounge_add_btn" onclick="lounge_go()">라운지로~</button>
 			</div>
 		</div>
 	</div>

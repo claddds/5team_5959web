@@ -98,21 +98,58 @@ input{
     padding-left: 215px;          
     box-sizing: border-box;
 }	
-#qnacom_field{
+/* 댓글 입력 폼*/
+#qnacom_field {
+	margin-bottom: 20px;
+	width: 80%;
+	margin: 0 auto;
 	text-align: left;
-}
+	}
+
+#qnacom_field input[type="text"],
+#qnacom_field textarea {
+	width: calc(100% - 20px); 
+	padding: 10px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	}
+
+#qnacom_field textarea {
+	resize: vertical;
+	}
+
+#qnacom_field input[type="button"] {
+	background-color: #FFA629;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 18px;
+	border-radius: 5px;
+	}
+
+#qnacom_field input[type="button"]:hover {
+	background-color: #2980b9;
+    }
+
+#qnacomOut_field {
+	margin-bottom: 20px;
+	width: 80%;
+	margin: 0 auto;
+	text-align: left;
+	}
 .qnacom{
-	 border: 1px solid gray;
+	
 	 width: 1100px; 
 	 margin-left: 510px; 
 	 padding:50px;
 	 text-align: left;
-}   
+}
 </style>
 <script type="text/javascript"
 	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
-<script type="text/javascript">
-</script>
 <title>qna_onelist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -236,8 +273,8 @@ input{
 	<div style="display: table;" class="qnacom">
 		<c:forEach var="k" items="${c_list}">
 		
-		 <div>
 		 	<form method="post">
+		 	<fieldset id="qnacomOut_field">
 		 		<p>작성자 : ${k.user_id}</p>
 		 		<p>내용 : ${k.qnacom_content }</p>
 		 		<p>날짜 : ${k.qnacom_date.substring(0,10)}</p>
@@ -249,8 +286,9 @@ input{
 					<input type="hidden" name="cPage" value="${cPage}">
 		 			<input type="button" value="삭제" onclick="comment_del(this.form)">
 		 		</c:if>
+		 	</fieldset>
 		 	</form>
-		 </div>
+		 
 		
 		</c:forEach>
 	</div>

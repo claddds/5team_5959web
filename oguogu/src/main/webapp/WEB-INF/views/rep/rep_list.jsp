@@ -271,23 +271,6 @@ table tfoot ol.paging li a:hover {
 </tfoot>
 </table>
 </div>
-		<!-- 검색 창 구역  -->
-		<center>
-            <li id='liSearchOption' style="display: block;">
-            	<form action="qnasearch.do?page=1" method="post">
-                <div>
-                    <select name="searchtype" >
-                        <option value="lo_list">제목</option>
-                        <option value="lo_content">내용</option>
-                        <option value="user_id">작성자</option>                        
-                    </select>
-                    <input type="search" name="keyword">
-                    <input type="submit" value="검색" class="button">
-                </div>
-                </form>
-             </li>
-   </div>
-	</center>
 <footer>
 		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
 	</footer>

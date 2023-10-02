@@ -28,12 +28,12 @@
 
 .dogFeedAge{color:black; border:1px solid #FFC700; border-radius:50px; padding:10px;}
 
-.prod {margin:auto; border: 1px solid black; border-radius: 5px; height: 500px;width: 350px;
+.prod {margin:auto; border: 1px solid black; border-radius: 5px; height: 600px;width: 350px;
 		padding: 5px;margin-bootom: 10px;}
 		
 .prod-price {font-weight:bold; font-size:25px;}
 
-.prod-img img {height: 300px;width: 350px;border-radius: 10px;margin-bottom:10px;}
+.prod-img img {height: 400px;width: 350px;border-radius: 10px;margin-bottom:10px;}
 
 .prod-info div{margin:10px;}
 
@@ -143,7 +143,7 @@ $(document).ready(function() {
 						<li>
 							<div class="prod">
 								<div class="prod-img">
-									<img src="resources/images/home/mainlogo.png">
+									<img src="resources/images/${k.fd_fname}">
 								</div>
 								<div class="prod-info">
 									<div style="color:gray;font-size: 18px;">${k.fd_company}</div>

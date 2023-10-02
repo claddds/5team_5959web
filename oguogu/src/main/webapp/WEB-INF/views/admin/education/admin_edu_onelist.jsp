@@ -25,7 +25,7 @@
    padding: 10px;
    border-radius:20px;
 }
-table{ width:1200px;  text-align: center;  border-radius:20px; color:black; }
+table{ width:1200px; height:1200px; text-align: center;  border-radius:20px; color:black; }
 
 td{border: 3px solid orange; padding: 3px ; text-align:lrft;  border-radius:20px;}
 	
@@ -114,7 +114,7 @@ footer{
 		width:1920px;
 		display:flex;
 		margin:auto;
-		margin-top:20px;
+		margin-top:1000px;
 		margin-bottom: 20px;
 	}
 .button{
@@ -156,7 +156,7 @@ footer{
 <div id="repWrapper" style="width: 1920px;">
 	
 <!-- 사이드바 구역 -->
- <div class="sidebar" style="font-family: 'Bagel Fat One', cursive;">
+ <div class="sidebar" >
      <ul class="menu">
 			<li><a href="" id="novel"
 				class="list-group-item list-group-item-action d-flex align-items-center"></a>
@@ -250,7 +250,7 @@ footer{
 				</tr>
 				
 				<tr align="center">
-					<td bgcolor="FFA629" style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">교육 내용 </td>
+					<td bgcolor="FFA629"  style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">교육 내용 </td>
 					<td align="left">${evo.edu_content }</td>
 				
 				</tr>
@@ -273,7 +273,6 @@ footer{
 					<tr align="center" >
 						<td colspan="2" style="margin: auto;">
 							<input type="hidden" name="edu_idx" value="${evo.edu_idx}">
-							
 							<input type="button" class="button" value="수정" onclick="edit_go(this.form)" />
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="hidden" name="edu_title" value="${evo.edu_title}">

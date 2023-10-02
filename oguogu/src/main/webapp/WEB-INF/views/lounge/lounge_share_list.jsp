@@ -219,7 +219,6 @@ table tfoot ol.paging li a:hover {
             <td>${l.lo_petkind}</td>
 			<td>
 				<a href="/lounge_onelist.do?lo_idx=${l.lo_idx}">${l.lo_title}</a>
-				<span id="commnet_cnt">[${l.comment_cnt }]</span>
 			</td>
 			<td>${l.user_id }</td>
 			<td>${l.lo_date.substring(0,10)}</td>

@@ -30,11 +30,8 @@ public class KakaoController {
 	@RequestMapping("/kakaologin.do")
 	public ModelAndView KakaoLogin(String code, HttpSession session) {
 		ModelAndView mv = new ModelAndView("index");
-		// code 받기
-		// System.out.println(code);
 
 		// 2. 토큰 받기
-		// POST https://kauth.kakao.com/oauth/token
 		String reqURL = "https://kauth.kakao.com/oauth/token";
 
 		try {
@@ -67,11 +64,9 @@ public class KakaoController {
 				while ((line = br.readLine()) != null) {
 					result.append(line);
 				}
-				// System.out.println(result.toString());
 
 				// JSON 파싱 처리 "access_token"과 "refresh_token"을 잡아내어
 				// 카카오 API 요청을 한 후
-				// ModelAndView에 저장하여 result3.jsp에서 결과를 표현한다.
 				JSONParser pars = new JSONParser();
 				// Object obj = pars.parse(result.toString());
 				JSONObject json = (JSONObject) pars.parse(result.toString());
@@ -79,13 +74,9 @@ public class KakaoController {
 				String access_token = (String) json.get("access_token");
 				String refresh_token = (String) json.get("refresh_token");
 
-				// 마지막 3번째 사용자 정보 요청
-				// GET/POST https://kapi.kakao.com/v2/user/me
+
 				String apiURL = "https://kapi.kakao.com/v2/user/me";
 
-				// 헤더 부분
-				// Authorization: Bearer ${ACCESS_TOKEN}
-				// Content-type: application/x-www-form-urlencoded;charset=utf-8
 				String header = "Bearer " + access_token;
 
 				URL url2 = new URL(apiURL);
@@ -110,19 +101,6 @@ public class KakaoController {
 						res.append(str);
 					}
 
-					// 사용자 정보
-					System.out.println(res.toString());
-					// {"id":2971590537,
-					// "connected_at":"2023-08-17T05:00:48Z",
-					// "properties":{"nickname":"탁"},
-					// "kakao_account":{"profile_nickname_needs_agreement":false,
-					// "profile":{"nickname":"탁"},
-					// "has_email":true,
-					// "email_needs_agreement":false,
-					// "is_email_valid":true,
-					// "is_email_verified":true,
-					// "email":"poiu963852@naver.com"}
-					// }
 					json = (JSONObject) pars.parse(res.toString());
 
 					JSONObject props = (JSONObject) json.get("properties");
@@ -153,33 +131,26 @@ public class KakaoController {
 							session.setAttribute("user_id", userVO.getUser_id());
 							session.setAttribute("email", userVO.getEmail());
 							session.setAttribute("nickname", userVO.getNickname());
-							System.out.println(userVO.getUser_id());
-							System.out.println(userVO.getEmail());
-							System.out.println(userVO.getNickname());
 							
 						}
 					// 있으면 새로운 객체로 로그인 한다.
 					} else {
-						
 						if(userVO2.getStatus().equals("1")) {
 							session.setAttribute("loginChk", "nonono");
 							// 로그인실패한걸 세션에 줄 필요 없겟지
 							mv.setViewName("redirect:/");
 							return mv;
 						}
-						
 						session.setAttribute("loginChk", "ok");
 						session.setAttribute("user_id", userVO2.getUser_id());
 						session.setAttribute("email", userVO2.getEmail());
 						session.setAttribute("nickname", userVO2.getNickname());
-						System.out.println(userVO2.getUser_id());
-						System.out.println(userVO2.getEmail());
-						System.out.println(userVO2.getNickname());
 					}
 					
 					
 				}
 			}
+			
 			mv.setViewName("redirect:/");
 			return mv;
 		} catch (Exception e) {

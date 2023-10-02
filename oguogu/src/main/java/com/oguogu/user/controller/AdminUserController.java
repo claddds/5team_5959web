@@ -56,13 +56,13 @@ public class AdminUserController {
 	// 사이드바 => QnA페이지
 	@GetMapping("/qna_list.do")
 	public ModelAndView Admin_qan() {
-		return new ModelAndView("/qna/qna_list");
+		return new ModelAndView("qna/qna_list");
 	}
 
 	// 사이드바 => FAQ페이지
 	@GetMapping("/admin_faq.do")
 	public ModelAndView Admin_faq() {
-		return new ModelAndView("/admin/faq/FAQ_list");
+		return new ModelAndView("/admin/FAQ/admin_faq_list");
 	}
 	
 	// 회원 목록 리스트 보기

@@ -62,7 +62,7 @@ SELECT * FROM Education WHERE status = 0 order by edu_idx desc limit #{limit} of
 	<!-- 게시글 수정하기 -->
 	<update id="update" parameterType="evo">
 		update Education set edu_kind=#{edu_kind}, edu_aml_kind=#{edu_aml_kind}, edu_title=#{edu_title},
-		edu_content=#{edu_content}, edu_F_name=#{edu_F_name},edu_F_name=#{edu_F_name},edu_date=sysdate() where edu_idx=#{edu_idx}
+		edu_content=#{edu_content},edu_F_name=#{edu_F_name},edu_date=sysdate() where edu_idx=#{edu_idx}
 	</update>
 	
 	<update id="delete" parameterType="evo">

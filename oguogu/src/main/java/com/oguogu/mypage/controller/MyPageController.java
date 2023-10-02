@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.oguogu.common.EduPaging;
+import com.oguogu.common.Paging;
 import com.oguogu.education.model.vo.Education_VO;
+import com.oguogu.lounge.model.vo.Lounge_VO;
 import com.oguogu.mypage.model.service.MyPageService;
 import com.oguogu.user.model.service.Join_Service;
 import com.oguogu.user.model.vo.User_VO;
@@ -36,6 +40,9 @@ public class MyPageController {
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	Paging paging;
 	
 	//회원정보 수정창 이동
 	@RequestMapping("/userInfoUpdateForm.do")
@@ -143,10 +150,10 @@ public class MyPageController {
 		return result;
 	}
 	
-	
+	//좋아요(즐겨찾기) 리스트 불러오기
 	@RequestMapping("/myfavedu.do")
 	public ModelAndView getMyEduFavHeart(HttpSession session, Education_VO evo) {
-		ModelAndView mv = new ModelAndView("mypage/");
+		ModelAndView mv = new ModelAndView();
 		String nickname = (String) session.getAttribute("nickname");
 		
 		//좋아요 있는지 없는지 구하기
@@ -161,6 +168,119 @@ public class MyPageController {
 		}
 		
 		return mv;
+	}
+	
+	//내가 쓴 글 목록 불러오기
+	@RequestMapping("/myWriteLounge.do")
+	public String getmyWriteLounge(HttpSession session, Model model, HttpServletRequest request) {
+		String user_id = (String) session.getAttribute("user_id");
+		
+		//작성한글 있는지 없는지 조회
+		int result = myPageService.getmyWriteFind(user_id);
+		
+		if(result>0) {
+			//작성글이 있으면
+			
+			// 전체 게시물 수 조회
+			paging.setTotalRecord(result);
+			
+			if (paging.getTotalRecord() <= paging.getNumPerPage()) {
+				paging.setTotalPage(1);
+				// 게시글의 수가 페이지당 게시물수보다 작으면 페이지는 1개
+			} else {
+				paging.setTotalPage(paging.getTotalRecord() / paging.getNumPerPage());
+				if (paging.getTotalRecord() % paging.getNumPerPage() != 0) {
+					paging.setTotalPage(paging.getTotalPage() + 1);
+				}
+			}
+			
+			// 현재 페이지 구하기
+			String Page = request.getParameter("page");
+			if (Page == null) {
+				paging.setNowPage(1);
+			} else {
+				paging.setNowPage(Integer.parseInt(Page));
+			}
+			
+			paging.setOffset(paging.getNumPerPage() * (paging.getNowPage() - 1));
+			
+			// ** 현재 페이지의 시작 블록과 끝 블록 구하자
+			paging.setBeginBlock(
+					(int) ((paging.getNowPage() - 1) / paging.getPagePerBlock()) * paging.getPagePerBlock() + 1);
+			paging.setEndBlock(paging.getBeginBlock() + paging.getPagePerBlock() - 1);
+			
+			
+			if (paging.getEndBlock() > paging.getTotalPage()) {
+				paging.setEndBlock(paging.getTotalPage());
+			}
+			
+			List<Lounge_VO> loungelist = myPageService.getmyWriteLounge(user_id,paging.getOffset(), paging.getNumPerPage());
+			
+			for (Lounge_VO lvo : loungelist) {
+				int comment_cnt = myPageService.getCommentCount(lvo.getLo_idx());
+				lvo.setComment_cnt(String.valueOf(comment_cnt));
+			}
+			
+			model.addAttribute("loungelist", loungelist);
+			model.addAttribute("paging", paging);
+			return "mypage/mypage_mywrite_lounge";
+		}else {
+			return "mypage/mypage_mywrite_lounge_none";
+		}
+	}
+	
+	@RequestMapping("/myWriteComment.do")
+	public String getmyWriteComment(HttpSession session, Model model, HttpServletRequest request) {
+			String user_id = (String) session.getAttribute("user_id");
+			
+			//작성한글 있는지 없는지 조회
+			int result = myPageService.getmyCommFind(user_id);
+			
+			if(result>0) {
+				//작성글이 있으면
+				
+				// 전체 게시물 수 조회
+				paging.setTotalRecord(result);
+				
+				if (paging.getTotalRecord() <= paging.getNumPerPage()) {
+					paging.setTotalPage(1);
+					// 게시글의 수가 페이지당 게시물수보다 작으면 페이지는 1개
+				} else {
+					paging.setTotalPage(paging.getTotalRecord() / paging.getNumPerPage());
+					if (paging.getTotalRecord() % paging.getNumPerPage() != 0) {
+						paging.setTotalPage(paging.getTotalPage() + 1);
+					}
+				}
+				
+				// 현재 페이지 구하기
+				String Page = request.getParameter("page");
+				if (Page == null) {
+					paging.setNowPage(1);
+				} else {
+					paging.setNowPage(Integer.parseInt(Page));
+				}
+				
+				paging.setOffset(paging.getNumPerPage() * (paging.getNowPage() - 1));
+				
+				// ** 현재 페이지의 시작 블록과 끝 블록 구하자
+				paging.setBeginBlock(
+						(int) ((paging.getNowPage() - 1) / paging.getPagePerBlock()) * paging.getPagePerBlock() + 1);
+				paging.setEndBlock(paging.getBeginBlock() + paging.getPagePerBlock() - 1);
+				
+				
+				if (paging.getEndBlock() > paging.getTotalPage()) {
+					paging.setEndBlock(paging.getTotalPage());
+				}
+				
+				List<Lounge_VO> commentlist = myPageService.getmyComment(user_id,paging.getOffset(), paging.getNumPerPage());
+				
+				
+				model.addAttribute("commentlist", commentlist);
+				model.addAttribute("paging", paging);
+				return "mypage/mypage_mywrite_comment";
+			}else {
+				return "mypage/mypage_mywrite_comment_none";
+			}
 	}
 	
 	

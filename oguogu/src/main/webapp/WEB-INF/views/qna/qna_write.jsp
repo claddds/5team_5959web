@@ -171,7 +171,7 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td style="padding: 8px; text-align: left;"><textarea id="one_content" 
+					<td style="padding: 8px; text-align: left;"><textarea id="one_content" name="one_content"
 							style="width: 90%; height: 200px;"></textarea>
 					</td>
 				</tr>
@@ -182,16 +182,6 @@
 				<tr height="50">
 					<th>비밀번호</th>
 					<td style="padding: 8px; text-align: left;"><input type="password" name="one_pwd" size="20" style="width: 90%; height: 30px;"/></td>
-				</tr>
-				<tr height="50">
-					<th>비밀글여부</th>
-					<td>
-						<div id="chkbox_div" style="text-align: left;"> 
-							<input type="checkbox" id="chkbox" name="one_lock" />									
-							<label for="chkbox"></label>
-							비밀글여부
-						</div>
-					</td>
 				</tr>
 				<tr height="50">
 					<td class="button" colspan="2" align="center" style="padding: 8px;">

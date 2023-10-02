@@ -96,7 +96,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
     $(document).ready(function(){
     	loginChk = "${loginChk}";
         if(loginChk == "fail"){
-           alert("이메일 또는 비밀번호가 올바르지 않습니다.다시 확인해 주세요.")
+           alert("비밀번호가 올바르지 않습니다.다시 확인해 주세요.")
            location.href="/clearSession.do"
         }else if(loginChk == "nonono"){
            alert("가입한 아이디가 없습니다.")
@@ -121,26 +121,10 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 	<!-- 최상단 NOTICE,LOGIN,JOIN US -->
 	<div>
 	  <ul class="topmenu">   
-	    <li><a style="color:tomato; display:none;" class="header-ALink">관리자 페이지</a></li><!-- id가 admin일 때 display:"" JS 처리  -->
 	    <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    <c:choose>
-	  <c:when test="${loginChk eq 'ok'}">
-	  <c:if test="${sessionScope.type == 0}">
-        <li><a href="/adminuserdisplay.do" style="color:#FFA629; " class="header-ALink">회원 관리 </a></li>
-	    <li><a href="/joindisplay.do" style="color:#FFA629; " class="header-ALink">고객 게시판</a></li>
-	    <li><a href="/admin_edulist.do" style="color:#FFA629; " class="header-ALink">교육정보</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
-	    <li><a href="/ad_sup_list.do" style="color:#FFA629; " class="header-ALink">관리 게시판</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
-	    <li><a href="/ad_food_list.do" style="color:#FFA629;" class="header-ALink">상품 관리</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
-	    </c:if>
-        </c:when>    
-           </c:choose>
-		
-	    <c:choose>
-	    	<c:when test="${loginChk eq 'ok'  }">
-	    	<c:if test="${sessionScope.type != 0}">
-	    	<li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
+	    	<c:when test="${loginChk eq 'ok'}">
 	    		<li><a href="/mypagedisplay.do" style="color:#FFA629;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->    
-			     </c:if>
 			     <li><a href="/user_logout.do" style="color:#FFA629;" class="header-ALink" id="logout_go">LOGOUT</a></li>
 	    	</c:when>
 	    	<c:otherwise>
@@ -174,11 +158,11 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 			    </li>
 			    <li><a href="/placemaindisplay.do" class="header-ALink">플레이스</a></li>
 			    <li><a href="/pocketmaindisplay.do" class="header-ALink">모두의 포켓</a></li>
-			    <li class="lounge_main"><a href="/loungemaindisplay.do" class="header-ALink">라운지</a>
+			    <li class="lounge_main"><a href="/lounge_list.do" class="header-ALink">라운지</a>
 			   		<ul class="lounge sub">
-			    		<li><a href="/loungesharedisplay.do" class="header-ALink">일상 공유</a></li>
-			    		<li><a href="/loungerecommdisplay.do" class="header-ALink">추천 탭</a></li>
-			    		<li><a href="/loungeqnadisplay.do" class="header-ALink">유저간 질문</a></li>
+			    		<li><a href="/lounge_share_list.do" class="header-ALink">일상 공유</a></li>
+			    		<li><a href="/lounge_recomm_list.do" class="header-ALink">추천 탭</a></li>
+			    		<li><a href="/lounge_qna_list.do" class="header-ALink">유저간 질문</a></li>
 			    	</ul>
 			    </li>
 			    <li class="food_main"><a href="/dogfooddisplay.do" class="header-ALink">먹거리</a>

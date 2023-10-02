@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oguogu.comment.model.vo.QnAComment_VO;
 import com.oguogu.qna.model.dao.Qna_DAO;
 import com.oguogu.qna.model.vo.Qna_VO;
 
@@ -43,4 +44,20 @@ public class Qna_ServiceImpl implements Qna_Service{
 	public int getDelete(String one_idx) {
 		return qna_DAO.getDelete(one_idx);
 	}
+	
+	@Override
+	public List<QnAComment_VO> getQnACommList(String one_idx) {
+		return qna_DAO.getQnACommList(one_idx);
+	}
+
+	@Override
+	public int getQnACommInsert(QnAComment_VO qcvo) {
+		return qna_DAO.getQnACommInsert(qcvo);
+	}
+
+	@Override
+	public int getQnACommDelete(String qnacom_idx) {
+		return qna_DAO.getQnACommDelete(qnacom_idx);
+	}
+
 }

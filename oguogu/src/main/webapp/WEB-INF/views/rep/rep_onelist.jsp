@@ -179,6 +179,19 @@ input{
 					<td style="padding: 8px; text-align: left;">${rvo.rep_date}</td>
 				</tr>
 				<tr height="50">
+					<th>처리 상태</th>
+					<td style="padding: 8px; text-align: left;">
+					<c:choose>
+						<c:when test="${rvo.rep_ing == 0}">
+							처리 대기중
+						</c:when>
+						<c:otherwise>
+							처리 완료
+						</c:otherwise>
+					</c:choose>
+					</td>
+				</tr>
+				<tr height="50">
 					<th>신고 내용</th>
 					<td style="padding: 8px; text-align: left;"><pre>${rvo.rep_content}</pre></td>
 				</tr>

@@ -73,8 +73,9 @@ public class JoinController {
 	@RequestMapping("/user_add.do")
 	public ModelAndView getUserAdd(User_VO userVO) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/logindisplay.do");
-
+		//패스워드 암호화
 		userVO.setPw(passwordEncoder.encode(userVO.getPw()));
+		//일반회원 가입 유저 설정
 		userVO.setType("1");
 		int result = join_Service.getUserAdd(userVO);
 		return mv;
@@ -82,40 +83,27 @@ public class JoinController {
 
 	// 로그인
 	@RequestMapping("/user_login.do")
-	public String getUserLogin(User_VO userVO, HttpSession session, RedirectAttributes redirectAttributes, HttpServletRequest request, String username) throws Exception {
-		//id로 비밀번호 찾아옴 로그인에 활용
+	public String getUserLogin(User_VO userVO, HttpSession session, 
+							   HttpServletRequest request) throws Exception {
+		//DB에 가입한 아이디 있는지 찾기
 		User_VO uvo = join_Service.getUserOneList(userVO.getUser_id());
-
+		//가입한 회원이 없거나 
 		if(uvo == null || uvo.getStatus().equals("1")) {
 			session.setAttribute("loginChk", "nonono");
-			// 로그인실패한걸 세션에 줄 필요 없겟지
 			return "redirect:/logindisplay.do";
 		}
 		if (!passwordEncoder.matches(userVO.getPw(), uvo.getPw())) {
 			session.setAttribute("loginChk", "fail");
-			// 로그인실패한걸 세션에 줄 필요 없겟지
 			return "redirect:/logindisplay.do";
 		} else {
-			session = request.getSession();
-			session.setAttribute("username", username);
 			
 			session.setAttribute("loginChk", "ok");
 			session.setAttribute("user_id", uvo.getUser_id());
 			session.setAttribute("email", uvo.getEmail());
 			session.setAttribute("nickname", uvo.getNickname());
 			session.setAttribute("type", uvo.getType());
-			System.out.println(uvo.getUser_id());
-			System.out.println(uvo.getEmail());
-			System.out.println(uvo.getNickname());
 			
-			String returnUrl = (String) session.getAttribute("returnUrl");
-
-		    if (returnUrl != null && !returnUrl.isEmpty()) {
-		        session.removeAttribute("returnUrl"); // 이후에 또 사용하지 않도록 제거
-		        return "redirect:" + returnUrl; // 이전 페이지 URL로 리다이렉트
-		    } else {
-		        return "redirect:/"; // 이전 페이지 URL이 없으면 홈페이지로 리다이렉트
-		    }
+		    return "redirect:/";
 		}
 	}
 	
@@ -142,7 +130,7 @@ public class JoinController {
 		return new ModelAndView("home/id_pw_find");
 	}
 	
-	//아이디 찾기 할 때 씀
+	//아이디 찾기
 	@RequestMapping("/IdFindEmail.do")
 	@ResponseBody
 	public Map<String, String> getIdFind(User_VO userVO) throws Exception{
@@ -153,8 +141,6 @@ public class JoinController {
 		if(uvo == null) {
 			map.put("message", "ok");
 		}else {
-			System.out.println(uvo.getType());
-			System.out.println(uvo.getUser_id());
 			map.put("type", uvo.getType());
 			map.put("user_id", uvo.getUser_id());
 		}

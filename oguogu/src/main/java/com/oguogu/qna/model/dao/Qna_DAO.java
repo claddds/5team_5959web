@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oguogu.comment.model.vo.QnAComment_VO;
 import com.oguogu.qna.model.vo.Qna_VO;
 
 @Repository
@@ -46,6 +47,20 @@ public class Qna_DAO {
 	// 게시글 삭제
 	public int getDelete(String one_idx) {
 		return sqlSessionTemplate.delete("qna.delete", one_idx);
+	}
+	// 댓글 리스트
+	public List<QnAComment_VO> getQnACommList(String one_idx){
+		return sqlSessionTemplate.selectList("qnacom.list", one_idx);
+	}
+	
+	// 댓글 입력
+	public int getQnACommInsert(QnAComment_VO qcvo) {
+		return sqlSessionTemplate.insert("qnacom.insert",qcvo);
+	}
+	
+	// 댓글 삭제
+	public int getQnACommDelete(String qnacom_idx) {
+		return sqlSessionTemplate.delete("qnacom.delete",qnacom_idx);
 	}
 	
 }

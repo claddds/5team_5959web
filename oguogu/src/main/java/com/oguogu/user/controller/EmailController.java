@@ -49,8 +49,7 @@ public class EmailController {
             userVO.setPw(passwordEncoder.encode(randomPW));
             //유저 비밀번호 업데이트
             join_Service.getPwUpdate(userVO);
-            mailService.sendEmail(randomPW, "poiu62875@gmail.com", userVO.getUser_id());
-            					//변경할 비밀번호, 받을 주소, 메일에서 표시할 아이디
+            mailService.sendEmail(randomPW, userVO.getEmail() , userVO.getUser_id());
             return 2; // ajax에서 비밀번호 변경 메일을 발송했습니다. 처리
 			}
 		} catch (Exception e) {

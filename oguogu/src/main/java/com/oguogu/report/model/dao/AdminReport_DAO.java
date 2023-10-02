@@ -20,4 +20,13 @@ public class AdminReport_DAO {
 	public int getReportListCnt(Map<String, Object> param) {
 		return sqlSessionTemplate.selectOne("oguogu.reportlistCnt", param) ;
 	}
+	
+	// 상세 페이지
+	public List<Report_VO> getReportOneList(Map<String, Object> param) {
+		return sqlSessionTemplate.selectList("oguogu.report_onelist", param) ;
+	}
+	public int setRepIng(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("oguogu.setRepIng", param) ;
+	}
 }

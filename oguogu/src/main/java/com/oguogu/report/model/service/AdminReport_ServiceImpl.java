@@ -23,6 +23,16 @@ public class AdminReport_ServiceImpl implements AdminReport_Service{
 	public int getReportListCnt(Map<String, Object> param) {
 		return adminReport_DAO.getReportListCnt(param);
 	}
+
+	@Override
+	public List<Report_VO> getReportOneList(Map<String, Object> param) {
+		return adminReport_DAO.getReportOneList(param);
+	}
+	
+	@Override
+	public int setRepIng(Map<String, Object> param) {
+		return adminReport_DAO.setRepIng(param);
+	}
 	
 	
 }

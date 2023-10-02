@@ -6,13 +6,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>신고 상세페이지(관리자 화면)</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 #repWrapper>ul>li:first-child {
-	text-align: center;
+	/* text-align: center;
 	font-size: 14pt;
 	height: 40px;
 	vertical-align: middle;
-	line-height: 30px;
+	line-height: 30px; */
 }
 #report_title {
 	margin: 10px auto;
@@ -44,6 +50,7 @@
 	text-align: center;
 	border: 1px solid black;
 	padding: 2px 4px;
+	width: 300px;
 	background-color: #FFA629;
 }
 #onelist table td {
@@ -55,21 +62,9 @@ input {
 	padding: 10px;
 	margin: auto;
 }
-
-
-
-.content {
-	width: 100%;
-	float: right;
-	margin-left: -215px;
-	padding-left: 215px;
-	box-sizing: border-box;
-}
-
 button {
 	text-align: right;
 }
-
 #report_sea {
 	display: flex;
 	padding-top: 15px;
@@ -77,18 +72,22 @@ button {
 	border-bottom: 1px solid #bcc;
 	padding-top: 15px;
 }
+.report_sea:hover {
+	background: white;
+	color: blcak;
+}
+.report_re:hover {
+	background: white;
+	color: blcak;
+}
+footer {
+	width: 1920px;
+	display: flex;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
 </style>
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
-<script type="text/javascript">
-	
-</script>
-<script type="text/javascript">
-	function list_go(f) {
-		location.href = "/rep_list.do"
-		submit();
-	}
-</script>
 </head>
 <body style="width: 100%;">
 	<!-- 헤더 구역 -->
@@ -97,70 +96,149 @@ button {
 	</header>
 	<!-- 사이드바 -->
 	<jsp:include page="/WEB-INF/views/adminhome/sidebar.jsp" />
-
-	<div style="border-bottom: 1px solid #bcc;">
-	<!-- 상세보기 구역 -->
-			<p id="report_title">신고 내용</p>
+	
+		<!-- 상세보기 구역 -->
+		<div style="border-bottom: 1px solid #bcc;">
+		    <p id="report_title">신고 내용</p>
 		</div>
-		<div id="report_sea">
-			<div id="onelist">
-				<form action="qinsert.do" method="post" enctype="multipart/form-data" name="boardform">
-					<table width="120px;" border="1px solid" cellpadding="0" cellspacing="0">
-						<tr height="50">
-							<th>신고 제목</th>
-							<td style="padding: 8px; text-align: left;">${rvo.rep_title}</td>
-						</tr>
-						<tr height="50">
-							<th>신고자 아이디</th>
-							<td style="padding: 8px; text-align: left;">${rvo.user_id}</td>
-						</tr>
-						<tr height="50">
-							<th>작성 날짜</th>
-							<td style="padding: 8px; text-align: left;">${rvo.rep_date}</td>
-						</tr>
-						<tr height="50">
-							<th>신고 내용</th>
-							<td style="padding: 8px; text-align: left;"><pre>${rvo.rep_content}</pre></td>
-						</tr>
-						<tr height="50">
-							<th>첨부파일</th>
-							<c:choose>
-								<c:when test="${empty rvo.rep_fname}">
-									<td style="padding: 8px; text-align: left;"><b>첨부 파일
-											없음</b></td>
-								</c:when>
-								<c:otherwise>
-									<td style="padding: 8px; text-align: left;"><a
-										href="/board_down.do?f_name=${rvo.rep_fname}"> <img
-											src="resources/images/${rvo.rep_fname}" style=""></a></td>
-								</c:otherwise>
-							</c:choose>
-						</tr>
-			</div>
-			<tr height="30">
-				<td colspan="2">
-				<input type="hidden" value="${rvo.rep_idx}" name="idx"> 
-				<input type="hidden" value="${cPage}" name="cPage">
-				<div>
-					<select class="search-form selectBox" name="searchOption" 
-						style="width: 100px; height: 30px; border-radius: 5px; border: 1px solid #bcc; text-align: center;">
-						<option value="">처리 대기중</option>
-						<option value="">처리중</option>
-						<option value="">처리 완료</option>
-					</select>
-					<button class="report_sea searchBtn"
-						style="border: none; height: 30px; background: #FFA629; border-radius: 5px; border-bottom-right-radius: 5px;">저장</button>
-					<button class="report_re resetBtn"
-						style="border: none; height: 30px; background: #FFA629; border-radius: 5px; margin-left: 20px;">목록</button>
-				</div>
+		<div id="onelist">
+		    <table width="120px;" border="1px solid" cellpadding="0" cellspacing="0">
+		        <tr height="50">
+		            <th>신고 제목</th>
+		            <td style="padding: 8px; text-align: left;" id="rep_title"></td>
+		        </tr>
+		        <tr height="50">
+		            <th>신고자 아이디</th>
+		            <td style="padding: 8px; text-align: left;" id="user_id"></td>
+		        </tr>
+		        <tr height="50">
+		            <th>작성 날짜</th>
+		            <td style="padding: 8px; text-align: left;" id="rep_date"></td>
+		        </tr>
+		        <tr height="50">
+		            <th height="50">신고 내용</th>
+		            <td style="padding: 8px; text-align: left;" id="rep_content"></td>
+		        </tr>
+		        <tr height="50">
+		            <th>첨부파일</th>
+		            <td style="padding: 8px; text-align: left;" id="rep_fname"></td>
+		        </tr>
+		        <tr height="50">
+		            <td colspan="2">
+		                <input type="hidden" value="" id="rep_idx">
+		                <div style="text-align: center;">
+		                    <select class="search-form selectBox" name="searchOption"
+		                            style="width: 150px; height: 30px; border-radius: 5px; border: 1px solid #bcc; text-align: center;">
+		                        <option value="">진행상태 선택</option>
+		                        <option value="1">처리 대기중</option>
+		                        <option value="2">처리중</option>
+		                        <option value="3">처리 완료</option>
+		                    </select>
+		                    <button class="report_sea searchBtn"
+		                            style="border: none; height: 30px; background: #FFA629; border-radius: 5px; border-bottom-right-radius: 5px;">저장
+		                    </button>
+		                    <button id="report_list" class="report_re resetBtn"
+		                            style="border: none; height: 30px; background: #FFA629; border-radius: 5px; margin-left: 20px;">목록
+		                    </button>
+		                </div>
+		            </td>
+		        </tr>
+		    </table>
 		</div>
-		</td>
-		</tr>
-		</table>
-		</form>
-	</div>
-	<%-- <footer>
-		<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
-	</footer> --%>
+		<footer>
+			<jsp:include page="/WEB-INF/views/home/home_bottom.jsp" />
+		</footer>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		init();
+	});
+	
+	function init() {
+		var data = JSON.parse(localStorage.getItem("param"));
+		$('#rep_title').text(data.rep_title);
+		$('#user_id').text(data.user_id);
+		$('#rep_date').text(data.rep_date);
+		$('#rep_content').text(data.rep_content);
+		$('#rep_fname').text(data.rep_fname);
+		$('#rep_idx').val(data.rep_idx);
+		$('.selectBox').val(data.rep_ing_cde);
+		console.log(data.rep_ing_cde);
+		
+	function goToReportList() {
+	    var list_go = "/admin_report.do";
+	    window.location.href = list_go;
+	}
+		
+	document.getElementById("report_list").addEventListener("click", goToReportList);
+	
+	function searchByStatus() {
+		var selectedStatus = document.getElementById("report_status").value;
+		// 조건 넣기
+		
+		
+		console.log("pending: " + selectedStatus);
+	}
+	
+	$('.report_sea').off('click').on('click',function(){
+		var param = {rep_idx: $('#rep_idx').val(), rep_ing : $('.selectBox').val()};
+		$.ajax({
+			url : '/setRepIng.do',
+			data : param,
+			data : JSON.stringify(param||{}),
+			dataType : 'json', /*html, text, json, xml, script*/
+			contentType: 'application/json; charset=utf-8',
+			method : 'post',
+			cache:false,
+			success : function(res) {
+				alert('정상적으로 처리되었습니다.');
+				location.href = '/admin_report.do';
+			},
+			error : function(xhr, status, error) {
+				console.log(error);
+				console.log(xhr);
+				console.log(status);
+			}
+		});
+	});
+	    
+		/* function getUserInfo(param) {
+			$.ajax({
+				url : '/getReportOneList.do',
+				data : param,
+				data : JSON.stringify(param||{}),
+				dataType : 'json', 
+				contentType: 'application/json; charset=utf-8',
+				method : 'post',
+				cache:false,
+				success : function(res) {
+					console.log(res.rep_onelist);
+					var html = '';
+					if (res.rep_onelist.length > 0) {
+						for (var i = 0; i < res.rep_onelist.length; i++) {
+							html += '<tr>';
+							html += '<td>' +res.rep_onelist[i].rep_title
+									+'</td>';
+							html += '<td>' + res.rep_onelist[i].user_id
+									+ '</td>';
+							html += '<td>' + res.rep_onelist[i].rep_date
+									+ '</td>';
+							html += '<td>' + res.rep_onelist[i].rep_content
+									+ '</td>';
+							html += '<td>' + res.rep_onelist[i].rep_fname
+									+ '</td>';
+							html += '</tr>';
+						}
+					}
+				},
+				error : function(xhr, status, error) {
+					console.log(xhr);
+				}
+			});
+					
+		} */
+	}
+</script>
 </html>

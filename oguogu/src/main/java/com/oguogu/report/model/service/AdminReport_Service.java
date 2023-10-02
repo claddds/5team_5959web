@@ -10,4 +10,8 @@ public interface AdminReport_Service {
 	public List<Report_VO> getReportList(Map<String,Object> param);
 	// 페이징 처리를 위한 리스트
 	public int getReportListCnt(Map<String, Object> param);
+	
+	// 신고 상세페이지
+	public List<Report_VO> getReportOneList(Map<String, Object> param);
+	public int setRepIng(Map<String, Object> param);
 }

@@ -53,6 +53,11 @@ footer {
 <link
 	href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap"
 	rel="stylesheet">
+<script type="text/javascript">
+	function eduPage_go() {
+		location.href = "/alledudisplay.do"
+	}
+</script>
 </head>
 <body>
 	<header>
@@ -71,7 +76,7 @@ footer {
 			</div>
 			<div style="font-size:20px;margin-bottom:30px;">앗 즐겨찾기가 없어요.<br>5구5구가 자랑하는 교육 정보로 가볼까요~</div>
 			<div>
-				<button id="edu_move_btn" onclick="">교육정보 이동</button>
+				<button id="edu_move_btn" onclick="eduPage_go()">교육정보 이동</button>
 			</div>
 		</div>
 	</div>

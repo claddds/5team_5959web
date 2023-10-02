@@ -103,6 +103,7 @@ public class PocketController {
 		}
 	}
 	
+	
 	@RequestMapping(value = "/gopocketformlist.do", method = RequestMethod.POST)
     public ModelAndView goToPocketForm(@RequestBody List<Pocketplace_VO> selectedPlacesList) {
         // 여기서 선택한 장소 목록을 활용할 수 있음
@@ -110,7 +111,32 @@ public class PocketController {
 		mv.addObject("selectedPlacesList", selectedPlacesList);
         return mv; // pocketform.jsp로 이동
     }
+	
+	// 페이지 이동
+    @RequestMapping("/map_go.do")
+    public ModelAndView getMapgo() {
+    	ModelAndView mv = new ModelAndView("pocket/pocketplanmap");
+    	return mv; 
+    }
+    
 
+    // pocketform_search페이지에서 검색어를 입력하고 검색 버튼을 누르면 검색어가 포함된 시설명 리스트가 나온다
+ 	@RequestMapping("/processSelectedFacilities")
+ 	@ResponseBody
+ 	public ModelAndView getprocessSelectedFacilities(
+ 			@RequestBody List<Pocketplace_VO> selectedFacilities){
+ 		for (Pocketplace_VO facility : selectedFacilities) {
+            System.out.println("Facility: " + facility.getFacilities());
+            System.out.println("Road Address: " + facility.getRoadaddr());
+            System.out.println("Longitude: " + facility.getLon());
+            System.out.println("Latitude: " + facility.getLat());
+        }
+ 		
+ 		ModelAndView mv = new ModelAndView("pocket/pocketplanmap");
+ 		mv.addObject("selectedFacilities", selectedFacilities);
+ 		return mv;
+ 	}
+ 	
 	/*
 	 * // 안전빵 안쓰는데 위에 오류나면 참고해서 json파일 불러와야함
 	 * 

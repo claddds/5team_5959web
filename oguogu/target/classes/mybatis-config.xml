@@ -14,6 +14,7 @@
 		<typeAlias type="com.oguogu.education.model.vo.Education_VO" alias="evo"/>
 		<typeAlias type="com.oguogu.education.model.vo.EduHeart_VO" alias="ehvo"/>
 		<typeAlias type="com.oguogu.ogudoctor.self.model.vo.Ogu_Self_VO" alias="oguselfvo"/>
+		<typeAlias type="com.oguogu.ogudoctor.self.model.vo.Admin_OguDictionary_VO" alias="addicvo"/>
 		<typeAlias type="com.oguogu.food.model.vo.Food_VO" alias="fvo"/>
 		<typeAlias type="com.oguogu.support.model.vo.Support_VO" alias="sup_vo"/>
 		<typeAlias type="com.oguogu.food.model.vo.Food_VO" alias="ad_f_vo"/>
@@ -37,6 +38,7 @@
 		<mapper resource="mappers/eduuser-bringing-mapper.xml"/>
 		<mapper resource="mappers/eduuser-training-mapper.xml"/>
 		<mapper resource="mappers/oguself-mapper.xml"/>
+		<mapper resource="mappers/ogudic-mapper.xml"/>
 		<mapper resource="mappers/fooduser-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml" /> 
 		<mapper resource="mappers/admin_report-mapper.xml" /> 

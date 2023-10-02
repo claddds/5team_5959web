@@ -43,6 +43,7 @@
 		margin:auto;
 		margin-top:50px;
 		margin-bottom: 20px;
+		color: black;
     }
     .category_ex{
     	width: 1920px;
@@ -114,6 +115,10 @@
 	.button:hover span:after {
 		opacity: 1;
 		right: 0;
+	}
+	a:hover {
+	color: white;
+	text-decoration: none;
 	}
     footer{
 		width:1920px;

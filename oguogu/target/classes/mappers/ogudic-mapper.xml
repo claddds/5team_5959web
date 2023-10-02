@@ -2,29 +2,16 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="oguself">
-	<!-- meal-식사량 리스트 뽑기 -->
-	<select id="dogmealfoodlist" resultType="oguselfvo">
-		select * 
-		from ogudoctor_disease
-		where sym_chk = "식사량" AND STATUS = 1
-	</select>
-	
-	<!-- meal-식수량 리스트 뽑기 -->
-	<select id="dogmealwaterlist" resultType="oguselfvo">
-		select * 
-		from ogudoctor_disease
-		where sym_chk = "음수량" AND STATUS = 1
-	</select>
+<mapper namespace="ogudic">
 	
 	<!-- admin_질병 체크 리스트 전체 게시물 수 구하기 -->
 	<select id="count" resultType="int">
-		select count(*) from ogudoctor_disease
+		select count(*) from disease_dictionary
 	</select>
 	
 	<!-- admin_질병 체크 리스트 출력  -->
-	<select id="list" parameterType="Map" resultType="oguselfvo">
-		select * from ogudoctor_disease order by ogu_idx desc limit #{limit} offset #{offset}
+	<select id="list" parameterType="Map" resultType="addicvo">
+		select * from disease_dictionary order by dictionary_idx desc limit #{limit} offset #{offset}
 	</select>
 	
 	<!-- admin_질병 체크 리스트 삽입  -->

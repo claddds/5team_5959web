@@ -101,7 +101,7 @@ public class Qna_Controller {
 	
 	@PostMapping("/qna_insert.do")
 	public ModelAndView qnaInsert(Qna_VO qvo, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("redirect:/qna_list.do");
+		ModelAndView mv = new ModelAndView("redirect:/userqna_list.do");
 		String path = request.getSession().getServletContext().getRealPath("/resources/images");
 		try {
 			MultipartFile file = qvo.getFile();

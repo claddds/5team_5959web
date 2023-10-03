@@ -97,7 +97,6 @@ footer{
 	
 	<div id="board" align="center">
 		<table>
-			<caption>질병사전 목록</caption>
 			<thead>
 				<tr class="title">
 					<th class="no">번호</th>

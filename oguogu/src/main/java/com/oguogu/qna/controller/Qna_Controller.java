@@ -226,7 +226,7 @@ public class Qna_Controller {
 				int result = qna_Service.getDelete(one_idx);
 				rttr.addFlashAttribute("cPage", cPage);
 				rttr.addAttribute("del_alert","ok");
-				return "redirect:/qna_list.do";
+				return "redirect:/userqna_list.do";
 			}
 		}
 		

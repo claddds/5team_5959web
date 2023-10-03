@@ -158,7 +158,7 @@ public class Qna_Controller {
 			
 			if(!db_id.equals(user_id) && !userType.equals("0")){
 				rttr.addFlashAttribute("qna_onelist", "no");
-	         	return "redirect:/qna_list.do"; 
+	         	return "redirect:/userqna_list.do"; 
 	         }else {
 	        	 model.addAttribute("cPage", cPage);
 	         	return "qna/qna_onelist";

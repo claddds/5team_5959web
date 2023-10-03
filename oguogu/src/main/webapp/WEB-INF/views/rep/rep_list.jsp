@@ -213,8 +213,11 @@ table tfoot ol.paging li a:hover {
 			<td>${r.rep_date.substring(0,10)}</td>
 			<td>
 			<c:choose>
-				<c:when test="${r.rep_ing == 0}">
+				<c:when test="${r.rep_ing == 1}">
 					처리 대기중
+				</c:when>
+				<c:when test="${r.rep_ing == 2}">
+					처리중
 				</c:when>
 				<c:otherwise>
 					처리 완료

@@ -18,7 +18,7 @@
 	
 	<!-- 게시글 목록 보기-->
 	<select id="list" parameterType="Map" resultType="ad_f_vo">
-	  select * from food order by fd_idx desc limit #{limit} offset #{offset}
+	    select * from food where status = 0 order by fd_idx desc limit #{limit} offset #{offset}
 	</select>
 	
 	<!-- 게시글 삽입 -->

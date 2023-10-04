@@ -185,7 +185,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
                         <ul class="support sub">
                         <li><a href="/sup_list.do" class="header-ALink">공지사항</a></li>
                         <li><a href="/faq_list.do" class="header-ALink">자주묻는질문</a></li>
-                        <li><a href="/qna_list.do" class="header-ALink">1:1문의</a></li>
+                        <li><a href="/userqna_list.do" class="header-ALink">1:1문의</a></li>
                         <li><a href="/rep_list.do" class="header-ALink">신고</a></li>
                     </ul>
                 </li>

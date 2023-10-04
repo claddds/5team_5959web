@@ -153,7 +153,7 @@ function delete_go(f){
 				<tr height="50">
 					<td class="button" colspan="2" align="center" style="padding: 8px;">
 						<input type="hidden" name="cPage" value="${cPage}">
-						<input type="hidden" name="one_idx" value="${lo_idx}">
+						<input type="hidden" name="one_idx" value="${one_idx}">
 						<input type="button" value="삭제" style="font-size: 20px;" onclick="delete_go(this.form)">
 					</td>						
 				</tr>

@@ -8,7 +8,7 @@
 <title>오구닥터-질병정보 list(관리자 페이지)</title>
 <style type="text/css">
 #board table {
-	width:800px;
+	width:1200px;
 	margin:0 auto;
 	margin-top:20px;
 	border: 1px solid black;
@@ -28,12 +28,13 @@
 	padding: 4px 10px;
 }
 
-.no { width: 15% }
-.subject { 	width: 30% }
-.writer {	width: 20% }
-.reg {	width: 20% }
-.hit {	width: 15% }
-.title {	background: lightsteelblue }
+.no { width: 10% }
+.pet_kind { width: 10% }
+.writer {width: 20% }
+.sym_check {width: 20% }
+.dis_info {	width: 30% }
+.status {width: 10% }
+
 .odd {	background: silver }
 
 /* paging */
@@ -83,8 +84,10 @@ footer{
 </style>
 <script type="text/javascript">
 	function write_go() {
-		location.href = "/board_insertForm.do";
+		location.href = "/disease_insertForm.do";
 	}
+	
+	
 </script>
 </head>
 <body>
@@ -97,33 +100,46 @@ footer{
 	
 	<div id="board" align="center">
 		<table>
-			<caption>질병 체크 목록</caption>
 			<thead>
 				<tr class="title">
 					<th class="no">번호</th>
-					<th class="title">제목</th>
+					<th class="pet_kind">동물종류</th>
 					<th class="writer">글쓴이</th>
-					<th class="regate">날짜</th>
-					<th class="hit">조회수</th>
+					<th class="sym_check">증상종류</th>
+					<th class="dis_info">증상설명</th>
+					<th class="status">게시여부</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty board_list}">
+					<c:when test="${empty disease_list}">
 						<tr>
-							<td colspan="5"><h2>자료가 존재하지 않습니다.</h2></td>
+							<td colspan="6"><h2>자료가 존재하지 않습니다.</h2></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="k" items="${board_list}" varStatus="vs">
+						<c:forEach var="k" items="${disease_list}" varStatus="vs">
 							<tr>
 								<td>${k.ogu_idx}</td>
-								<td style="text-align: left; padding-left: 20px">
-									<a href="/board_onelist.do?idx=${k.idx}&cPage=${paging.nowPage}">${k.title}</a>
+								<td>
+									<c:choose>
+                            			<c:when test="${k.pet_kind eq 0}">강아지</c:when>
+                            			<c:when test="${k.pet_kind eq 1}">고양이</c:when>
+                            			<c:otherwise>알 수 없음</c:otherwise>
+                        			</c:choose>
 								</td>
-								<td>${k.writer }</td>
-								<td>${k.regdate.substring(0,10)}</td>
-								<td>${k.hit}</td>
+								<td>${k.admin_nickname}</td>
+								<td>${k.sym_chk}</td>
+								<td>${k.dis_info}</td>
+								<td>
+									<a href="/disease_deleteForm.do?ogu_idx=${k.ogu_idx}&cPage=${paging.nowPage}">
+    									<c:choose>
+        									<c:when test="${k.status eq 0}">미게시</c:when>
+											<c:when test="${k.status eq 1}">게시</c:when>
+											<c:otherwise>알 수 없음</c:otherwise>
+    									</c:choose>
+									</a>
+								</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
@@ -131,7 +147,7 @@ footer{
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="4">
+					<td colspan="5">
 						<ol class="paging">
 							<!-- 이전 버튼 -->
 							<c:choose>
@@ -139,7 +155,7 @@ footer{
 									<li class="disable">이전으로</li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="/board_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+									<li><a href="/goadmindiseaselist.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
 								</c:otherwise>
 							</c:choose>
 							
@@ -150,7 +166,7 @@ footer{
 									<li class="now">${k}</li>
 								</c:if>
 								<c:if test="${ k != paging.nowPage}">
-									<li><a href="/board_list.do?cPage=${k}">${k}</a></li>
+									<li><a href="/goadmindiseaselist.do?cPage=${k}">${k}</a></li>
 								</c:if>   		
 							</c:forEach>
 							
@@ -160,7 +176,7 @@ footer{
 									<li class="disable">다음으로</li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="/board_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+									<li><a href="/goadmindiseaselist.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
 								</c:otherwise>
 							</c:choose>
 						</ol>

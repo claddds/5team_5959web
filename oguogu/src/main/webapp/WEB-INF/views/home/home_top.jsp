@@ -144,6 +144,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
         </c:choose>
       </ul>
     </div>
+
 	<!-- 5959 메인 로고 -->
 	<div class="mainlogo">
 	  <a href="/homedisplay.do"><img src="resources/images/home/mainlogo.png" width="200px"></a>

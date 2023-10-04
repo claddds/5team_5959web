@@ -336,7 +336,6 @@ footer{
 					<c:otherwise>
 						<c:forEach var="fd" items="${ad_flist}"  varStatus="vs">
 							<tr>
-							<c:if test="${fd.status == 0}">
 								<td>${fd.fd_idx}</td>
 								
 								<td>${fd.fd_type}</td>
@@ -344,7 +343,7 @@ footer{
 								<td>${fd.fd_age_group}</td>
 								<td><a id="atitle" href="/ad_food_onelist.do?fd_idx=${fd.fd_idx}&cPage=${paging.nowPage}">${fd.fd_name}</a></td>
 								<td>${fd.fd_company}</td>	
-								<td><img src="/resources/images/${fd.fd_fname }" width="100"></td>
+								<td><img src="/resources/images/food/${fd.fd_fname }" width="100"></td>
 								
 								 <td><fmt:formatNumber value="${fd.fd_price}" pattern="#,##0"/>원</td>
 								<td>${fd.admin_nickname}</td>
@@ -355,7 +354,7 @@ footer{
 								<c:if test="${fd.fd_open == 1}">
 								<td ${fd.fd_open} > 미게시</td>		
 								</c:if>
-							</c:if>
+							
 							</tr>
 						</c:forEach>
 					</c:otherwise>

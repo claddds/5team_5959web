@@ -7,14 +7,39 @@
 	<select id="dogmealfoodlist" resultType="oguselfvo">
 		select * 
 		from ogudoctor_disease
-		where sym_chk = "식사량"
+		where sym_chk = "식사량" AND STATUS = 1
 	</select>
 	
 	<!-- meal-식수량 리스트 뽑기 -->
 	<select id="dogmealwaterlist" resultType="oguselfvo">
 		select * 
 		from ogudoctor_disease
-		where sym_chk = "음수량"
+		where sym_chk = "음수량" AND STATUS = 1
 	</select>
 	
+	<!-- admin_질병 체크 리스트 전체 게시물 수 구하기 -->
+	<select id="count" resultType="int">
+		select count(*) from ogudoctor_disease
+	</select>
+	
+	<!-- admin_질병 체크 리스트 출력  -->
+	<select id="list" parameterType="Map" resultType="oguselfvo">
+		select * from ogudoctor_disease order by ogu_idx desc limit #{limit} offset #{offset}
+	</select>
+	
+	<!-- admin_질병 체크 리스트 삽입  -->
+	<insert id="insert" parameterType="oguselfvo">
+		insert into ogudoctor_disease(pet_kind,body_part,sym_chk,period_line,dis_info,dis_info_img,admin_nickname,ogu_date,status)
+		values(#{pet_kind},#{body_part},#{sym_chk},#{period_line},#{dis_info},#{dis_info_img},#{admin_nickname},sysdate(),1)	
+	</insert>
+	
+	<!-- admin_질병 체크 리스트 게시여부 -->
+	<update id="delete" parameterType="String">
+		update ogudoctor_disease
+		set status = case
+						WHEN status = 0 THEN 1
+                		WHEN status = 1 THEN 0
+             		END
+		where ogu_idx=#{ogu_idx}
+	</update>
 </mapper>

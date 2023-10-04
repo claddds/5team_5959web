@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ogudic">
+	
+	<!-- admin_질병 체크 리스트 전체 게시물 수 구하기 -->
+	<select id="count" resultType="int">
+		select count(*) from disease_dictionary
+	</select>
+	
+	<!-- admin_질병 체크 리스트 출력  -->
+	<select id="list" parameterType="Map" resultType="addicvo">
+		select * from disease_dictionary order by dictionary_idx desc limit #{limit} offset #{offset}
+	</select>
+	
+	<!-- admin_질병 체크 리스트 삽입  -->
+	<insert id="insert" parameterType="oguselfvo">
+		insert into ogudoctor_disease(pet_kind,body_part,sym_chk,period_line,dis_info,dis_info_img,admin_nickname,ogu_date,status)
+		values(#{pet_kind},#{body_part},#{sym_chk},#{period_line},#{dis_info},#{dis_info_img},#{admin_nickname},sysdate(),1)	
+	</insert>
+	
+	<!-- admin_질병 체크 리스트 게시여부 -->
+	<update id="delete" parameterType="String">
+		update ogudoctor_disease
+		set status = case
+						WHEN status = 0 THEN 1
+                		WHEN status = 1 THEN 0
+             		END
+		where ogu_idx=#{ogu_idx}
+	</update>
+</mapper>

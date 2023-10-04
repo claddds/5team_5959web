@@ -8,9 +8,7 @@
 <title> 교육관리 </title>
 <link rel="stylesheet" href="resources/css/summernote-lite.css">
 <style type="text/css">
-
-	
-	#title {
+#title {
 	margin : 10px auto;
    text-decoration: none;
    top: 50%;
@@ -26,10 +24,10 @@
    padding: 10px;
    border-radius:20px;
 }
-input{border-radius:20px;}
-table{ width:1200px;  text-align: center;  border-radius:20px; color:black; margin-top: 100px;}
 
-td{border: 3px solid orange; padding: 3px ; text-align:lrft;  border-radius:20px; font-size:20pt;font-weight: bold; }
+input[type=reset] { border:1px solid white; background-color: #FFA629; font:20px ;  color:white; border-radius:20px; font-weight: bold; }
+  input[type=button] { border:2px solid white; background-color: #FFA629; font:200px ; color:white; border-radius:20px;  height: 60px; width: 60px; font-weight: bold;}
+  input[type=file] { border:1px solid white; background-color: #FFA629; font:200px ; color:white;   }
 
 
 /* 목록이동 버튼*/
@@ -50,169 +48,60 @@ td{border: 3px solid orange; padding: 3px ; text-align:lrft;  border-radius:20px
 #link:hover { color: #FFA629;  font-weight: bold;} /* 마우스 올려져 있을때 coral색으로 */
 #link:active { color: khaki;  font-weight: bold;} /* 마우스로 클릭할떄 khaki색으로 변경 */
 
-input[type=reset] { border:2px solid #FFA629; background-color: white; font:20px ;  color:#FFA629; border-radius:20px;  height: 60px; width: 60px;  font-weight: bold;}
-  input[type=button] { border:2px solid #FFA629; background-color: white; font:20px ;  color:#FFA629; border-radius:20px;  height: 60px; width: 60px;  font-weight: bold;}
-  input[type=file] { border:1px solid white; background-color: #FFA629;font:200px ; color:white;   }
-#repWrapper{
-        width: 1130px;
-        height: 1200px;
-        margin: auto;
-        font-family: 'Noto Sans KR', sans-serif;
-    }
-#repWrapper > ul > li:first-child {
-        text-align: center;
-        font-size:14pt;
-        height:40px;
-        vertical-align:middle;
-        line-height:30px;
-}
-
-.sidebar {
-	width: 18%;
-	background-color: white;
-	font-size: 20pt;
-	float: left;
-	text-align: center;
-	padding: 20px;
-	box-sizing: border-box;
-	margin-top: 80px;
-	margin-right: 10px;
-}
-.sidebar-menu li {
-  margin-bottom: 10px;
-  list-style-type: none; 
-  text-align: center;
-}
-.sidebar-menu a {
-  text-decoration: none;
-  color: #333;
-}
-
-.menu li {
-	list-style-type: none;
-	margin-top: 0px;
-	/* padding:20px; */
-}
-
-.submenu {
-	height: 0; /*ul의 높이를 안보이게 처리*/
-	overflow: hidden;
-	margin: auto;
-}
-
-.menu>li:hover {
-	background-color: #FFA629;
-	text-align: center;
-	transition-duration: 0.5s;
-	/* margin:auto; */
-	/* padding: 5px; */
-}
-
-.menu>li:hover .submenu {
-	height: 150px; /*서브메뉴 li한개의 높이 50*5*/
-	transition-duration: 1s;
-}
-
-
 footer{
 		width:1920px;
 		display:flex;
 		margin:auto;
-		margin-top:20px;
+		margin-top:1000px;
 		margin-bottom: 20px;
 	}
+.button{
+    background-color: #FFA629;
+    color: #f8f8ff;
+    border: none;
+    width: 80px;
+    height: 40px;
+    font-size: 13pt;
+    font-family: 'Bagel Fat One', cursive;         
+	border-radius: 10px;
+}
+.button:hover {
+    cursor: pointer;
+}
 	.note-btn-group{width: auto;}
 	.note-toolbar{width: auto;}
 </style>
-
+<script type="text/javascript">
+	function edit_go(f) {
+		f.action="/edu_UpdateForm.do";
+		f.submit();
+	}
+	
+	function delete_go(f){
+ if (confirm("교육 정보를 삭제하시겠습니까?")) {
+		f.action="/edu_delete.do";
+		f.submit();
+	}
+	}
+</script>
 </head>
-<body>
-
+<body style="width: 100%;">
 	<!-- 헤더 구역 -->
-	<header>
+	<header style="width: 100%;">
 		<jsp:include page="/WEB-INF/views/home/home_top.jsp" />
 	</header>
-		
-<div id="repWrapper" style="width: 1920px;">
-<!-- 사이드바 구역 -->
- <div class="sidebar" >
-     <ul class="menu">
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">회원 관리</strong>
-				</div> <!-- 회원관리 -->
-				<ul class="submenu">
-					<li><a href="/admin_user.do">회원 목록</a></li>
-					<li><a href="/admin_del_user.do">탈퇴 회원 목록</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">게시글</strong>
-				</div> <!-- 게시글 -->
-				<ul class="submenu">
-					<li><a href="/ad_sup_list.do">공지사항</a></li>
-					<li><a href="/ad_faq_list.do">FAQ</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">질문</strong>
-				</div> <!-- 질문 -->
-				<ul class="submenu">
-					<li><a href="/admin_qan.do">1:1 문의</a></li>
-					<li><a href="/admin_report.do">신고</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">오구닥터</strong>
-				</div> <!-- 오구닥터 -->
-				<ul class="submenu">
-					<li><a href="">자가진단</a></li>
-					<li><a href="">질병 리스트</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">교육 관리</strong>
-				</div> <!-- 교육 관리 -->
-				<ul class="submenu">
-					<li><a href="/edu_Alist.do">필수 정보</a></li>
-					<li><a href="/edu_Blist.do">양육 정보</a></li>
-					<li><a href="/edu_Clist.do">훈련 정보</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">쇼핑 관리</strong>
-				</div> <!-- 쇼핑 관리 -->
-				<ul class="submenu">
-					<li><a href="/ad_food_list.do">상품 관리</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">커뮤니티</strong>
-				</div> <!-- 커뮤니티 -->
-				<ul class="submenu">
-					<li><a href="">일상 공유</a></li>
-					<li><a href="">추천 탭</a></li>
-					<li><a href="">질문</a></li>
-				</ul></li>
-				</ul>
-  </div>    
+<jsp:include page="/WEB-INF/views/adminhome/sidebar.jsp" />	
+<div id="repWrapper">
 <p id="title">-${evo.edu_title}- 삭제</p>
 		<hr style="border-width:2px 0 0 0; border-style:dotted; border-color:#FFA629; width:80%; margin-bottom: 30px;" >
 			<p align="center"><a id="link" href="/admin_edulist.do">교육정보 전체보기</a></p>
 		
 <div>
 		<form method="post">
-			<table>
+			<table align="center" style="margin-right: 1000px;">
 				<tbody>
 						<tr>
-						<td>교육정보의 "${evo.edu_title}" 글이 삭제 되었습니다.</td>
+						<td >교육정보의 "${evo.edu_title}" 글이 삭제 되었습니다.</td>
 						
 					</tr>
 				</tbody>

@@ -1,8 +1,12 @@
 package com.oguogu.ogudoctor.self.model.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Ogu_Self_VO {
 	private String ogu_idx, pet_kind, body_part, sym_chk, period_line, dis_info, dis_info_img,
 	admin_nickname, ogu_date, TIMESTAMP, status;
+	
+	private MultipartFile file;
 
 	public String getOgu_idx() {
 		return ogu_idx;
@@ -92,4 +96,13 @@ public class Ogu_Self_VO {
 		this.status = status;
 	}
 
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	
 }

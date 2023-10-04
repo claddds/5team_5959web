@@ -127,21 +127,17 @@ public class PocketController {
  			@RequestBody List<Pocketplace_VO> selectedFacilities){
  		ModelAndView mv = new ModelAndView("pocket/pocketplanmap");
  		
- 		List<String> facilityInfoList = new ArrayList<>();
+ 		
  		for (Pocketplace_VO facility : selectedFacilities) {
             System.out.println("Facility: " + facility.getFacilities());
             System.out.println("Road Address: " + facility.getRoadaddr());
             System.out.println("Longitude: " + facility.getLon());
             System.out.println("Latitude: " + facility.getLat());
-            String facilityInfo = "시설명: " + facility.getFacilities() +
-                    ", 도로 주소: " + facility.getRoadaddr() +
-                    ", 경도: " + facility.getLon() +
-                    ", 위도: " + facility.getLat();
-            facilityInfoList.add(facilityInfo);
+            
         }
  		
  	// Add the facility info list to the ModelAndView
- 	    mv.addObject("facilityInfoList", facilityInfoList);
+ 	    mv.addObject("selectedFacilities", selectedFacilities);
  		return mv;
  	}
  	

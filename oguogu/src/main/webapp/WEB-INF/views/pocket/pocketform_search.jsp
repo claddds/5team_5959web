@@ -165,22 +165,7 @@ $("#map_button").click(function(){
         data: jsonData,
         success: function(response) {
             console.log("Data sent successfully!");
-         // Assuming the response is an array of strings
-            var facilityInfoList = response;
-
-            // Display the facility information in the 'distance' element
-            var distanceElement = $("#distance");
-            distanceElement.empty();  // Clear any existing content
-
-            for (var i = 0; i < facilityInfoList.length; i++) {
-                distanceElement.append("<p>" + facilityInfoList[i] + "</p>");
-            }
-            
-         // Assuming response contains the URL to redirect
-            var redirectUrl = response.redirectUrl;
-
-            // Redirect to the specified URL
-            window.location.href = "pocketplanmap";
+         
         },
         error: function(error) {
             console.error("Error sending data: " + error);

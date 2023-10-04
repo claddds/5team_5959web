@@ -138,7 +138,7 @@ function list_go() {
       <hr>
       <li class="faq"><a href="/faq_list.do">자주 묻는 질문</a></li>
       <hr>
-      <li class="qna" ><a href="/qna_list.do">1:1 문의</a></li>
+      <li class="qna" ><a href="/userqna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report"><a href="/rep_list.do">신고</a></li>
      </ul>

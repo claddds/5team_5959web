@@ -178,7 +178,7 @@ tfoot{
                     <c:otherwise>
                         <c:forEach var="s" items="${sup_list}"  varStatus="vs">
                             <tr>
-                            <c:if test="${s.status == 0}">
+                            <c:if test="${s.status == 0 && s.not_ing == 0}">
                                 <td>${s.not_idx}</td>
                                 <td><a href="/sup_onelist.do?not_idx=${s.not_idx}&cPage=${paging.nowPage}">${s.not_title}</a></td>
                                 <td>${s.admin_nickname }</td>

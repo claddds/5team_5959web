@@ -11,7 +11,7 @@
 	
 	<!-- 비밀번호 변경 -->
 	<update id="getPwUpdate" parameterType="map">
-		update user set pw = #{pw} where user_id = #{user_id}
+		update user set pw = #{pw} where user_id = #{user_id} and status = 0
 	</update>
 	
 	<!-- 회원 탈퇴 -->
@@ -23,6 +23,7 @@
 	<select id="getMyEduFavHeart" parameterType="String" resultType="int">
 		select count(*) from edu_heart_table where nickname = #{nickname}
 	</select>
+	
 	<!-- 좋아요 목록 불러오기 -->
 	<select id="getMyFavEdu" parameterType="String" resultType="evo">
 		SELECT e.*
@@ -33,7 +34,7 @@
 	
 	<!-- 작성글 있는지 확인 -->
 	<select id="getmyWriteFind" parameterType="String" resultType="int">
-		select count(*) from lounge where user_id = #{user_id}
+		select count(*) from lounge where user_id = #{user_id} and status = 0
 	</select>
 
 	<!-- 작성글 불러오기 -->

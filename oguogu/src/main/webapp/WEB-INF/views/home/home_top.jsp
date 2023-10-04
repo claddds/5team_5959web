@@ -121,7 +121,6 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 	<!-- 최상단 NOTICE,LOGIN,JOIN US -->
 	<div>
 	  <ul class="topmenu">   
-	    <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    <c:choose>
 	  		<c:when test="${loginChk eq 'ok'}">
 	  			<c:if test="${sessionScope.type == 0}">
@@ -132,7 +131,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 		<c:choose>
 	    	<c:when test="${loginChk eq 'ok'  }">
 	    	<c:if test="${sessionScope.type != 0}">
-	    	<li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
+	    	<li><a href="/sup_list.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    		<li><a href="/mypagedisplay.do" style="color:#FFA629;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->    
 			     </c:if>
 			     <li><a href="/user_logout.do" style="color:#FFA629;" class="header-ALink" id="logout_go">LOGOUT</a></li>

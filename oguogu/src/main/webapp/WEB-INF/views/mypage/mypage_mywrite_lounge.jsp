@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>마이페이지 - 작성글</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
@@ -113,12 +114,14 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 				</thead>
 				<tbody class="table-group-divider">
 				<c:forEach var="k" items="${loungelist}" varStatus="vs">
-					<tr>
-						<td>${loungelist.size() - vs.count + 1}</td>
-						<td>${k.lo_type}</td>
-						<td><a href="/lounge_onelist.do?lo_idx=${k.lo_idx}" style="color:black;text-decoration: none;">${k.lo_title}</a> [${k.comment_cnt}]</td>
-						<td>${k.lo_date.substring(0,10)}</td>
-					</tr>
+					<c:if test="${k.status == 0}">
+						<tr>
+							<td>${loungelist.size() - vs.count + 1}</td>
+							<td>${k.lo_type}</td>
+							<td><a href="/lounge_onelist.do?lo_idx=${k.lo_idx}" style="color:black;text-decoration: none;">${k.lo_title}</a> [${k.comment_cnt}]</td>
+							<td>${k.lo_date.substring(0,10)}</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 				</tbody>
 				<tfoot>

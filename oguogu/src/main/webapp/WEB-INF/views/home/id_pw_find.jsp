@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>오구오구 아이디/비밀번호 찾기</title>
 <style type="text/css">
 	
 	.main{

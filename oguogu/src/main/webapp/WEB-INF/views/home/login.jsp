@@ -10,7 +10,7 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 
-<title>Insert title here</title>
+<title>오구오구 로그인</title>
 <style type="text/css">
 
 

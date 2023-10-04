@@ -7,63 +7,63 @@
 	<!-- 강아지 -->
 	<select id="getDogFoodlist" resultType="fvo">
 		select * from food
-		where fd_pet_type = '강아지' and fd_age_group = '전연령' ORDER BY fd_date desc
+		where fd_pet_type = '강아지' and fd_age_group = '전연령' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getDogFoodPuppy" resultType="fvo">
 		select * from food
-		where fd_pet_type = '강아지' and fd_age_group = '퍼피' ORDER BY fd_date desc
+		where fd_pet_type = '강아지' and fd_age_group = '퍼피' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getDogFoodAdult" resultType="fvo">
 		select * from food
-		where fd_pet_type = '강아지' and fd_age_group = '어덜트' ORDER BY fd_date desc
+		where fd_pet_type = '강아지' and fd_age_group = '어덜트' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getDogFoodSenior" resultType="fvo">
 		select * from food
-		where fd_pet_type = '강아지' and fd_age_group = '시니어' ORDER BY fd_date desc
+		where fd_pet_type = '강아지' and fd_age_group = '시니어' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getDogDesert" resultType="fvo">
 		select * from food
-		where fd_pet_type = '강아지' and fd_type = '간식' ORDER BY fd_date desc
+		where fd_pet_type = '강아지' and fd_type = '간식' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getDogSupplies" resultType="fvo">
 		select * from food
-		where fd_pet_type = '강아지' and fd_type = '용품' ORDER BY fd_date desc
+		where fd_pet_type = '강아지' and fd_type = '용품' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<!-- 고양이 -->
 	<select id="getCatFoodlist" resultType="fvo">
 		select * from food
-		where fd_pet_type = '고양이' and fd_age_group = '전연령' ORDER BY fd_date desc
+		where fd_pet_type = '고양이' and fd_age_group = '전연령' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getCatFoodKitten" resultType="fvo">
 		select * from food
-		where fd_pet_type = '고양이' and fd_age_group = '키튼' ORDER BY fd_date desc
+		where fd_pet_type = '고양이' and fd_age_group = '키튼' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getCatFoodAdult" resultType="fvo">
 		select * from food
-		where fd_pet_type = '고양이' and fd_age_group = '어덜트' ORDER BY fd_date desc
+		where fd_pet_type = '고양이' and fd_age_group = '어덜트' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getCatFoodSenior" resultType="fvo">
 		select * from food
-		where fd_pet_type = '고양이' and fd_age_group = '시니어' ORDER BY fd_date desc
+		where fd_pet_type = '고양이' and fd_age_group = '시니어' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getCatDesert" resultType="fvo">
 		select * from food
-		where fd_pet_type = '고양이' and fd_type = '간식' ORDER BY fd_date desc
+		where fd_pet_type = '고양이' and fd_type = '간식' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 	<select id="getCatSupplies" resultType="fvo">
 		select * from food
-		where fd_pet_type = '고양이' and fd_type = '용품' ORDER BY fd_date desc
+		where fd_pet_type = '고양이' and fd_type = '용품' and status = 0 ORDER BY fd_date desc
 	</select>
 	
 </mapper>

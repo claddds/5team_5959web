@@ -169,7 +169,7 @@ tfoot{
       <hr>
       <li class="faq" style="font-weight: bold;"><a href="/faq_list.do">자주 묻는 질문</a></li>
       <hr>
-      <li class="qna"><a href="/qna_list.do">1:1 문의</a></li>
+      <li class="qna"><a href="/userqna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report"><a href="/rep_list.do">신고</a></li>
      </ul>
@@ -199,10 +199,13 @@ tfoot{
 			<c:forEach var="q" items="${faq_list}" varStatus="vs">
 				<tr>
 				<!-- 제목을 누르면 해당 게시글의 상세정보 페이지로 이동 -->
-				<td>${q.faq_idx}</td>
-				<td><a href="/faq_onelist.do?faq_idx=${q.faq_idx}">${q.faq_title}</a></td>
-				<td>${q.admin_nickname }</td>
-				<td>${q.faq_date.substring(0,10)}</td>
+				<c:if test="${q.status == 0 && q.faq_ing == 0}">
+					<td>${q.faq_idx}</td>
+					<td><a href="/faq_onelist.do?faq_idx=${q.faq_idx}">${q.faq_title}</a></td>
+					<td>${q.admin_nickname }</td>
+					<td>${q.faq_date.substring(0,10)}</td>
+				
+				</c:if>
 				</tr>
 			</c:forEach>
 		</c:otherwise>

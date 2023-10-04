@@ -329,6 +329,7 @@ public class Lounge_Controller {
 			return "redirect:/lounge_list.do";
 		}
 	}
+	
 	@PostMapping("/com_insert.do")
 	public ModelAndView commInsert(Comment_VO cvo, @ModelAttribute("cPage") String cPage,
 			@ModelAttribute("lo_idx") String lo_idx) {

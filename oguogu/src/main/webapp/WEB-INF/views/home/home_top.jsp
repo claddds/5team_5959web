@@ -121,7 +121,6 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 	<!-- 최상단 NOTICE,LOGIN,JOIN US -->
 	<div>
 	  <ul class="topmenu">   
-	    <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    <c:choose>
 	  		<c:when test="${loginChk eq 'ok'}">
 	  			<c:if test="${sessionScope.type == 0}">
@@ -132,7 +131,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 		<c:choose>
 	    	<c:when test="${loginChk eq 'ok'  }">
 	    	<c:if test="${sessionScope.type != 0}">
-	    	<li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
+	    	<li><a href="/sup_list.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
 	    		<li><a href="/mypagedisplay.do" style="color:#FFA629;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->    
 			     </c:if>
 			     <li><a href="/user_logout.do" style="color:#FFA629;" class="header-ALink" id="logout_go">LOGOUT</a></li>
@@ -144,6 +143,33 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 	    </c:choose>
 	  </ul>
 	</div>
+<%-- =======
+      <ul class="topmenu">
+        <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
+        <c:choose>
+              <c:when test="${loginChk eq 'ok'}">
+                  <c:if test="${sessionScope.type == 0}">
+                    <li><a href="/admin_user.do" style="color:#FFA629; " class="header-ALink">관리자페이지 </a></li>
+                </c:if>
+            </c:when>
+        </c:choose>
+        <c:choose>
+            <c:when test="${loginChk eq 'ok'  }">
+            <c:if test="${sessionScope.type != 0}">
+            <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
+                <li><a href="/mypagedisplay.do" style="color:#FFA629;" class="header-ALink" id="mypage_go">MYPAGE</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+                 </c:if>
+                 <li><a href="/user_logout.do" style="color:#FFA629;" class="header-ALink" id="logout_go">LOGOUT</a></li>
+            </c:when>
+            <c:otherwise>
+                 <li><a href="/joindisplay.do" style="color:#FFA629;" class="header-ALink">JOIN US</a></li>
+                    <li><a href="/logindisplay.do" style="color:#FFA629;" class="header-ALink" id="login_go">LOGIN</a></li><!-- 로그인 했을 때 LOGIN => LOGOUT 변경 -->
+            </c:otherwise>
+        </c:choose>
+      </ul>
+    </div>
+
+>>>>>>> upstream/develop --%>
 	<!-- 5959 메인 로고 -->
 	<div class="mainlogo">
 	  <a href="/homedisplay.do"><img src="resources/images/home/mainlogo.png" width="200px"></a>
@@ -185,7 +211,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
                         <ul class="support sub">
                         <li><a href="/sup_list.do" class="header-ALink">공지사항</a></li>
                         <li><a href="/faq_list.do" class="header-ALink">자주묻는질문</a></li>
-                        <li><a href="/qna_list.do" class="header-ALink">1:1문의</a></li>
+                        <li><a href="/userqna_list.do" class="header-ALink">1:1문의</a></li>
                         <li><a href="/rep_list.do" class="header-ALink">신고</a></li>
                     </ul>
                 </li>

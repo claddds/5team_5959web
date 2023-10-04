@@ -157,7 +157,7 @@ footer{
 		<div>
 			<ul class="cardList">
 				<c:forEach var="k" items="${Elist}" >
-					<c:if test="${k.status == 0}">
+					<c:if test="${k.status == 0 && k.edu_open == 0}">
 						<li>
 							<div class="edu-card">
 								<div id="essential">

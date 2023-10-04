@@ -50,7 +50,7 @@ public class Qna_Controller {
 	private Paging paging;
 	
 	// qna는 유저의 1:1 문의 게시판
-	@RequestMapping("/qna_list.do")
+	@RequestMapping("/userqna_list.do")
 	public ModelAndView qnaList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("qna/qna_list");
 		// 페이징
@@ -101,7 +101,7 @@ public class Qna_Controller {
 	
 	@PostMapping("/qna_insert.do")
 	public ModelAndView qnaInsert(Qna_VO qvo, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("redirect:/qna_list.do");
+		ModelAndView mv = new ModelAndView("redirect:/userqna_list.do");
 		String path = request.getSession().getServletContext().getRealPath("/resources/images");
 		try {
 			MultipartFile file = qvo.getFile();
@@ -158,7 +158,7 @@ public class Qna_Controller {
 			
 			if(!db_id.equals(user_id) && !userType.equals("0")){
 				rttr.addFlashAttribute("qna_onelist", "no");
-	         	return "redirect:/qna_list.do"; 
+	         	return "redirect:/userqna_list.do"; 
 	         }else {
 	        	 model.addAttribute("cPage", cPage);
 	         	return "qna/qna_onelist";
@@ -226,7 +226,7 @@ public class Qna_Controller {
 				int result = qna_Service.getDelete(one_idx);
 				rttr.addFlashAttribute("cPage", cPage);
 				rttr.addAttribute("del_alert","ok");
-				return "redirect:/qna_list.do";
+				return "redirect:/userqna_list.do";
 			}
 		}
 		

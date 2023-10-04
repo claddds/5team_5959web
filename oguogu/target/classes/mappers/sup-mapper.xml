@@ -14,8 +14,8 @@
 	
 	<!-- 게시글 삽입 -->
 	<insert id="insert" parameterType="sup_vo">
-		insert into Notice(admin_nickname.not_title,not_content,not_fname,admin_nickname,not_date,not_ing,status)
-		values(#{admin_nickname},#{not_title},#{not_content},#{not_fname},#{admin_nickname},sysdate(),#{not_ing},0)	
+		insert into Notice(admin_nickname,not_title,not_content,not_fname,not_date,not_ing,status)
+		values(#{admin_nickname},#{not_title},#{not_content},#{not_fname},sysdate(),#{not_ing},0)	
 	</insert>
 	
 	<!-- 상세보기 -->

@@ -175,7 +175,7 @@ table tfoot ol.paging li a:hover {
       <hr>
       <li class="faq"><a href="/faq_list.do">자주 묻는 질문</a></li>
       <hr>
-      <li class="qna" ><a href="/qna_list.do">1:1 문의</a></li>
+      <li class="qna" ><a href="/userqna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report" style="font-weight: bold;"><a href="/rep_list.do">신고</a></li>
      </ul>
@@ -213,8 +213,11 @@ table tfoot ol.paging li a:hover {
 			<td>${r.rep_date.substring(0,10)}</td>
 			<td>
 			<c:choose>
-				<c:when test="${r.rep_ing == 0}">
+				<c:when test="${r.rep_ing == 1}">
 					처리 대기중
+				</c:when>
+				<c:when test="${r.rep_ing == 2}">
+					처리중
 				</c:when>
 				<c:otherwise>
 					처리 완료

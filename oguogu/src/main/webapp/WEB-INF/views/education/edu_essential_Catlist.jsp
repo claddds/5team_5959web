@@ -255,7 +255,7 @@ ol.paging li a:hover {
 		<div class="div_card">
 			<ul class="cardList">
 			<c:forEach var = "k" items="${CatElist}">
-				<c:if test="${k.status == 0}">
+				<c:if test="${k.status == 0 && k.edu_open == 0}">
 					<li>
 						<a href = "/essentialOneListDog.do?edu_idx=${k.edu_idx}&page=${paging.nowPage}" id="onelistlink">
 							<div class="onecard">

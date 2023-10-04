@@ -169,7 +169,7 @@ tfoot{
       <hr>
       <li class="faq"><a href="/faq_list.do">자주 묻는 질문</a></li>
       <hr>
-      <li class="qna" style="font-weight: bold;"><a href="/qna_list.do">1:1 문의</a></li>
+      <li class="qna" style="font-weight: bold;"><a href="/userqna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report"><a href="/rep_list.do">신고</a></li>
      </ul>
@@ -221,7 +221,7 @@ tfoot{
 					</c:when>
 					<c:otherwise>
 						<li><a
-							href="/qna_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+							href="/userqna_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
 					</c:otherwise>
 				</c:choose>
 				<!-- 페이지번호들 -->
@@ -232,7 +232,7 @@ tfoot{
 						<li class="now">${k}</li>
 					</c:if>
 					<c:if test="${ k != paging.nowPage}">
-						<li><a href="/qna_list.do?cPage=${k}">${k}</a></li>
+						<li><a href="/userqna_list.do?cPage=${k}">${k}</a></li>
 					</c:if>
 				</c:forEach>
 
@@ -243,7 +243,7 @@ tfoot{
 					</c:when>
 					<c:otherwise>
 						<li><a
-							href="/qna_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+							href="/userqna_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ol>

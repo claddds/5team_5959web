@@ -23,26 +23,13 @@
    padding: 10px;
    border-radius:20px;
 }
-table{ width:1200px;  text-align: center;  border-radius:20px; color:black; }
-
-td{border: 3px solid orange; padding: 3px ; text-align:lrft;  border-radius:20px;}
+table{ margin:auto; width:1400px;  text-align: center;  border-radius:20px; color:black; }
+table > td {border: 3px solid orange; padding: 3px ; text-align:lrft;  border-radius:20px;}
 	
 input[type=reset] { border:1px solid white; background-color: #FFA629; font:20px ;  color:white; border-radius:20px; font-weight: bold; }
   input[type=button] { border:2px solid white; background-color: #FFA629; font:200px ; color:white; border-radius:20px;  height: 60px; width: 60px; font-weight: bold;}
   input[type=file] { border:1px solid white; background-color: #FFA629; font:200px ; color:white;   }
-#repWrapper{
-        width: 1130px;
-        height: 1200px;
-        margin: auto;
-        font-family: 'Noto Sans KR', sans-serif;
-    }
-#repWrapper > ul > li:first-child {
-        text-align: center;
-        font-size:14pt;
-        height:40px;
-        vertical-align:middle;
-        line-height:30px;
-}
+
 
 /* 목록이동 버튼*/
 #link{
@@ -62,61 +49,14 @@ input[type=reset] { border:1px solid white; background-color: #FFA629; font:20px
 #link:hover { color: #FFA629;  font-weight: bold;} /* 마우스 올려져 있을때 coral색으로 */
 #link:active { color: khaki;  font-weight: bold;} /* 마우스로 클릭할떄 khaki색으로 변경 */
 
-.sidebar {
-	width: 18%;
-	background-color: white;
-	font-size: 20pt;
-	float: left;
-	text-align: center;
-	padding: 20px;
-	box-sizing: border-box;
-	margin-top: 80px;
-	margin-right: 10px;
-}
-.sidebar-menu li {
-  margin-bottom: 10px;
-  list-style-type: none; 
-  text-align: center;
-}
-.sidebar-menu a {
-  text-decoration: none;
-  color: #333;
-}
-
-.menu li {
-	list-style-type: none;
-	margin-top: 0px;
-	/* padding:20px; */
-}
-
-.submenu {
-	height: 0; /*ul의 높이를 안보이게 처리*/
-	overflow: hidden;
-	margin: auto;
-}
-
-.menu>li:hover {
-	background-color: #FFA629;
-	text-align: center;
-	transition-duration: 0.5s;
-	/* margin:auto; */
-	/* padding: 5px; */
-}
-
-.menu>li:hover .submenu {
-	height: 150px; /*서브메뉴 li한개의 높이 50*5*/
-	transition-duration: 1s;
-}
-
-
 footer{
 		width:1920px;
 		display:flex;
 		margin:auto;
-		margin-top:20px;
+		margin-top:1000px;
 		margin-bottom: 20px;
 	}
-	.button{
+.button{
     background-color: #FFA629;
     color: #f8f8ff;
     border: none;
@@ -129,7 +69,6 @@ footer{
 .button:hover {
     cursor: pointer;
 }
-
 	.note-btn-group{width: auto;}
 	.note-toolbar{width: auto;}
 </style>
@@ -146,112 +85,42 @@ footer{
 	}
 </script>
 </head>
-<body>
-<!-- 헤더 구역 -->
-	<header>
+<body style="width: 100%;">
+	<!-- 헤더 구역 -->
+	<header style="width: 100%;">
 		<jsp:include page="/WEB-INF/views/home/home_top.jsp" />
 	</header>
-		
-<div id="repWrapper" style="width: 1920px;">
-	
-			
-<!-- 사이드바 구역 -->
- <div class="sidebar" >
-     <ul class="menu">
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">회원 관리</strong>
-				</div> <!-- 회원관리 -->
-				<ul class="submenu">
-					<li><a href="/admin_user.do">회원 목록</a></li>
-					<li><a href="/admin_del_user.do">탈퇴 회원 목록</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">게시글</strong>
-				</div> <!-- 게시글 -->
-				<ul class="submenu">
-					<li><a href="/ad_food_onelist.do">공지사항</a></li>
-					<li><a href="/ad_faq_list.do">FAQ</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">질문</strong>
-				</div> <!-- 질문 -->
-				<ul class="submenu">
-					<li><a href="/admin_qan.do">1:1 문의</a></li>
-					<li><a href="/admin_report.do">신고</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">오구닥터</strong>
-				</div> <!-- 오구닥터 -->
-				<ul class="submenu">
-					<li><a href="">자가진단</a></li>
-					<li><a href="">질병 리스트</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">교육 관리</strong>
-				</div> <!-- 교육 관리 -->
-				<ul class="submenu">
-					<li><a href="/edu_Alist.do">필수 정보</a></li>
-					<li><a href="/edu_Blist.do">양육 정보</a></li>
-					<li><a href="/edu_Clist.do">훈련 정보</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">쇼핑 관리</strong>
-				</div> <!-- 쇼핑 관리 -->
-				<ul class="submenu">
-					<li><a href="/ad_food_list.do">상품 관리</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">커뮤니티</strong>
-				</div> <!-- 커뮤니티 -->
-				<ul class="submenu">
-					<li><a href="">일상 공유</a></li>
-					<li><a href="">추천 탭</a></li>
-					<li><a href="">질문</a></li>
-				</ul></li>
-				</ul>
-  </div>    
+<jsp:include page="/WEB-INF/views/adminhome/sidebar.jsp" />	
+<div id="repWrapper">
+
 	<div>
 	<p id="title">${faq_vo.faq_title }</p>
 	<hr style="border-width:2px 0 0 0; border-style:dotted; border-color:#FFA629; width:80%; margin-bottom: 30px;" >
 		<p align="center"><a id="link" href="/ad_faq_list.do">FAQ 전체보기</a></p>
 		 <!-- 파일 첨부하려면  -->
 			<form method="post" enctype="multipart/form-data">
-			<table>
+			<table style="margin: auto;">
 			<tr align="center">
-					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">제 목</td>
-					<td>${faq_vo.faq_title }</td>
+					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border: 3px solid white; color: white;font-weight: bold;">제 목</td>
+					<td align="left" style="border-radius:20px; border: 3px solid orange; ">${faq_vo.faq_title }</td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">작성자</td>
-					<td>${faq_vo.admin_nickname }</td>
+					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border: 3px solid white; color: white;font-weight: bold;">작성자</td>
+					<td align="left" style="border-radius:20px; border: 3px solid orange; ">${faq_vo.admin_nickname }</td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">내용</td>
-					<td>${faq_vo.faq_content }</td>
+					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border: 3px solid white; color: white;font-weight: bold;">내용</td>
+					<td align="left" style="border-radius:20px; border: 3px solid orange; ">${faq_vo.faq_content }</td>
 				</tr>			
 
 				<tr align="center">
-					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border-radius:20px; color: white;font-weight: bold;">첨부파일</td>
+					<td bgcolor="FFA629" width="150px" style="background-color: #FFA629; border: 3px solid white; color: white;font-weight: bold;">첨부파일</td>
 					<c:choose>
 						<c:when test="${empty faq_vo.faq_fname }">
-							<td><b>첨부 파일 없음</b></td>
+							<td align="left" style="border-radius:20px; border: 3px solid orange; "><b>첨부 파일 없음</b></td>
 						</c:when>
 						<c:otherwise>
-							<td>
+							<td align="left" style="border-radius:20px; border: 3px solid orange; ">
 								<a href="/guestbook2_down.do?f_name=${faq_vo.faq_fname}">
 									<img src="resources/images/${faq_vo.faq_fname}" style="width: 150px;">
 								</a> 	
@@ -261,7 +130,7 @@ footer{
 				</tr>
 				<tfoot>
 					<tr align="center">
-						<td colspan="2">
+						<td colspan="2" style="margin: auto; border-radius:20px; border: 3px solid orange; ">
 							<input type="hidden" name="faq_idx" value="${faq_vo.faq_idx}">
 							<input type="button" class="button" value="수정" onclick="edit_go(this.form)" />
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

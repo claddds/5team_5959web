@@ -234,7 +234,7 @@ console.log("현재 페이지: " + ${paging.nowPage});
                   </c:when>
                   <c:otherwise>
                      <!-- a링크처리 -->
-                     <li><a href="/edu_search.do?cPage=${paging.beginBlock-paging.pagePerBlock}">이전으로</a></li>
+                     <li><a href="/edu_search.do?cPage=${paging.beginBlock-paging.pagePerBlock}"><<</a></li>
                   </c:otherwise>
             </c:choose>
              <!-- 블록안에 들어간 페이지번호들 -->
@@ -266,7 +266,7 @@ console.log("현재 페이지: " + ${paging.nowPage});
                   </c:when>
                   <c:otherwise>
                      <!-- a링크처리 -->
-                     <li><a href="/edu_search.do?cPage=${paging.beginBlock+paging.pagePerBlock}">다음으로</a></li>
+                     <li><a href="/edu_search.do?cPage=${paging.beginBlock+paging.pagePerBlock}">>></a></li>
                   </c:otherwise>
             </c:choose> 
          </ol>

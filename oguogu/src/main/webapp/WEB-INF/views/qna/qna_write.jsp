@@ -96,10 +96,9 @@
 	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.3.min.js"></script>
 
 <script type="text/javascript">
-	function list_go(f) {
-		f.action="/qna_list.do";
-		f.submit();
-	}
+function list_go(){
+	location.href="userqna_list.do";
+}
 	function save_go(f) {
 		if(f.one_title.value.trim().length <=0){
 			alert("제목을 입력하세요");
@@ -144,7 +143,7 @@
       <hr>
       <li class="faq"><a href="/faq_list.do">자주 묻는 질문</a></li>
       <hr>
-      <li class="qna" style="font-weight: bold;"><a href="/qna_list.do">1:1 문의</a></li>
+      <li class="qna" style="font-weight: bold;"><a href="/userqna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report"><a href="/rep_list.do">신고</a></li>
      </ul>
@@ -187,7 +186,7 @@
 					<td class="button" colspan="2" align="center" style="padding: 8px;">
 						<input type="submit" value="저장" style="font-size: 20px;" onclick="save_go(this.form)">
 						<input type="button" value="목록" style="font-size: 20px;"
-						onclick="list_go(this.form)">
+						onclick="list_go()">
 					</td>						
 				</tr>
 			</table>

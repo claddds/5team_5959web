@@ -8,8 +8,6 @@
 <title> 오구오구 FAQ </title>
 <link rel="stylesheet" href="resources/css/summernote-lite.css">
 <style type="text/css">
-
-	
 	#title {
 	margin : 10px auto;
    text-decoration: none;
@@ -26,12 +24,14 @@
    padding: 10px;
    border-radius:20px;
 }
-input{border-radius:20px;}
-table{ width:1200px;  text-align: center;  border-radius:20px; color:black; }
-
-td{border: 3px solid orange; padding: 3px ; text-align:lrft;  border-radius:20px;}
-
-input[type="radio"], span {
+table{ margin:auto; width:1200px;  text-align: center;  border-radius:20px; color:black; }
+table > td {border: 3px solid orange; padding: 3px ; text-align:lrft;  border-radius:20px;}
+	
+input[type=reset] { border:1px solid white; background-color: #FFA629;font:20px ;  color:white; border-radius:20px; height: 60px; width: 60px;    font-weight: bold;}
+input[type=button] { border:1px solid white; background-color: #FFA629;font:200px ; color:white; border-radius:20px;  height: 60px; width: 60px;   font-weight: bold;}
+input[type=file] { border:1px solid white; background-color: #FFA629;font:200px ; color:white;   }
+  
+ input[type="radio"], span {
   vertical-align: middle;
 }
 
@@ -88,6 +88,8 @@ fieldset {
 *::after {
   box-sizing: border-box;
 }
+
+
 /* 목록이동 버튼*/
 #link{
 	margin-right:300px;	
@@ -106,78 +108,14 @@ fieldset {
 #link:hover { color: #FFA629;  font-weight: bold;} /* 마우스 올려져 있을때 coral색으로 */
 #link:active { color: khaki;  font-weight: bold;} /* 마우스로 클릭할떄 khaki색으로 변경 */
 
-input[type=reset] { border:2px solid #FFA629; background-color: white; font:20px ;  color:#FFA629; border-radius:20px;  height: 60px; width: 60px;  font-weight: bold;}
-  input[type=button] { border:2px solid #FFA629; background-color: white; font:20px ;  color:#FFA629; border-radius:20px;  height: 60px; width: 60px;  font-weight: bold;}
-  input[type=file] { border:1px solid white; background-color: #FFA629;font:200px ; color:white;   }
-#repWrapper{
-        width: 1130px;
-        height: 1200px;
-        margin: auto;
-        font-family: 'Noto Sans KR', sans-serif;
-    }
-#repWrapper > ul > li:first-child {
-        text-align: center;
-        font-size:14pt;
-        height:40px;
-        vertical-align:middle;
-        line-height:30px;
-}
-
-.sidebar {
-	width: 18%;
-	background-color: white;
-	font-size: 20pt;
-	float: left;
-	text-align: center;
-	padding: 20px;
-	box-sizing: border-box;
-	margin-top: 80px;
-	margin-right: 10px;
-}
-.sidebar-menu li {
-  margin-bottom: 10px;
-  list-style-type: none; 
-  text-align: center;
-}
-.sidebar-menu a {
-  text-decoration: none;
-  color: #333;
-}
-
-.menu li {
-	list-style-type: none;
-	margin-top: 0px;
-	/* padding:20px; */
-}
-
-.submenu {
-	height: 0; /*ul의 높이를 안보이게 처리*/
-	overflow: hidden;
-	margin: auto;
-}
-
-.menu>li:hover {
-	background-color: #FFA629;
-	text-align: center;
-	transition-duration: 0.5s;
-	/* margin:auto; */
-	/* padding: 5px; */
-}
-
-.menu>li:hover .submenu {
-	height: 150px; /*서브메뉴 li한개의 높이 50*5*/
-	transition-duration: 1s;
-}
-
-
 footer{
 		width:1920px;
 		display:flex;
 		margin:auto;
-		margin-top:20px;
+		margin-top:1000px;
 		margin-bottom: 20px;
 	}
-		.button{
+.button{
     background-color: #FFA629;
     color: #f8f8ff;
     border: none;
@@ -193,6 +131,7 @@ footer{
 	.note-btn-group{width: auto;}
 	.note-toolbar{width: auto;}
 </style>
+
 
 <script type="text/javascript">
 function update_ok(f) {
@@ -218,84 +157,13 @@ function update_ok(f) {
 	}
 </script>
 </head>
-<body>
-
+<body style="width: 100%;">
 	<!-- 헤더 구역 -->
-	<header>
+<header style="width: 100%;">
 		<jsp:include page="/WEB-INF/views/home/home_top.jsp" />
 	</header>
-		
-<div id="repWrapper" style="width: 1920px;">
-	
-<!-- 사이드바 구역 -->
- <div class="sidebar" >
-     <ul class="menu">
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">회원 관리</strong>
-				</div> <!-- 회원관리 -->
-				<ul class="submenu">
-					<li><a href="/admin_user.do">회원 목록</a></li>
-					<li><a href="/admin_del_user.do">탈퇴 회원 목록</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">게시글</strong>
-				</div> <!-- 게시글 -->
-				<ul class="submenu">
-					<li><a href="/ad_food_onelist.do">공지사항</a></li>
-					<li><a href="/ad_faq_list.do">FAQ</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">질문</strong>
-				</div> <!-- 질문 -->
-				<ul class="submenu">
-					<li><a href="/admin_qan.do">1:1 문의</a></li>
-					<li><a href="/admin_report.do">신고</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">오구닥터</strong>
-				</div> <!-- 오구닥터 -->
-				<ul class="submenu">
-					<li><a href="">자가진단</a></li>
-					<li><a href="">질병 리스트</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">교육 관리</strong>
-				</div> <!-- 교육 관리 -->
-				<ul class="submenu">
-					<li><a href="/edu_Alist.do">필수 정보</a></li>
-					<li><a href="/edu_Blist.do">양육 정보</a></li>
-					<li><a href="/edu_Clist.do">훈련 정보</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">쇼핑 관리</strong>
-				</div> <!-- 쇼핑 관리 -->
-				<ul class="submenu">
-					<li><a href="/ad_food_list.do">상품 관리</a></li>
-				</ul>
-			<li><a href="" id="novel"
-				class="list-group-item list-group-item-action d-flex align-items-center"></a>
-				<div class="d-flex w-100 justify-content-center">
-					<strong class="mb-1">커뮤니티</strong>
-				</div> <!-- 커뮤니티 -->
-				<ul class="submenu">
-					<li><a href="">일상 공유</a></li>
-					<li><a href="">추천 탭</a></li>
-					<li><a href="">질문</a></li>
-				</ul></li>
-				</ul>
-  </div>    
+<jsp:include page="/WEB-INF/views/adminhome/sidebar.jsp" />	
+<div id="repWrapper" style="margin-right: 200px;">
 <p id="title">${faq_vo.faq_title} 수정</p>
 <hr style="border-width:2px 0 0 0; border-style:dotted; border-color:#FFA629; width:80%; margin-bottom: 30px;" >
 		 
@@ -304,40 +172,42 @@ function update_ok(f) {
 			<form method="post" enctype="multipart/form-data">
 			<table>
 			<tr align="center"  style= "color: white; font-weight: bold;">
-					<td bgcolor="FFA629" style= "color: white; font-weight: bold;">등록자</td>
-					<td><input type="text" name="admin_nickname" size ="80" value="${nickname}" style="border-radius:20px;" readonly/></td>
+					<td  style="background-color:  #FFA629;color: white;font-weight: bold;">등록자</td>
+					<td style="border-radius:20px; border: 3px solid orange; "><input type="text" name="admin_nickname" size ="80" value="${nickname}" style="border-radius:20px;" readonly/></td>
 				</tr>
 				<tr align="center" >
-					<td bgcolor="FFA629"style= "color: white; font-weight: bold;" >제 목</td>
-					<td><input type="text" name="faq_title" size ="80" value="${faq_vo.faq_title}" style="border-radius:20px;"/></td>
+					<td  style="background-color:  #FFA629;color: white;font-weight: bold;" >제 목</td>
+					<td style="border-radius:20px; border: 3px solid orange; "><input type="text" name="faq_title" size ="80" value="${faq_vo.faq_title}" style="border-radius:20px;"/></td>
 				</tr>
 			
 				<tr align="center">
-					<td colspan="2">
-						<textarea rows="10" cols="60" name="faq_content" id="content"  style="border-radius:20px;">${faq_vo.faq_content}</textarea>
+					<td colspan="2" style="border-radius:20px; border: 3px solid orange; ">
+						<textarea rows="10" cols="60" name="faq_content" id="content" style="border-radius:20px;">${faq_vo.faq_content}</textarea>
 					</td>
 				</tr>
 					<tr align="center">
-					<td bgcolor="#FFA629" style= "color: white; font-weight: bold;">첨부파일</td>
+					<td bgcolor="#FFA629" style="background-color:  #FFA629;color: white;font-weight: bold;">첨부파일</td>
 					<c:choose>
 						<c:when test="${empty faq_vo.faq_fname}">
-							<td><input type="file" name="file"> <br><b> 이전 파일 없음</b> </td>
+							<td style="border-radius:20px; border: 3px solid orange; "><input type="file" name="file"> <br><b> 이전 파일 없음</b> </td>
 							   	<input type="hidden" name = "old_f_name" value="">					
 						</c:when>
 						<c:otherwise>
-							<td><input type="file" name="file"> <br><b> 이전 파일명 (${faq_vo.faq_fname})</b> </td>
+							<td style="border-radius:20px; border: 3px solid orange; "><input type="file" name="file"> <br><b> 이전 파일명 (${faq_vo.faq_fname})</b> </td>
 							   	<input type="hidden" name = "faq_fname" value="${faq_vo.faq_fname}">		
 						</c:otherwise>
 					</c:choose>                    
 				</tr>
 				<tfoot>
-					<td colspan="4">
+				<tr align="center">
+						<td colspan="4"  style="border-radius:20px; border: 3px solid orange; ">
 					
-						<input type="hidden" name="faq_idx" value="${faq_vo.faq_idx}">
-						<input type="hidden" name="cPage" value="${cPage}">
+					
 						<input type="radio" name="faq_ing" value="0" class="radio" /><span class="ml_10">공개</span>&nbsp;&nbsp;&nbsp;&nbsp;
    					 	<input type="radio" name="faq_ing" value="1" class="radio" /><span class="ml_10">비공개</span>&nbsp;
-   					 	<hr>	
+   					 	<hr style=" border-color:3px solid orange;">
+   					 		<input type="hidden" name="faq_idx" value="${faq_vo.faq_idx}">
+						<input type="hidden" name="cPage" value="${cPage}">
 						<input type="button" class="button"  value="수정" onclick="update_ok(this.form)"/>
 						<input type="reset" class="button"  value="취소"/>
 					</td>

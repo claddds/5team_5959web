@@ -53,7 +53,9 @@
 	border-collapse:collapse;
 	font-size:20px;
 }
-
+#update table th{
+	background-color: #FFA629;
+}
 .sidebar {
 	width: 15%;
 	background-color: white;
@@ -92,9 +94,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 <script type="text/javascript">
-	function list_go(f) {
-		f.action="/qna_list.do";
-		f.submit();
+	function list_go(){
+		location.href="userqna_list.do";
 	}
 	function update_go(f) {
 		f.action="/qna_update.do";
@@ -117,11 +118,13 @@
     <ul class="sidebar-menu">
       <li class="notice"><a href="/sup_list.do">공지사항</a></li>
       <hr>
-      <li class="faq" style="font-weight: bold;"><a href="/faq_list.do">문의사항</a></li>
+      <li class="faq"><a href="/faq_list.do">자주 묻는 질문</a></li>
+      <hr>
+      <li class="qna" style="font-weight: bold;"><a href="/userqna_list.do">1:1 문의</a></li>
       <hr>
       <li class="report"><a href="/rep_list.do">신고</a></li>
      </ul>
-  </div>        
+  </div>         
   	<!-- 수정 구역 -->
   	<div>
 		<p id="title">문의사항 수정하기</p>
@@ -167,7 +170,7 @@
 						<input type="hidden" name="cPage" value="${cPage}">
 						<input type="submit" value="수정" style="font-size: 20px;" onclick="update_go(this.form)">
 						<input type="button" value="목록" style="font-size: 20px;"
-						onclick="list_go(this.form)">
+						onclick="list_go()">
 					</td>						
 				</tr>
 			</table>

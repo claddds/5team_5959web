@@ -120,7 +120,6 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 	
 	<!-- 최상단 NOTICE,LOGIN,JOIN US -->
 	<div>
-<<<<<<< HEAD
 	  <ul class="topmenu">   
 	    <c:choose>
 	  		<c:when test="${loginChk eq 'ok'}">
@@ -144,7 +143,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
 	    </c:choose>
 	  </ul>
 	</div>
-=======
+<%-- =======
       <ul class="topmenu">
         <li><a href="/supdisplay.do" style="color:#FFA629;" class="header-ALink">NOTICE </a></li>
         <c:choose>
@@ -170,7 +169,7 @@ console.log("세션정보 " + ${sessionScope.type == 0});
       </ul>
     </div>
 
->>>>>>> upstream/develop
+>>>>>>> upstream/develop --%>
 	<!-- 5959 메인 로고 -->
 	<div class="mainlogo">
 	  <a href="/homedisplay.do"><img src="resources/images/home/mainlogo.png" width="200px"></a>

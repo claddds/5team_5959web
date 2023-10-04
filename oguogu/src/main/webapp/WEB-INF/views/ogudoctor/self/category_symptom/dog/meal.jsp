@@ -213,7 +213,8 @@
 						<c:otherwise>
 							<c:forEach var="k" items="${mealfoodlist}" varStatus="vs">
 								<div class="funkyradio-warning">
-	            					<input type="radio" name="option1" id="meal_food_${vs.count}" value="${k.dis_info}" />
+	            					<input type="radio" name="option1" id="meal_food_${vs.count}" value="${k.dis_info},${k.period_line}" />
+	            					
 	            					<label for="meal_food_${vs.count}">${k.dis_info}</label>
 	        					</div>
 							</c:forEach>
@@ -231,7 +232,7 @@
 						<c:otherwise>
 							<c:forEach var="k" items="${mealwaterlist}" varStatus="vs">
 								<div class="funkyradio-warning">
-	            					<input type="radio" name="option2" id="meal_water_${vs.count}" value="${k.dis_info}"/>
+	            					<input type="radio" name="option2" id="meal_water_${vs.count}" value="${k.dis_info},${k.period_line}"/>
 	            					<label for="meal_water_${vs.count}">${k.dis_info}</label>
 	        					</div>
 							</c:forEach>

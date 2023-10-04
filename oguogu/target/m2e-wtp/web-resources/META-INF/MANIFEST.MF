@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: user
-=======
-Built-By: lshle
->>>>>>> upstream/develop
+Built-By: ict01-22
 Build-Jdk: 11.0.18
 Created-By: Maven Integration for Eclipse
 

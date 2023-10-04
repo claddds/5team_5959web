@@ -125,15 +125,19 @@ public class PocketController {
  	@ResponseBody
  	public ModelAndView getprocessSelectedFacilities(
  			@RequestBody List<Pocketplace_VO> selectedFacilities){
+ 		ModelAndView mv = new ModelAndView("pocket/pocketplanmap");
+ 		
+ 		
  		for (Pocketplace_VO facility : selectedFacilities) {
             System.out.println("Facility: " + facility.getFacilities());
             System.out.println("Road Address: " + facility.getRoadaddr());
             System.out.println("Longitude: " + facility.getLon());
             System.out.println("Latitude: " + facility.getLat());
+            
         }
  		
- 		ModelAndView mv = new ModelAndView("pocket/pocketplanmap");
- 		mv.addObject("selectedFacilities", selectedFacilities);
+ 	// Add the facility info list to the ModelAndView
+ 	    mv.addObject("selectedFacilities", selectedFacilities);
  		return mv;
  	}
  	

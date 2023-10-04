@@ -72,7 +72,7 @@
                 localStorage.setItem("clickedLinkIndex", clickedIndex);
             });
         });
-    </script>
+ </script>
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">

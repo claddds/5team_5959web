@@ -22,19 +22,19 @@
  	</insert>
  	<!-- 로그인을 위한 비밀번호 찾기 -->
  	<select id="findPw" parameterType="String" resultType="String">
- 		select pw from user where user_id = #{user_id}
+ 		select pw from user where user_id = #{user_id} and status = 0
  	</select>
  	<!-- 아이디로 유저 한명 찾기 -->
  	<select id="findUser" parameterType="String" resultType="uvo">
- 		select * from user where user_id = #{user_id}
+ 		select * from user where user_id = #{user_id} and status = 0
  	</select>
  	<!-- 이메일로 유저 한명 찾기 -->
  	<select id="findUserId" parameterType="String" resultType="uvo">
- 		select * from user where email = #{email}
+ 		select * from user where email = #{email} and status = 0
  	</select>
  	
 	<update id="userPwUpdate" parameterType="uvo">
-		update user set pw = #{pw} where user_id = #{user_id}
+		update user set pw = #{pw} where user_id = #{user_id} and status = 0
 	</update>
 </mapper>
 

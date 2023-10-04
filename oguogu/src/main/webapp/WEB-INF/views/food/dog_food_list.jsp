@@ -139,7 +139,7 @@ $(document).ready(function() {
 		<div>
 			<ul id="prod-list">
 				<c:forEach var="k" items="${DogFoodlist}">
-					<c:if test="${k.status == 0}">
+					<c:if test="${k.status == 0 && k.fd_open = 0}">
 						<li>
 							<div class="prod">
 								<div class="prod-img">

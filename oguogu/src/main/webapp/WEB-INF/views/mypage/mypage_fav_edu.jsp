@@ -68,13 +68,15 @@ footer {
 				즐겨찾기 - 교육
 			</div>
 			<c:forEach var="k" items="${elist}">
-				<a href="/essentialOneListDog.do?edu_idx=${k.edu_idx}" style="text-decoration: none;color:black;">
-					<div class="fav_place_card" style="width: 200px; height: 300px;">
-						<img src="resources/images/${k.edu_F_name}"
-							class="fav_edu_img" style="width: 200px; height: 200px;">
-						<h3 class="card-title">${k.edu_title}</h3>
-					</div>
-				</a>
+				<c:if test="${k.status == 0 && k.edu_open == 0}">
+					<a href="/essentialOneListDog.do?edu_idx=${k.edu_idx}" style="text-decoration: none;color:black;">
+						<div class="fav_place_card" style="width: 200px; height: 300px;">
+							<img src="resources/images/${k.edu_F_name}"
+								class="fav_edu_img" style="width: 200px; height: 200px;">
+							<h3 class="card-title">${k.edu_title}</h3>
+						</div>
+					</a>
+				</c:if>
 			</c:forEach>
 		</div>
 	</div>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>고양이 사료 - 전연령</title>
 <style type="text/css">
 
 #cat-food-form{font-family: 'Noto Sans KR', sans-serif;width: 1920px;margin: auto;margin-top:20px;}
@@ -140,7 +140,7 @@ $(document).ready(function() {
 		<div>
 			<ul id="prod-list">
 				<c:forEach var="k" items="${CatFoodlist}">
-					<c:if test="${k.status == 0 && k.fd_open = 0}">
+					<c:if test="${k.status == 0 && k.fd_open == 0}">
 						<li>
 							<div class="prod">
 								<div class="prod-img">

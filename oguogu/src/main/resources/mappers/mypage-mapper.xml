@@ -16,7 +16,7 @@
 	
 	<!-- 회원 탈퇴 -->
 	<update id="getRemoveUser" parameterType="String">
-		update user set status = 1, enddate = sysdate where user_id = #{user_id}
+		update user set status = 1, enddate = sysdate() where user_id = #{user_id}
 	</update>
 	
 	<!-- 좋아요 수 구하기 -->
@@ -44,11 +44,11 @@
 	</select>
 	<!-- 게시글 댓글 수 구하기 -->
 	<select id="getCommentCount" parameterType="String" resultType="int">
-		select count(*) from lounge where lo_idx = #{lo_idx}
+		select count(*) from lounge where lo_idx = #{lo_idx} and status = 0
 	</select>
 	<!-- 내가 쓴 댓글 수 -->
 	<select id="getmyCommFind" parameterType="String" resultType="int">
-		select count(*) from Comment where user_id = #{user_id}
+		select count(*) from Comment where user_id = #{user_id} and status = 0
 	</select>
 	<!-- 내가 쓴 댓글 목록 불러오기 -->
 	<select id="getmyComment" parameterType="map" resultType="cvo">

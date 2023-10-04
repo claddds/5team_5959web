@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지-교육</title>
 <style type="text/css">
 
 #fav_edu_none_form{
@@ -69,8 +69,8 @@ footer {
 			<jsp:include page="mypage-sidebar.jsp" />
 		</div>
 		<div id="fav_edu_none_list">
-			<h1 style="font-size: 50px;color:#FFA629;margin-top:50px;">즐겨찾기 - 교육</h1>
-			<div style="margin:50px 0;">
+			<h1 style="font-size: 50px;color:#FFA629;margin-top:15px;">즐겨찾기 - 교육</h1>
+			<div style="margin:20px 0;">
 				<img src="resources/images/mypage/fav_edu_none.png" 
 				style="width:200px;height:200px;border-radius:10px;">	
 			</div>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지 - 작성글</title>
 <style type="text/css">
 
 #mywrite_lounge_none_form{
@@ -50,7 +50,7 @@ footer {
 </style>
 <script type="text/javascript">
 	function lounge_go() {
-		location.href="/loungemaindisplay.do"
+		location.href="/lounge_list.do"
 	}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +69,7 @@ footer {
 			<jsp:include page="mypage-sidebar.jsp" />
 		</div>
 		<div id="mywrite_lounge_none_list">
-			<h1 style="font-size: 50px;color:#FFA629;margin-top:25px;">나의 작성글</h1>
+			<h1 style="font-size: 50px;color:#FFA629;margin-top:15px;">나의 작성글</h1>
 			<div style="margin:50px 0;">
 				<img src="resources/images/mypage/write_reg.png" 
 				style="width:200px;height:200px;border-radius:10px;">	

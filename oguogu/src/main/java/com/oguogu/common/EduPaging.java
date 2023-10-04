@@ -13,7 +13,7 @@ public class EduPaging {
 	private int totalBlock = 0;     // 전체 블록의 수
 	
 	// mariadb sql - limit에 해당 된다
-	private int numPerPage = 5;     // 한 페이지안에 존재하는 게시물의 수
+	private int numPerPage = 10;     // 한 페이지안에 존재하는 게시물의 수
 	private int pagePerBlock = 3;   // 한 블록안에 존재하는 페이지의 수
 	
 	// 구하고자 하는 변수

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지 - 내 프로필</title>
 <style type="text/css">
 	#myprofile-main{
 		width:1920px;

@@ -145,7 +145,7 @@ footer{
 		<div id="edumenu">
 			<ul>
 				<li><a href="/essentialdisplayDog.do">필수 정보</a></li>
-				<li><a href="/bringingldisplayDog.do">양육 정보</a></li>
+				<li><a href="/bringingdisplayDog.do">양육 정보</a></li>
 				<li><a href="/trainingdisplayDog.do">훈련 정보</a></li>
 			</ul>
 		</div>
@@ -184,7 +184,7 @@ footer{
 
 		<ul class="cardList">
 			<c:forEach var="k" items="${Blist}" >
-				<c:if test="${k.status == 0}">
+				<c:if test="${k.status == 0 && k.edu_open == 0}">
 					<li>
 						<div class="edu-card">
 							<div id="essential">
@@ -212,7 +212,7 @@ footer{
 		
 		<ul class="cardList">
 			<c:forEach var="k" items="${Tlist}" >
-				<c:if test="${k.status == 0}">
+				<c:if test="${k.status == 0 && k.edu_open == 0}">
 					<li>
 						<div class="edu-card">
 							<div id="essential">

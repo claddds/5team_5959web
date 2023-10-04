@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지 - 반려동물</title>
 <style type="text/css">
 	body{
 		font-family: 'Noto Sans KR', sans-serif;

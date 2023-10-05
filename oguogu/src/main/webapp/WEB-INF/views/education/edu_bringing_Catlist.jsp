@@ -264,7 +264,7 @@ ol.paging li a:hover {
 								</div>
 								<div class="card-img">
 									<div class="edu_img">
-										<img src="resources/images/home/mainlogo.png">
+										<img src="resources/images${k.edu_F_name}">
 										<!-- ${k.edu_F_name} -->
 									</div>
 								</div>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>오구오구 이용약관</title>
 <style type="text/css">
 	#content{
 		font-family: 'Noto Sans KR', sans-serif;

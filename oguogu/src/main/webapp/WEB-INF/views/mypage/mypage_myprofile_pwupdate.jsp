@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지 - 비밀번호 변경</title>
 <style type="text/css">
 	#pwUpdate-myprofile{
 		width:1920px;
@@ -39,7 +39,7 @@
 		background-color:#F3F1EF;
 		color:#C4C4C4;
 	}
-	#pwUpdate-myprofileform input[type="text"]{
+	#pwUpdate-myprofileform input[type="password"]{
 		height:30px;
 		border:none;
 	 	font-size: 20px;
@@ -207,19 +207,19 @@ $(document).ready(function(){
 			<div style="font-size: 40px; font-weight: bold; color:#FFA629; margin:50px 0;">비밀번호 변경</div>
 
 			<div id="current-pw">
-				현재 비밀번호 : <input type="text" id="cPw" maxlength="20" style="width:280px;">
+				현재 비밀번호 : <input type="password" id="cPw" maxlength="20" style="width:280px;">
 			</div>
 			
 			<div id="pwCheck" style="width:350px;"></div>
 			
 			<div class="change-pw">
-				변경 비밀번호 : <input type="text" id="password" name="pw" maxlength="20" placeholder="비밀번호 8자 이상, 20자 미만" >
+				변경 비밀번호 : <input type="password" id="password" name="pw" maxlength="20" placeholder="비밀번호 8자 이상, 20자 미만" >
 			</div>
 			<div style="width:400px;">
 				<label style="color:#C4C4C4; width:200px;">* 비밀번호는 특수문자(# ,? ,! ,@ ,$ ,% ,^ ,& ,* ,-) 중 하나를 포함 해야합니다.</label>
 			</div>
 			<div class="change-pw">
-				비밀번호 확인 : <input type="text" id="passwordChk" maxlength="20" placeholder="비밀번호 확인" >
+				비밀번호 확인 : <input type="password" id="passwordChk" maxlength="20" placeholder="비밀번호 확인" >
 			</div>
             <div id="validationMessage" style="width:400px;height:15px;"></div> 
 			<div id="changePwInput" style="margin-top:30px;">

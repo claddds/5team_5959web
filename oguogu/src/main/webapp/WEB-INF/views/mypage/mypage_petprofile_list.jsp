@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지 - 반려동물</title>
 <style type="text/css">
 	body{
 		font-family: 'Noto Sans KR', sans-serif;
@@ -93,19 +93,21 @@
 			<h1 style="font-size: 50px;color:#FFA629;">나의 반려동물</h1>
 				<ul id="petprofile_ul">
 				<c:forEach var="k" items="${plist}">
-					<a href="/getPetProfileOnelist.do?pet_idx=${k.pet_idx}" id="petOnelist">
-						<li class="petprofile_li">
-							<div class="petprofile_essential_info">
-								<div>
-									<img src="resources/images/${k.pet_fname}" style="width:200px;height:200px; border-radius:50px;margin-left:40px;">
+					<c:if test="${k.status == 0}">
+						<a href="/getPetProfileOnelist.do?pet_idx=${k.pet_idx}" id="petOnelist">
+							<li class="petprofile_li">
+								<div class="petprofile_essential_info">
+									<div>
+										<img src="resources/images/${k.pet_fname}" style="width:200px;height:200px; border-radius:50px;margin-left:40px;">
+									</div>
+									<div>
+										<div style="font-size: 30px;">${k.pet_name}</div>
+										<div style="font-size: 20px;">${k.pet_birth} (${k.months} 개월)</div>
+									</div>
 								</div>
-								<div>
-									<div style="font-size: 30px;">${k.pet_name}</div>
-									<div style="font-size: 20px;">${k.pet_birth} (${k.months} 개월)</div>
-								</div>
-							</div>
-						</li>
-					</a>
+							</li>
+						</a>
+					</c:if>
 				</c:forEach>
 				</ul>
 			<div style="margin-bottom:50px;">

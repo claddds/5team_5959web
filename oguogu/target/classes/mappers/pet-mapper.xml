@@ -6,7 +6,7 @@
 	
 	<!-- 펫 있을 때 없을 때 구분하기 위해 -->
 	<select id="getPetProfile" parameterType="String" resultType="int">
-		select count(*) from pet where user_id = #{user_id}
+		select count(*) from pet where user_id = #{user_id} and status = 0
 	</select>
 	
 	<!-- 펫 등록 -->
@@ -17,12 +17,12 @@
 	
 	<!-- 펫 목록 불러오기 -->
 	<select id="getPetList" parameterType="String" resultType="pvo">
-		select * from pet where user_id = #{user_id}
+		select * from pet where user_id = #{user_id} and status = 0
 	</select>
 	
 	<!-- 펫정보 불러오기  -->
 	<select id="getPetProfileOnelist" parameterType="String" resultType="pvo">
-		select * from pet where pet_idx = #{pet_idx}
+		select * from pet where pet_idx = #{pet_idx} and status = 0
 	</select>
 	
 	<!-- 펫 정보 수정 -->

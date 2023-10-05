@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지 - 반려동물</title>
 <style type="text/css">
 	#onelist_pet_form{
 		width:1920px;
@@ -78,16 +79,18 @@
 		</div>
 		<div id="onelist_petprofile">
 			<div>
-				<div id="onelist_pet_img_name" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-					<div>
-						<img src="resources/images/${pvo.pet_fname}" id="onelist_pet_img">
+				<c:if test="${pvo.status == 0 }">
+					<div id="onelist_pet_img_name" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+						<div>
+							<img src="resources/images/${pvo.pet_fname}" id="onelist_pet_img">
+						</div>
+						<h2>${pvo.pet_name}</h2>
 					</div>
-					<h2>${pvo.pet_name}</h2>
-				</div>
-				<div class="info_div" style="display:block;">생일 : ${pvo.pet_birth}(${pvo.months} 개월)</div>
-				<div class="info_div">품종 : ${pvo.pet_kind }</div>
-				<div class="info_div">성별 : ${pvo.pet_gender}</div>
-				<div class="info_div">몸무게 : ${pvo.pet_weight} kg</div>
+					<div class="info_div" style="display:block;">생일 : ${pvo.pet_birth}(${pvo.months} 개월)</div>
+					<div class="info_div">품종 : ${pvo.pet_kind }</div>
+					<div class="info_div">성별 : ${pvo.pet_gender}</div>
+					<div class="info_div">몸무게 : ${pvo.pet_weight} kg</div>
+				</c:if>
 			</div>
 			<div id="onelist_list_update">
 				<button class="onelist_list_update_btn" onclick="petList_go()">목록으로</button>

@@ -73,6 +73,7 @@ a:hover {
 	background: #ffa234;
 	outline: none;
 	color: #ffffff;
+	margin-bottom: 40px;
 }
 
 footer {
@@ -100,21 +101,26 @@ $(document).ready(function() {
 			// async: true,	// 비동기(기본, 생략가능), 동기 = false
 			success: function(data) {
 				pocketlist = data.pocketlist;
-				var table = "<table>";
-				table += "<thead><tr>";
-				table += "<td>선택</td><td>시설명</td><td>도로명 주소</td><td>경도</td><td>위도</td></tr></thead>";
+				var table = "<form action='/map_go.do' method='post'>";
+				table += "<button id='map_button' onclick='onNextButtonClick()'>거리계산하기</button>";
+				table += "<table><thead><tr>";
+				table += "<td>선택</td><td>시설명</td><td>도로명 주소</td></tr></thead>";
 				
 				table += "<tbody>";
 				for(var i=0; i< pocketlist.length; i++) {
 					table += "<tr>";
-					table += "<td><input type='checkbox' name='location_CheckBox'></td>";
+					table += "<td>";
+					/* table += "<input type='checkbox' name='location_CheckBox' value='"+ pocketlist[i].facilities +"'>";
+					table += "<input type='hidden' name='"+ pocketlist[i].facilities +"' value='"+ pocketlist[i].lon +"'>";
+					table += "<input type='hidden' name='"+ pocketlist[i].facilities +"' value='"+ pocketlist[i].lat +"'>"; */
+					table += "<input type='checkbox' name='location_CheckBox' value='"+ pocketlist[i].facilities +","+ pocketlist[i].lon +","+ pocketlist[i].lat +"'>";
+					table +="</td>";
 					table += "<td>"+pocketlist[i].facilities+"</td>";
 					table += "<td>"+pocketlist[i].roadaddr+"</td>";
-					table += "<td>"+ pocketlist[i].lon +"</td>";
-					table += "<td>"+ pocketlist[i].lat +"</td>";
 					table += "</tr>";					
 				}
-				table += "</tbody></table>";
+				
+				table += "</tbody></table></form>";
 				$('#result').append(table);
 				
 			},
@@ -125,7 +131,7 @@ $(document).ready(function() {
 	});
 });
 
-
+/* 
 $(document).ready(function() {
 //상단 선택버튼 클릭시 체크된 Row의 값을 가져온다.
 $("#map_button").click(function(){
@@ -172,7 +178,24 @@ $("#map_button").click(function(){
         }
     });
 });
-});
+});*/
+</script>
+<script type="text/javascript">
+function onNextButtonClick() {
+	 var chkBox = document.getElementsByName("location_CheckBox");
+       var selectedvalues = [];	// 배열 초기화
+       
+       for (var i = 0; i < chkBox.length; i++) {
+           if (chkBox[i].checked) {
+           	selectedvalues.push(chkBox[i].value);
+           }
+       }
+       if (selectedvalues.length === 0) {
+           alert("장소를 최소 하나는 선택해야 합니다");
+           event.preventDefault(); // 폼 제출을 막음
+           return;
+       }
+}
 </script>
 
 </head>
@@ -190,7 +213,6 @@ $("#map_button").click(function(){
 		<div class="search">
 			<input type="text" id ="search_text" placeholder="상호명을 입력하세요">
 			<button id="search_button">검색</button>
-			<button id="map_button">거리계산하기</button>
 		</div>
 		
 		
